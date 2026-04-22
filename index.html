@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ks">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasheer کٔشیٖر — Kashmir's Local Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #00BCD4; --teal-dark: #006773; --teal-mid: #00838F;
+  --teal-light: #E0F7FA; --orange: #FF6F00; --orange-light: #FFF3E0;
+  --text: #0D1B1E; --muted: #5C7A80; --bg: #F4F8F9;
+  --white: #FFFFFF; --border: #DCE8EB; --radius: 18px; --radius-sm: 12px;
+  --shadow: 0 4px 24px rgba(0,103,115,0.10); --shadow-lg: 0 12px 48px rgba(0,103,115,0.16);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 64px;
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--teal-dark); cursor: pointer; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo .kashmiri { font-family: 'Noto Nastaliq Urdu', serif; font-size: 18px; color: var(--muted); font-weight: 400; }
+.nav-links { display: flex; gap: 6px; align-items: center; }
+.nav-btn { padding: 9px 20px; border-radius: 50px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.nav-btn-ghost { background: transparent; color: var(--text); }
+.nav-btn-ghost:hover { background: var(--teal-light); color: var(--teal-dark); }
+.nav-btn-teal { background: var(--teal); color: #fff; }
+.nav-btn-teal:hover { background: var(--teal-dark); }
+.nav-btn-orange { background: var(--orange); color: #fff; }
+.nav-btn-orange:hover { background: #E65100; }
+.page { display: none; }
+.page.active { display: block; }
+.hero { background: var(--teal-dark); min-height: 560px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 90px 24px; position: relative; overflow: hidden; }
+.hero-pattern { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(0,188,212,0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,111,0,0.08) 0%, transparent 40%), radial-gradient(circle at 60% 80%, rgba(0,188,212,0.08) 0%, transparent 40%); }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+.hero-content { position: relative; z-index: 1; max-width: 640px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600; padding: 6px 18px; border-radius: 50px; margin-bottom: 28px; letter-spacing: 1px; text-transform: uppercase; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: 72px; line-height: 1; color: #fff; margin-bottom: 6px; font-weight: 700; }
+.hero-kashmiri { font-family: 'Noto Nastaliq Urdu', serif; font-size: 30px; color: rgba(255,255,255,0.55); margin-bottom: 24px; direction: rtl; }
+.hero-sub { font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; font-weight: 400; }
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 30px; border-radius: 50px; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; border: none; transition: all 0.22s; text-decoration: none; }
+.btn-white { background: #fff; color: var(--teal-dark); }
+.btn-white:hover { background: var(--teal-light); transform: translateY(-1px); }
+.btn-outline { background: rgba(255,255,255,0.1); color: #fff; border: 1.5px solid rgba(255,255,255,0.35); }
+.btn-outline:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px); }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-dark); }
+.btn-orange { background: var(--orange); color: #fff; }
+.btn-orange:hover { background: #E65100; }
+.stats-bar { background: var(--white); border-bottom: 1px solid var(--border); display: flex; justify-content: center; }
+.stat-item { padding: 22px 40px; text-align: center; border-right: 1px solid var(--border); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--teal-dark); }
+.stat-label { font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+.section { padding: 80px 24px; max-width: 1000px; margin: 0 auto; }
+.section-label { font-size: 11px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 38px; text-align: center; color: var(--text); margin-bottom: 10px; font-weight: 700; line-height: 1.2; }
+.section-sub { font-size: 15px; color: var(--muted); text-align: center; margin-bottom: 52px; font-weight: 400; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.feature-card { background: var(--white); border-radius: var(--radius); padding: 30px 24px; border: 1px solid var(--border); transition: all 0.25s; }
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--teal); }
+.feature-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
+.feature-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.feature-desc { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 400; }
+.how-section { background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-mid) 100%); padding: 80px 24px; }
+.how-inner { max-width: 900px; margin: 0 auto; }
+.how-section .section-label { color: rgba(255,255,255,0.6); }
+.how-section .section-title { color: #fff; }
+.how-section .section-sub { color: rgba(255,255,255,0.6); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.step { text-align: center; padding: 20px; position: relative; }
+.step::after { content: '→'; position: absolute; right: -10px; top: 30px; font-size: 18px; color: rgba(255,255,255,0.3); }
+.step:last-child::after { display: none; }
+.step-num { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3); color: #fff; font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.step-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.step-desc { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.55; font-weight: 400; }
+.cats-showcase { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
+.cat-showcase-card { background: var(--white); border-radius: var(--radius-sm); padding: 20px 14px; text-align: center; border: 1px solid var(--border); cursor: pointer; transition: all 0.22s; }
+.cat-showcase-card:hover { border-color: var(--teal); background: var(--teal-light); transform: translateY(-2px); }
+.cat-showcase-icon { font-size: 30px; margin-bottom: 10px; display: block; }
+.cat-showcase-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.cta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 760px; margin: 0 auto; }
+.cta-card { border-radius: var(--radius); padding: 40px 32px; }
+.cta-card.shop { background: var(--teal-dark); }
+.cta-card.sell { background: var(--orange-light); border: 1.5px solid #FFD180; }
+.cta-emoji { font-size: 44px; margin-bottom: 18px; display: block; }
+.cta-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; margin-bottom: 10px; }
+.cta-card.shop .cta-title { color: #fff; }
+.cta-card.sell .cta-title { color: var(--orange); }
+.cta-desc { font-size: 14px; line-height: 1.7; margin-bottom: 26px; font-weight: 400; }
+.cta-card.shop .cta-desc { color: rgba(255,255,255,0.7); }
+.cta-card.sell .cta-desc { color: #795548; }
+.store-top { background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-mid) 100%); padding: 28px 28px 0; }
+.store-top h1 { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: #fff; font-weight: 700; margin-bottom: 4px; }
+.store-top p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 18px; font-weight: 400; }
+.search-wrap { background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 50px; padding: 12px 20px; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.search-wrap input { background: none; border: none; outline: none; color: #fff; font-family: 'Syne', sans-serif; font-size: 14px; flex: 1; }
+.search-wrap input::placeholder { color: rgba(255,255,255,0.45); }
+.cats-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; }
+.cats-scroll::-webkit-scrollbar { display: none; }
+.cat-chip { flex-shrink: 0; padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: 'Syne', sans-serif; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); transition: all 0.2s; white-space: nowrap; }
+.cat-chip:hover, .cat-chip.active { background: #fff; color: var(--teal-dark); }
+.products-area { padding: 24px 28px 120px; }
+.section-heading { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--text); margin: 28px 0 16px; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
+.product-card { background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); transition: all 0.22s; cursor: pointer; }
+.product-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.prod-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+.prod-placeholder { width: 100%; height: 150px; background: linear-gradient(135deg, var(--teal-light), #fff); display: flex; align-items: center; justify-content: center; font-size: 42px; }
+.prod-body { padding: 14px; }
+.prod-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prod-store { font-size: 11px; color: var(--muted); margin-bottom: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400; }
+.prod-foot { display: flex; align-items: center; justify-content: space-between; }
+.prod-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--teal-dark); }
+.add-btn { background: var(--teal); color: #fff; border: none; border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; transition: background 0.2s; }
+.add-btn:hover { background: var(--teal-dark); }
+.qty-row { display: flex; align-items: center; gap: 8px; }
+.qty-btn { width: 28px; height: 28px; border-radius: 8px; background: var(--teal-light); border: none; color: var(--teal-dark); font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.qty-btn:hover { background: var(--teal); color: #fff; }
+.qty-num { font-size: 15px; font-weight: 700; min-width: 20px; text-align: center; }
+.cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--teal-dark); color: #fff; padding: 18px 28px; display: flex; align-items: center; justify-content: space-between; z-index: 100; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 -8px 32px rgba(0,103,115,0.3); }
+.cart-bar.visible { transform: translateY(0); }
+.cart-bar-info { font-size: 14px; font-weight: 400; }
+.cart-bar-info strong { font-size: 18px; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
+.cart-bar-btn { background: #fff; color: var(--teal-dark); border: none; border-radius: 50px; padding: 11px 24px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; transition: all 0.2s; }
+.cart-bar-btn:hover { background: var(--teal-light); }
+.cart-wrap { max-width: 620px; margin: 0 auto; padding: 28px 24px; }
+.cart-item { background: var(--white); border-radius: var(--radius-sm); padding: 16px; display: flex; align-items: center; gap: 14px; border: 1px solid var(--border); margin-bottom: 12px; }
+.cart-item-thumb { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; background: var(--teal-light); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; overflow: hidden; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+.cart-item-price { font-size: 13px; color: var(--teal-dark); font-weight: 600; }
+.cart-summary { background: var(--white); border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); margin-top: 20px; }
+.summary-row { display: flex; justify-content: space-between; font-size: 14px; padding: 7px 0; color: var(--muted); font-weight: 400; }
+.summary-row.total { font-weight: 700; font-size: 17px; color: var(--text); border-top: 1px solid var(--border); margin-top: 8px; padding-top: 16px; }
+.seller-login-wrap { max-width: 420px; margin: 60px auto; background: var(--white); border-radius: var(--radius); padding: 40px; border: 1px solid var(--border); text-align: center; box-shadow: var(--shadow); }
+.seller-login-wrap h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; margin-bottom: 8px; }
+.seller-login-wrap p { font-size: 14px; color: var(--muted); margin-bottom: 30px; font-weight: 400; }
+.field { margin-bottom: 16px; text-align: left; }
+.field label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+.field input { width: 100%; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-family: 'Syne', sans-serif; outline: none; transition: border 0.2s; color: var(--text); background: var(--bg); }
+.field input:focus { border-color: var(--teal); background: #fff; }
+.submit-btn { width: 100%; padding: 14px; background: var(--teal); color: #fff; border: none; border-radius: 50px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; margin-top: 8px; transition: background 0.2s; }
+.submit-btn:hover { background: var(--teal-dark); }
+.err-box { background: #FFEBEE; color: #C62828; border-radius: 10px; padding: 11px 15px; font-size: 13px; margin-bottom: 16px; display: none; text-align: left; }
+.seller-wrap { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+.seller-header-card { background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid)); border-radius: var(--radius); padding: 30px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-start; }
+.seller-header-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 4px; }
+.seller-header-card p { font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 400; }
+.status-badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-active { background: rgba(255,255,255,0.2); color: #fff; }
+.badge-pending { background: rgba(255,200,0,0.25); color: #FFE082; }
+.logout-btn { background: rgba(255,255,255,0.15); border: none; color: #fff; padding: 9px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Syne', sans-serif; transition: background 0.2s; }
+.logout-btn:hover { background: rgba(255,255,255,0.25); }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 26px; }
+.stat-box { background: var(--white); border-radius: var(--radius-sm); padding: 20px; border: 1px solid var(--border); text-align: center; }
+.stat-box-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; color: var(--teal-dark); }
+.stat-box-label { font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 500; }
+.tabs { display: flex; gap: 4px; background: var(--bg); border-radius: var(--radius-sm); padding: 4px; margin-bottom: 22px; }
+.tab { flex: 1; padding: 10px; text-align: center; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: none; font-family: 'Syne', sans-serif; color: var(--muted); transition: all 0.2s; }
+.tab.active { background: var(--white); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.seller-prods-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.seller-prod-card { background: var(--white); border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--border); display: flex; gap: 12px; align-items: center; }
+.seller-prod-thumb { width: 54px; height: 54px; border-radius: 10px; background: var(--teal-light); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; overflow: hidden; }
+.seller-prod-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.seller-prod-name { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+.seller-prod-price { font-size: 13px; color: var(--teal-dark); font-weight: 600; }
+.seller-prod-stock { font-size: 11px; color: var(--muted); font-weight: 400; }
+.orders-list { display: flex; flex-direction: column; gap: 12px; }
+.order-card { background: var(--white); border-radius: var(--radius-sm); padding: 18px; border: 1px solid var(--border); }
+.order-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.order-id { font-size: 12px; color: var(--muted); font-weight: 500; }
+.order-status { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+.s-pending { background: #FFF3E0; color: #E65100; }
+.s-confirmed, .s-accepted_by_store { background: #E8F5E9; color: #2E7D32; }
+.s-delivered { background: #E3F2FD; color: #1565C0; }
+.s-cancelled { background: #FFEBEE; color: #C62828; }
+.order-amount { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--text); }
+.order-date { font-size: 12px; color: var(--muted); font-weight: 400; }
+footer { background: var(--text); padding: 48px 24px; text-align: center; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #fff; font-weight: 700; margin-bottom: 6px; }
+.footer-kashmiri { font-family: 'Noto Nastaliq Urdu', serif; font-size: 18px; color: rgba(255,255,255,0.35); margin-bottom: 24px; direction: rtl; }
+.footer-links { display: flex; justify-content: center; gap: 28px; margin-bottom: 20px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.45); font-size: 13px; text-decoration: none; cursor: pointer; font-weight: 500; transition: color 0.2s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); font-weight: 400; }
+.loading { text-align: center; padding: 70px 24px; color: var(--muted); }
+.spinner { width: 38px; height: 38px; border: 3px solid var(--teal-light); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty { text-align: center; padding: 70px 24px; color: var(--muted); font-size: 15px; font-weight: 400; }
+@media (max-width: 640px) {
+  .hero-title { font-size: 48px; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .step::after { display: none; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat-item { border-right: none; border-bottom: 1px solid var(--border); flex: 1 1 50%; }
+  nav .nav-links .nav-btn-ghost { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    Kasheer <span class="kashmiri">کٔشیٖر</span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn nav-btn-ghost" onclick="showPage('home')">تٔہ گَر</button>
+    <button class="nav-btn nav-btn-ghost" onclick="showPage('store')">🛒 دُکان</button>
+    <button class="nav-btn nav-btn-orange" onclick="showPage('seller')">🏪 دُکاندار لاگِن</button>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🏔️ کٲشِیر ہَنز پہٕلہٕ ڈِلیوری</div>
+      <div class="hero-title">Kasheer</div>
+      <div class="hero-kashmiri">کٔشیٖر — تۄہۍ دروازہ تَکہٕ</div>
+      <p class="hero-sub">Kashmir's first hyperlocal delivery platform — groceries, handmade goods, and more from stores near you. Fast. Local. Yours.</p>
+      <div class="hero-btns">
+        <button class="btn btn-white" onclick="showPage('store')">🛒 خریداری کٔرۆ</button>
+        <button class="btn btn-outline" onclick="showPage('seller')">🏪 Kasheer پَیتھ بیچۆ</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">سامان</div></div>
+    <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">قِسِم</div></div>
+    <div class="stat-item"><div class="stat-num">⚡ تیٖز</div><div class="stat-label">ڈِلیوری</div></div>
+    <div class="stat-item"><div class="stat-num">COD</div><div class="stat-label">نَقد اَدائیگی</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Kasheer کیازِ</div>
+    <div class="section-title">کٲشِیر لَگِتھ بَنایۆو</div>
+    <p class="section-sub">تُہی وَزتِہ ہِنز دُکاناں ہَنز ہَر چیٖز</p>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🛒</div><div class="feature-title">مَحَلہٕ ہَنز گروسری</div><div class="feature-desc">تازہ سامان تہ روزِمَرہٕ ضَروری چیٖزۍ قریٖبُک دُکاناں ہَندِس</div></div>
+      <div class="feature-card"><div class="feature-icon">🏺</div><div class="feature-title">کٲشُر بریٖنڈ</div><div class="feature-desc">خیبر دُدھ، مَقامی بیکری، تہ اَصلی کٲشُر اَشیا</div></div>
+      <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">تیٖز ڈِلیوری</div><div class="feature-desc">قریٖب رایِدر تہٕجِس ہانٛز آرڈر لیٖن — قریٖبۆکس دُکانَس پیٹھ پہٕلہٕ آرڈر وَچھِتھ</div></div>
+      <div class="feature-card"><div class="feature-icon">💰</div><div class="feature-title">مُناسِب قیٖمَت</div><div class="feature-desc">کانہہ پوٚشیدہ چارجٕ نیٖ۔ دُکانَس ہَنز اَصلی قیٖمَت اَدا کٔرۆ</div></div>
+      <div class="feature-card"><div class="feature-icon">📱</div><div class="feature-title">ایپ تہ وَیب</div><div class="feature-desc">Android ایپ پیٹھ یا وَیب پیٹھ آرڈر کٔرۆ</div></div>
+      <div class="feature-card"><div class="feature-icon">🏪</div><div class="feature-title">دُکان بَڈاوۆ</div><div class="feature-desc">پہٕلۍ ۵۰ آرڈر مُفت — پَھِر صِرف ۵٪ کَمیشن</div></div>
+    </div>
+  </div>
+
+  <div style="background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 60px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div class="section-label">کیا ڈِلیوری کٔریوؤ</div>
+      <div class="section-title">ہَر چیٖز تۄہہٕ لگِتھ</div>
+      <p class="section-sub" style="margin-bottom: 36px;">ناشتہٕ تَہٕ خیالداری — سَب کُجھ قریٖبُک دُکاناں ہَندِس</p>
+      <div class="cats-showcase">
+        <div class="cat-showcase-card" onclick="goShop('snacks')"><span class="cat-showcase-icon">🍿</span><div class="cat-showcase-name">ناشتہٕ</div></div>
+        <div class="cat-showcase-card" onclick="goShop('sweet')"><span class="cat-showcase-icon">🍫</span><div class="cat-showcase-name">مِٹھ چیٖز</div></div>
+        <div class="cat-showcase-card" onclick="goShop('drinks')"><span class="cat-showcase-icon">🥤</span><div class="cat-showcase-name">پیٖنے</div></div>
+        <div class="cat-showcase-card" onclick="goShop('dairy')"><span class="cat-showcase-icon">🥛</span><div class="cat-showcase-name">دُدھ تہ بیکری</div></div>
+        <div class="cat-showcase-card" onclick="goShop('fruits')"><span class="cat-showcase-icon">🍎</span><div class="cat-showcase-name">پھَل</div></div>
+        <div class="cat-showcase-card" onclick="goShop('vegetables')"><span class="cat-showcase-icon">🥦</span><div class="cat-showcase-name">سَبزی</div></div>
+        <div class="cat-showcase-card" onclick="goShop('pasta')"><span class="cat-showcase-icon">🍜</span><div class="cat-showcase-name">نوڈلز</div></div>
+        <div class="cat-showcase-card" onclick="goShop('grocery')"><span class="cat-showcase-icon">🧂</span><div class="cat-showcase-name">گروسری</div></div>
+        <div class="cat-showcase-card" onclick="goShop('tea')"><span class="cat-showcase-icon">☕</span><div class="cat-showcase-name">چاہ تہ کافی</div></div>
+        <div class="cat-showcase-card" onclick="goShop('personal')"><span class="cat-showcase-icon">🧴</span><div class="cat-showcase-name">ذاتی خیال</div></div>
+        <div class="cat-showcase-card" onclick="goShop('baby')"><span class="cat-showcase-icon">👶</span><div class="cat-showcase-name">بال خیال</div></div>
+        <div class="cat-showcase-card" onclick="goShop('dryfruits')"><span class="cat-showcase-icon">🥜</span><div class="cat-showcase-name">میٖوو</div></div>
+        <div class="cat-showcase-card" onclick="goShop('oil')"><span class="cat-showcase-icon">🫙</span><div class="cat-showcase-name">تیٖل تہ گھی</div></div>
+        <div class="cat-showcase-card" onclick="goShop('household')"><span class="cat-showcase-icon">🧹</span><div class="cat-showcase-name">گھَر</div></div>
+        <div class="cat-showcase-card" onclick="goShop('health')"><span class="cat-showcase-icon">💊</span><div class="cat-showcase-name">صِحَت</div></div>
+        <div class="cat-showcase-card" onclick="goShop('icecream')"><span class="cat-showcase-icon">🍦</span><div class="cat-showcase-name">آئِس کریٖم</div></div>
+        <div class="cat-showcase-card" onclick="goShop('atta')"><span class="cat-showcase-icon">🌾</span><div class="cat-showcase-name">آٹہٕ تہ چاوَل</div></div>
+        <div class="cat-showcase-card" onclick="goShop('skincare')"><span class="cat-showcase-icon">✨</span><div class="cat-showcase-name">جِلد خیال</div></div>
+        <div class="cat-showcase-card" onclick="goShop('honey')"><span class="cat-showcase-icon">🍯</span><div class="cat-showcase-name">شَہِد</div></div>
+        <div class="cat-showcase-card" onclick="goShop('ramadan')"><span class="cat-showcase-icon">🌙</span><div class="cat-showcase-name">رَمَضان</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="how-section">
+    <div class="how-inner">
+      <div class="section-label">کِیتھ کام کٔرنۍ</div>
+      <div class="section-title">۴ قَدَماں مَنز آرڈر</div>
+      <p class="section-sub" style="margin-bottom: 44px;">آرڈر کٔرنہٕ بَڈ آسان چھُ</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-title">وَچھۆ</div><div class="step-desc">قریٖب دُکانۍ تہ سامان وَچھۆ</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-title">ٹوکری مَنز</div><div class="step-desc">جو چیٖز گَو ٹوکری مَنز دِیۆ</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-title">ادائیگی</div><div class="step-desc">آنلائن یا نَقد اَدا کٔرۆ</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-title">ڈِلیوری</div><div class="step-desc">قریٖب رایِدر درواز پیٹھ آنٛدِتھ دیٖن</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding: 72px 24px;">
+    <div class="section-title" style="margin-bottom: 10px;">شُروع کٔرنہٕ تیار؟</div>
+    <p class="section-sub" style="margin-bottom: 36px;">اَژ شُروع کٔرۆ</p>
+    <div class="cta-grid">
+      <div class="cta-card shop">
+        <span class="cta-emoji">🛍️</span>
+        <div class="cta-title">خریداری کَرنۍ چھُس</div>
+        <p class="cta-desc">قریٖب دُکاناں وَچھۆ تہ تازہ سامان دَروازہ تَکہٕ آنٛدِوۆ۔</p>
+        <button class="btn btn-white" onclick="showPage('store')">دُکان کھٔلۆ ←</button>
+      </div>
+      <div class="cta-card sell">
+        <span class="cta-emoji">🏪</span>
+        <div class="cta-title">بیٖچَنہٕ چھُس</div>
+        <p class="cta-desc">دُکان رجِسٹَر کٔرۆ تہ قریٖب گراہَکاں تَکہٕ پہُچۆ۔ پہٕلۍ ۵۰ آرڈر مُفت۔</p>
+        <button class="btn btn-orange" onclick="showPage('seller')">دُکاندار بَنۆ ←</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Kasheer</div>
+    <div class="footer-kashmiri">کٔشیٖر</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">تٔہ گَر</a>
+      <a onclick="showPage('store')">دُکان</a>
+      <a onclick="showPage('seller')">بیٖچۆ</a>
+    </div>
+    <div class="footer-copy">© 2026 Kasheer. کٲشِیرِس مَنز بَنایۆو محَبَتَس سیتی 🏔️</div>
+  </footer>
+</div>
+
+<!-- STORE PAGE -->
+<div class="page" id="page-store">
+  <div class="store-top">
+    <h1>Kasheer دُکان <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:20px;opacity:0.6">کٔشیٖر</span></h1>
+    <p>قریٖب دُکاناں ہَندِس تازہ سامان</p>
+    <div class="search-wrap">
+      <span style="color:rgba(255,255,255,0.5)">🔍</span>
+      <input type="text" id="search-input" placeholder="سامان تَلاش کٔرۆ..." oninput="filterProducts()">
+    </div>
+    <div class="cats-scroll" id="cats-bar"></div>
+  </div>
+  <div class="products-area" id="store-content">
+    <div class="loading"><div class="spinner"></div>لوڈ گَژھان چھُ...</div>
+  </div>
+  <div class="cart-bar" id="cart-bar">
+    <div class="cart-bar-info"><strong id="cart-count">0</strong> چیٖز &nbsp;·&nbsp; ₹<span id="cart-total">0</span></div>
+    <button class="cart-bar-btn" onclick="showPage('cart')">ٹوکری وَچھۆ ←</button>
+  </div>
+</div>
+
+<!-- CART PAGE -->
+<div class="page" id="page-cart">
+  <div style="background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid)); padding: 24px;">
+    <button onclick="showPage('store')" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:14px;">← واپَس</button>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">تۄہۍ ٹوکری</h1>
+  </div>
+  <div class="cart-wrap" id="cart-content"></div>
+</div>
+
+<!-- SELLER PAGE -->
+<div class="page" id="page-seller">
+  <div id="seller-login-view">
+    <div class="seller-login-wrap" style="padding: 24px;">
+      <div style="font-size:48px;margin-bottom:14px;">🏪</div>
+      <h2>دُکاندار لاگِن</h2>
+      <p>Kasheer دُکان ڈیش بورڈ کھٔلۆ</p>
+      <div class="err-box" id="login-error"></div>
+      <div class="field"><label>اِیمیل</label><input type="email" id="seller-email" placeholder="your@email.com"></div>
+      <div class="field"><label>پاس ورڈ</label><input type="password" id="seller-password" placeholder="••••••••"></div>
+      <button class="submit-btn" onclick="sellerLogin()">ڈیش بورڈ مَنز داخِل گَژھۆ</button>
+      <p style="margin-top:18px;font-size:13px;color:var(--muted);font-weight:400;">دُکان نیٖ چھیہ؟ <a href="#" style="color:var(--teal);font-weight:600;" onclick="alert('Kasheer ایپ ڈاؤنلوڈ کٔرۆ دُکاندار رجِسٹَر کٔرنَس لیٖتھ!')">ایپ پیٹھ رجِسٹَر کٔرۆ</a></p>
+    </div>
+  </div>
+
+  <div id="seller-dash-view" style="display:none;">
+    <div class="seller-wrap">
+      <div class="seller-header-card">
+        <div>
+          <h2 id="dash-store-name">تۄہۍ دُکان</h2>
+          <p id="dash-category"></p>
+          <span class="status-badge badge-active" id="dash-status">چالو</span>
+        </div>
+        <button class="logout-btn" onclick="sellerLogout()">لاگ آوُٹ</button>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-box-num" id="stat-products">—</div><div class="stat-box-label">سامان</div></div>
+        <div class="stat-box"><div class="stat-box-num" id="stat-orders">—</div><div class="stat-box-label">آرڈر</div></div>
+        <div class="stat-box"><div class="stat-box-num" id="stat-revenue">—</div><div class="stat-box-label">کَمائی</div></div>
+      </div>
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('products')">سامان</button>
+        <button class="tab" onclick="switchTab('orders')">آرڈر</button>
+      </div>
+      <div id="tab-products"><div id="seller-products-content"><div class="loading"><div class="spinner"></div>لوڈ گَژھان چھُ...</div></div></div>
+      <div id="tab-orders" style="display:none;"><div id="seller-orders-content"><div class="loading"><div class="spinner"></div>لوڈ گَژھان چھُ...</div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'https://kasheer-backend.onrender.com/api';
+
+const BB = 'https://www.bbassets.com/media/uploads/p/s/';
+const PRODUCT_IMAGES = {
+  'snk_lays1': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_lays2': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_lays3': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_lays4': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_lays5': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_lays6': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_lays8': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_lays10': BB + '294273_16-lays-wafer-style-classic-salted.jpg',
+  'snk_kur1': BB + '102761_18-kurkure-namkeen-masala-munch.jpg',
+  'snk_kur2': BB + '102761_18-kurkure-namkeen-masala-munch.jpg',
+  'snk_kur3': BB + '102761_18-kurkure-namkeen-masala-munch.jpg',
+  'snk_kur4': BB + '102761_18-kurkure-namkeen-masala-munch.jpg',
+  'snk_bin1': BB + '20006262_5-bingo-mad-angles-chips-mmmm-masala.jpg',
+  'snk_bin2': BB + '294274_18-bingo-mad-angles-achari-masti.jpg',
+  'snk_bin3': BB + '20006262_5-bingo-mad-angles-chips-mmmm-masala.jpg',
+  'snk_bin5': BB + '20006262_5-bingo-mad-angles-chips-mmmm-masala.jpg',
+  'snk_hal1': BB + '40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  'snk_hal2': BB + '40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  'snk_hal3': BB + '40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  'snk_hal4': BB + '40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  'snk_hal5': BB + '40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  'snk_ty1': BB + '40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  'snk_ty2': BB + '40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  'snk_dor1': BB + '40109565_18-doritos-nacho-chips-nacho-cheese-flavour.jpg',
+  'snk_dor2': BB + '40169590_9-doritos-nacho-chips-sweet-chilli-flavour.jpg',
+  'snk_pri1': BB + '100550_19-pringles-original.jpg',
+  'snk_pri2': BB + '100006683_8-pringles-sour-cream-onion.jpg',
+  'snk_pri4': BB + '100550_19-pringles-original.jpg',
+  'snk_act1': BB + '189220_8-act-ii-instant-popcorn-classic-salted-hot-fresh-delicious.jpg',
+  'snk_act2': BB + '189220_8-act-ii-instant-popcorn-classic-salted-hot-fresh-delicious.jpg',
+  'snk_act3': BB + '189220_8-act-ii-instant-popcorn-classic-salted-hot-fresh-delicious.jpg',
+  'sw_cad1': BB + '20005973_16-cadbury-perk-double-chocolate-bar.jpg',
+  'sw_cad4': BB + '281026_22-cadbury-dairy-milk-chocolate.jpg',
+  'sw_cad5': BB + '281026_22-cadbury-dairy-milk-chocolate.jpg',
+  'sw_cad3': BB + '281026_22-cadbury-dairy-milk-chocolate.jpg',
+  'sw_kit1': BB + '40018531_68-nestle-kitkat-crispy-wafer-bar.jpg',
+  'sw_kit2': BB + '40018531_68-nestle-kitkat-crispy-wafer-bar.jpg',
+  'sw_kit3': BB + '40018531_68-nestle-kitkat-crispy-wafer-bar.jpg',
+};
+
+const GROCERY_CATEGORIES = [
+  { id: "snacks", title: "ناشتہٕ", icon: "🍿", products: [
+    { id: "snk_lays1", name: "Lay's Classic Salted 28g", price: 10, description: "Classic salted potato chips" },
+    { id: "snk_lays2", name: "Lay's Magic Masala 52g", price: 20, description: "Tangy masala flavour chips" },
+    { id: "snk_lays3", name: "Lay's Cream & Onion 52g", price: 20, description: "Creamy onion flavour chips" },
+    { id: "snk_lays4", name: "Lay's Chile Limon 52g", price: 20, description: "Chilli lemon flavour chips" },
+    { id: "snk_lays5", name: "Lay's Magic Masala 90g", price: 35, description: "Tangy masala flavour chips" },
+    { id: "snk_lays6", name: "Lay's Cream & Onion 90g", price: 35, description: "Creamy onion flavour chips" },
+    { id: "snk_lays8", name: "Lay's Magic Masala 150g", price: 50, description: "Large pack masala chips" },
+    { id: "snk_lays10", name: "Lay's Family Pack 300g", price: 95, description: "Family size masala chips" },
+    { id: "snk_kur1", name: "Kurkure Masala Munch 36g", price: 10, description: "Spicy masala corn puffs" },
+    { id: "snk_kur2", name: "Kurkure Green Chutney 50g", price: 20, description: "Tangy green chutney puffs" },
+    { id: "snk_kur3", name: "Kurkure Solid Masti 90g", price: 35, description: "Extra spicy corn puffs" },
+    { id: "snk_kur4", name: "Kurkure Chilli Chatka 90g", price: 35, description: "Fiery chilli corn puffs" },
+    { id: "snk_bin1", name: "Bingo Mad Angles Masala 45g", price: 20, description: "Triangular masala chips" },
+    { id: "snk_bin2", name: "Bingo Mad Angles Achaari 72g", price: 30, description: "Tangy pickle flavour chips" },
+    { id: "snk_bin3", name: "Bingo Mad Angles Pizza 72g", price: 30, description: "Pizza flavour chips" },
+    { id: "snk_bin5", name: "Bingo Tedhe Medhe 90g", price: 35, description: "Twisted corn snack" },
+    { id: "snk_hal1", name: "Haldiram's Aloo Bhujia 42g", price: 10, description: "Crispy potato sev" },
+    { id: "snk_hal2", name: "Haldiram's Aloo Bhujia 150g", price: 45, description: "Crispy potato sev large" },
+    { id: "snk_hal3", name: "Haldiram's Navratan Mixture 150g", price: 55, description: "Mixed crunchy namkeen" },
+    { id: "snk_hal4", name: "Haldiram's Khatta Meetha 150g", price: 55, description: "Sweet & sour namkeen" },
+    { id: "snk_hal5", name: "Haldiram's Moong Dal 150g", price: 60, description: "Crispy fried moong dal" },
+    { id: "snk_ty1", name: "Too Yumm Multigrain 50g", price: 20, description: "Baked multigrain chips" },
+    { id: "snk_ty2", name: "Too Yumm Veggie Sticks 70g", price: 30, description: "Baked veggie sticks" },
+    { id: "snk_unc1", name: "Uncle Chips Salted 50g", price: 20, description: "Classic salted chips" },
+    { id: "snk_unc2", name: "Uncle Chips Spicy Treat 100g", price: 40, description: "Spicy flavour chips" },
+    { id: "snk_dor1", name: "Doritos Nacho Cheese 60g", price: 30, description: "Cheesy nacho tortilla chips" },
+    { id: "snk_dor2", name: "Doritos Sweet Chilli 80g", price: 50, description: "Sweet chilli tortilla chips" },
+    { id: "snk_pri1", name: "Pringles Original 107g", price: 110, description: "Classic stacked crisps" },
+    { id: "snk_pri2", name: "Pringles Sour Cream 107g", price: 110, description: "Sour cream onion crisps" },
+    { id: "snk_pri4", name: "Pringles BBQ 110g", price: 120, description: "Smoky BBQ crisps" },
+    { id: "snk_act1", name: "Act II Popcorn Butter 30g", price: 10, description: "Buttery popcorn" },
+    { id: "snk_act2", name: "Act II Classic Salted 90g", price: 30, description: "Classic salted popcorn" },
+    { id: "snk_act3", name: "Act II Golden Sizzle 90g", price: 35, description: "Golden sizzle popcorn" },
+  ]},
+  { id: "sweet", title: "مِٹھ چیٖز", icon: "🍫", products: [
+    { id: "sw_cad1", name: "Cadbury Perk 13g", price: 10, description: "Chocolate wafer bar" },
+    { id: "sw_cad4", name: "Cadbury Dairy Milk 24g", price: 20, description: "Classic milk chocolate" },
+    { id: "sw_cad5", name: "Cadbury Dairy Milk Silk 60g", price: 99, description: "Smooth premium chocolate" },
+    { id: "sw_cad3", name: "Cadbury 5 Star 21g", price: 10, description: "Caramel chocolate bar" },
+    { id: "sw_kit1", name: "KitKat 2 Finger 18g", price: 10, description: "Crispy wafer chocolate" },
+    { id: "sw_kit2", name: "KitKat 4 Finger 36.5g", price: 30, description: "4 finger wafer chocolate" },
+    { id: "sw_kit3", name: "KitKat Dessert Delight 50g", price: 50, description: "Premium dessert chocolate" },
+    { id: "sw_mrb1", name: "MrBeast Feastables Original 60g", price: 250, description: "MrBeast chocolate bar" },
+    { id: "sw_mrb2", name: "MrBeast Feastables Peanut Butter 60g", price: 250, description: "MrBeast peanut butter choc" },
+    { id: "sw_tob1", name: "Toblerone Milk 35g", price: 120, description: "Swiss milk chocolate" },
+    { id: "sw_tob2", name: "Toblerone Milk 100g", price: 299, description: "Swiss milk chocolate bar" },
+    { id: "sw_her1", name: "Hershey Milk Chocolate 40g", price: 80, description: "Classic American chocolate" },
+    { id: "sw_her2", name: "Hershey Cookies n Creme 40g", price: 80, description: "White choc with cookies" },
+    { id: "sw_nut1", name: "Nutella 180g", price: 199, description: "Hazelnut cocoa spread" },
+    { id: "sw_nut2", name: "Nutella 350g", price: 349, description: "Hazelnut cocoa spread large" },
+    { id: "sw_fer1", name: "Ferrero Rocher 3pcs", price: 120, description: "Premium hazelnut chocolates" },
+    { id: "sw_kre1", name: "Kinder Joy 1pc", price: 40, description: "Chocolate egg with toy" },
+    { id: "sw_kre2", name: "Kinder Bueno 43g", price: 80, description: "Wafer with hazelnut cream" },
+    { id: "sw_tof1", name: "Alpenliebe Strawberry 50g", price: 20, description: "Strawberry toffees" },
+    { id: "sw_tof3", name: "Mentos Mint Roll 40g", price: 20, description: "Chewy mint candy" },
+    { id: "sw_can3", name: "Pulse Kaccha Aam 50g", price: 20, description: "Raw mango candy" },
+    { id: "sw_gum1", name: "Centre Fresh Gum 5pcs", price: 5, description: "Refreshing mint gum" },
+    { id: "sw_bis1", name: "Little Hearts 75g", price: 30, description: "Heart shaped butter biscuits" },
+    { id: "sw_bis6", name: "Sunfeast Dark Fantasy 100g", price: 40, description: "Rich choco filled biscuits" },
+    { id: "sw_ore1", name: "Oreo Original 50g", price: 10, description: "Classic cream cookies" },
+    { id: "sw_ore2", name: "Oreo Original 120g", price: 30, description: "Classic cream cookies pack" },
+    { id: "sw_lot1", name: "Lotte Choco Pie 28g", price: 10, description: "Chocolate marshmallow pie" },
+    { id: "sw_zig1", name: "Ziggy Glazed Doughnut 1pc", price: 80, description: "Classic glazed doughnut" },
+    { id: "sw_zig2", name: "Ziggy Chocolate Doughnut 1pc", price: 90, description: "Chocolate frosted doughnut" },
+    { id: "sw_zig5", name: "Ziggy Box of 6 Doughnuts", price: 499, description: "Assorted 6 doughnut box" },
+  ]},
+  { id: "drinks", title: "پیٖنے", icon: "🥤", products: [
+    { id: "dr1", name: "Coca-Cola 750ml", price: 45, description: "Classic cola drink" },
+    { id: "dr3", name: "Pepsi 750ml", price: 45, description: "Bold refreshing cola" },
+    { id: "dr5", name: "Sprite 750ml", price: 45, description: "Lemon lime soda" },
+    { id: "dr7", name: "Fanta Orange 750ml", price: 45, description: "Orange flavour soda" },
+    { id: "dr10", name: "Thums Up 750ml", price: 45, description: "Strong cola taste" },
+    { id: "dr11", name: "Mountain Dew 750ml", price: 45, description: "Citrus energy soda" },
+    { id: "dr12", name: "Maaza Mango 250ml", price: 20, description: "Mango fruit drink" },
+    { id: "dr14", name: "Tropicana Orange 1L", price: 99, description: "Fresh orange juice" },
+    { id: "dr17", name: "Real Mixed Fruit 1L", price: 90, description: "Mixed fruit blend" },
+    { id: "dr21", name: "Mojito Mint Lemon 250ml", price: 30, description: "Classic mint mojito" },
+    { id: "dr24", name: "Cravado Apple Juice 200ml", price: 25, description: "Fresh apple juice" },
+    { id: "dr27", name: "Red Bull Energy 250ml", price: 120, description: "Energy drink" },
+    { id: "dr29", name: "Sting Energy 250ml", price: 30, description: "Strawberry energy drink" },
+    { id: "dr30", name: "Amul Mango Lassi 200ml", price: 30, description: "Sweet mango lassi" },
+    { id: "dr34", name: "Frooti Mango 200ml", price: 15, description: "Classic mango drink" },
+    { id: "dr35", name: "Appy Fizz 250ml", price: 30, description: "Sparkling apple drink" },
+  ]},
+  { id: "dairy", title: "دُدھ تہ بیکری", icon: "🥛", products: [
+    { id: "db1", name: "Khyber Toned Milk 500ml", price: 28, description: "Fresh Kashmiri toned milk" },
+    { id: "db2", name: "Khyber Full Cream Milk 500ml", price: 32, description: "Full cream Kashmiri milk" },
+    { id: "db3", name: "Khyber Dahi 400g", price: 45, description: "Fresh Kashmiri curd" },
+    { id: "db4", name: "Khyber Lassi 200ml", price: 25, description: "Fresh Kashmiri lassi" },
+    { id: "db6", name: "Khyber Pure Ghee 500ml", price: 350, description: "Kashmiri pure cow ghee" },
+    { id: "db7", name: "Khyber Paneer 200g", price: 90, description: "Fresh Kashmiri paneer" },
+    { id: "db8", name: "Khyber Cold Coffee 200ml", price: 35, description: "Khyber cold coffee" },
+    { id: "db9", name: "Amul Full Cream Milk 1L", price: 68, description: "Fresh full cream milk" },
+    { id: "db10", name: "Amul Butter 500g", price: 255, description: "Pasteurised table butter" },
+    { id: "db11", name: "Amul Paneer 200g", price: 80, description: "Fresh cottage cheese" },
+    { id: "db12", name: "Mother Dairy Curd 400g", price: 40, description: "Fresh set curd" },
+    { id: "db13", name: "Britannia Bread 400g", price: 45, description: "Soft sandwich bread" },
+    { id: "db15", name: "Britannia Cheese Slices 200g", price: 99, description: "Processed cheese slices" },
+  ]},
+  { id: "vegetables", title: "سَبزی", icon: "🥦", products: [
+    { id: "vg1", name: "Fresh Tomatoes 1kg", price: 100, description: "Farm fresh tomatoes" },
+    { id: "vg2", name: "Onions 1kg", price: 40, description: "Red onions" },
+    { id: "vg3", name: "Potatoes 1kg", price: 60, description: "Fresh potatoes" },
+    { id: "vg4", name: "Spinach 250g", price: 20, description: "Fresh palak" },
+    { id: "vg5", name: "Capsicum 1pc", price: 60, description: "Bell peppers" },
+    { id: "vg6", name: "Cauliflower 1pc", price: 80, description: "Fresh cauliflower" },
+    { id: "vg7", name: "Cabbage 1pc", price: 35, description: "Fresh green cabbage" },
+    { id: "vg8", name: "Carrots 1kg", price: 50, description: "Fresh orange carrots" },
+    { id: "vg9", name: "Peas 500g", price: 100, description: "Fresh green peas" },
+    { id: "vg10", name: "Brinjal 1kg", price: 70, description: "Fresh purple brinjal" },
+    { id: "vg12", name: "Garlic 250g", price: 40, description: "Fresh garlic bulbs" },
+    { id: "vg13", name: "Ginger 250g", price: 35, description: "Fresh ginger root" },
+    { id: "vg24", name: "Mushrooms 200g", price: 50, description: "Fresh button mushrooms" },
+    { id: "vg25", name: "Lotus Stem 250g", price: 60, description: "Fresh Kashmiri nadru" },
+    { id: "vg26", name: "Kohlrabi 500g", price: 25, description: "Fresh Kashmiri monj" },
+  ]},
+  { id: "fruits", title: "پھَل", icon: "🍎", products: [
+    { id: "fr1", name: "Bananas 6pcs", price: 40, description: "Fresh ripe bananas" },
+    { id: "fr2", name: "Kashmiri Apples 1kg", price: 120, description: "Fresh Kashmiri red apples" },
+    { id: "fr3", name: "Pomegranate 500g", price: 80, description: "Sweet pomegranate" },
+    { id: "fr5", name: "Grapes 500g", price: 90, description: "Seedless green grapes" },
+    { id: "fr6", name: "Cherries 500g", price: 150, description: "Fresh Kashmiri cherries" },
+    { id: "fr7", name: "Pears 1kg", price: 90, description: "Fresh Kashmiri pears" },
+    { id: "fr8", name: "Peaches 500g", price: 80, description: "Juicy Kashmiri peaches" },
+    { id: "fr9", name: "Apricots 500g", price: 100, description: "Sweet Kashmiri apricots" },
+    { id: "fr12", name: "Watermelon 1kg", price: 100, description: "Sweet seedless watermelon" },
+    { id: "fr13", name: "Mango 1kg", price: 200, description: "Sweet Alphonso mangoes" },
+    { id: "fr17", name: "Kiwi 4pcs", price: 80, description: "Fresh New Zealand kiwi" },
+    { id: "fr19", name: "Mulberries 250g", price: 60, description: "Fresh Kashmiri mulberries" },
+  ]},
+  { id: "pasta", title: "نوڈلز", icon: "🍜", products: [
+    { id: "pa2", name: "Maggi Masala Noodles 70g", price: 14, description: "Classic masala noodles" },
+    { id: "pa3", name: "Maggi Masala Noodles 4pk", price: 56, description: "4 pack masala noodles" },
+    { id: "pa6", name: "Yippee Magic Masala 70g", price: 15, description: "Magic masala noodles" },
+    { id: "pa10", name: "Ching Hakka Noodles 150g", price: 35, description: "Chinese style noodles" },
+    { id: "pa12", name: "Wai Wai Chicken Noodles 75g", price: 20, description: "Chicken noodles" },
+    { id: "pa14", name: "Bambino Vermicelli 400g", price: 45, description: "Thin wheat vermicelli" },
+  ]},
+  { id: "grocery", title: "گروسری", icon: "🧂", products: [
+    { id: "gr1", name: "Tata Salt 1kg", price: 25, description: "Iodized table salt" },
+    { id: "gr4", name: "MDH Garam Masala 100g", price: 55, description: "Aromatic spice blend" },
+    { id: "gr14", name: "Aashirvaad Atta 5kg", price: 240, description: "Whole wheat flour" },
+    { id: "gr16", name: "Shan Biryani Masala 60g", price: 50, description: "Biryani spice mix" },
+  ]},
+  { id: "tea", title: "چاہ تہ کافی", icon: "☕", products: [
+    { id: "tc1", name: "Tata Tea Gold 250g", price: 120, description: "Premium blend tea" },
+    { id: "tc4", name: "Red Label Tea 250g", price: 110, description: "Classic Brooke Bond tea" },
+    { id: "tc17", name: "Kahwa Kashmiri Tea 100g", price: 150, description: "Traditional Kashmiri green tea" },
+    { id: "tc18", name: "Noon Chai Pink Tea 100g", price: 120, description: "Kashmiri pink salt tea" },
+    { id: "tc8", name: "Nescafe Classic 50g", price: 130, description: "Instant coffee" },
+    { id: "tc19", name: "Horlicks Original 500g", price: 225, description: "Malted health drink" },
+    { id: "tc21", name: "Bournvita 500g", price: 235, description: "Chocolate health drink" },
+  ]},
+  { id: "personal", title: "ذاتی خیال", icon: "🧴", products: [
+    { id: "pc1", name: "Dove Body Lotion 200ml", price: 175, description: "Moisturising body lotion" },
+    { id: "pc2", name: "Colgate MaxFresh 150g", price: 85, description: "Cooling toothpaste" },
+    { id: "pc6", name: "Dove Shampoo 340ml", price: 199, description: "Nourishing shampoo" },
+    { id: "pc7", name: "Head & Shoulders 340ml", price: 199, description: "Anti dandruff shampoo" },
+    { id: "pc12", name: "Dettol Hand Wash 200ml", price: 65, description: "Antibacterial hand wash" },
+    { id: "pc26", name: "Axe Deo Body Spray 150ml", price: 199, description: "Dark temptation deo" },
+    { id: "pc27", name: "Fogg Black Deo 150ml", price: 199, description: "Long lasting deo spray" },
+  ]},
+  { id: "baby", title: "بال خیال", icon: "👶", products: [
+    { id: "bb1", name: "Pampers Diapers Small 56pcs", price: 499, description: "Soft dry diapers S" },
+    { id: "bb2", name: "Pampers Diapers Medium 54pcs", price: 549, description: "Soft dry diapers M" },
+    { id: "bb3", name: "Pampers Diapers Large 48pcs", price: 599, description: "Soft dry diapers L" },
+    { id: "bb8", name: "Johnson Baby Powder 200g", price: 149, description: "Gentle baby powder" },
+    { id: "bb11", name: "Cerelac Wheat 300g", price: 199, description: "Infant wheat cereal" },
+  ]},
+  { id: "oil", title: "تیٖل تہ گھی", icon: "🫙", products: [
+    { id: "og1", name: "Fortune Sunflower Oil 1L", price: 130, description: "Refined sunflower oil" },
+    { id: "og3", name: "Saffola Gold Oil 1L", price: 160, description: "Blended cooking oil" },
+    { id: "og5", name: "Dabur Mustard Oil 1L", price: 120, description: "Kachi ghani mustard oil" },
+    { id: "og10", name: "Amul Pure Ghee 500ml", price: 290, description: "Pure cow ghee" },
+    { id: "og13", name: "Khyber Pure Ghee 500ml", price: 350, description: "Kashmiri pure cow ghee" },
+    { id: "og14", name: "Coconut Oil Parachute 500ml", price: 150, description: "Pure coconut oil" },
+  ]},
+  { id: "dryfruits", title: "میٖوو", icon: "🥜", products: [
+    { id: "df1", name: "Premium Cashews 250g", price: 250, description: "Whole premium cashews" },
+    { id: "df3", name: "California Almonds 250g", price: 220, description: "Raw whole almonds" },
+    { id: "df5", name: "Walnut Kernels 250g", price: 299, description: "Kashmiri walnut halves" },
+    { id: "df7", name: "Seedless Raisins 250g", price: 99, description: "Sun dried raisins" },
+    { id: "df9", name: "Pistachios 250g", price: 350, description: "Roasted salted pistachios" },
+    { id: "df13", name: "Dried Apricots 250g", price: 180, description: "Sun dried Kashmiri apricots" },
+    { id: "df15", name: "Pine Nuts Chilgoza 100g", price: 450, description: "Premium Kashmiri chilgoza" },
+    { id: "df28", name: "Makhana Fox Nuts 100g", price: 99, description: "Roasted lotus seeds" },
+  ]},
+  { id: "honey", title: "شَہِد", icon: "🍯", products: [
+    { id: "hn1", name: "Dabur Honey 500g", price: 199, description: "Pure natural honey" },
+    { id: "hn2", name: "Patanjali Honey 500g", price: 170, description: "Pure wild honey" },
+    { id: "hn3", name: "Apis Himalaya Honey 1kg", price: 350, description: "Mountain flower honey" },
+  ]},
+  { id: "household", title: "گھَر", icon: "🧹", products: [
+    { id: "hh1", name: "Harpic Toilet Cleaner", price: 99, description: "Powerful toilet cleaner" },
+    { id: "hh2", name: "Colin Glass Cleaner", price: 89, description: "Streak-free glass cleaner" },
+    { id: "hh3", name: "Vim Dishwash Liquid", price: 75, description: "Grease cutting dish wash" },
+    { id: "hh5", name: "Surf Excel Matic 1kg", price: 199, description: "Washing machine detergent" },
+  ]},
+  { id: "health", title: "صِحَت", icon: "💊", products: [
+    { id: "hw1", name: "Revital H Multivitamin", price: 299, description: "Daily health supplement" },
+    { id: "hw2", name: "Dabur Chyawanprash 500g", price: 195, description: "Immunity booster" },
+    { id: "hw4", name: "Himalaya Tulsi Drops", price: 125, description: "Immunity herbal drops" },
+  ]},
+  { id: "atta", title: "آٹہٕ تہ چاوَل", icon: "🌾", products: [
+    { id: "at1", name: "Aashirvaad Atta 5kg", price: 240, description: "Whole wheat flour" },
+    { id: "at7", name: "India Gate Basmati 5kg", price: 450, description: "Premium basmati rice" },
+    { id: "at8", name: "India Gate Basmati 1kg", price: 100, description: "Premium basmati rice" },
+    { id: "at12", name: "Toor Dal 1kg", price: 120, description: "Yellow pigeon peas" },
+    { id: "at19", name: "Rajma Chitra 500g", price: 90, description: "Kashmiri kidney beans" },
+  ]},
+  { id: "skincare", title: "جِلد خیال", icon: "✨", products: [
+    { id: "sk1", name: "Neutrogena Moisturiser SPF15", price: 399, description: "Daily SPF moisturiser" },
+    { id: "sk2", name: "Himalaya Neem Face Wash", price: 99, description: "Purifying face wash" },
+    { id: "sk3", name: "Lakme Sunscreen SPF50", price: 249, description: "Broad spectrum sunscreen" },
+    { id: "sk4", name: "Nivea Soft Cream 200ml", price: 199, description: "Refreshing moisturiser" },
+  ]},
+  { id: "icecream", title: "آئِس کریٖم", icon: "🍦", products: [
+    { id: "ic1", name: "Amul Vanilla Cone", price: 30, description: "Classic vanilla cone" },
+    { id: "ic2", name: "Kwality Walls Cornetto", price: 50, description: "Chocolate cone" },
+    { id: "ic3", name: "Mother Dairy Kulfi", price: 20, description: "Traditional Indian kulfi" },
+    { id: "ic4", name: "Amul Chocolate Ice Cream 500ml", price: 130, description: "Rich chocolate ice cream" },
+  ]},
+  { id: "ramadan", title: "رَمَضان خاص", icon: "🌙", products: [
+    { id: "rm1", name: "Sewai 200g", price: 35, description: "Fine vermicelli for seviyan" },
+    { id: "rm2", name: "Rooh Afza 750ml", price: 180, description: "Rose flavour sherbet" },
+    { id: "rm3", name: "Medjool Dates 500g", price: 350, description: "Premium soft dates" },
+    { id: "rm5", name: "Haleem Mix 200g", price: 65, description: "Slow cook haleem mix" },
+  ]},
+];
+
+let allProducts = [];
+let useBackend = false;
+let cart = JSON.parse(localStorage.getItem('kasheer_cart') || '[]');
+let activeCategory = 'All';
+let sellerToken = localStorage.getItem('seller_token') || null;
+
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  if (page === 'store') initStore();
+  if (page === 'cart') renderCart();
+  if (page === 'seller') initSeller();
+  window.scrollTo(0, 0);
+}
+
+function goShop(catId) { activeCategory = catId; showPage('store'); }
+
+function initStore() { renderCategoryBar(); renderGroceryProducts(); tryLoadBackendProducts(); }
+
+function tryLoadBackendProducts() {
+  fetch(API + '/products?limit=100')
+    .then(r => r.json())
+    .then(data => {
+      if (data.success && data.data && data.data.length > 0) {
+        allProducts = data.data; useBackend = true; renderGroceryProducts();
+      }
+    }).catch(() => {});
+}
+
+function renderCategoryBar() {
+  const bar = document.getElementById('cats-bar');
+  const cats = [{ id: 'All', title: 'سَب', icon: '🏪' }, ...GROCERY_CATEGORIES];
+  bar.innerHTML = cats.map(c => `<div class="cat-chip ${c.id === activeCategory ? 'active' : ''}" onclick="setCategory('${c.id}')">${c.icon || ''} ${c.title}</div>`).join('');
+}
+
+function setCategory(id) { activeCategory = id; renderCategoryBar(); renderGroceryProducts(); }
+function filterProducts() { renderGroceryProducts(); }
+
+function getProductImg(id) { return PRODUCT_IMAGES[id] || null; }
+
+function renderGroceryProducts() {
+  const el = document.getElementById('store-content');
+  const q = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+  let html = '';
+  const catsToShow = activeCategory === 'All' ? GROCERY_CATEGORIES : GROCERY_CATEGORIES.filter(c => c.id === activeCategory);
+  catsToShow.forEach(cat => {
+    let prods = cat.products;
+    if (q) prods = prods.filter(p => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
+    if (!prods.length) return;
+    if (activeCategory === 'All') html += `<div class="section-heading">${cat.icon} ${cat.title}</div>`;
+    html += '<div class="products-grid">';
+    prods.forEach(p => { html += groceryCardHTML(p); });
+    html += '</div>';
+  });
+  if (useBackend && allProducts.length) {
+    let backendProds = allProducts;
+    if (q) backendProds = backendProds.filter(p => p.name?.toLowerCase().includes(q));
+    if (backendProds.length && activeCategory === 'All') {
+      html += `<div class="section-heading">🏪 مَقامی دُکاناں ہَندِس</div><div class="products-grid">`;
+      backendProds.forEach(p => { html += backendCardHTML(p); });
+      html += '</div>';
+    }
+  }
+  if (!html) html = '<div class="empty">کانہہ سامان نیٖ مِلیو</div>';
+  el.innerHTML = html;
+}
+
+function groceryCardHTML(p) {
+  const qty = getQty('g_' + p.id);
+  const img = getProductImg(p.id);
+  const imgHTML = img ? `<img class="prod-img" src="${img}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="prod-placeholder" style="display:none">🛒</div>` : `<div class="prod-placeholder">🛒</div>`;
+  const qtyHTML = qty === 0
+    ? `<button class="add-btn" onclick="addGrocery('${p.id}')">+ دِیۆ</button>`
+    : `<div class="qty-row"><button class="qty-btn" onclick="changeGroceryQty('${p.id}',-1)">−</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeGroceryQty('${p.id}',1)">+</button></div>`;
+  return `<div class="product-card">${imgHTML}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-store">${p.description}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyHTML}</div></div></div>`;
+}
+
+function backendCardHTML(p) {
+  const qty = getQty('b_' + p.id);
+  const imgHTML = p.image_url ? `<img class="prod-img" src="${p.image_url}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div class=prod-placeholder>🛒</div>'">` : `<div class="prod-placeholder">🛒</div>`;
+  const qtyHTML = qty === 0
+    ? `<button class="add-btn" onclick="addBackend('${p.id}')">+ دِیۆ</button>`
+    : `<div class="qty-row"><button class="qty-btn" onclick="changeBackendQty('${p.id}',-1)">−</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeBackendQty('${p.id}',1)">+</button></div>`;
+  return `<div class="product-card">${imgHTML}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-store">${p.sellers?.store_name || 'مَقامی دُکان'}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyHTML}</div></div></div>`;
+}
+
+function getQty(id) { const i = cart.find(c => c.id === id); return i ? i.quantity : 0; }
+
+function addGrocery(productId) {
+  const cat = GROCERY_CATEGORIES.find(c => c.products.find(p => p.id === productId));
+  if (!cat) return;
+  const p = cat.products.find(p => p.id === productId);
+  if (!p) return;
+  const id = 'g_' + p.id;
+  const i = cart.find(c => c.id === id);
+  if (i) i.quantity++;
+  else cart.push({ id, name: p.name, price: p.price, quantity: 1, type: 'grocery' });
+  saveCart(); renderGroceryProducts(); updateCartBar();
+}
+
+function changeGroceryQty(productId, delta) {
+  const id = 'g_' + productId;
+  const i = cart.find(c => c.id === id);
+  if (!i) return;
+  i.quantity += delta;
+  if (i.quantity <= 0) cart = cart.filter(c => c.id !== id);
+  saveCart(); renderGroceryProducts(); updateCartBar();
+}
+
+function addBackend(productId) {
+  const p = allProducts.find(p => p.id === productId);
+  if (!p) return;
+  const id = 'b_' + p.id;
+  const i = cart.find(c => c.id === id);
+  if (i) i.quantity++;
+  else cart.push({ id, name: p.name, price: p.price, quantity: 1, type: 'backend', seller_id: p.seller_id });
+  saveCart(); renderGroceryProducts(); updateCartBar();
+}
+
+function changeBackendQty(productId, delta) {
+  const id = 'b_' + productId;
+  const i = cart.find(c => c.id === id);
+  if (!i) return;
+  i.quantity += delta;
+  if (i.quantity <= 0) cart = cart.filter(c => c.id !== id);
+  saveCart(); renderGroceryProducts(); updateCartBar();
+}
+
+function saveCart() { localStorage.setItem('kasheer_cart', JSON.stringify(cart)); }
+
+function updateCartBar() {
+  const count = cart.reduce((s, i) => s + i.quantity, 0);
+  const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+  document.getElementById('cart-total').textContent = total;
+  document.getElementById('cart-bar').className = 'cart-bar' + (count > 0 ? ' visible' : '');
+}
+
+function renderCart() {
+  const el = document.getElementById('cart-content');
+  if (!cart.length) {
+    el.innerHTML = `<div class="empty" style="margin-top:60px;">ٹوکری خالی چھیہ<br><br><button class="btn btn-teal" onclick="showPage('store')">دُکان وَچھۆ</button></div>`;
+    return;
+  }
+  const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+  const delivery = 50;
+  let html = cart.map(i => `<div class="cart-item"><div class="cart-item-thumb">🛒</div><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">₹${i.price} × ${i.quantity} = ₹${i.price * i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cartQty('${i.id}',-1)">−</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cartQty('${i.id}',1)">+</button></div></div>`).join('');
+  html += `<div class="cart-summary"><div class="summary-row"><span>کُل سامان</span><span>₹${subtotal}</span></div><div class="summary-row"><span>ڈِلیوری</span><span>₹${delivery}</span></div><div class="summary-row total"><span>مَجموعی</span><span>₹${subtotal + delivery}</span></div><button class="btn btn-teal" style="width:100%;justify-content:center;margin-top:22px;border-radius:50px;" onclick="alert('آرڈر دینَس لیٖتھ Kasheer ایپ اِستِعمال کٔرۆ!')">ایپ پیٹھ چیک آوُٹ ←</button></div>`;
+  el.innerHTML = html;
+}
+
+function cartQty(id, delta) {
+  const i = cart.find(c => c.id === id);
+  if (!i) return;
+  i.quantity += delta;
+  if (i.quantity <= 0) cart = cart.filter(c => c.id !== id);
+  saveCart(); renderCart(); updateCartBar();
+}
+
+function initSeller() {
+  if (sellerToken) showSellerDash();
+  else {
+    document.getElementById('seller-login-view').style.display = 'block';
+    document.getElementById('seller-dash-view').style.display = 'none';
+  }
+}
+
+async function sellerLogin() {
+  const email = document.getElementById('seller-email').value;
+  const password = document.getElementById('seller-password').value;
+  const errEl = document.getElementById('login-error');
+  errEl.style.display = 'none';
+  if (!email || !password) { errEl.textContent = 'اِیمیل تہ پاس ورڈ دِیۆ'; errEl.style.display = 'block'; return; }
+  try {
+    const res = await fetch(API + '/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Login failed');
+    sellerToken = data.data.token;
+    localStorage.setItem('seller_token', sellerToken);
+    showSellerDash();
+  } catch(e) {
+    errEl.textContent = e.message || 'لاگِن نیٖ گیو۔ دُبارہ کوشِش کٔرۆ۔';
+    errEl.style.display = 'block';
+  }
+}
+
+function sellerLogout() {
+  sellerToken = null;
+  localStorage.removeItem('seller_token');
+  document.getElementById('seller-dash-view').style.display = 'none';
+  document.getElementById('seller-login-view').style.display = 'block';
+}
+
+async function showSellerDash() {
+  document.getElementById('seller-login-view').style.display = 'none';
+  document.getElementById('seller-dash-view').style.display = 'block';
+  try {
+    const h = { Authorization: 'Bearer ' + sellerToken };
+    const [dashRes, prodsRes, ordersRes] = await Promise.all([
+      fetch(API + '/seller/dashboard', { headers: h }),
+      fetch(API + '/seller/products', { headers: h }),
+      fetch(API + '/orders/seller', { headers: h }).catch(() => ({ json: () => ({ success: false }) })),
+    ]);
+    const dash = await dashRes.json();
+    const prods = await prodsRes.json();
+    const orders = await ordersRes.json().catch(() => ({ success: false }));
+    if (dash.success && dash.data?.seller) {
+      const s = dash.data.seller;
+      document.getElementById('dash-store-name').textContent = s.store_name || 'تۄہۍ دُکان';
+      document.getElementById('dash-category').textContent = s.category || '';
+      const st = document.getElementById('dash-status');
+      st.textContent = s.is_approved ? 'چالو' : 'منظوری زِیر';
+      st.className = 'status-badge ' + (s.is_approved ? 'badge-active' : 'badge-pending');
+    }
+    const prodList = prods.success ? (prods.data || []) : [];
+    const orderList = orders.success ? (orders.data || []) : [];
+    const revenue = orderList.filter(o => o.status === 'delivered').reduce((s, o) => s + (o.total_amount || 0), 0);
+    document.getElementById('stat-products').textContent = prodList.length;
+    document.getElementById('stat-orders').textContent = orderList.length;
+    document.getElementById('stat-revenue').textContent = '₹' + revenue;
+    document.getElementById('seller-products-content').innerHTML = prodList.length
+      ? `<div class="seller-prods-grid">${prodList.map(p => `<div class="seller-prod-card"><div class="seller-prod-thumb">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}">` : '🛒'}</div><div style="flex:1;min-width:0"><div class="seller-prod-name">${p.name}</div><div class="seller-prod-price">₹${p.price}</div><div class="seller-prod-stock">سٹاک: ${p.stock ?? '—'}</div></div></div>`).join('')}</div>`
+      : '<div class="empty">ابھی کانہہ سامان نیٖ۔ ایپ پیٹھ دِیۆ۔</div>';
+    document.getElementById('seller-orders-content').innerHTML = orderList.length
+      ? `<div class="orders-list">${orderList.slice(0, 30).map(o => `<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="order-status s-${o.status || 'pending'}">${(o.status || 'pending').replace(/_/g,' ')}</span></div><div class="order-amount">₹${o.total_amount || 0}</div><div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`
+      : '<div class="empty">ابھی کانہہ آرڈر نیٖ۔</div>';
+  } catch(e) {
+    document.getElementById('seller-dash-view').innerHTML = '<div class="empty">ڈیش بورڈ لوڈ نیٖ گیو۔ دُبارہ کوشِش کٔرۆ۔</div>';
+  }
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ['products','orders'][i] === tab));
+  document.getElementById('tab-products').style.display = tab === 'products' ? 'block' : 'none';
+  document.getElementById('tab-orders').style.display = tab === 'orders' ? 'block' : 'none';
+}
+
+updateCartBar();
+</script>
+</body>
+</html>
