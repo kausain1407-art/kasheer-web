@@ -28,8 +28,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
 .btn-ks{font-family:'Noto Nastaliq Urdu',serif;font-size:11px;opacity:0.7;display:block;margin-top:3px;direction:rtl;}
 .btn{display:inline-flex;flex-direction:column;align-items:center;padding:12px 28px;border-radius:50px;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:all 0.22s;text-decoration:none;}
-.btn-white{background:#fff;color:var(--teal-dark);}.btn-white:hover{background:var(--teal-light);transform:translateY(-1px);}
-.btn-outline{background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.35);}.btn-outline:hover{background:rgba(255,255,255,0.2);transform:translateY(-1px);}
+.btn-white{background:#fff;color:var(--teal-dark);}.btn-white:hover{background:var(--teal-light);}
+.btn-outline{background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.35);}.btn-outline:hover{background:rgba(255,255,255,0.2);}
 .btn-orange-solid{background:var(--orange);color:#fff;}.btn-orange-solid:hover{background:#E65100;}
 .btn-teal{background:var(--teal);color:#fff;}.btn-teal:hover{background:var(--teal-dark);}
 .stats-bar{background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:center;}
@@ -80,30 +80,28 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .products-area{padding:24px 28px 120px;}
 .section-heading{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);margin:28px 0 16px;}
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;}
-.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;cursor:pointer;}
+.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;}
 .product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.prod-img{width:100%;height:150px;object-fit:cover;display:block;}
+.prod-img{width:100%;height:150px;object-fit:cover;display:block;background:#f5f5f5;}
 .prod-placeholder{width:100%;height:150px;background:linear-gradient(135deg,var(--teal-light),#fff);display:flex;align-items:center;justify-content:center;font-size:42px;}
 .prod-body{padding:12px;}
 .prod-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .prod-desc{font-size:11px;color:var(--muted);margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .prod-foot{display:flex;align-items:center;justify-content:space-between;}
 .prod-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--teal-dark);}
-.add-btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:background 0.2s;}
-.add-btn:hover{background:var(--teal-dark);}
+.add-btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
 .qty-row{display:flex;align-items:center;gap:6px;}
 .qty-btn{width:26px;height:26px;border-radius:8px;background:var(--teal-light);border:none;color:var(--teal-dark);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 .qty-btn:hover{background:var(--teal);color:#fff;}
 .qty-num{font-size:14px;font-weight:700;min-width:18px;text-align:center;}
 .cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--teal-dark);color:#fff;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;z-index:100;transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -8px 32px rgba(0,103,115,0.3);}
 .cart-bar.visible{transform:translateY(0);}
-.cart-bar-info{font-size:14px;}.cart-bar-info strong{font-size:18px;font-weight:700;font-family:'Cormorant Garamond',serif;}
+.cart-bar-info strong{font-size:18px;font-weight:700;font-family:'Cormorant Garamond',serif;}
 .cart-bar-btn{background:#fff;color:var(--teal-dark);border:none;border-radius:50px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
 .cart-wrap{max-width:620px;margin:0 auto;padding:28px 24px;}
 .cart-item{background:var(--white);border-radius:var(--radius-sm);padding:16px;display:flex;align-items:center;gap:14px;border:1px solid var(--border);margin-bottom:12px;}
 .cart-item-thumb{width:60px;height:60px;border-radius:10px;flex-shrink:0;overflow:hidden;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:22px;}
 .cart-item-thumb img{width:100%;height:100%;object-fit:cover;}
-.cart-item-info{flex:1;}
 .cart-item-name{font-size:15px;font-weight:700;margin-bottom:3px;}
 .cart-item-price{font-size:13px;color:var(--teal-dark);font-weight:600;}
 .cart-summary{background:var(--white);border-radius:var(--radius);padding:22px;border:1px solid var(--border);margin-top:20px;}
@@ -111,13 +109,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .summary-row.total{font-weight:700;font-size:17px;color:var(--text);border-top:1px solid var(--border);margin-top:8px;padding-top:16px;}
 .seller-login-wrap{max-width:420px;margin:60px auto;background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);text-align:center;box-shadow:var(--shadow);}
 .seller-login-wrap h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;margin-bottom:8px;}
-.seller-login-wrap p{font-size:14px;color:var(--muted);margin-bottom:30px;}
 .field{margin-bottom:16px;text-align:left;}
 .field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;}
 .field input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Syne',sans-serif;outline:none;transition:border 0.2s;color:var(--text);background:var(--bg);}
 .field input:focus{border-color:var(--teal);background:#fff;}
 .submit-btn{width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:8px;}
-.submit-btn:hover{background:var(--teal-dark);}
 .err-box{background:#FFEBEE;color:#C62828;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;text-align:left;}
 .seller-wrap{max-width:860px;margin:0 auto;padding:32px 24px;}
 .seller-header-card{background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));border-radius:var(--radius);padding:30px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;}
@@ -144,8 +140,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .order-id{font-size:12px;color:var(--muted);font-weight:500;}
 .order-status{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;}
-.s-pending{background:#FFF3E0;color:#E65100;}.s-confirmed,.s-accepted_by_store{background:#E8F5E9;color:#2E7D32;}.s-delivered{background:#E3F2FD;color:#1565C0;}.s-cancelled{background:#FFEBEE;color:#C62828;}
-.order-amount{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--text);}
+.s-pending{background:#FFF3E0;color:#E65100;}.s-accepted_by_store{background:#E8F5E9;color:#2E7D32;}.s-delivered{background:#E3F2FD;color:#1565C0;}.s-cancelled{background:#FFEBEE;color:#C62828;}
+.order-amount{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;}
 .order-date{font-size:12px;color:var(--muted);}
 footer{background:var(--text);padding:48px 24px;text-align:center;}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:4px;}
@@ -181,29 +177,18 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <div class="hero-kashmiri">کٲشِیر — کٲشِیرۍ گوڈ نیچ ڈِلیوری</div>
       <p class="hero-sub">Kashmir's first hyperlocal delivery platform — groceries, handmade goods, and more from stores near you. Fast. Local. Yours.</p>
       <div class="hero-btns">
-        <button class="btn btn-white" onclick="showPage('store')">
-          Shop Now
-          <span class="btn-ks">ہُنہ خریداری کرو</span>
-        </button>
-        <button class="btn btn-outline" onclick="showPage('seller')">
-          Sell on Kasheer
-          <span class="btn-ks">کٲشِیر پیٹھ سوزِو</span>
-        </button>
-        <button class="btn btn-orange-solid" onclick="alert('Download the Kasheer app to become a delivery agent!')">
-          Become a Delivery Agent
-          <span class="btn-ks">ڈِلیوری ایجنٹ بنو</span>
-        </button>
+        <button class="btn btn-white" onclick="showPage('store')">Shop Now<span class="btn-ks">ہُنہ خریداری کرو</span></button>
+        <button class="btn btn-outline" onclick="showPage('seller')">Sell on Kasheer<span class="btn-ks">کٲشِیر پیٹھ سوزِو</span></button>
+        <button class="btn btn-orange-solid" onclick="alert('Download the Kasheer app to become a delivery agent!')">Become a Rider<span class="btn-ks">ڈِلیوری ایجنٹ بنو</span></button>
       </div>
     </div>
   </section>
-
   <div class="stats-bar">
     <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
     <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Categories</div></div>
     <div class="stat-item"><div class="stat-num">Fast</div><div class="stat-label">Delivery</div></div>
     <div class="stat-item"><div class="stat-num">COD</div><div class="stat-label">Cash on Delivery</div></div>
   </div>
-
   <div class="section">
     <div class="section-label">Why Kasheer</div>
     <div class="section-title">Built for Kashmir, by Kashmir</div>
@@ -217,10 +202,9 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <div class="feature-card"><div class="feature-icon">🚴</div><div class="feature-title">Be a Rider</div><div class="feature-desc">Join our delivery fleet and earn money on your own schedule</div></div>
     </div>
   </div>
-
   <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 24px;">
     <div style="max-width:1000px;margin:0 auto;">
-      <div class="section-label">What can we deliver?</div>
+      <div class="section-label">What we deliver</div>
       <div class="section-title">Everything You Need</div>
       <p class="section-sub" style="margin-bottom:36px;">Snacks to spices, dairy to dry fruits — all from stores near you</p>
       <div class="cats-showcase">
@@ -247,7 +231,6 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       </div>
     </div>
   </div>
-
   <section class="how-section">
     <div class="how-inner">
       <div class="section-label">How it works</div>
@@ -261,17 +244,15 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       </div>
     </div>
   </section>
-
   <div style="padding:72px 24px;">
     <div class="section-title" style="margin-bottom:10px;">Ready to get started?</div>
     <p class="section-sub" style="margin-bottom:36px;">Shop, sell, or deliver with Kasheer</p>
     <div class="cta-grid">
       <div class="cta-card shop"><span class="cta-emoji">🛍️</span><div class="cta-title">Start Shopping</div><p class="cta-desc">Browse local stores and get fresh products delivered to your doorstep.</p><button class="btn btn-white" onclick="showPage('store')">Open Store</button></div>
       <div class="cta-card sell"><span class="cta-emoji">🪐</span><div class="cta-title">Start Selling</div><p class="cta-desc">Register your store and reach customers nearby. Simple commission model.</p><button class="btn btn-orange-solid" onclick="showPage('seller')">Become a Seller</button></div>
-      <div class="cta-card deliver"><span class="cta-emoji">🚴</span><div class="cta-title">Deliver & Earn</div><p class="cta-desc">Become a Kasheer delivery rider. Earn on your own schedule across Kashmir.</p><button class="btn btn-teal" onclick="alert('Download the Kasheer app to register as a delivery agent!')">Become a Rider</button></div>
+      <div class="cta-card deliver"><span class="cta-emoji">🚴</span><div class="cta-title">Deliver & Earn</div><p class="cta-desc">Become a Kasheer delivery rider. Earn on your own schedule across Kashmir.</p><button class="btn btn-teal" onclick="alert('Download the Kasheer app to register!')">Become a Rider</button></div>
     </div>
   </div>
-
   <footer>
     <div class="footer-logo">Kasheer</div>
     <div class="footer-kashmiri">کٲشِیر</div>
@@ -288,10 +269,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div class="store-top">
     <h1>Kasheer Store <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;opacity:0.5">کٲشِیر</span></h1>
     <p>Fresh products from local stores near you</p>
-    <div class="search-wrap">
-      <span style="color:rgba(255,255,255,0.5)">🔍</span>
-      <input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()">
-    </div>
+    <div class="search-wrap"><span style="color:rgba(255,255,255,0.5)">🔍</span><input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()"></div>
     <div class="cats-scroll" id="cats-bar"></div>
   </div>
   <div class="products-area" id="store-content"><div class="loading"><div class="spinner"></div>Loading products...</div></div>
@@ -314,7 +292,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
     <div class="seller-login-wrap">
       <div style="font-size:48px;margin-bottom:14px;">🪐</div>
       <h2>Seller Login</h2>
-      <p>Access your Kasheer store dashboard</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:30px;">Access your Kasheer store dashboard</p>
       <div class="err-box" id="login-error"></div>
       <div class="field"><label>Email</label><input type="email" id="seller-email" placeholder="your@email.com"></div>
       <div class="field"><label>Password</label><input type="password" id="seller-password" placeholder="••••••••"></div>
@@ -345,200 +323,203 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 
 <script>
 const API='https://kasheer-backend.onrender.com/api';
-const I='https://www.bbassets.com/media/uploads/p/l/';
+const OFF='https://images.openfoodfacts.org/images/products/';
+
+function img(barcode,suffix){
+  const b=barcode.toString();
+  if(b.length===13){return OFF+b.slice(0,3)+'/'+b.slice(3,6)+'/'+b.slice(6,9)+'/'+b.slice(9)+'/'+suffix+'.jpg';}
+  return OFF+b+'/'+suffix+'.jpg';
+}
 
 const GROCERY_CATEGORIES=[
   {id:"snacks",title:"Snacks",icon:"🍿",products:[
-    {id:"snk_lays2",name:"Lay's Magic Masala 52g",price:20,description:"Tangy masala chips",img:I+"102750_18-lays-potato-chips-indias-magic-masala.jpg"},
-    {id:"snk_lays1",name:"Lay's Classic Salted 26g",price:10,description:"Classic salted chips",img:I+"40076736_9-lays-potato-chips-classic-salted.jpg"},
-    {id:"snk_lays5",name:"Lay's Magic Masala 90g",price:35,description:"Large masala chips",img:I+"275076_15-lays-potato-chips-indias-magic-masala.jpg"},
-    {id:"snk_kur1",name:"Kurkure Masala Munch 40g",price:10,description:"Spicy corn puffs",img:I+"294305_15-kurkure-namkeen-masala-munch.jpg"},
-    {id:"snk_kur3",name:"Kurkure Masala Munch 90g",price:20,description:"Large corn puffs",img:I+"40003258_14-kurkure-namkeen-masala-munch.jpg"},
-    {id:"snk_bin1",name:"Bingo Mad Angles 45g",price:20,description:"Triangular masala chips",img:I+"40097546_8-bingo-mad-angles-achaari-masti.jpg"},
-    {id:"snk_hal1",name:"Haldiram's Aloo Bhujia 42g",price:10,description:"Crispy potato sev",img:I+"100155_14-haldirams-aloo-bhujia.jpg"},
-    {id:"snk_hal2",name:"Haldiram's Bhujia 150g",price:45,description:"Crispy sev large",img:I+"100154_9-haldirams-bhujia.jpg"},
-    {id:"snk_dor1",name:"Doritos Nacho Cheese 60g",price:30,description:"Cheesy nacho chips",img:I+"40104476_10-doritos-nacho-cheese.jpg"},
-    {id:"snk_pri1",name:"Pringles Original 107g",price:110,description:"Stacked crisps",img:I+"40058017_10-pringles-original.jpg"},
-    {id:"snk_act1",name:"Act II Popcorn Butter 30g",price:10,description:"Buttery popcorn",img:I+"40068199_11-act-ii-popcorn-butter.jpg"},
-    {id:"snk_mnm1",name:"M&M's Peanut 45g",price:80,description:"Peanut M&Ms",img:I+"40091636_8-mms-peanut.jpg"},
-    {id:"snk_skittles1",name:"Skittles Original 45g",price:70,description:"Fruity candy",img:I+"40091637_7-skittles-original.jpg"},
-    {id:"snk_har1",name:"Haribo Gold Bears 80g",price:120,description:"Classic gummy bears",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Haribo_Goldb%C3%A4ren.jpg/320px-Haribo_Goldb%C3%A4ren.jpg"},
+    {id:"snk_lays2",name:"Lay's Magic Masala 52g",price:20,description:"Tangy masala chips",img:img('8901019017044','front_en')},
+    {id:"snk_lays1",name:"Lay's Classic Salted 26g",price:10,description:"Classic salted chips",img:img('8901019022529','front_en')},
+    {id:"snk_lays5",name:"Lay's Magic Masala 90g",price:35,description:"Large masala chips",img:img('8901019017044','front_en')},
+    {id:"snk_kur1",name:"Kurkure Masala Munch 40g",price:10,description:"Spicy corn puffs",img:img('8901491504427','front_en')},
+    {id:"snk_kur3",name:"Kurkure Masala 90g",price:20,description:"Large corn puffs",img:img('8901491504427','front_en')},
+    {id:"snk_bin1",name:"Bingo Mad Angles 45g",price:20,description:"Triangular masala chips",img:img('8901667004948','front_en')},
+    {id:"snk_hal1",name:"Haldiram's Aloo Bhujia 42g",price:10,description:"Crispy potato sev",img:img('8906003510056','front_en')},
+    {id:"snk_hal2",name:"Haldiram's Bhujia 150g",price:45,description:"Crispy sev large",img:img('8906003510056','front_en')},
+    {id:"snk_dor1",name:"Doritos Nacho Cheese 60g",price:30,description:"Cheesy nacho chips",img:img('8901019016573','front_en')},
+    {id:"snk_pri1",name:"Pringles Original 107g",price:110,description:"Stacked crisps",img:img('5053990101426','front_en')},
+    {id:"snk_act1",name:"Act II Popcorn Butter 30g",price:10,description:"Buttery popcorn",img:img('8906001300246','front_en')},
+    {id:"snk_mnm1",name:"M&M's Peanut 45g",price:80,description:"Peanut M&Ms",img:img('5000159461122','front_en')},
+    {id:"snk_skittles1",name:"Skittles Original 45g",price:70,description:"Fruity candy",img:img('4009900521536','front_en')},
+    {id:"snk_har1",name:"Haribo Gold Bears 80g",price:120,description:"Classic gummy bears",img:img('4001686325568','front_en')},
   ]},
   {id:"sweet",title:"Chocolates & Sweets",icon:"🍫",products:[
-    {id:"sw_cad4",name:"Cadbury Dairy Milk 24g",price:20,description:"Classic milk chocolate",img:I+"281026_22-cadbury-dairy-milk-chocolate.jpg"},
-    {id:"sw_cad_bar",name:"Cadbury Dairy Milk 13g",price:10,description:"Milk chocolate bar",img:I+"100020979_14-cadbury-dairy-milk-chocolate-bar.jpg"},
-    {id:"sw_cad5",name:"Cadbury Dairy Milk Silk 60g",price:99,description:"Premium chocolate",img:I+"40067420_12-cadbury-dairy-milk-silk.jpg"},
-    {id:"sw_kit1",name:"KitKat 2 Finger 19g",price:10,description:"Crispy wafer bar",img:I+"100532699_33-nestle-kitkat-crispy-wafer-bar.jpg"},
-    {id:"sw_munch1",name:"Nestle Munch 13g",price:5,description:"Crunchy wafer bar",img:I+"100636_15-nestle-munch.jpg"},
-    {id:"sw_munch2",name:"Nestle Munch 26g",price:10,description:"Crunchy wafer bar",img:I+"102822_11-nestle-munch.jpg"},
-    {id:"sw_bar1",name:"Nestle Bar-One 27g",price:10,description:"Nougat caramel bar",img:I+"100631_12-nestle-bar-one.jpg"},
-    {id:"sw_milkybar",name:"Milkybar 13g",price:10,description:"White chocolate",img:I+"100633_14-nestle-milkybar.jpg"},
-    {id:"sw_polo",name:"Polo Mint Roll",price:10,description:"Minty candy rolls",img:I+"100638_11-polo-mint.jpg"},
-    {id:"sw_nut1",name:"Nutella 200g",price:280,description:"Hazelnut cocoa spread",img:I+"40053096_12-nutella-hazelnut-spread.jpg"},
-    {id:"sw_nut2",name:"Nutella 400g",price:520,description:"Large Nutella jar",img:I+"40053097_10-nutella-hazelnut-spread.jpg"},
-    {id:"sw_tob1",name:"Toblerone Milk 100g",price:180,description:"Swiss milk chocolate",img:I+"40108614_7-toblerone-milk-chocolate.jpg"},
-    {id:"sw_her1",name:"Hershey's Milk Chocolate 40g",price:60,description:"American chocolate",img:I+"40108010_8-hersheys-milk-chocolate.jpg"},
-    {id:"sw_fer1",name:"Ferrero Rocher 3pcs",price:150,description:"Hazelnut chocolates",img:I+"40067413_11-ferrero-rocher-t3.jpg"},
-    {id:"sw_kinder1",name:"Kinder Joy 1pc",price:40,description:"Chocolate egg with toy",img:I+"40071698_12-kinder-joy.jpg"},
-    {id:"sw_ore1",name:"Oreo Original 50g",price:10,description:"Classic cream cookies",img:I+"100616_18-oreo-original.jpg"},
-    {id:"sw_ore2",name:"Oreo Original 120g",price:30,description:"Cream cookies pack",img:I+"100617_16-oreo-sandwich-cookies.jpg"},
-    {id:"sw_bis1",name:"Little Hearts 75g",price:30,description:"Heart butter biscuits",img:I+"100579_14-britannia-little-hearts.jpg"},
-    {id:"sw_goodday",name:"Good Day Butter 100g",price:30,description:"Butter biscuits",img:I+"100565_16-britannia-good-day.jpg"},
-    {id:"sw_lot1",name:"Lotte Choco Pie 6pk",price:60,description:"Choco marshmallow pie",img:I+"40069040_10-lotte-choco-pie.jpg"},
-    {id:"sw_snickers",name:"Snickers 50g",price:85,description:"Peanut caramel chocolate",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Snickers_bar_laidout.png/320px-Snickers_bar_laidout.png"},
-    {id:"sw_twix",name:"Twix 50g",price:90,description:"Caramel cookie bar",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/TwixBars.jpg/320px-TwixBars.jpg"},
+    {id:"sw_cad4",name:"Cadbury Dairy Milk 24g",price:20,description:"Classic milk chocolate",img:img('7622210809292','front_en')},
+    {id:"sw_cad5",name:"Cadbury Dairy Milk Silk 60g",price:99,description:"Premium chocolate",img:img('7622210951038','front_en')},
+    {id:"sw_5star",name:"Cadbury 5 Star 22g",price:10,description:"Caramel chocolate",img:img('7622210809308','front_en')},
+    {id:"sw_kit1",name:"KitKat 2 Finger 19g",price:10,description:"Crispy wafer bar",img:img('8901058852554','front_en')},
+    {id:"sw_kit2",name:"KitKat 4 Finger 37g",price:30,description:"4 finger wafer",img:img('8901058816402','front_en')},
+    {id:"sw_munch1",name:"Nestle Munch 13g",price:5,description:"Crunchy wafer bar",img:img('8901058501108','front_en')},
+    {id:"sw_bar1",name:"Nestle Bar-One 27g",price:10,description:"Nougat caramel bar",img:img('8901058503140','front_en')},
+    {id:"sw_milkybar",name:"Milkybar 13g",price:10,description:"White chocolate",img:img('8901058501870','front_en')},
+    {id:"sw_nut1",name:"Nutella 200g",price:280,description:"Hazelnut cocoa spread",img:img('3017620402678','front_en')},
+    {id:"sw_nut2",name:"Nutella 400g",price:520,description:"Large Nutella jar",img:img('3017620422003','front_en')},
+    {id:"sw_tob1",name:"Toblerone Milk 100g",price:180,description:"Swiss milk chocolate",img:img('7622300489434','front_en')},
+    {id:"sw_her1",name:"Hershey's Milk Chocolate 40g",price:60,description:"American chocolate",img:img('0034000002603','front_en')},
+    {id:"sw_fer1",name:"Ferrero Rocher 3pcs",price:150,description:"Hazelnut chocolates",img:img('3054990007735','front_en')},
+    {id:"sw_kinder1",name:"Kinder Joy",price:40,description:"Chocolate egg with toy",img:img('8000500254981','front_en')},
+    {id:"sw_snickers",name:"Snickers 50g",price:85,description:"Peanut caramel chocolate",img:img('5000159461244','front_en')},
+    {id:"sw_twix",name:"Twix 50g",price:90,description:"Caramel cookie bar",img:img('5000159461459','front_en')},
+    {id:"sw_bounty",name:"Bounty 57g",price:85,description:"Coconut chocolate bar",img:img('5000159393775','front_en')},
+    {id:"sw_mars",name:"Mars Bar 51g",price:85,description:"Nougat caramel bar",img:img('5000159461268','front_en')},
+    {id:"sw_ore1",name:"Oreo Original 50g",price:10,description:"Classic cream cookies",img:img('7622210413529','front_en')},
+    {id:"sw_ore2",name:"Oreo Original 120g",price:30,description:"Cream cookies pack",img:img('7622210413536','front_en')},
+    {id:"sw_bis1",name:"Little Hearts 75g",price:30,description:"Heart butter biscuits",img:img('8901063024571','front_en')},
+    {id:"sw_goodday",name:"Good Day Butter 100g",price:30,description:"Butter biscuits",img:img('8901063026506','front_en')},
+    {id:"sw_lot1",name:"Lotte Choco Pie 6pk",price:60,description:"Choco marshmallow pie",img:img('8801062155100','front_en')},
   ]},
   {id:"drinks",title:"Drinks",icon:"🥤",products:[
-    {id:"dr1",name:"Coca-Cola 750ml",price:45,description:"Classic cola",img:I+"100326_18-coca-cola-soft-drink.jpg"},
-    {id:"dr2",name:"Pepsi 750ml",price:45,description:"Bold cola",img:I+"100329_17-pepsi-cola.jpg"},
-    {id:"dr3",name:"Sprite 750ml",price:45,description:"Lemon lime soda",img:I+"100330_16-sprite-soft-drink.jpg"},
-    {id:"dr4",name:"Thums Up 750ml",price:45,description:"Strong cola",img:I+"100328_17-thums-up-soft-drink.jpg"},
-    {id:"dr5",name:"Fanta Orange 750ml",price:45,description:"Orange soda",img:I+"100327_16-fanta-orange.jpg"},
-    {id:"dr6",name:"Limca 750ml",price:45,description:"Lemon soda",img:I+"100331_15-limca-soft-drink.jpg"},
-    {id:"dr7",name:"Maaza Mango 250ml",price:20,description:"Mango drink",img:I+"100338_16-maaza-mango-drink.jpg"},
-    {id:"dr8",name:"Frooti Mango 200ml",price:15,description:"Classic mango drink",img:I+"100337_16-frooti-mango.jpg"},
-    {id:"dr9",name:"Tropicana Orange 1L",price:99,description:"Fresh orange juice",img:I+"100342_16-tropicana-100-orange-juice.jpg"},
-    {id:"dr10",name:"Real Mixed Fruit 1L",price:85,description:"Mixed fruit juice",img:I+"100344_15-real-fruit-power-mixed-fruit.jpg"},
-    {id:"dr11",name:"Red Bull Energy 250ml",price:125,description:"Energy drink",img:I+"40073809_11-red-bull-energy-drink.jpg"},
-    {id:"dr12",name:"Sting Energy 250ml",price:30,description:"Strawberry energy",img:I+"40073811_9-sting-energy-drink.jpg"},
-    {id:"dr13",name:"Coca-Cola Can 330ml",price:40,description:"Cola can",img:I+"40074267_11-coca-cola-can.jpg"},
-    {id:"dr14",name:"Pepsi Can 330ml",price:40,description:"Pepsi can",img:I+"40074268_10-pepsi-can.jpg"},
-    {id:"dr15",name:"Amul Kool Milkshake",price:25,description:"Chocolate milkshake",img:I+"100380_15-amul-kool-koko.jpg"},
-    {id:"dr16",name:"Amul Mango Lassi 200ml",price:30,description:"Mango lassi",img:I+"100384_13-amul-mango-lassi.jpg"},
+    {id:"dr1",name:"Coca-Cola 750ml",price:45,description:"Classic cola",img:img('5449000000996','front_en')},
+    {id:"dr2",name:"Pepsi 750ml",price:45,description:"Bold cola",img:img('4060800021070','front_en')},
+    {id:"dr3",name:"Sprite 750ml",price:45,description:"Lemon lime soda",img:img('5449000133328','front_en')},
+    {id:"dr4",name:"Thums Up 750ml",price:45,description:"Strong cola",img:img('8902080001513','front_en')},
+    {id:"dr5",name:"Fanta Orange 750ml",price:45,description:"Orange soda",img:img('5449000020277','front_en')},
+    {id:"dr6",name:"Maaza Mango 250ml",price:20,description:"Mango drink",img:img('8902080001681','front_en')},
+    {id:"dr7",name:"Frooti Mango 200ml",price:15,description:"Classic mango drink",img:img('8906068310017','front_en')},
+    {id:"dr8",name:"Tropicana Orange 1L",price:99,description:"Fresh orange juice",img:img('0048500203200','front_en')},
+    {id:"dr9",name:"Red Bull Energy 250ml",price:125,description:"Energy drink",img:img('9002490100070','front_en')},
+    {id:"dr10",name:"Monster Energy 500ml",price:150,description:"Monster energy drink",img:img('5060166690037','front_en')},
+    {id:"dr11",name:"Sting Energy 250ml",price:30,description:"Strawberry energy",img:img('8901491222664','front_en')},
+    {id:"dr12",name:"Coca-Cola Can 330ml",price:40,description:"Cola can",img:img('5449000000439','front_en')},
+    {id:"dr13",name:"Amul Kool Milkshake",price:25,description:"Chocolate milkshake",img:img('8901455530018','front_en')},
+    {id:"dr14",name:"Amul Mango Lassi 200ml",price:30,description:"Mango lassi",img:img('8901455529043','front_en')},
   ]},
   {id:"dairy",title:"Dairy & Bakery",icon:"🥛",products:[
-    {id:"db1",name:"Amul Full Cream Milk 1L",price:68,description:"Full cream milk",img:I+"100424_17-amul-full-cream-milk.jpg"},
-    {id:"db2",name:"Amul Butter 500g",price:255,description:"Pasteurised butter",img:I+"100432_18-amul-butter.jpg"},
-    {id:"db3",name:"Amul Paneer 200g",price:80,description:"Fresh cottage cheese",img:I+"100436_16-amul-paneer.jpg"},
-    {id:"db4",name:"Amul Cheese Slices 200g",price:90,description:"Processed cheese",img:I+"100438_16-amul-cheese-slices.jpg"},
-    {id:"db5",name:"Mother Dairy Curd 400g",price:40,description:"Fresh set curd",img:I+"100450_14-mother-dairy-dahi.jpg"},
-    {id:"db6",name:"Amul Fresh Cream 200ml",price:45,description:"Cooking cream",img:I+"100440_15-amul-fresh-cream.jpg"},
-    {id:"db7",name:"Britannia Bread 400g",price:45,description:"Sandwich bread",img:I+"100548_17-britannia-bread.jpg"},
-    {id:"db8",name:"Britannia Brown Bread 400g",price:50,description:"Whole wheat bread",img:I+"100549_15-britannia-brown-bread.jpg"},
-    {id:"db9",name:"Eggs 6pcs",price:70,description:"Farm fresh eggs",img:I+"40078547_11-fresho-eggs-white.jpg"},
-    {id:"db10",name:"Amul Mozzarella 200g",price:140,description:"Mozzarella cheese",img:I+"40078060_10-amul-mozzarella.jpg"},
+    {id:"db1",name:"Amul Full Cream Milk 1L",price:68,description:"Full cream milk",img:img('8901455008013','front_en')},
+    {id:"db2",name:"Amul Butter 500g",price:255,description:"Pasteurised butter",img:img('8901455001281','front_en')},
+    {id:"db3",name:"Amul Paneer 200g",price:80,description:"Fresh cottage cheese",img:img('8901455012027','front_en')},
+    {id:"db4",name:"Amul Cheese Slices 200g",price:90,description:"Processed cheese",img:img('8901455006354','front_en')},
+    {id:"db5",name:"Mother Dairy Curd 400g",price:40,description:"Fresh set curd",img:img('8906003900017','front_en')},
+    {id:"db6",name:"Amul Fresh Cream 200ml",price:45,description:"Cooking cream",img:img('8901455010771','front_en')},
+    {id:"db7",name:"Britannia Bread 400g",price:45,description:"Sandwich bread",img:img('8901063850010','front_en')},
+    {id:"db8",name:"Eggs 6pcs",price:70,description:"Farm fresh eggs",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Chicken_eggs_2009.jpg/320px-Chicken_eggs_2009.jpg"},
+    {id:"db9",name:"Amul Mozzarella 200g",price:140,description:"Mozzarella cheese",img:img('8901455015189','front_en')},
   ]},
   {id:"pasta",title:"Noodles & Pasta",icon:"🍜",products:[
-    {id:"pa1",name:"Maggi Masala Noodles 70g",price:14,description:"Classic masala noodles",img:I+"266160_27-maggi-masala-instant-noodles-vegetarian.jpg"},
-    {id:"pa2",name:"Maggi Noodles 4pk",price:56,description:"4 pack noodles",img:I+"100247_17-maggi-2-minute-noodles.jpg"},
-    {id:"pa3",name:"Yippee Magic Masala 70g",price:15,description:"Magic masala noodles",img:I+"100249_16-sunfeast-yippee-noodles-magic-masala.jpg"},
-    {id:"pa4",name:"Ching's Hakka Noodles 150g",price:35,description:"Chinese noodles",img:I+"100252_14-chings-secret-hakka-noodles.jpg"},
-    {id:"pa5",name:"Knorr Soupy Noodles",price:20,description:"Soup noodles mix",img:I+"100256_14-knorr-soupy-noodles.jpg"},
-    {id:"pa6",name:"Maggi Pazzta Masala 70g",price:25,description:"Instant pasta",img:I+"100248_15-maggi-pazzta-masala.jpg"},
+    {id:"pa1",name:"Maggi Masala Noodles 70g",price:14,description:"Classic masala noodles",img:img('8901058851304','front_en')},
+    {id:"pa2",name:"Maggi Noodles 4pk",price:56,description:"4 pack noodles",img:img('8901058858860','front_en')},
+    {id:"pa3",name:"Yippee Magic Masala 70g",price:15,description:"Magic masala noodles",img:img('8901725191979','front_en')},
+    {id:"pa4",name:"Ching's Hakka Noodles 150g",price:35,description:"Chinese noodles",img:img('8904072300017','front_en')},
+    {id:"pa5",name:"Knorr Soupy Noodles",price:20,description:"Soup noodles mix",img:img('8901030785641','front_en')},
   ]},
   {id:"grocery",title:"Grocery & Spices",icon:"🧂",products:[
-    {id:"gr1",name:"Tata Salt 1kg",price:25,description:"Iodized table salt",img:I+"100032_17-tata-salt.jpg"},
-    {id:"gr2",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour",img:I+"100036_17-aashirvaad-whole-wheat-atta.jpg"},
-    {id:"gr3",name:"MDH Garam Masala 100g",price:55,description:"Spice blend",img:I+"100068_16-mdh-garam-masala.jpg"},
-    {id:"gr4",name:"MDH Chaat Masala 50g",price:30,description:"Tangy chaat spice",img:I+"100064_16-mdh-chaat-masala.jpg"},
-    {id:"gr5",name:"Tata Sugar 1kg",price:45,description:"Refined white sugar",img:I+"100031_15-tata-refined-sugar.jpg"},
-    {id:"gr6",name:"Catch Turmeric 100g",price:30,description:"Pure haldi powder",img:I+"100085_14-catch-turmeric-powder.jpg"},
-    {id:"gr7",name:"Catch Red Chilli 100g",price:35,description:"Red chilli powder",img:I+"100086_14-catch-red-chilli-powder.jpg"},
+    {id:"gr1",name:"Tata Salt 1kg",price:25,description:"Iodized table salt",img:img('8901872000189','front_en')},
+    {id:"gr2",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour",img:img('8901725130047','front_en')},
+    {id:"gr3",name:"MDH Garam Masala 100g",price:55,description:"Spice blend",img:img('8906010200078','front_en')},
+    {id:"gr4",name:"MDH Chaat Masala 50g",price:30,description:"Tangy chaat spice",img:img('8906010200009','front_en')},
+    {id:"gr5",name:"Tata Sugar 1kg",price:45,description:"Refined white sugar",img:img('8901872000127','front_en')},
+    {id:"gr6",name:"Catch Turmeric 100g",price:30,description:"Pure haldi powder",img:img('8906013600116','front_en')},
+    {id:"gr7",name:"Catch Red Chilli 100g",price:35,description:"Red chilli powder",img:img('8906013600093','front_en')},
   ]},
   {id:"tea",title:"Tea & Coffee",icon:"☕",products:[
-    {id:"tc1",name:"Tata Tea Gold 500g",price:220,description:"Premium blend tea",img:I+"100291_17-tata-tea-gold.jpg"},
-    {id:"tc2",name:"Red Label Tea 500g",price:210,description:"Classic tea",img:I+"100293_16-brooke-bond-red-label.jpg"},
-    {id:"tc3",name:"Nescafe Classic 200g",price:399,description:"Instant coffee",img:I+"100300_16-nescafe-classic.jpg"},
-    {id:"tc4",name:"Bru Gold Coffee 200g",price:370,description:"Filter coffee blend",img:I+"100301_14-bru-gold.jpg"},
-    {id:"tc5",name:"Bournvita 500g",price:225,description:"Chocolate health drink",img:I+"100308_16-cadbury-bournvita.jpg"},
-    {id:"tc6",name:"Horlicks Original 500g",price:225,description:"Malted health drink",img:I+"100307_15-horlicks-original.jpg"},
-    {id:"tc7",name:"Nescafe 3in1 Sachets 10pk",price:120,description:"Coffee sachets",img:I+"100303_14-nescafe-3-in-1.jpg"},
+    {id:"tc1",name:"Tata Tea Gold 500g",price:220,description:"Premium blend tea",img:img('8901872004101','front_en')},
+    {id:"tc2",name:"Red Label Tea 500g",price:210,description:"Classic Brooke Bond tea",img:img('8901030855955','front_en')},
+    {id:"tc3",name:"Nescafe Classic 200g",price:399,description:"Instant coffee",img:img('7613035694002','front_en')},
+    {id:"tc4",name:"Bru Gold Coffee 200g",price:370,description:"Filter coffee blend",img:img('8901030802209','front_en')},
+    {id:"tc5",name:"Bournvita 500g",price:225,description:"Chocolate health drink",img:img('7622210952486','front_en')},
+    {id:"tc6",name:"Horlicks Original 500g",price:225,description:"Malted health drink",img:img('8901030654518','front_en')},
+    {id:"tc7",name:"Nescafe 3in1 Sachets 10pk",price:120,description:"Coffee sachets",img:img('7613035693999','front_en')},
   ]},
   {id:"personal",title:"Personal Care",icon:"🧴",products:[
-    {id:"pc1",name:"Dove Body Lotion 200ml",price:175,description:"Moisturising lotion",img:I+"100900_16-dove-body-lotion.jpg"},
-    {id:"pc2",name:"Colgate MaxFresh 150g",price:85,description:"Cooling toothpaste",img:I+"100856_17-colgate-maxfresh.jpg"},
-    {id:"pc3",name:"Dove Shampoo 340ml",price:199,description:"Nourishing shampoo",img:I+"100885_15-dove-shampoo.jpg"},
-    {id:"pc4",name:"Head & Shoulders 340ml",price:220,description:"Anti-dandruff shampoo",img:I+"100887_15-head-shoulders-shampoo.jpg"},
-    {id:"pc5",name:"Dettol Hand Wash 200ml",price:65,description:"Antibacterial wash",img:I+"100923_16-dettol-hand-wash.jpg"},
-    {id:"pc6",name:"Parachute Coconut Oil 200ml",price:75,description:"Pure coconut oil",img:I+"100878_16-parachute-coconut-oil.jpg"},
+    {id:"pc1",name:"Dove Body Lotion 200ml",price:175,description:"Moisturising lotion",img:img('8901030971562','front_en')},
+    {id:"pc2",name:"Colgate MaxFresh 150g",price:85,description:"Cooling toothpaste",img:img('8901520022034','front_en')},
+    {id:"pc3",name:"Dove Shampoo 340ml",price:199,description:"Nourishing shampoo",img:img('8901030971999','front_en')},
+    {id:"pc4",name:"Head & Shoulders 340ml",price:220,description:"Anti-dandruff shampoo",img:img('8006540797983','front_en')},
+    {id:"pc5",name:"Dettol Hand Wash 200ml",price:65,description:"Antibacterial wash",img:img('6281006473519','front_en')},
+    {id:"pc6",name:"Parachute Coconut Oil 200ml",price:75,description:"Pure coconut oil",img:img('8901384001008','front_en')},
   ]},
   {id:"baby",title:"Baby Care",icon:"👶",products:[
-    {id:"bb1",name:"Pampers Diapers S 56pcs",price:499,description:"Soft dry diapers",img:I+"100820_15-pampers-active-baby-diapers.jpg"},
-    {id:"bb2",name:"Huggies Diapers M 42pcs",price:549,description:"Medium diapers",img:I+"100821_14-huggies-diapers.jpg"},
-    {id:"bb3",name:"Johnson Baby Powder 200g",price:149,description:"Gentle baby powder",img:I+"100836_14-johnsons-baby-powder.jpg"},
-    {id:"bb4",name:"Cerelac Wheat 300g",price:199,description:"Infant cereal",img:I+"100841_14-nestle-cerelac-wheat.jpg"},
-    {id:"bb5",name:"Johnson Baby Shampoo 200ml",price:129,description:"No-tears shampoo",img:I+"100834_14-johnsons-baby-shampoo.jpg"},
-    {id:"bb6",name:"Himalaya Baby Lotion",price:99,description:"Baby lotion",img:I+"100845_14-himalaya-baby-lotion.jpg"},
+    {id:"bb1",name:"Pampers Diapers S 56pcs",price:499,description:"Soft dry diapers",img:img('4015400543039','front_en')},
+    {id:"bb2",name:"Johnson Baby Powder 200g",price:149,description:"Gentle baby powder",img:img('3574661000014','front_en')},
+    {id:"bb3",name:"Cerelac Wheat 300g",price:199,description:"Infant cereal",img:img('7613035341593','front_en')},
+    {id:"bb4",name:"Johnson Baby Shampoo 200ml",price:129,description:"No-tears shampoo",img:img('3574661000083','front_en')},
+    {id:"bb5",name:"Himalaya Baby Lotion",price:99,description:"Baby lotion",img:img('8901138510367','front_en')},
   ]},
   {id:"oil",title:"Oil & Ghee",icon:"🫙",products:[
-    {id:"og1",name:"Fortune Sunflower Oil 1L",price:130,description:"Refined sunflower oil",img:I+"100121_16-fortune-sunflower-oil.jpg"},
-    {id:"og2",name:"Saffola Gold Oil 1L",price:160,description:"Blended cooking oil",img:I+"100122_15-saffola-gold.jpg"},
-    {id:"og3",name:"Amul Pure Ghee 500ml",price:290,description:"Pure cow ghee",img:I+"100434_16-amul-pure-ghee.jpg"},
-    {id:"og4",name:"Dabur Mustard Oil 1L",price:120,description:"Kachi ghani mustard",img:I+"100125_14-dabur-mustard-oil.jpg"},
+    {id:"og1",name:"Fortune Sunflower Oil 1L",price:130,description:"Refined sunflower oil",img:img('8906009001018','front_en')},
+    {id:"og2",name:"Saffola Gold Oil 1L",price:160,description:"Blended cooking oil",img:img('8901396018006','front_en')},
+    {id:"og3",name:"Amul Pure Ghee 500ml",price:290,description:"Pure cow ghee",img:img('8901455001939','front_en')},
+    {id:"og4",name:"Dabur Mustard Oil 1L",price:120,description:"Kachi ghani mustard",img:img('8901207086809','front_en')},
   ]},
   {id:"dryfruits",title:"Dry Fruits",icon:"🥜",products:[
-    {id:"df1",name:"Cashews Premium 250g",price:250,description:"Whole premium cashews",img:I+"40069318_11-bb-royal-cashew.jpg"},
-    {id:"df2",name:"California Almonds 250g",price:220,description:"Raw whole almonds",img:I+"40069317_11-bb-royal-almond.jpg"},
-    {id:"df3",name:"Walnut Kernels 250g",price:299,description:"Kashmiri walnuts",img:I+"40069316_11-bb-royal-walnut.jpg"},
-    {id:"df4",name:"Raisins 250g",price:99,description:"Sun dried raisins",img:I+"40069322_10-bb-royal-raisins.jpg"},
-    {id:"df5",name:"Pistachios 250g",price:350,description:"Roasted pistachios",img:I+"40069319_10-bb-royal-pista.jpg"},
-    {id:"df6",name:"Makhana Fox Nuts 100g",price:99,description:"Roasted lotus seeds",img:I+"40098521_8-bb-royal-makhana.jpg"},
+    {id:"df1",name:"Cashews 250g",price:250,description:"Whole premium cashews",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg"},
+    {id:"df2",name:"Almonds 250g",price:220,description:"Raw whole almonds",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Almonds_together.jpg/320px-Almonds_together.jpg"},
+    {id:"df3",name:"Walnut Kernels 250g",price:299,description:"Kashmiri walnuts",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Walnut_kernel.jpg/320px-Walnut_kernel.jpg"},
+    {id:"df4",name:"Raisins 250g",price:99,description:"Sun dried raisins",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bowl_of_raisins.jpg/320px-Bowl_of_raisins.jpg"},
+    {id:"df5",name:"Pistachios 250g",price:350,description:"Roasted pistachios",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Pistachio_vera.jpg/320px-Pistachio_vera.jpg"},
+    {id:"df6",name:"Dates 500g",price:120,description:"Soft fresh dates",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg"},
   ]},
   {id:"honey",title:"Honey",icon:"🍯",products:[
-    {id:"hn1",name:"Dabur Honey 500g",price:199,description:"Pure natural honey",img:I+"100143_17-dabur-honey.jpg"},
-    {id:"hn2",name:"Patanjali Honey 500g",price:170,description:"Pure wild honey",img:I+"100144_14-patanjali-honey.jpg"},
-    {id:"hn3",name:"Apis Himalaya Honey 1kg",price:350,description:"Mountain flower honey",img:I+"40061810_9-apis-himalaya-honey.jpg"},
+    {id:"hn1",name:"Dabur Honey 500g",price:199,description:"Pure natural honey",img:img('8901207000514','front_en')},
+    {id:"hn2",name:"Patanjali Honey 500g",price:170,description:"Pure wild honey",img:img('8904109421277','front_en')},
   ]},
   {id:"household",title:"Household",icon:"🧹",products:[
-    {id:"hh1",name:"Harpic Toilet Cleaner 500ml",price:99,description:"Toilet cleaner",img:I+"100735_16-harpic-toilet-cleaner.jpg"},
-    {id:"hh2",name:"Colin Glass Cleaner 500ml",price:89,description:"Glass cleaner",img:I+"100737_14-colin-glass-cleaner.jpg"},
-    {id:"hh3",name:"Vim Dishwash Liquid 500ml",price:75,description:"Dish wash liquid",img:I+"100738_14-vim-dishwash-liquid.jpg"},
-    {id:"hh4",name:"Surf Excel Matic 1kg",price:199,description:"Washing detergent",img:I+"100724_16-surf-excel-matic.jpg"},
-    {id:"hh5",name:"Lizol Floor Cleaner 1L",price:149,description:"Floor cleaner",img:I+"100739_14-lizol-floor-cleaner.jpg"},
-    {id:"hh6",name:"Dettol Antiseptic 250ml",price:85,description:"Multipurpose antiseptic",img:I+"100741_14-dettol-antiseptic-liquid.jpg"},
+    {id:"hh1",name:"Harpic Toilet Cleaner 500ml",price:99,description:"Toilet cleaner",img:img('8901207040239','front_en')},
+    {id:"hh2",name:"Vim Dishwash Liquid 500ml",price:75,description:"Dish wash liquid",img:img('8901030726446','front_en')},
+    {id:"hh3",name:"Surf Excel Matic 1kg",price:199,description:"Washing detergent",img:img('8901030832450','front_en')},
+    {id:"hh4",name:"Lizol Floor Cleaner 1L",price:149,description:"Floor cleaner",img:img('8901207046880','front_en')},
+    {id:"hh5",name:"Dettol Antiseptic 250ml",price:85,description:"Multipurpose antiseptic",img:img('6281006473526','front_en')},
+    {id:"hh6",name:"Good Knight Liquid",price:55,description:"Mosquito repellent",img:img('8901719114588','front_en')},
   ]},
   {id:"health",title:"Health",icon:"💊",products:[
-    {id:"hw1",name:"Revital H Multivitamin",price:299,description:"Daily supplement",img:I+"100993_14-revital-h.jpg"},
-    {id:"hw2",name:"Dabur Chyawanprash 500g",price:195,description:"Immunity booster",img:I+"100995_14-dabur-chyawanprash.jpg"},
-    {id:"hw3",name:"Eno Fruit Salt Original",price:30,description:"Acidity relief",img:I+"100991_13-eno-fruit-salt.jpg"},
-    {id:"hw4",name:"Hajmola Digestive",price:25,description:"Digestive candy",img:I+"100990_13-hajmola.jpg"},
+    {id:"hw1",name:"Dabur Chyawanprash 500g",price:195,description:"Immunity booster",img:img('8901207005083','front_en')},
+    {id:"hw2",name:"Eno Fruit Salt Original",price:30,description:"Acidity relief",img:img('5000118393095','front_en')},
+    {id:"hw3",name:"Hajmola Digestive",price:25,description:"Digestive candy",img:img('8901207006318','front_en')},
   ]},
   {id:"atta",title:"Atta & Rice",icon:"🌾",products:[
-    {id:"at1",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour",img:I+"100036_17-aashirvaad-whole-wheat-atta.jpg"},
-    {id:"at2",name:"India Gate Basmati 5kg",price:450,description:"Premium basmati rice",img:I+"100026_17-india-gate-basmati-rice.jpg"},
-    {id:"at3",name:"Toor Dal 1kg",price:120,description:"Yellow pigeon peas",img:I+"100042_16-toor-dal.jpg"},
-    {id:"at4",name:"Moong Dal 500g",price:65,description:"Green gram lentils",img:I+"100044_15-moong-dal.jpg"},
+    {id:"at1",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour",img:img('8901725130047','front_en')},
+    {id:"at2",name:"India Gate Basmati 5kg",price:450,description:"Premium basmati rice",img:img('8906003960371','front_en')},
+    {id:"at3",name:"Toor Dal 1kg",price:120,description:"Yellow pigeon peas",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg"},
+    {id:"at4",name:"Moong Dal 500g",price:65,description:"Green gram lentils",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Moong_dal.jpg/320px-Moong_dal.jpg"},
   ]},
   {id:"skincare",title:"Skincare",icon:"✨",products:[
-    {id:"sk1",name:"Himalaya Neem Face Wash",price:99,description:"Purifying face wash",img:I+"100932_15-himalaya-neem-face-wash.jpg"},
-    {id:"sk2",name:"Nivea Soft Cream 200ml",price:199,description:"Moisturiser",img:I+"100896_15-nivea-soft.jpg"},
-    {id:"sk3",name:"Vaseline Petroleum Jelly",price:89,description:"Deep moisture",img:I+"100897_14-vaseline-petroleum-jelly.jpg"},
+    {id:"sk1",name:"Himalaya Neem Face Wash",price:99,description:"Purifying face wash",img:img('8901138506445','front_en')},
+    {id:"sk2",name:"Nivea Soft Cream 200ml",price:199,description:"Moisturiser",img:img('4005900004901','front_en')},
+    {id:"sk3",name:"Vaseline Petroleum Jelly",price:89,description:"Deep moisture",img:img('0305210201773','front_en')},
+    {id:"sk4",name:"Lakme Sunscreen SPF50",price:249,description:"Broad spectrum SPF",img:img('8901030951244','front_en')},
   ]},
   {id:"icecream",title:"Ice Cream",icon:"🍦",products:[
-    {id:"ic1",name:"Amul Vanilla Cone",price:30,description:"Classic vanilla cone",img:I+"40071502_10-amul-cone-vanilla.jpg"},
-    {id:"ic2",name:"Kwality Walls Cornetto",price:50,description:"Chocolate cone",img:I+"40071503_10-kwality-walls-cornetto.jpg"},
-    {id:"ic3",name:"Mother Dairy Kulfi",price:20,description:"Traditional kulfi",img:I+"40071504_10-mother-dairy-kulfi.jpg"},
-    {id:"ic4",name:"Amul Choco Bar",price:30,description:"Chocolate ice cream bar",img:I+"40071505_10-amul-choco-bar.jpg"},
+    {id:"ic1",name:"Amul Vanilla Cone",price:30,description:"Classic vanilla cone",img:img('8901455540192','front_en')},
+    {id:"ic2",name:"Kwality Walls Cornetto",price:50,description:"Chocolate cone",img:img('8901030846113','front_en')},
+    {id:"ic3",name:"Mother Dairy Kulfi",price:20,description:"Traditional kulfi",img:img('8906003900406','front_en')},
   ]},
   {id:"vegetables",title:"Vegetables",icon:"🥦",products:[
-    {id:"vg1",name:"Fresh Tomatoes 1kg",price:100,description:"Farm fresh tomatoes",img:I+"40069440_11-fresho-tomato.jpg"},
-    {id:"vg2",name:"Onions 1kg",price:40,description:"Red onions",img:I+"40069439_11-fresho-onion.jpg"},
-    {id:"vg3",name:"Potatoes 1kg",price:60,description:"Fresh potatoes",img:I+"40069438_11-fresho-potato.jpg"},
-    {id:"vg4",name:"Spinach 250g",price:20,description:"Fresh palak",img:I+"40069444_11-fresho-spinach.jpg"},
-    {id:"vg5",name:"Cauliflower 1pc",price:80,description:"Fresh cauliflower",img:I+"40069443_11-fresho-cauliflower.jpg"},
-    {id:"vg6",name:"Carrots 1kg",price:50,description:"Fresh carrots",img:I+"40069441_11-fresho-carrot.jpg"},
-    {id:"vg7",name:"Garlic 250g",price:40,description:"Fresh garlic",img:I+"40069448_10-fresho-garlic.jpg"},
-    {id:"vg8",name:"Ginger 250g",price:35,description:"Fresh ginger",img:I+"40069449_10-fresho-ginger.jpg"},
-    {id:"vg9",name:"Green Chillies 100g",price:15,description:"Fresh green chillies",img:I+"40069450_10-fresho-green-chilli.jpg"},
-    {id:"vg10",name:"Coriander 100g",price:10,description:"Fresh coriander",img:I+"40069451_10-fresho-coriander.jpg"},
-    {id:"vg11",name:"Mushrooms 200g",price:50,description:"Button mushrooms",img:I+"40069453_10-fresho-mushroom.jpg"},
+    {id:"vg1",name:"Fresh Tomatoes 1kg",price:100,description:"Farm fresh tomatoes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/320px-Tomato_je.jpg"},
+    {id:"vg2",name:"Onions 1kg",price:40,description:"Red onions",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_onion.jpg/320px-Red_onion.jpg"},
+    {id:"vg3",name:"Potatoes 1kg",price:60,description:"Fresh potatoes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg"},
+    {id:"vg4",name:"Spinach 250g",price:20,description:"Fresh palak",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/SpinachWikipedia.jpg/320px-SpinachWikipedia.jpg"},
+    {id:"vg5",name:"Cauliflower 1pc",price:80,description:"Fresh cauliflower",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Kaldor_floraly.jpg/320px-Kaldor_floraly.jpg"},
+    {id:"vg6",name:"Carrots 1kg",price:50,description:"Fresh carrots",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/320px-Vegetable-Carrot-Bundle-wStalks.jpg"},
+    {id:"vg7",name:"Garlic 250g",price:40,description:"Fresh garlic",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Garlic-beginners.jpg/320px-Garlic-beginners.jpg"},
+    {id:"vg8",name:"Ginger 250g",price:35,description:"Fresh ginger",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Finger_ginger.jpg/320px-Finger_ginger.jpg"},
+    {id:"vg9",name:"Green Chillies 100g",price:15,description:"Fresh green chillies",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Green_chillies.jpg/320px-Green_chillies.jpg"},
+    {id:"vg10",name:"Coriander 100g",price:10,description:"Fresh coriander",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Coriander.jpg/320px-Coriander.jpg"},
+    {id:"vg11",name:"Mushrooms 200g",price:50,description:"Button mushrooms",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg/320px-Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg"},
+    {id:"vg12",name:"Lotus Stem 250g",price:60,description:"Kashmiri nadru",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lotus_root_cross_section.jpg/320px-Lotus_root_cross_section.jpg"},
   ]},
   {id:"fruits",title:"Fruits",icon:"🍎",products:[
-    {id:"fr1",name:"Bananas 6pcs",price:40,description:"Fresh ripe bananas",img:I+"40069460_11-fresho-banana.jpg"},
-    {id:"fr2",name:"Kashmiri Apples 1kg",price:120,description:"Kashmiri red apples",img:I+"40069461_11-fresho-apple-kashmir.jpg"},
-    {id:"fr3",name:"Pomegranate 500g",price:80,description:"Sweet pomegranate",img:I+"40069464_10-fresho-pomegranate.jpg"},
-    {id:"fr4",name:"Oranges 4pcs",price:60,description:"Navel oranges",img:I+"40069462_10-fresho-orange.jpg"},
-    {id:"fr5",name:"Green Grapes 500g",price:90,description:"Seedless green grapes",img:I+"40069465_10-fresho-grapes-green.jpg"},
-    {id:"fr6",name:"Strawberries 250g",price:80,description:"Fresh strawberries",img:I+"40069469_10-fresho-strawberry.jpg"},
-    {id:"fr7",name:"Mango 1kg",price:200,description:"Sweet Alphonso mangoes",img:I+"40069466_10-fresho-mango.jpg"},
-    {id:"fr8",name:"Kiwi 4pcs",price:80,description:"Fresh kiwi",img:I+"40069470_10-fresho-kiwi.jpg"},
-    {id:"fr9",name:"Watermelon 1kg",price:100,description:"Sweet watermelon",img:I+"40069471_10-fresho-watermelon.jpg"},
+    {id:"fr1",name:"Bananas 6pcs",price:40,description:"Fresh ripe bananas",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Shoot.jpg/320px-Banana-Shoot.jpg"},
+    {id:"fr2",name:"Kashmiri Apples 1kg",price:120,description:"Kashmiri red apples",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg"},
+    {id:"fr3",name:"Pomegranate 500g",price:80,description:"Sweet pomegranate",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Pomegranate_fruit_-_whole_and_halved.jpg/320px-Pomegranate_fruit_-_whole_and_halved.jpg"},
+    {id:"fr4",name:"Oranges 4pcs",price:60,description:"Navel oranges",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg"},
+    {id:"fr5",name:"Green Grapes 500g",price:90,description:"Seedless green grapes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg"},
+    {id:"fr6",name:"Strawberries 250g",price:80,description:"Fresh strawberries",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/320px-PerfectStrawberry.jpg"},
+    {id:"fr7",name:"Mango 1kg",price:200,description:"Sweet Alphonso mangoes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/320px-Hapus_Mango.jpg"},
+    {id:"fr8",name:"Kiwi 4pcs",price:80,description:"Fresh kiwi",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Kiwi_-_Whole_and_Split.jpg/320px-Kiwi_-_Whole_and_Split.jpg"},
+    {id:"fr9",name:"Watermelon 1kg",price:100,description:"Sweet watermelon",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Slices_of_watermelon.jpg/320px-Slices_of_watermelon.jpg"},
+    {id:"fr10",name:"Cherries 500g",price:150,description:"Fresh Kashmiri cherries",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Cherry_Stella444.jpg/320px-Cherry_Stella444.jpg"},
+    {id:"fr11",name:"Apricots 500g",price:100,description:"Kashmiri apricots",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Apricot_and_apricots.jpg/320px-Apricot_and_apricots.jpg"},
   ]},
   {id:"ramadan",title:"Ramadan Special",icon:"🌙",products:[
-    {id:"rm1",name:"Sewai 200g",price:35,description:"Fine vermicelli",img:I+"100270_15-sewai.jpg"},
-    {id:"rm2",name:"Rooh Afza 750ml",price:180,description:"Rose sherbet",img:I+"100272_14-rooh-afza.jpg"},
-    {id:"rm3",name:"Medjool Dates 500g",price:350,description:"Premium soft dates",img:I+"40078910_9-medjool-dates.jpg"},
-    {id:"rm4",name:"Haleem Mix 200g",price:65,description:"Slow cook haleem",img:I+"100271_13-haleem-mix.jpg"},
+    {id:"rm1",name:"Sewai 200g",price:35,description:"Fine vermicelli",img:img('8901207086717','front_en')},
+    {id:"rm2",name:"Rooh Afza 750ml",price:180,description:"Rose sherbet",img:img('8901365000015','front_en')},
+    {id:"rm3",name:"Medjool Dates 500g",price:350,description:"Premium soft dates",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg"},
+    {id:"rm4",name:"Haleem Mix 200g",price:65,description:"Slow cook haleem",img:img('8906068390026','front_en')},
   ]},
 ];
 
@@ -547,26 +528,11 @@ let activeCategory='All';
 let sellerToken=localStorage.getItem('seller_token')||null;
 let allProducts=[];
 
-function showPage(page){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+page).classList.add('active');
-  if(page==='store')initStore();
-  if(page==='cart')renderCart();
-  if(page==='seller')initSeller();
-  window.scrollTo(0,0);
-}
-function goShop(catId){activeCategory=catId;showPage('store');}
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');if(p==='store')initStore();if(p==='cart')renderCart();if(p==='seller')initSeller();window.scrollTo(0,0);}
+function goShop(c){activeCategory=c;showPage('store');}
 function initStore(){renderCategoryBar();renderProducts();tryBackend();}
-function tryBackend(){
-  fetch(API+'/products?limit=100').then(r=>r.json()).then(data=>{
-    if(data.success&&data.data&&data.data.length>0){allProducts=data.data;renderProducts();}
-  }).catch(()=>{});
-}
-function renderCategoryBar(){
-  const bar=document.getElementById('cats-bar');
-  const cats=[{id:'All',title:'All',icon:'🛒'},...GROCERY_CATEGORIES];
-  bar.innerHTML=cats.map(c=>`<div class="cat-chip ${c.id===activeCategory?'active':''}" onclick="setCategory('${c.id}')">${c.icon} ${c.title}</div>`).join('');
-}
+function tryBackend(){fetch(API+'/products?limit=100').then(r=>r.json()).then(d=>{if(d.success&&d.data?.length>0){allProducts=d.data;renderProducts();}}).catch(()=>{});}
+function renderCategoryBar(){const bar=document.getElementById('cats-bar');const cats=[{id:'All',title:'All',icon:'🛒'},...GROCERY_CATEGORIES];bar.innerHTML=cats.map(c=>`<div class="cat-chip ${c.id===activeCategory?'active':''}" onclick="setCategory('${c.id}')">${c.icon} ${c.title}</div>`).join('');}
 function setCategory(id){activeCategory=id;renderCategoryBar();renderProducts();}
 function filterProducts(){renderProducts();}
 function renderProducts(){
@@ -583,139 +549,27 @@ function renderProducts(){
     prods.forEach(p=>{html+=cardHTML(p);});
     html+='</div>';
   });
-  if(allProducts.length&&activeCategory==='All'){
-    let bp=allProducts;
-    if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));
-    if(bp.length){
-      html+=`<div class="section-heading">🪐 Local Store Products</div><div class="products-grid">`;
-      bp.forEach(p=>{html+=backendCard(p);});
-      html+='</div>';
-    }
-  }
+  if(allProducts.length&&activeCategory==='All'){let bp=allProducts;if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));if(bp.length){html+=`<div class="section-heading">🪐 Local Store Products</div><div class="products-grid">`;bp.forEach(p=>{html+=backendCard(p);});html+='</div>';}}
   if(!html)html='<div class="empty">No products found 🔍</div>';
   el.innerHTML=html;
 }
-function cardHTML(p){
-  const qty=getQty('g_'+p.id);
-  const imgEl=p.img?`<img class="prod-img" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=prod-placeholder>🛒</div>'">`:`<div class="prod-placeholder">🛒</div>`;
-  const qtyEl=qty===0?`<button class="add-btn" onclick="addProduct('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeQty('${p.id}',1)">+</button></div>`;
-  return `<div class="product-card">${imgEl}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.description}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyEl}</div></div></div>`;
-}
-function backendCard(p){
-  const qty=getQty('b_'+p.id);
-  const imgEl=p.image_url?`<img class="prod-img" src="${p.image_url}" alt="${p.name}" onerror="this.outerHTML='<div class=prod-placeholder>🛒</div>'">`:`<div class="prod-placeholder">🛒</div>`;
-  const qtyEl=qty===0?`<button class="add-btn" onclick="addBackend('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeBQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeBQty('${p.id}',1)">+</button></div>`;
-  return `<div class="product-card">${imgEl}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.sellers?.store_name||'Local Store'}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyEl}</div></div></div>`;
-}
+function cardHTML(p){const qty=getQty('g_'+p.id);const imgEl=p.img?`<img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`:'';const ph=`<div class="prod-placeholder" style="${p.img?'display:none':''}">🛒</div>`;const qtyEl=qty===0?`<button class="add-btn" onclick="addProduct('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeQty('${p.id}',1)">+</button></div>`;return `<div class="product-card">${imgEl}${ph}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.description}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyEl}</div></div></div>`;}
+function backendCard(p){const qty=getQty('b_'+p.id);const imgEl=p.image_url?`<img class="prod-img" src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=prod-placeholder>🛒</div>'">`:`<div class="prod-placeholder">🛒</div>`;const qtyEl=qty===0?`<button class="add-btn" onclick="addBackend('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeBQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeBQty('${p.id}',1)">+</button></div>`;return `<div class="product-card">${imgEl}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.sellers?.store_name||'Local Store'}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyEl}</div></div></div>`;}
 function getQty(id){const i=cart.find(c=>c.id===id);return i?i.quantity:0;}
 function findProduct(id){for(const cat of GROCERY_CATEGORIES){const p=cat.products.find(p=>p.id===id);if(p)return p;}return null;}
-function addProduct(productId){
-  const p=findProduct(productId);if(!p)return;
-  const id='g_'+p.id;const i=cart.find(c=>c.id===id);
-  if(i)i.quantity++;else cart.push({id,name:p.name,price:p.price,quantity:1,img:p.img||'',type:'grocery'});
-  saveCart();renderProducts();updateCartBar();
-}
-function changeQty(productId,delta){
-  const id='g_'+productId;const i=cart.find(c=>c.id===id);if(!i)return;
-  i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);
-  saveCart();renderProducts();updateCartBar();
-}
-function addBackend(productId){
-  const p=allProducts.find(p=>p.id===productId);if(!p)return;
-  const id='b_'+p.id;const i=cart.find(c=>c.id===id);
-  if(i)i.quantity++;else cart.push({id,name:p.name,price:p.price,quantity:1,img:p.image_url||'',type:'backend',seller_id:p.seller_id});
-  saveCart();renderProducts();updateCartBar();
-}
-function changeBQty(productId,delta){
-  const id='b_'+productId;const i=cart.find(c=>c.id===id);if(!i)return;
-  i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);
-  saveCart();renderProducts();updateCartBar();
-}
+function addProduct(productId){const p=findProduct(productId);if(!p)return;const id='g_'+p.id;const i=cart.find(c=>c.id===id);if(i)i.quantity++;else cart.push({id,name:p.name,price:p.price,quantity:1,img:p.img||'',type:'grocery'});saveCart();renderProducts();updateCartBar();}
+function changeQty(productId,delta){const id='g_'+productId;const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderProducts();updateCartBar();}
+function addBackend(productId){const p=allProducts.find(p=>p.id===productId);if(!p)return;const id='b_'+p.id;const i=cart.find(c=>c.id===id);if(i)i.quantity++;else cart.push({id,name:p.name,price:p.price,quantity:1,img:p.image_url||'',type:'backend',seller_id:p.seller_id});saveCart();renderProducts();updateCartBar();}
+function changeBQty(productId,delta){const id='b_'+productId;const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderProducts();updateCartBar();}
 function saveCart(){localStorage.setItem('kasheer_cart',JSON.stringify(cart));}
-function updateCartBar(){
-  const count=cart.reduce((s,i)=>s+i.quantity,0);
-  const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-  document.getElementById('cart-count').textContent=count;
-  document.getElementById('cart-total').textContent=total;
-  document.getElementById('cart-bar').className='cart-bar'+(count>0?' visible':'');
-}
-function renderCart(){
-  const el=document.getElementById('cart-content');
-  if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty<br><br><button class="btn btn-teal" onclick="showPage('store')" style="margin-top:16px;">Start Shopping</button></div>`;return;}
-  const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-  const delivery=50;
-  let html=cart.map(i=>{
-    const thumb=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';
-    return `<div class="cart-item"><div class="cart-item-thumb">${thumb}</div><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">₹${i.price} × ${i.quantity} = ₹${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cartQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cartQty('${i.id}',1)">+</button></div></div>`;
-  }).join('');
-  html+=`<div class="cart-summary"><div class="summary-row"><span>Subtotal</span><span>₹${subtotal}</span></div><div class="summary-row"><span>Delivery</span><span>₹${delivery}</span></div><div class="summary-row total"><span>Total</span><span>₹${subtotal+delivery}</span></div><button class="btn btn-teal" style="width:100%;justify-content:center;margin-top:22px;border-radius:50px;" onclick="alert('Download the Kasheer app to complete your order!')">Checkout on App</button></div>`;
-  el.innerHTML=html;
-}
-function cartQty(id,delta){
-  const i=cart.find(c=>c.id===id);if(!i)return;
-  i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);
-  saveCart();renderCart();updateCartBar();
-}
-function initSeller(){
-  if(sellerToken)showSellerDash();
-  else{document.getElementById('seller-login-view').style.display='block';document.getElementById('seller-dash-view').style.display='none';}
-}
-async function sellerLogin(){
-  const email=document.getElementById('seller-email').value;
-  const password=document.getElementById('seller-password').value;
-  const errEl=document.getElementById('login-error');
-  errEl.style.display='none';
-  if(!email||!password){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
-  try{
-    const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
-    const data=await res.json();
-    if(!data.success)throw new Error(data.message||'Login failed');
-    sellerToken=data.data.token;localStorage.setItem('seller_token',sellerToken);showSellerDash();
-  }catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
-}
-function sellerLogout(){
-  sellerToken=null;localStorage.removeItem('seller_token');
-  document.getElementById('seller-dash-view').style.display='none';
-  document.getElementById('seller-login-view').style.display='block';
-}
-async function showSellerDash(){
-  document.getElementById('seller-login-view').style.display='none';
-  document.getElementById('seller-dash-view').style.display='block';
-  try{
-    const h={Authorization:'Bearer '+sellerToken};
-    const[dashRes,prodsRes,ordersRes]=await Promise.all([
-      fetch(API+'/seller/dashboard',{headers:h}),
-      fetch(API+'/seller/products',{headers:h}),
-      fetch(API+'/orders/seller',{headers:h}).catch(()=>({json:()=>({success:false})})),
-    ]);
-    const dash=await dashRes.json();const prods=await prodsRes.json();const orders=await ordersRes.json().catch(()=>({success:false}));
-    if(dash.success&&dash.data?.seller){
-      const s=dash.data.seller;
-      document.getElementById('dash-store-name').textContent=s.store_name||'Your Store';
-      document.getElementById('dash-category').textContent=s.category||'';
-      const st=document.getElementById('dash-status');
-      st.textContent=s.is_approved?'Active':'Pending Approval';
-      st.className='status-badge '+(s.is_approved?'badge-active':'badge-pending');
-    }
-    const prodList=prods.success?(prods.data||[]):[];
-    const orderList=orders.success?(orders.data||[]):[];
-    const revenue=orderList.filter(o=>o.status==='delivered').reduce((s,o)=>s+(o.total_amount||0),0);
-    document.getElementById('stat-products').textContent=prodList.length;
-    document.getElementById('stat-orders').textContent=orderList.length;
-    document.getElementById('stat-revenue').textContent='₹'+revenue;
-    document.getElementById('seller-products-content').innerHTML=prodList.length
-      ?`<div class="seller-prods-grid">${prodList.map(p=>`<div class="seller-prod-card"><div class="seller-prod-thumb">${p.image_url?`<img src="${p.image_url}" alt="${p.name}">`:'🛒'}</div><div style="flex:1;min-width:0"><div class="seller-prod-name">${p.name}</div><div class="seller-prod-price">₹${p.price}</div></div></div>`).join('')}</div>`
-      :'<div class="empty">No products yet. Add from the app.</div>';
-    document.getElementById('seller-orders-content').innerHTML=orderList.length
-      ?`<div class="orders-list">${orderList.slice(0,30).map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="order-status s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div class="order-amount">₹${o.total_amount||0}</div><div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`
-      :'<div class="empty">No orders yet.</div>';
-  }catch(e){document.getElementById('seller-dash-view').innerHTML='<div class="empty">Could not load dashboard.</div>';}
-}
-function switchTab(tab){
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['products','orders'][i]===tab));
-  document.getElementById('tab-products').style.display=tab==='products'?'block':'none';
-  document.getElementById('tab-orders').style.display=tab==='orders'?'block':'none';
-}
+function updateCartBar(){const count=cart.reduce((s,i)=>s+i.quantity,0);const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);document.getElementById('cart-count').textContent=count;document.getElementById('cart-total').textContent=total;document.getElementById('cart-bar').className='cart-bar'+(count>0?' visible':'');}
+function renderCart(){const el=document.getElementById('cart-content');if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty<br><br><button class="btn btn-teal" onclick="showPage('store')" style="margin-top:16px;">Start Shopping</button></div>`;return;}const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);const delivery=50;let html=cart.map(i=>{const thumb=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';return `<div class="cart-item"><div class="cart-item-thumb">${thumb}</div><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">₹${i.price} × ${i.quantity} = ₹${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cartQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cartQty('${i.id}',1)">+</button></div></div>`;}).join('');html+=`<div class="cart-summary"><div class="summary-row"><span>Subtotal</span><span>₹${subtotal}</span></div><div class="summary-row"><span>Delivery</span><span>₹${delivery}</span></div><div class="summary-row total"><span>Total</span><span>₹${subtotal+delivery}</span></div><button class="btn btn-teal" style="width:100%;justify-content:center;margin-top:22px;border-radius:50px;" onclick="alert('Download the Kasheer app to complete your order!')">Checkout on App</button></div>`;el.innerHTML=html;}
+function cartQty(id,delta){const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderCart();updateCartBar();}
+function initSeller(){if(sellerToken)showSellerDash();else{document.getElementById('seller-login-view').style.display='block';document.getElementById('seller-dash-view').style.display='none';}}
+async function sellerLogin(){const email=document.getElementById('seller-email').value;const password=document.getElementById('seller-password').value;const errEl=document.getElementById('login-error');errEl.style.display='none';if(!email||!password){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}try{const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const data=await res.json();if(!data.success)throw new Error(data.message||'Login failed');sellerToken=data.data.token;localStorage.setItem('seller_token',sellerToken);showSellerDash();}catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}}
+function sellerLogout(){sellerToken=null;localStorage.removeItem('seller_token');document.getElementById('seller-dash-view').style.display='none';document.getElementById('seller-login-view').style.display='block';}
+async function showSellerDash(){document.getElementById('seller-login-view').style.display='none';document.getElementById('seller-dash-view').style.display='block';try{const h={Authorization:'Bearer '+sellerToken};const[dashRes,prodsRes,ordersRes]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller',{headers:h}).catch(()=>({json:()=>({success:false})}))]);const dash=await dashRes.json();const prods=await prodsRes.json();const orders=await ordersRes.json().catch(()=>({success:false}));if(dash.success&&dash.data?.seller){const s=dash.data.seller;document.getElementById('dash-store-name').textContent=s.store_name||'Your Store';document.getElementById('dash-category').textContent=s.category||'';const st=document.getElementById('dash-status');st.textContent=s.is_approved?'Active':'Pending Approval';st.className='status-badge '+(s.is_approved?'badge-active':'badge-pending');}const prodList=prods.success?(prods.data||[]):[];const orderList=orders.success?(orders.data||[]):[];const revenue=orderList.filter(o=>o.status==='delivered').reduce((s,o)=>s+(o.total_amount||0),0);document.getElementById('stat-products').textContent=prodList.length;document.getElementById('stat-orders').textContent=orderList.length;document.getElementById('stat-revenue').textContent='₹'+revenue;document.getElementById('seller-products-content').innerHTML=prodList.length?`<div class="seller-prods-grid">${prodList.map(p=>`<div class="seller-prod-card"><div class="seller-prod-thumb">${p.image_url?`<img src="${p.image_url}" alt="${p.name}">`:'🛒'}</div><div style="flex:1;min-width:0"><div class="seller-prod-name">${p.name}</div><div class="seller-prod-price">₹${p.price}</div></div></div>`).join('')}</div>`:'<div class="empty">No products yet. Add from the app.</div>';document.getElementById('seller-orders-content').innerHTML=orderList.length?`<div class="orders-list">${orderList.slice(0,30).map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="order-status s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div class="order-amount">₹${o.total_amount||0}</div><div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`:'<div class="empty">No orders yet.</div>';}catch(e){document.getElementById('seller-dash-view').innerHTML='<div class="empty">Could not load dashboard.</div>';}}
+function switchTab(tab){document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['products','orders'][i]===tab));document.getElementById('tab-products').style.display=tab==='products'?'block':'none';document.getElementById('tab-orders').style.display=tab==='orders'?'block':'none';}
 updateCartBar();
 </script>
 </body>
