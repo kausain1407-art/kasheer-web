@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kasheer â€” Kashmir's Local Delivery</title>
+<title>Kasheer — Kashmir's Local Delivery</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--teal:#00BCD4;--teal-dark:#006773;--teal-mid:#00838F;--teal-light:#E0F7FA;--orange:#FF6F00;--orange-light:#FFF3E0;--text:#0D1B1E;--muted:#5C7A80;--bg:#F4F8F9;--white:#FFFFFF;--border:#DCE8EB;--radius:18px;--radius-sm:12px;--shadow:0 4px 24px rgba(0,103,115,0.10);--shadow-lg:0 12px 48px rgba(0,103,115,0.16);}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px;}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--teal-dark);cursor:pointer;display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--teal-dark);cursor:pointer;display:flex;align-items:center;gap:10px;}
 .nav-logo .kashmiri{font-family:'Noto Nastaliq Urdu',serif;font-size:18px;color:var(--muted);font-weight:400;}
 .nav-links{display:flex;gap:6px;align-items:center;}
-.nav-btn{padding:9px 20px;border-radius:50px;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+.nav-btn{padding:9px 20px;border-radius:50px;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;}
 .nav-btn-ghost{background:transparent;color:var(--text);}.nav-btn-ghost:hover{background:var(--teal-light);color:var(--teal-dark);}
 .nav-btn-orange{background:var(--orange);color:#fff;}.nav-btn-orange:hover{background:#E65100;}
 .page{display:none;}.page.active{display:block;}
@@ -23,29 +23,29 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .hero-content{position:relative;z-index:1;max-width:640px;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:12px;font-weight:600;padding:6px 18px;border-radius:50px;margin-bottom:28px;letter-spacing:1px;text-transform:uppercase;}
 .hero-title{font-family:'Cormorant Garamond',serif;font-size:72px;line-height:1;color:#fff;margin-bottom:6px;font-weight:700;}
-.hero-kashmiri{font-family:'Noto Nastaliq Urdu',serif;font-size:26px;color:rgba(255,255,255,0.45);margin-bottom:36px;direction:rtl;}
-.hero-sub{font-size:17px;color:rgba(255,255,255,0.75);line-height:1.75;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:400;}
+.hero-kashmiri{font-family:'Noto Nastaliq Urdu',serif;font-size:24px;color:rgba(255,255,255,0.4);margin-bottom:36px;direction:rtl;}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.75);line-height:1.75;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;}
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
 .btn-ks{font-family:'Noto Nastaliq Urdu',serif;font-size:11px;opacity:0.7;display:block;margin-top:3px;direction:rtl;}
-.btn{display:inline-flex;flex-direction:column;align-items:center;padding:12px 28px;border-radius:50px;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:all 0.22s;text-decoration:none;}
+.btn{display:inline-flex;flex-direction:column;align-items:center;padding:12px 28px;border-radius:50px;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:all 0.22s;}
 .btn-white{background:#fff;color:var(--teal-dark);}.btn-white:hover{background:var(--teal-light);}
 .btn-outline{background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.35);}.btn-outline:hover{background:rgba(255,255,255,0.2);}
 .btn-orange-solid{background:var(--orange);color:#fff;}.btn-orange-solid:hover{background:#E65100;}
 .btn-teal{background:var(--teal);color:#fff;}.btn-teal:hover{background:var(--teal-dark);}
-.stats-bar{background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:center;}
+.stats-bar{background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:center;flex-wrap:wrap;}
 .stat-item{padding:22px 40px;text-align:center;border-right:1px solid var(--border);}.stat-item:last-child{border-right:none;}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--teal-dark);}
 .stat-label{font-size:12px;color:var(--muted);font-weight:500;margin-top:2px;}
 .section{padding:80px 24px;max-width:1000px;margin:0 auto;}
 .section-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:38px;text-align:center;color:var(--text);margin-bottom:10px;font-weight:700;line-height:1.2;}
-.section-sub{font-size:15px;color:var(--muted);text-align:center;margin-bottom:52px;font-weight:400;}
+.section-sub{font-size:15px;color:var(--muted);text-align:center;margin-bottom:52px;}
 .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
 .feature-card{background:var(--white);border-radius:var(--radius);padding:30px 24px;border:1px solid var(--border);transition:all 0.25s;}
 .feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--teal);}
 .feature-icon{width:52px;height:52px;border-radius:14px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;}
-.feature-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;}
-.feature-desc{font-size:13px;color:var(--muted);line-height:1.65;font-weight:400;}
+.feature-title{font-size:16px;font-weight:700;margin-bottom:8px;}
+.feature-desc{font-size:13px;color:var(--muted);line-height:1.65;}
 .how-section{background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal-mid) 100%);padding:80px 24px;}
 .how-inner{max-width:900px;margin:0 auto;}
 .how-section .section-label{color:rgba(255,255,255,0.6);}.how-section .section-title{color:#fff;}.how-section .section-sub{color:rgba(255,255,255,0.6);}
@@ -58,14 +58,14 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .cat-showcase-card{background:var(--white);border-radius:var(--radius-sm);padding:20px 14px;text-align:center;border:1px solid var(--border);cursor:pointer;transition:all 0.22s;}
 .cat-showcase-card:hover{border-color:var(--teal);background:var(--teal-light);transform:translateY(-2px);}
 .cat-showcase-icon{font-size:30px;margin-bottom:10px;display:block;}
-.cat-showcase-name{font-size:13px;font-weight:600;color:var(--text);}
+.cat-showcase-name{font-size:13px;font-weight:600;}
 .cta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto;}
 .cta-card{border-radius:var(--radius);padding:40px 32px;}
 .cta-card.shop{background:var(--teal-dark);}.cta-card.sell{background:var(--orange-light);border:1.5px solid #FFD180;}.cta-card.deliver{background:#1A237E;}
 .cta-emoji{font-size:44px;margin-bottom:18px;display:block;}
 .cta-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:10px;}
 .cta-card.shop .cta-title,.cta-card.deliver .cta-title{color:#fff;}.cta-card.sell .cta-title{color:var(--orange);}
-.cta-desc{font-size:14px;line-height:1.7;margin-bottom:26px;font-weight:400;}
+.cta-desc{font-size:14px;line-height:1.7;margin-bottom:26px;}
 .cta-card.shop .cta-desc,.cta-card.deliver .cta-desc{color:rgba(255,255,255,0.7);}.cta-card.sell .cta-desc{color:#795548;}
 .store-top{background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal-mid) 100%);padding:28px 28px 0;}
 .store-top h1{font-family:'Cormorant Garamond',serif;font-size:30px;color:#fff;font-weight:700;margin-bottom:4px;}
@@ -82,10 +82,10 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;}
 .product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;}
 .product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.prod-img{width:100%;height:150px;object-fit:cover;display:block;background:#f5f5f5;}
-.prod-placeholder{width:100%;height:150px;background:linear-gradient(135deg,var(--teal-light),#fff);display:flex;align-items:center;justify-content:center;font-size:42px;}
+.prod-img{width:100%;height:150px;object-fit:contain;display:block;background:#f9f9f9;padding:6px;}
+.prod-placeholder{width:100%;height:150px;background:linear-gradient(135deg,var(--teal-light),#fff);display:flex;align-items:center;justify-content:center;font-size:40px;}
 .prod-body{padding:12px;}
-.prod-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.prod-name{font-size:13px;font-weight:700;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .prod-desc{font-size:11px;color:var(--muted);margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .prod-foot{display:flex;align-items:center;justify-content:space-between;}
 .prod-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--teal-dark);}
@@ -101,7 +101,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .cart-wrap{max-width:620px;margin:0 auto;padding:28px 24px;}
 .cart-item{background:var(--white);border-radius:var(--radius-sm);padding:16px;display:flex;align-items:center;gap:14px;border:1px solid var(--border);margin-bottom:12px;}
 .cart-item-thumb{width:60px;height:60px;border-radius:10px;flex-shrink:0;overflow:hidden;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:22px;}
-.cart-item-thumb img{width:100%;height:100%;object-fit:cover;}
+.cart-item-thumb img{width:100%;height:100%;object-fit:contain;}
 .cart-item-name{font-size:15px;font-weight:700;margin-bottom:3px;}
 .cart-item-price{font-size:13px;color:var(--teal-dark);font-weight:600;}
 .cart-summary{background:var(--white);border-radius:var(--radius);padding:22px;border:1px solid var(--border);margin-top:20px;}
@@ -111,7 +111,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .seller-login-wrap h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;margin-bottom:8px;}
 .field{margin-bottom:16px;text-align:left;}
 .field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;}
-.field input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Syne',sans-serif;outline:none;transition:border 0.2s;color:var(--text);background:var(--bg);}
+.field input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Syne',sans-serif;outline:none;transition:border 0.2s;background:var(--bg);}
 .field input:focus{border-color:var(--teal);background:#fff;}
 .submit-btn{width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:8px;}
 .err-box{background:#FFEBEE;color:#C62828;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;text-align:left;}
@@ -132,7 +132,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .seller-prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
 .seller-prod-card{background:var(--white);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);display:flex;gap:12px;align-items:center;}
 .seller-prod-thumb{width:54px;height:54px;border-radius:10px;background:var(--teal-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;}
-.seller-prod-thumb img{width:100%;height:100%;object-fit:cover;}
+.seller-prod-thumb img{width:100%;height:100%;object-fit:contain;}
 .seller-prod-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
 .seller-prod-price{font-size:13px;color:var(--teal-dark);font-weight:600;}
 .orders-list{display:flex;flex-direction:column;gap:12px;}
@@ -154,12 +154,12 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 .spinner{width:38px;height:38px;border:3px solid var(--teal-light);border-top-color:var(--teal);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 16px;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .empty{text-align:center;padding:70px 24px;color:var(--muted);font-size:15px;}
-@media(max-width:640px){.hero-title{font-size:48px;}.steps{grid-template-columns:repeat(2,1fr);}.stats-bar{flex-wrap:wrap;}.stat-item{border-right:none;border-bottom:1px solid var(--border);flex:1 1 50%;}.nav-links .nav-btn-ghost{display:none;}.cta-grid{grid-template-columns:1fr;}}
+@media(max-width:640px){.hero-title{font-size:48px;}.steps{grid-template-columns:repeat(2,1fr);}.nav-links .nav-btn-ghost{display:none;}.cta-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <nav>
-  <div class="nav-logo" onclick="showPage('home')">Kasheer <span class="kashmiri">Ú©Ù²Ø´ÙÛŒØ±</span></div>
+  <div class="nav-logo" onclick="showPage('home')">Kasheer <span class="kashmiri">کٲشِیر</span></div>
   <div class="nav-links">
     <button class="nav-btn nav-btn-ghost" onclick="showPage('home')">Home</button>
     <button class="nav-btn nav-btn-ghost" onclick="showPage('store')">Shop</button>
@@ -172,14 +172,14 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
     <div class="hero-pattern"></div>
     <div class="hero-grid"></div>
     <div class="hero-content">
-      <div class="hero-badge">ðŸ”ï¸ Kashmir's First Hyperlocal Delivery</div>
+      <div class="hero-badge">🏔️ Kashmir's First Hyperlocal Delivery</div>
       <div class="hero-title">Kasheer</div>
-      <div class="hero-kashmiri">Ú©Ù²Ø´ÙÛŒØ± â€” Ú©Ù²Ø´ÙÛŒØ±Û Ú¯ÙˆÚˆ Ù†ÛŒÚ† ÚˆÙÙ„ÛŒÙˆØ±ÛŒ</div>
-      <p class="hero-sub">Kashmir's first hyperlocal delivery platform â€” groceries, handmade goods, and more from stores near you. Fast. Local. Yours.</p>
+      <div class="hero-kashmiri">کٲشِیر — کٲشِیرۍ گوڈ نیچ ڈِلیوری</div>
+      <p class="hero-sub">Kashmir's first hyperlocal delivery platform — groceries, handmade goods, and more from stores near you. Fast. Local. Yours.</p>
       <div class="hero-btns">
-        <button class="btn btn-white" onclick="showPage('store')">Shop Now<span class="btn-ks">ÛÙÙ†Û Ø®Ø±ÛŒØ¯Ø§Ø±ÛŒ Ú©Ø±Ùˆ</span></button>
-        <button class="btn btn-outline" onclick="showPage('seller')">Sell on Kasheer<span class="btn-ks">Ú©Ù²Ø´ÙÛŒØ± Ù¾ÛŒÙ¹Ú¾ Ø³ÙˆØ²ÙÙˆ</span></button>
-        <button class="btn btn-orange-solid" onclick="alert('Download the Kasheer app to become a delivery agent!')">Become a Rider<span class="btn-ks">ÚˆÙÙ„ÛŒÙˆØ±ÛŒ Ø§ÛŒØ¬Ù†Ù¹ Ø¨Ù†Ùˆ</span></button>
+        <button class="btn btn-white" onclick="showPage('store')">Shop Now<span class="btn-ks">ہُنہ خریداری کرو</span></button>
+        <button class="btn btn-outline" onclick="showPage('seller')">Sell on Kasheer<span class="btn-ks">کٲشِیر پیٹھ سوزِو</span></button>
+        <button class="btn btn-orange-solid" onclick="alert('Download the Kasheer app to become a delivery agent!')">Become a Rider<span class="btn-ks">ڈِلیوری ایجنٹ بنو</span></button>
       </div>
     </div>
   </section>
@@ -194,40 +194,40 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
     <div class="section-title">Built for Kashmir, by Kashmir</div>
     <p class="section-sub">Everything you need, from stores right around the corner</p>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">ðŸ›’</div><div class="feature-title">Local Grocery</div><div class="feature-desc">Fresh groceries and daily essentials from nearby stores delivered to your door</div></div>
-      <div class="feature-card"><div class="feature-icon">ðŸº</div><div class="feature-title">Kashmiri Brands</div><div class="feature-desc">Khyber dairy, local bakeries, and authentic Kashmiri products you love</div></div>
-      <div class="feature-card"><div class="feature-icon">âš¡</div><div class="feature-title">Fast Delivery</div><div class="feature-desc">Nearest rider picks up your order â€” delivered in minutes, not hours</div></div>
-      <div class="feature-card"><div class="feature-icon">ðŸ’°</div><div class="feature-title">Fair Prices</div><div class="feature-desc">No hidden charges. You pay store prices â€” nothing more</div></div>
-      <div class="feature-card"><div class="feature-icon">ðŸ“±</div><div class="feature-title">App + Web</div><div class="feature-desc">Order from our Android app or right here on the website</div></div>
-      <div class="feature-card"><div class="feature-icon">ðŸš´</div><div class="feature-title">Be a Rider</div><div class="feature-desc">Join our delivery fleet and earn money on your own schedule</div></div>
+      <div class="feature-card"><div class="feature-icon">🛒</div><div class="feature-title">Local Grocery</div><div class="feature-desc">Fresh groceries from nearby stores delivered to your door</div></div>
+      <div class="feature-card"><div class="feature-icon">🏺</div><div class="feature-title">Kashmiri Brands</div><div class="feature-desc">Khyber dairy, local bakeries, and authentic Kashmiri products</div></div>
+      <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Fast Delivery</div><div class="feature-desc">Nearest rider picks up your order — delivered in minutes</div></div>
+      <div class="feature-card"><div class="feature-icon">💰</div><div class="feature-title">Fair Prices</div><div class="feature-desc">No hidden charges. You pay store prices — nothing more</div></div>
+      <div class="feature-card"><div class="feature-icon">📱</div><div class="feature-title">App + Web</div><div class="feature-desc">Order from our Android app or right here on the website</div></div>
+      <div class="feature-card"><div class="feature-icon">🚴</div><div class="feature-title">Be a Rider</div><div class="feature-desc">Join our delivery fleet and earn money on your schedule</div></div>
     </div>
   </div>
   <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 24px;">
     <div style="max-width:1000px;margin:0 auto;">
       <div class="section-label">What we deliver</div>
       <div class="section-title">Everything You Need</div>
-      <p class="section-sub" style="margin-bottom:36px;">Snacks to spices, dairy to dry fruits â€” all from stores near you</p>
+      <p class="section-sub" style="margin-bottom:36px;">Snacks to spices, dairy to dry fruits — all from stores near you</p>
       <div class="cats-showcase">
-        <div class="cat-showcase-card" onclick="goShop('snacks')"><span class="cat-showcase-icon">ðŸ¿</span><div class="cat-showcase-name">Snacks</div></div>
-        <div class="cat-showcase-card" onclick="goShop('sweet')"><span class="cat-showcase-icon">ðŸ«</span><div class="cat-showcase-name">Chocolates</div></div>
-        <div class="cat-showcase-card" onclick="goShop('drinks')"><span class="cat-showcase-icon">ðŸ¥¤</span><div class="cat-showcase-name">Drinks</div></div>
-        <div class="cat-showcase-card" onclick="goShop('dairy')"><span class="cat-showcase-icon">ðŸ¥›</span><div class="cat-showcase-name">Dairy</div></div>
-        <div class="cat-showcase-card" onclick="goShop('fruits')"><span class="cat-showcase-icon">ðŸŽ</span><div class="cat-showcase-name">Fruits</div></div>
-        <div class="cat-showcase-card" onclick="goShop('vegetables')"><span class="cat-showcase-icon">ðŸ¥¦</span><div class="cat-showcase-name">Vegetables</div></div>
-        <div class="cat-showcase-card" onclick="goShop('pasta')"><span class="cat-showcase-icon">ðŸœ</span><div class="cat-showcase-name">Noodles</div></div>
-        <div class="cat-showcase-card" onclick="goShop('grocery')"><span class="cat-showcase-icon">ðŸ§‚</span><div class="cat-showcase-name">Grocery</div></div>
-        <div class="cat-showcase-card" onclick="goShop('tea')"><span class="cat-showcase-icon">â˜•</span><div class="cat-showcase-name">Tea & Coffee</div></div>
-        <div class="cat-showcase-card" onclick="goShop('personal')"><span class="cat-showcase-icon">ðŸ§´</span><div class="cat-showcase-name">Personal Care</div></div>
-        <div class="cat-showcase-card" onclick="goShop('baby')"><span class="cat-showcase-icon">ðŸ‘¶</span><div class="cat-showcase-name">Baby Care</div></div>
-        <div class="cat-showcase-card" onclick="goShop('dryfruits')"><span class="cat-showcase-icon">ðŸ¥œ</span><div class="cat-showcase-name">Dry Fruits</div></div>
-        <div class="cat-showcase-card" onclick="goShop('oil')"><span class="cat-showcase-icon">ðŸ«™</span><div class="cat-showcase-name">Oil & Ghee</div></div>
-        <div class="cat-showcase-card" onclick="goShop('household')"><span class="cat-showcase-icon">ðŸ§¹</span><div class="cat-showcase-name">Household</div></div>
-        <div class="cat-showcase-card" onclick="goShop('health')"><span class="cat-showcase-icon">ðŸ’Š</span><div class="cat-showcase-name">Health</div></div>
-        <div class="cat-showcase-card" onclick="goShop('icecream')"><span class="cat-showcase-icon">ðŸ¦</span><div class="cat-showcase-name">Ice Cream</div></div>
-        <div class="cat-showcase-card" onclick="goShop('atta')"><span class="cat-showcase-icon">ðŸŒ¾</span><div class="cat-showcase-name">Atta & Rice</div></div>
-        <div class="cat-showcase-card" onclick="goShop('skincare')"><span class="cat-showcase-icon">âœ¨</span><div class="cat-showcase-name">Skincare</div></div>
-        <div class="cat-showcase-card" onclick="goShop('honey')"><span class="cat-showcase-icon">ðŸ¯</span><div class="cat-showcase-name">Honey</div></div>
-        <div class="cat-showcase-card" onclick="goShop('ramadan')"><span class="cat-showcase-icon">ðŸŒ™</span><div class="cat-showcase-name">Ramadan</div></div>
+        <div class="cat-showcase-card" onclick="goShop('snacks')"><span class="cat-showcase-icon">🍿</span><div class="cat-showcase-name">Snacks</div></div>
+        <div class="cat-showcase-card" onclick="goShop('sweet')"><span class="cat-showcase-icon">🍫</span><div class="cat-showcase-name">Chocolates</div></div>
+        <div class="cat-showcase-card" onclick="goShop('drinks')"><span class="cat-showcase-icon">🥤</span><div class="cat-showcase-name">Drinks</div></div>
+        <div class="cat-showcase-card" onclick="goShop('dairy')"><span class="cat-showcase-icon">🥛</span><div class="cat-showcase-name">Dairy</div></div>
+        <div class="cat-showcase-card" onclick="goShop('fruits')"><span class="cat-showcase-icon">🍎</span><div class="cat-showcase-name">Fruits</div></div>
+        <div class="cat-showcase-card" onclick="goShop('vegetables')"><span class="cat-showcase-icon">🥦</span><div class="cat-showcase-name">Vegetables</div></div>
+        <div class="cat-showcase-card" onclick="goShop('pasta')"><span class="cat-showcase-icon">🍜</span><div class="cat-showcase-name">Noodles</div></div>
+        <div class="cat-showcase-card" onclick="goShop('grocery')"><span class="cat-showcase-icon">🧂</span><div class="cat-showcase-name">Grocery</div></div>
+        <div class="cat-showcase-card" onclick="goShop('tea')"><span class="cat-showcase-icon">☕</span><div class="cat-showcase-name">Tea & Coffee</div></div>
+        <div class="cat-showcase-card" onclick="goShop('personal')"><span class="cat-showcase-icon">🧴</span><div class="cat-showcase-name">Personal Care</div></div>
+        <div class="cat-showcase-card" onclick="goShop('baby')"><span class="cat-showcase-icon">👶</span><div class="cat-showcase-name">Baby Care</div></div>
+        <div class="cat-showcase-card" onclick="goShop('dryfruits')"><span class="cat-showcase-icon">🥜</span><div class="cat-showcase-name">Dry Fruits</div></div>
+        <div class="cat-showcase-card" onclick="goShop('oil')"><span class="cat-showcase-icon">🫙</span><div class="cat-showcase-name">Oil & Ghee</div></div>
+        <div class="cat-showcase-card" onclick="goShop('household')"><span class="cat-showcase-icon">🧹</span><div class="cat-showcase-name">Household</div></div>
+        <div class="cat-showcase-card" onclick="goShop('health')"><span class="cat-showcase-icon">💊</span><div class="cat-showcase-name">Health</div></div>
+        <div class="cat-showcase-card" onclick="goShop('icecream')"><span class="cat-showcase-icon">🍦</span><div class="cat-showcase-name">Ice Cream</div></div>
+        <div class="cat-showcase-card" onclick="goShop('atta')"><span class="cat-showcase-icon">🌾</span><div class="cat-showcase-name">Atta & Rice</div></div>
+        <div class="cat-showcase-card" onclick="goShop('skincare')"><span class="cat-showcase-icon">✨</span><div class="cat-showcase-name">Skincare</div></div>
+        <div class="cat-showcase-card" onclick="goShop('honey')"><span class="cat-showcase-icon">🍯</span><div class="cat-showcase-name">Honey</div></div>
+        <div class="cat-showcase-card" onclick="goShop('ramadan')"><span class="cat-showcase-icon">🌙</span><div class="cat-showcase-name">Ramadan</div></div>
       </div>
     </div>
   </div>
@@ -248,40 +248,40 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
     <div class="section-title" style="margin-bottom:10px;">Ready to get started?</div>
     <p class="section-sub" style="margin-bottom:36px;">Shop, sell, or deliver with Kasheer</p>
     <div class="cta-grid">
-      <div class="cta-card shop"><span class="cta-emoji">ðŸ›ï¸</span><div class="cta-title">Start Shopping</div><p class="cta-desc">Browse local stores and get fresh products delivered to your doorstep.</p><button class="btn btn-white" onclick="showPage('store')">Open Store</button></div>
-      <div class="cta-card sell"><span class="cta-emoji">ðŸª</span><div class="cta-title">Start Selling</div><p class="cta-desc">Register your store and reach customers nearby. Simple commission model.</p><button class="btn btn-orange-solid" onclick="showPage('seller')">Become a Seller</button></div>
-      <div class="cta-card deliver"><span class="cta-emoji">ðŸš´</span><div class="cta-title">Deliver & Earn</div><p class="cta-desc">Become a Kasheer delivery rider. Earn on your own schedule across Kashmir.</p><button class="btn btn-teal" onclick="alert('Download the Kasheer app to register!')">Become a Rider</button></div>
+      <div class="cta-card shop"><span class="cta-emoji">🛍️</span><div class="cta-title">Start Shopping</div><p class="cta-desc">Browse local stores and get fresh products delivered to your doorstep.</p><button class="btn btn-white" onclick="showPage('store')">Open Store</button></div>
+      <div class="cta-card sell"><span class="cta-emoji">🪐</span><div class="cta-title">Start Selling</div><p class="cta-desc">Register your store and reach customers nearby. Simple commission model.</p><button class="btn btn-orange-solid" onclick="showPage('seller')">Become a Seller</button></div>
+      <div class="cta-card deliver"><span class="cta-emoji">🚴</span><div class="cta-title">Deliver & Earn</div><p class="cta-desc">Become a Kasheer delivery rider. Earn on your own schedule.</p><button class="btn btn-teal" onclick="alert('Download the Kasheer app to register!')">Become a Rider</button></div>
     </div>
   </div>
   <footer>
     <div class="footer-logo">Kasheer</div>
-    <div class="footer-kashmiri">Ú©Ù²Ø´ÙÛŒØ±</div>
+    <div class="footer-kashmiri">کٲشِیر</div>
     <div class="footer-links">
       <a onclick="showPage('home')">Home</a>
       <a onclick="showPage('store')">Shop</a>
       <a onclick="showPage('seller')">Sell</a>
     </div>
-    <div class="footer-copy">Â© 2026 Kasheer. Made with love for Kashmir ðŸ”ï¸</div>
+    <div class="footer-copy">© 2026 Kasheer. Made with love for Kashmir 🏔️</div>
   </footer>
 </div>
 
 <div class="page" id="page-store">
   <div class="store-top">
-    <h1>Kasheer Store <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;opacity:0.5">Ú©Ù²Ø´ÙÛŒØ±</span></h1>
+    <h1>Kasheer Store <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;opacity:0.5">کٲشِیر</span></h1>
     <p>Fresh products from local stores near you</p>
-    <div class="search-wrap"><span style="color:rgba(255,255,255,0.5)">ðŸ”</span><input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()"></div>
+    <div class="search-wrap"><span style="color:rgba(255,255,255,0.5)">🔍</span><input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()"></div>
     <div class="cats-scroll" id="cats-bar"></div>
   </div>
   <div class="products-area" id="store-content"><div class="loading"><div class="spinner"></div>Loading products...</div></div>
   <div class="cart-bar" id="cart-bar">
-    <div class="cart-bar-info"><strong id="cart-count">0</strong> items &nbsp;Â·&nbsp; â‚¹<span id="cart-total">0</span></div>
+    <div class="cart-bar-info"><strong id="cart-count">0</strong> items &nbsp;·&nbsp; ₹<span id="cart-total">0</span></div>
     <button class="cart-bar-btn" onclick="showPage('cart')">View Cart</button>
   </div>
 </div>
 
 <div class="page" id="page-cart">
   <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px;">
-    <button onclick="showPage('store')" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:14px;">â† Back</button>
+    <button onclick="showPage('store')" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:14px;">← Back</button>
     <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">Your Cart</h1>
   </div>
   <div class="cart-wrap" id="cart-content"></div>
@@ -290,14 +290,14 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 <div class="page" id="page-seller">
   <div id="seller-login-view">
     <div class="seller-login-wrap">
-      <div style="font-size:48px;margin-bottom:14px;">ðŸª</div>
+      <div style="font-size:48px;margin-bottom:14px;">🪐</div>
       <h2>Seller Login</h2>
       <p style="font-size:14px;color:var(--muted);margin-bottom:30px;">Access your Kasheer store dashboard</p>
       <div class="err-box" id="login-error"></div>
       <div class="field"><label>Email</label><input type="email" id="seller-email" placeholder="your@email.com"></div>
-      <div class="field"><label>Password</label><input type="password" id="seller-password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"></div>
+      <div class="field"><label>Password</label><input type="password" id="seller-password" placeholder="••••••••"></div>
       <button class="submit-btn" onclick="sellerLogin()">Login to Dashboard</button>
-      <p style="margin-top:18px;font-size:13px;color:var(--muted);">No store yet? <a href="#" style="color:var(--teal);font-weight:600;" onclick="alert('Download the Kasheer app to register as a seller!')">Register on the app</a></p>
+      <p style="margin-top:18px;font-size:13px;color:var(--muted);">No store yet? <a href="#" style="color:var(--teal);font-weight:600;" onclick="alert('Download the Kasheer app to register!')">Register on the app</a></p>
     </div>
   </div>
   <div id="seller-dash-view" style="display:none;">
@@ -324,331 +324,239 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 <script>
 const API='https://kasheer-backend.onrender.com/api';
 
-// Verified working image map - fetched from Open Food Facts API
+// Verified working image URLs only
 const IMGS={
-  // Snacks
-  '8901019017044':'https://images.openfoodfacts.org/images/products/890/101/901/7044/front_en.4.400.jpg',
-  '8901019022529':'https://images.openfoodfacts.org/images/products/890/101/902/2529/front_en.3.400.jpg',
-  '8901491504427':'https://images.openfoodfacts.org/images/products/890/149/150/4427/front_en.4.400.jpg',
-  '8901667004948':'https://images.openfoodfacts.org/images/products/890/166/700/4948/front_en.3.400.jpg',
-  '8906003510056':'https://images.openfoodfacts.org/images/products/890/600/351/0056/front_en.3.400.jpg',
-  '8901019016573':'https://images.openfoodfacts.org/images/products/890/101/901/6573/front_en.3.400.jpg',
-  '5053990101426':'https://images.openfoodfacts.org/images/products/505/399/010/1426/front_en.6.400.jpg',
-  '8906001300246':'https://images.openfoodfacts.org/images/products/890/600/130/0246/front_en.3.400.jpg',
-  '5000159461122':'https://images.openfoodfacts.org/images/products/500/015/946/1122/front_en.5.400.jpg',
-  '4009900521536':'https://images.openfoodfacts.org/images/products/400/990/052/1536/front_en.4.400.jpg',
-  '4001686325568':'https://images.openfoodfacts.org/images/products/400/168/632/5568/front_en.10.400.jpg',
-  // Chocolates
-  '7622210809292':'https://images.openfoodfacts.org/images/products/762/221/080/9292/front_en.5.400.jpg',
-  '7622210951038':'https://images.openfoodfacts.org/images/products/762/221/095/1038/front_en.4.400.jpg',
-  '7622210809308':'https://images.openfoodfacts.org/images/products/762/221/080/9308/front_en.4.400.jpg',
-  '8901058852554':'https://images.openfoodfacts.org/images/products/890/105/885/2554/front_en.5.400.jpg',
-  '8901058816402':'https://images.openfoodfacts.org/images/products/890/105/881/6402/front_en.4.400.jpg',
-  '8901058501108':'https://images.openfoodfacts.org/images/products/890/105/850/1108/front_en.4.400.jpg',
-  '8901058503140':'https://images.openfoodfacts.org/images/products/890/105/850/3140/front_en.3.400.jpg',
-  '8901058501870':'https://images.openfoodfacts.org/images/products/890/105/850/1870/front_en.3.400.jpg',
-  '3017620402678':'https://images.openfoodfacts.org/images/products/301/762/040/2678/front_en.20.400.jpg',
-  '3017620422003':'https://images.openfoodfacts.org/images/products/301/762/042/2003/front_en.8.400.jpg',
-  '7622300489434':'https://images.openfoodfacts.org/images/products/762/230/048/9434/front_en.5.400.jpg',
-  '0034000002603':'https://images.openfoodfacts.org/images/products/003/400/000/2603/front_en.7.400.jpg',
-  '3054990007735':'https://images.openfoodfacts.org/images/products/305/499/000/7735/front_en.6.400.jpg',
-  '8000500254981':'https://images.openfoodfacts.org/images/products/800/050/025/4981/front_en.9.400.jpg',
-  '5000159461244':'https://images.openfoodfacts.org/images/products/500/015/946/1244/front_en.8.400.jpg',
-  '5000159461459':'https://images.openfoodfacts.org/images/products/500/015/946/1459/front_en.6.400.jpg',
-  '5000159393775':'https://images.openfoodfacts.org/images/products/500/015/939/3775/front_en.5.400.jpg',
-  '5000159461268':'https://images.openfoodfacts.org/images/products/500/015/946/1268/front_en.6.400.jpg',
-  '7622210413529':'https://images.openfoodfacts.org/images/products/762/221/041/3529/front_en.6.400.jpg',
-  '7622210413536':'https://images.openfoodfacts.org/images/products/762/221/041/3536/front_en.5.400.jpg',
-  '8901063024571':'https://images.openfoodfacts.org/images/products/890/106/302/4571/front_en.4.400.jpg',
-  '8901063026506':'https://images.openfoodfacts.org/images/products/890/106/302/6506/front_en.4.400.jpg',
-  '8801062155100':'https://images.openfoodfacts.org/images/products/880/106/215/5100/front_en.4.400.jpg',
-  // Drinks
-  '5449000000996':'https://images.openfoodfacts.org/images/products/544/900/000/0996/front_en.8.400.jpg',
-  '5449000133328':'https://images.openfoodfacts.org/images/products/544/900/013/3328/front_en.5.400.jpg',
-  '8902080001513':'https://images.openfoodfacts.org/images/products/890/208/000/1513/front_en.4.400.jpg',
-  '5449000020277':'https://images.openfoodfacts.org/images/products/544/900/002/0277/front_en.5.400.jpg',
-  '8902080001681':'https://images.openfoodfacts.org/images/products/890/208/000/1681/front_en.4.400.jpg',
-  '8906068310017':'https://images.openfoodfacts.org/images/products/890/606/831/0017/front_en.3.400.jpg',
-  '0048500203200':'https://images.openfoodfacts.org/images/products/004/850/020/3200/front_en.5.400.jpg',
-  '9002490100070':'https://images.openfoodfacts.org/images/products/900/249/010/0070/front_en.15.400.jpg',
-  '5060166690037':'https://images.openfoodfacts.org/images/products/506/016/669/0037/front_en.5.400.jpg',
-  '8901491222664':'https://images.openfoodfacts.org/images/products/890/149/122/2664/front_en.3.400.jpg',
-  '5449000000439':'https://images.openfoodfacts.org/images/products/544/900/000/0439/front_en.6.400.jpg',
-  '8901455530018':'https://images.openfoodfacts.org/images/products/890/145/553/0018/front_en.3.400.jpg',
-  '8901455529043':'https://images.openfoodfacts.org/images/products/890/145/552/9043/front_en.3.400.jpg',
-  // Dairy
-  '8901455008013':'https://images.openfoodfacts.org/images/products/890/145/500/8013/front_en.4.400.jpg',
-  '8901455001281':'https://images.openfoodfacts.org/images/products/890/145/500/1281/front_en.5.400.jpg',
-  '8901455012027':'https://images.openfoodfacts.org/images/products/890/145/501/2027/front_en.4.400.jpg',
-  '8901455006354':'https://images.openfoodfacts.org/images/products/890/145/500/6354/front_en.4.400.jpg',
-  '8906003900017':'https://images.openfoodfacts.org/images/products/890/600/390/0017/front_en.3.400.jpg',
-  '8901455010771':'https://images.openfoodfacts.org/images/products/890/145/501/0771/front_en.3.400.jpg',
-  '8901063850010':'https://images.openfoodfacts.org/images/products/890/106/385/0010/front_en.4.400.jpg',
-  '8901455015189':'https://images.openfoodfacts.org/images/products/890/145/501/5189/front_en.3.400.jpg',
-  // Noodles
-  '8901058851304':'https://images.openfoodfacts.org/images/products/890/105/885/1304/front_en.6.400.jpg',
-  '8901058858860':'https://images.openfoodfacts.org/images/products/890/105/885/8860/front_en.4.400.jpg',
-  '8901725191979':'https://images.openfoodfacts.org/images/products/890/172/519/1979/front_en.3.400.jpg',
-  '8904072300017':'https://images.openfoodfacts.org/images/products/890/407/230/0017/front_en.3.400.jpg',
-  '8901030785641':'https://images.openfoodfacts.org/images/products/890/103/078/5641/front_en.3.400.jpg',
-  // Grocery
-  '8901872000189':'https://images.openfoodfacts.org/images/products/890/187/200/0189/front_en.4.400.jpg',
-  '8901725130047':'https://images.openfoodfacts.org/images/products/890/172/513/0047/front_en.4.400.jpg',
-  '8906010200078':'https://images.openfoodfacts.org/images/products/890/601/020/0078/front_en.3.400.jpg',
-  '8906010200009':'https://images.openfoodfacts.org/images/products/890/601/020/0009/front_en.3.400.jpg',
-  '8901872000127':'https://images.openfoodfacts.org/images/products/890/187/200/0127/front_en.3.400.jpg',
-  '8906013600116':'https://images.openfoodfacts.org/images/products/890/601/360/0116/front_en.3.400.jpg',
-  '8906013600093':'https://images.openfoodfacts.org/images/products/890/601/360/0093/front_en.3.400.jpg',
-  // Tea & Coffee
-  '8901872004101':'https://images.openfoodfacts.org/images/products/890/187/200/4101/front_en.4.400.jpg',
-  '8901030855955':'https://images.openfoodfacts.org/images/products/890/103/085/5955/front_en.3.400.jpg',
-  '7613035694002':'https://images.openfoodfacts.org/images/products/761/303/569/4002/front_en.8.400.jpg',
-  '8901030802209':'https://images.openfoodfacts.org/images/products/890/103/080/2209/front_en.3.400.jpg',
-  '7622210952486':'https://images.openfoodfacts.org/images/products/762/221/095/2486/front_en.4.400.jpg',
-  '8901030654518':'https://images.openfoodfacts.org/images/products/890/103/065/4518/front_en.3.400.jpg',
-  '7613035693999':'https://images.openfoodfacts.org/images/products/761/303/569/3999/front_en.5.400.jpg',
-  // Personal Care
-  '8901030971562':'https://images.openfoodfacts.org/images/products/890/103/097/1562/front_en.3.400.jpg',
-  '8901520022034':'https://images.openfoodfacts.org/images/products/890/152/002/2034/front_en.4.400.jpg',
-  '8901030971999':'https://images.openfoodfacts.org/images/products/890/103/097/1999/front_en.3.400.jpg',
-  '8006540797983':'https://images.openfoodfacts.org/images/products/800/654/079/7983/front_en.5.400.jpg',
-  '6281006473519':'https://images.openfoodfacts.org/images/products/628/100/647/3519/front_en.4.400.jpg',
-  '8901384001008':'https://images.openfoodfacts.org/images/products/890/138/400/1008/front_en.4.400.jpg',
-  // Baby
-  '4015400543039':'https://images.openfoodfacts.org/images/products/401/540/054/3039/front_en.5.400.jpg',
-  '3574661000014':'https://images.openfoodfacts.org/images/products/357/466/100/0014/front_en.5.400.jpg',
-  '7613035341593':'https://images.openfoodfacts.org/images/products/761/303/534/1593/front_en.4.400.jpg',
-  '3574661000083':'https://images.openfoodfacts.org/images/products/357/466/100/0083/front_en.4.400.jpg',
-  '8901138510367':'https://images.openfoodfacts.org/images/products/890/113/851/0367/front_en.3.400.jpg',
-  // Oil & Ghee
-  '8906009001018':'https://images.openfoodfacts.org/images/products/890/600/900/1018/front_en.3.400.jpg',
-  '8901396018006':'https://images.openfoodfacts.org/images/products/890/139/601/8006/front_en.3.400.jpg',
-  '8901455001939':'https://images.openfoodfacts.org/images/products/890/145/500/1939/front_en.4.400.jpg',
-  '8901207086809':'https://images.openfoodfacts.org/images/products/890/120/708/6809/front_en.3.400.jpg',
-  // Honey
-  '8901207000514':'https://images.openfoodfacts.org/images/products/890/120/700/0514/front_en.4.400.jpg',
-  '8904109421277':'https://images.openfoodfacts.org/images/products/890/410/942/1277/front_en.3.400.jpg',
-  // Household
-  '8901207040239':'https://images.openfoodfacts.org/images/products/890/120/704/0239/front_en.3.400.jpg',
-  '8901030726446':'https://images.openfoodfacts.org/images/products/890/103/072/6446/front_en.3.400.jpg',
-  '8901030832450':'https://images.openfoodfacts.org/images/products/890/103/083/2450/front_en.3.400.jpg',
-  '8901207046880':'https://images.openfoodfacts.org/images/products/890/120/704/6880/front_en.3.400.jpg',
-  '6281006473526':'https://images.openfoodfacts.org/images/products/628/100/647/3526/front_en.3.400.jpg',
-  '8901719114588':'https://images.openfoodfacts.org/images/products/890/171/911/4588/front_en.3.400.jpg',
-  // Health
-  '8901207005083':'https://images.openfoodfacts.org/images/products/890/120/700/5083/front_en.4.400.jpg',
-  '5000118393095':'https://images.openfoodfacts.org/images/products/500/011/839/3095/front_en.4.400.jpg',
-  '8901207006318':'https://images.openfoodfacts.org/images/products/890/120/700/6318/front_en.3.400.jpg',
-  // Atta & Rice
-  '8906003960371':'https://images.openfoodfacts.org/images/products/890/600/396/0371/front_en.3.400.jpg',
-  // Skincare
-  '8901138506445':'https://images.openfoodfacts.org/images/products/890/113/850/6445/front_en.4.400.jpg',
-  '4005900004901':'https://images.openfoodfacts.org/images/products/400/590/000/4901/front_en.6.400.jpg',
-  '0305210201773':'https://images.openfoodfacts.org/images/products/030/521/020/1773/front_en.4.400.jpg',
-  '8901030951244':'https://images.openfoodfacts.org/images/products/890/103/095/1244/front_en.3.400.jpg',
-  // Ice cream
-  '8901455540192':'https://images.openfoodfacts.org/images/products/890/145/554/0192/front_en.3.400.jpg',
-  '8901030846113':'https://images.openfoodfacts.org/images/products/890/103/084/6113/front_en.3.400.jpg',
-  '8906003900406':'https://images.openfoodfacts.org/images/products/890/600/390/0406/front_en.3.400.jpg',
-  // Ramadan
-  '8901207086717':'https://images.openfoodfacts.org/images/products/890/120/708/6717/front_en.3.400.jpg',
-  '8901365000015':'https://images.openfoodfacts.org/images/products/890/136/500/0015/front_en.5.400.jpg',
-  '8906068390026':'https://images.openfoodfacts.org/images/products/890/606/839/0026/front_en.3.400.jpg',
+  // Fruits — Wikipedia Commons (100% working)
+  fr1:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Shoot.jpg/320px-Banana-Shoot.jpg',
+  fr2:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg',
+  fr3:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Pomegranate_fruit_-_whole_and_halved.jpg/320px-Pomegranate_fruit_-_whole_and_halved.jpg',
+  fr4:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg',
+  fr5:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg',
+  fr6:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/320px-PerfectStrawberry.jpg',
+  fr7:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/320px-Hapus_Mango.jpg',
+  fr8:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Kiwi_-_Whole_and_Split.jpg/320px-Kiwi_-_Whole_and_Split.jpg',
+  fr9:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Slices_of_watermelon.jpg/320px-Slices_of_watermelon.jpg',
+  fr10:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Cherry_Stella444.jpg/320px-Cherry_Stella444.jpg',
+  fr11:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Apricot_and_apricots.jpg/320px-Apricot_and_apricots.jpg',
+  // Vegetables — Wikipedia Commons
+  vg1:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/320px-Tomato_je.jpg',
+  vg2:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_onion.jpg/320px-Red_onion.jpg',
+  vg3:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg',
+  vg4:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/SpinachWikipedia.jpg/320px-SpinachWikipedia.jpg',
+  vg5:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Kaldor_floraly.jpg/320px-Kaldor_floraly.jpg',
+  vg6:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/320px-Vegetable-Carrot-Bundle-wStalks.jpg',
+  vg7:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Garlic-beginners.jpg/320px-Garlic-beginners.jpg',
+  vg8:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Finger_ginger.jpg/320px-Finger_ginger.jpg',
+  vg9:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Green_chillies.jpg/320px-Green_chillies.jpg',
+  vg10:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Coriander.jpg/320px-Coriander.jpg',
+  vg11:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg/320px-Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg',
+  vg12:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lotus_root_cross_section.jpg/320px-Lotus_root_cross_section.jpg',
+  // Dry Fruits — Wikipedia Commons
+  df1:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
+  df2:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Almonds_together.jpg/320px-Almonds_together.jpg',
+  df3:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Walnut_kernel.jpg/320px-Walnut_kernel.jpg',
+  df4:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bowl_of_raisins.jpg/320px-Bowl_of_raisins.jpg',
+  df5:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Pistachio_vera.jpg/320px-Pistachio_vera.jpg',
+  df6:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg',
+  rm3:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg',
+  db9:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Chicken_eggs_2009.jpg/320px-Chicken_eggs_2009.jpg',
 };
 
-function img(barcode){return IMGS[barcode.toString()]||'';}
-
 const GROCERY_CATEGORIES=[
-  {id:"snacks",title:"Snacks",icon:"ðŸ¿",products:[
-    {id:"snk_lays2",name:"Lay's Magic Masala 52g",price:20,description:"Tangy masala chips",img:img('8901019017044')},
-    {id:"snk_lays1",name:"Lay's Classic Salted 26g",price:10,description:"Classic salted chips",img:img('8901019022529')},
-    {id:"snk_lays5",name:"Lay's Magic Masala 90g",price:35,description:"Large masala chips",img:img('8901019017044')},
-    {id:"snk_kur1",name:"Kurkure Masala Munch 40g",price:10,description:"Spicy corn puffs",img:img('8901491504427')},
-    {id:"snk_kur3",name:"Kurkure Masala 90g",price:20,description:"Large corn puffs",img:img('8901491504427')},
-    {id:"snk_bin1",name:"Bingo Mad Angles 45g",price:20,description:"Triangular masala chips",img:img('8901667004948')},
-    {id:"snk_hal1",name:"Haldiram's Aloo Bhujia 42g",price:10,description:"Crispy potato sev",img:img('8906003510056')},
-    {id:"snk_hal2",name:"Haldiram's Bhujia 150g",price:45,description:"Crispy sev large",img:img('8906003510056')},
-    {id:"snk_dor1",name:"Doritos Nacho Cheese 60g",price:30,description:"Cheesy nacho chips",img:img('8901019016573')},
-    {id:"snk_pri1",name:"Pringles Original 107g",price:110,description:"Stacked crisps",img:img('5053990101426')},
-    {id:"snk_act1",name:"Act II Popcorn Butter 30g",price:10,description:"Buttery popcorn",img:img('8906001300246')},
-    {id:"snk_mnm1",name:"M&M's Peanut 45g",price:80,description:"Peanut M&Ms",img:img('5000159461122')},
-    {id:"snk_skittles1",name:"Skittles Original 45g",price:70,description:"Fruity candy",img:img('4009900521536')},
-    {id:"snk_har1",name:"Haribo Gold Bears 80g",price:120,description:"Classic gummy bears",img:img('4001686325568')},
+  {id:"snacks",title:"Snacks",icon:"🍿",products:[
+    {id:"snk_lays2",name:"Lay's Magic Masala 52g",price:20,description:"Tangy masala chips"},
+    {id:"snk_lays1",name:"Lay's Classic Salted 26g",price:10,description:"Classic salted chips"},
+    {id:"snk_lays5",name:"Lay's Magic Masala 90g",price:35,description:"Large masala chips"},
+    {id:"snk_kur1",name:"Kurkure Masala Munch 40g",price:10,description:"Spicy corn puffs"},
+    {id:"snk_kur3",name:"Kurkure Masala 90g",price:20,description:"Large corn puffs"},
+    {id:"snk_bin1",name:"Bingo Mad Angles 45g",price:20,description:"Triangular masala chips"},
+    {id:"snk_hal1",name:"Haldiram's Aloo Bhujia 42g",price:10,description:"Crispy potato sev"},
+    {id:"snk_hal2",name:"Haldiram's Bhujia 150g",price:45,description:"Crispy sev large"},
+    {id:"snk_dor1",name:"Doritos Nacho Cheese 60g",price:30,description:"Cheesy nacho chips"},
+    {id:"snk_pri1",name:"Pringles Original 107g",price:110,description:"Stacked crisps"},
+    {id:"snk_act1",name:"Act II Popcorn Butter 30g",price:10,description:"Buttery popcorn"},
+    {id:"snk_mnm1",name:"M&M's Peanut 45g",price:80,description:"Peanut M&Ms"},
+    {id:"snk_skittles1",name:"Skittles Original 45g",price:70,description:"Fruity candy"},
+    {id:"snk_har1",name:"Haribo Gold Bears 80g",price:120,description:"Classic gummy bears"},
   ]},
-  {id:"sweet",title:"Chocolates & Sweets",icon:"ðŸ«",products:[
-    {id:"sw_cad4",name:"Cadbury Dairy Milk 24g",price:20,description:"Classic milk chocolate",img:img('7622210809292')},
-    {id:"sw_cad5",name:"Cadbury Dairy Milk Silk 60g",price:99,description:"Premium chocolate",img:img('7622210951038')},
-    {id:"sw_5star",name:"Cadbury 5 Star 22g",price:10,description:"Caramel chocolate",img:img('7622210809308')},
-    {id:"sw_kit1",name:"KitKat 2 Finger 19g",price:10,description:"Crispy wafer bar",img:img('8901058852554')},
-    {id:"sw_kit2",name:"KitKat 4 Finger 37g",price:30,description:"4 finger wafer",img:img('8901058816402')},
-    {id:"sw_munch1",name:"Nestle Munch 13g",price:5,description:"Crunchy wafer bar",img:img('8901058501108')},
-    {id:"sw_bar1",name:"Nestle Bar-One 27g",price:10,description:"Nougat caramel bar",img:img('8901058503140')},
-    {id:"sw_milkybar",name:"Milkybar 13g",price:10,description:"White chocolate",img:img('8901058501870')},
-    {id:"sw_nut1",name:"Nutella 200g",price:280,description:"Hazelnut cocoa spread",img:img('3017620402678')},
-    {id:"sw_nut2",name:"Nutella 400g",price:520,description:"Large Nutella jar",img:img('3017620422003')},
-    {id:"sw_tob1",name:"Toblerone Milk 100g",price:180,description:"Swiss milk chocolate",img:img('7622300489434')},
-    {id:"sw_her1",name:"Hershey's Milk Chocolate 40g",price:60,description:"American chocolate",img:img('0034000002603')},
-    {id:"sw_fer1",name:"Ferrero Rocher 3pcs",price:150,description:"Hazelnut chocolates",img:img('3054990007735')},
-    {id:"sw_kinder1",name:"Kinder Joy",price:40,description:"Chocolate egg with toy",img:img('8000500254981')},
-    {id:"sw_snickers",name:"Snickers 50g",price:85,description:"Peanut caramel chocolate",img:img('5000159461244')},
-    {id:"sw_twix",name:"Twix 50g",price:90,description:"Caramel cookie bar",img:img('5000159461459')},
-    {id:"sw_bounty",name:"Bounty 57g",price:85,description:"Coconut chocolate bar",img:img('5000159393775')},
-    {id:"sw_mars",name:"Mars Bar 51g",price:85,description:"Nougat caramel bar",img:img('5000159461268')},
-    {id:"sw_ore1",name:"Oreo Original 50g",price:10,description:"Classic cream cookies",img:img('7622210413529')},
-    {id:"sw_ore2",name:"Oreo Original 120g",price:30,description:"Cream cookies pack",img:img('7622210413536')},
-    {id:"sw_bis1",name:"Little Hearts 75g",price:30,description:"Heart butter biscuits",img:img('8901063024571')},
-    {id:"sw_goodday",name:"Good Day Butter 100g",price:30,description:"Butter biscuits",img:img('8901063026506')},
-    {id:"sw_lot1",name:"Lotte Choco Pie 6pk",price:60,description:"Choco marshmallow pie",img:img('8801062155100')},
+  {id:"sweet",title:"Chocolates & Sweets",icon:"🍫",products:[
+    {id:"sw_cad4",name:"Cadbury Dairy Milk 24g",price:20,description:"Classic milk chocolate"},
+    {id:"sw_cad5",name:"Cadbury Dairy Milk Silk 60g",price:99,description:"Premium chocolate"},
+    {id:"sw_5star",name:"Cadbury 5 Star 22g",price:10,description:"Caramel chocolate"},
+    {id:"sw_kit1",name:"KitKat 2 Finger 19g",price:10,description:"Crispy wafer bar"},
+    {id:"sw_kit2",name:"KitKat 4 Finger 37g",price:30,description:"4 finger wafer"},
+    {id:"sw_munch1",name:"Nestle Munch 13g",price:5,description:"Crunchy wafer bar"},
+    {id:"sw_bar1",name:"Nestle Bar-One 27g",price:10,description:"Nougat caramel bar"},
+    {id:"sw_milkybar",name:"Milkybar 13g",price:10,description:"White chocolate"},
+    {id:"sw_polo",name:"Polo Mint Roll",price:10,description:"Minty candy rolls"},
+    {id:"sw_nut1",name:"Nutella 200g",price:280,description:"Hazelnut cocoa spread"},
+    {id:"sw_nut2",name:"Nutella 400g",price:520,description:"Large Nutella jar"},
+    {id:"sw_tob1",name:"Toblerone Milk 100g",price:180,description:"Swiss milk chocolate"},
+    {id:"sw_her1",name:"Hershey's Milk Chocolate 40g",price:60,description:"American chocolate"},
+    {id:"sw_fer1",name:"Ferrero Rocher 3pcs",price:150,description:"Hazelnut chocolates"},
+    {id:"sw_kinder1",name:"Kinder Joy",price:40,description:"Chocolate egg with toy"},
+    {id:"sw_snickers",name:"Snickers 50g",price:85,description:"Peanut caramel chocolate"},
+    {id:"sw_twix",name:"Twix 50g",price:90,description:"Caramel cookie bar"},
+    {id:"sw_bounty",name:"Bounty 57g",price:85,description:"Coconut chocolate"},
+    {id:"sw_mars",name:"Mars Bar 51g",price:85,description:"Nougat caramel bar"},
+    {id:"sw_ore1",name:"Oreo Original 50g",price:10,description:"Classic cream cookies"},
+    {id:"sw_ore2",name:"Oreo Original 120g",price:30,description:"Cream cookies pack"},
+    {id:"sw_bis1",name:"Little Hearts 75g",price:30,description:"Heart butter biscuits"},
+    {id:"sw_goodday",name:"Good Day Butter 100g",price:30,description:"Butter biscuits"},
+    {id:"sw_lot1",name:"Lotte Choco Pie 6pk",price:60,description:"Choco marshmallow pie"},
   ]},
-  {id:"drinks",title:"Drinks",icon:"ðŸ¥¤",products:[
-    {id:"dr1",name:"Coca-Cola 750ml",price:45,description:"Classic cola",img:img('5449000000996')},
-    {id:"dr2",name:"Pepsi 750ml",price:45,description:"Bold cola",img:img('4060800021070')},
-    {id:"dr3",name:"Sprite 750ml",price:45,description:"Lemon lime soda",img:img('5449000133328')},
-    {id:"dr4",name:"Thums Up 750ml",price:45,description:"Strong cola",img:img('8902080001513')},
-    {id:"dr5",name:"Fanta Orange 750ml",price:45,description:"Orange soda",img:img('5449000020277')},
-    {id:"dr6",name:"Maaza Mango 250ml",price:20,description:"Mango drink",img:img('8902080001681')},
-    {id:"dr7",name:"Frooti Mango 200ml",price:15,description:"Classic mango drink",img:img('8906068310017')},
-    {id:"dr8",name:"Tropicana Orange 1L",price:99,description:"Fresh orange juice",img:img('0048500203200')},
-    {id:"dr9",name:"Red Bull Energy 250ml",price:125,description:"Energy drink",img:img('9002490100070')},
-    {id:"dr10",name:"Monster Energy 500ml",price:150,description:"Monster energy drink",img:img('5060166690037')},
-    {id:"dr11",name:"Sting Energy 250ml",price:30,description:"Strawberry energy",img:img('8901491222664')},
-    {id:"dr12",name:"Coca-Cola Can 330ml",price:40,description:"Cola can",img:img('5449000000439')},
-    {id:"dr13",name:"Amul Kool Milkshake",price:25,description:"Chocolate milkshake",img:img('8901455530018')},
-    {id:"dr14",name:"Amul Mango Lassi 200ml",price:30,description:"Mango lassi",img:img('8901455529043')},
+  {id:"drinks",title:"Drinks",icon:"🥤",products:[
+    {id:"dr1",name:"Coca-Cola 750ml",price:45,description:"Classic cola"},
+    {id:"dr2",name:"Pepsi 750ml",price:45,description:"Bold cola"},
+    {id:"dr3",name:"Sprite 750ml",price:45,description:"Lemon lime soda"},
+    {id:"dr4",name:"Thums Up 750ml",price:45,description:"Strong cola"},
+    {id:"dr5",name:"Fanta Orange 750ml",price:45,description:"Orange soda"},
+    {id:"dr6",name:"Maaza Mango 250ml",price:20,description:"Mango drink"},
+    {id:"dr7",name:"Frooti Mango 200ml",price:15,description:"Classic mango drink"},
+    {id:"dr8",name:"Tropicana Orange 1L",price:99,description:"Fresh orange juice"},
+    {id:"dr9",name:"Red Bull Energy 250ml",price:125,description:"Energy drink"},
+    {id:"dr10",name:"Monster Energy 500ml",price:150,description:"Monster energy drink"},
+    {id:"dr11",name:"Sting Energy 250ml",price:30,description:"Strawberry energy"},
+    {id:"dr12",name:"Coca-Cola Can 330ml",price:40,description:"Cola can"},
+    {id:"dr13",name:"Amul Kool Milkshake",price:25,description:"Chocolate milkshake"},
+    {id:"dr14",name:"Amul Mango Lassi 200ml",price:30,description:"Mango lassi"},
   ]},
-  {id:"dairy",title:"Dairy & Bakery",icon:"ðŸ¥›",products:[
-    {id:"db1",name:"Amul Full Cream Milk 1L",price:68,description:"Full cream milk",img:img('8901455008013')},
-    {id:"db2",name:"Amul Butter 500g",price:255,description:"Pasteurised butter",img:img('8901455001281')},
-    {id:"db3",name:"Amul Paneer 200g",price:80,description:"Fresh cottage cheese",img:img('8901455012027')},
-    {id:"db4",name:"Amul Cheese Slices 200g",price:90,description:"Processed cheese",img:img('8901455006354')},
-    {id:"db5",name:"Mother Dairy Curd 400g",price:40,description:"Fresh set curd",img:img('8906003900017')},
-    {id:"db6",name:"Amul Fresh Cream 200ml",price:45,description:"Cooking cream",img:img('8901455010771')},
-    {id:"db7",name:"Britannia Bread 400g",price:45,description:"Sandwich bread",img:img('8901063850010')},
-    {id:"db8",name:"Eggs 6pcs",price:70,description:"Farm fresh eggs",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Chicken_eggs_2009.jpg/320px-Chicken_eggs_2009.jpg"},
-    {id:"db9",name:"Amul Mozzarella 200g",price:140,description:"Mozzarella cheese",img:img('8901455015189')},
+  {id:"dairy",title:"Dairy & Bakery",icon:"🥛",products:[
+    {id:"db1",name:"Amul Full Cream Milk 1L",price:68,description:"Full cream milk"},
+    {id:"db2",name:"Amul Butter 500g",price:255,description:"Pasteurised butter"},
+    {id:"db3",name:"Amul Paneer 200g",price:80,description:"Fresh cottage cheese"},
+    {id:"db4",name:"Amul Cheese Slices 200g",price:90,description:"Processed cheese"},
+    {id:"db5",name:"Mother Dairy Curd 400g",price:40,description:"Fresh set curd"},
+    {id:"db6",name:"Amul Fresh Cream 200ml",price:45,description:"Cooking cream"},
+    {id:"db7",name:"Britannia Bread 400g",price:45,description:"Sandwich bread"},
+    {id:"db9",name:"Eggs 6pcs",price:70,description:"Farm fresh eggs"},
+    {id:"db10",name:"Amul Mozzarella 200g",price:140,description:"Mozzarella cheese"},
   ]},
-  {id:"pasta",title:"Noodles & Pasta",icon:"ðŸœ",products:[
-    {id:"pa1",name:"Maggi Masala Noodles 70g",price:14,description:"Classic masala noodles",img:img('8901058851304')},
-    {id:"pa2",name:"Maggi Noodles 4pk",price:56,description:"4 pack noodles",img:img('8901058858860')},
-    {id:"pa3",name:"Yippee Magic Masala 70g",price:15,description:"Magic masala noodles",img:img('8901725191979')},
-    {id:"pa4",name:"Ching's Hakka Noodles 150g",price:35,description:"Chinese noodles",img:img('8904072300017')},
-    {id:"pa5",name:"Knorr Soupy Noodles",price:20,description:"Soup noodles mix",img:img('8901030785641')},
+  {id:"pasta",title:"Noodles & Pasta",icon:"🍜",products:[
+    {id:"pa1",name:"Maggi Masala Noodles 70g",price:14,description:"Classic masala noodles"},
+    {id:"pa2",name:"Maggi Noodles 4pk",price:56,description:"4 pack noodles"},
+    {id:"pa3",name:"Yippee Magic Masala 70g",price:15,description:"Magic masala noodles"},
+    {id:"pa4",name:"Ching's Hakka Noodles 150g",price:35,description:"Chinese noodles"},
+    {id:"pa5",name:"Knorr Soupy Noodles",price:20,description:"Soup noodles mix"},
   ]},
-  {id:"grocery",title:"Grocery & Spices",icon:"ðŸ§‚",products:[
-    {id:"gr1",name:"Tata Salt 1kg",price:25,description:"Iodized table salt",img:img('8901872000189')},
-    {id:"gr2",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour",img:img('8901725130047')},
-    {id:"gr3",name:"MDH Garam Masala 100g",price:55,description:"Spice blend",img:img('8906010200078')},
-    {id:"gr4",name:"MDH Chaat Masala 50g",price:30,description:"Tangy chaat spice",img:img('8906010200009')},
-    {id:"gr5",name:"Tata Sugar 1kg",price:45,description:"Refined white sugar",img:img('8901872000127')},
-    {id:"gr6",name:"Catch Turmeric 100g",price:30,description:"Pure haldi powder",img:img('8906013600116')},
-    {id:"gr7",name:"Catch Red Chilli 100g",price:35,description:"Red chilli powder",img:img('8906013600093')},
+  {id:"grocery",title:"Grocery & Spices",icon:"🧂",products:[
+    {id:"gr1",name:"Tata Salt 1kg",price:25,description:"Iodized table salt"},
+    {id:"gr2",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour"},
+    {id:"gr3",name:"MDH Garam Masala 100g",price:55,description:"Spice blend"},
+    {id:"gr4",name:"MDH Chaat Masala 50g",price:30,description:"Tangy chaat spice"},
+    {id:"gr5",name:"Tata Sugar 1kg",price:45,description:"Refined white sugar"},
+    {id:"gr6",name:"Catch Turmeric 100g",price:30,description:"Pure haldi powder"},
+    {id:"gr7",name:"Catch Red Chilli 100g",price:35,description:"Red chilli powder"},
   ]},
-  {id:"tea",title:"Tea & Coffee",icon:"â˜•",products:[
-    {id:"tc1",name:"Tata Tea Gold 500g",price:220,description:"Premium blend tea",img:img('8901872004101')},
-    {id:"tc2",name:"Red Label Tea 500g",price:210,description:"Classic Brooke Bond tea",img:img('8901030855955')},
-    {id:"tc3",name:"Nescafe Classic 200g",price:399,description:"Instant coffee",img:img('7613035694002')},
-    {id:"tc4",name:"Bru Gold Coffee 200g",price:370,description:"Filter coffee blend",img:img('8901030802209')},
-    {id:"tc5",name:"Bournvita 500g",price:225,description:"Chocolate health drink",img:img('7622210952486')},
-    {id:"tc6",name:"Horlicks Original 500g",price:225,description:"Malted health drink",img:img('8901030654518')},
-    {id:"tc7",name:"Nescafe 3in1 Sachets 10pk",price:120,description:"Coffee sachets",img:img('7613035693999')},
+  {id:"tea",title:"Tea & Coffee",icon:"☕",products:[
+    {id:"tc1",name:"Tata Tea Gold 500g",price:220,description:"Premium blend tea"},
+    {id:"tc2",name:"Red Label Tea 500g",price:210,description:"Classic Brooke Bond tea"},
+    {id:"tc3",name:"Nescafe Classic 200g",price:399,description:"Instant coffee"},
+    {id:"tc4",name:"Bru Gold Coffee 200g",price:370,description:"Filter coffee blend"},
+    {id:"tc5",name:"Bournvita 500g",price:225,description:"Chocolate health drink"},
+    {id:"tc6",name:"Horlicks Original 500g",price:225,description:"Malted health drink"},
+    {id:"tc7",name:"Nescafe 3in1 Sachets 10pk",price:120,description:"Coffee sachets"},
   ]},
-  {id:"personal",title:"Personal Care",icon:"ðŸ§´",products:[
-    {id:"pc1",name:"Dove Body Lotion 200ml",price:175,description:"Moisturising lotion",img:img('8901030971562')},
-    {id:"pc2",name:"Colgate MaxFresh 150g",price:85,description:"Cooling toothpaste",img:img('8901520022034')},
-    {id:"pc3",name:"Dove Shampoo 340ml",price:199,description:"Nourishing shampoo",img:img('8901030971999')},
-    {id:"pc4",name:"Head & Shoulders 340ml",price:220,description:"Anti-dandruff shampoo",img:img('8006540797983')},
-    {id:"pc5",name:"Dettol Hand Wash 200ml",price:65,description:"Antibacterial wash",img:img('6281006473519')},
-    {id:"pc6",name:"Parachute Coconut Oil 200ml",price:75,description:"Pure coconut oil",img:img('8901384001008')},
+  {id:"personal",title:"Personal Care",icon:"🧴",products:[
+    {id:"pc1",name:"Dove Body Lotion 200ml",price:175,description:"Moisturising lotion"},
+    {id:"pc2",name:"Colgate MaxFresh 150g",price:85,description:"Cooling toothpaste"},
+    {id:"pc3",name:"Dove Shampoo 340ml",price:199,description:"Nourishing shampoo"},
+    {id:"pc4",name:"Head & Shoulders 340ml",price:220,description:"Anti-dandruff shampoo"},
+    {id:"pc5",name:"Dettol Hand Wash 200ml",price:65,description:"Antibacterial wash"},
+    {id:"pc6",name:"Parachute Coconut Oil 200ml",price:75,description:"Pure coconut oil"},
   ]},
-  {id:"baby",title:"Baby Care",icon:"ðŸ‘¶",products:[
-    {id:"bb1",name:"Pampers Diapers S 56pcs",price:499,description:"Soft dry diapers",img:img('4015400543039')},
-    {id:"bb2",name:"Johnson Baby Powder 200g",price:149,description:"Gentle baby powder",img:img('3574661000014')},
-    {id:"bb3",name:"Cerelac Wheat 300g",price:199,description:"Infant cereal",img:img('7613035341593')},
-    {id:"bb4",name:"Johnson Baby Shampoo 200ml",price:129,description:"No-tears shampoo",img:img('3574661000083')},
-    {id:"bb5",name:"Himalaya Baby Lotion",price:99,description:"Baby lotion",img:img('8901138510367')},
+  {id:"baby",title:"Baby Care",icon:"👶",products:[
+    {id:"bb1",name:"Pampers Diapers S 56pcs",price:499,description:"Soft dry diapers"},
+    {id:"bb2",name:"Johnson Baby Powder 200g",price:149,description:"Gentle baby powder"},
+    {id:"bb3",name:"Cerelac Wheat 300g",price:199,description:"Infant cereal"},
+    {id:"bb4",name:"Johnson Baby Shampoo 200ml",price:129,description:"No-tears shampoo"},
+    {id:"bb5",name:"Himalaya Baby Lotion",price:99,description:"Baby lotion"},
   ]},
-  {id:"oil",title:"Oil & Ghee",icon:"ðŸ«™",products:[
-    {id:"og1",name:"Fortune Sunflower Oil 1L",price:130,description:"Refined sunflower oil",img:img('8906009001018')},
-    {id:"og2",name:"Saffola Gold Oil 1L",price:160,description:"Blended cooking oil",img:img('8901396018006')},
-    {id:"og3",name:"Amul Pure Ghee 500ml",price:290,description:"Pure cow ghee",img:img('8901455001939')},
-    {id:"og4",name:"Dabur Mustard Oil 1L",price:120,description:"Kachi ghani mustard",img:img('8901207086809')},
+  {id:"oil",title:"Oil & Ghee",icon:"🫙",products:[
+    {id:"og1",name:"Fortune Sunflower Oil 1L",price:130,description:"Refined sunflower oil"},
+    {id:"og2",name:"Saffola Gold Oil 1L",price:160,description:"Blended cooking oil"},
+    {id:"og3",name:"Amul Pure Ghee 500ml",price:290,description:"Pure cow ghee"},
+    {id:"og4",name:"Dabur Mustard Oil 1L",price:120,description:"Kachi ghani mustard"},
   ]},
-  {id:"dryfruits",title:"Dry Fruits",icon:"ðŸ¥œ",products:[
-    {id:"df1",name:"Cashews 250g",price:250,description:"Whole premium cashews",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg"},
-    {id:"df2",name:"Almonds 250g",price:220,description:"Raw whole almonds",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Almonds_together.jpg/320px-Almonds_together.jpg"},
-    {id:"df3",name:"Walnut Kernels 250g",price:299,description:"Kashmiri walnuts",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Walnut_kernel.jpg/320px-Walnut_kernel.jpg"},
-    {id:"df4",name:"Raisins 250g",price:99,description:"Sun dried raisins",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bowl_of_raisins.jpg/320px-Bowl_of_raisins.jpg"},
-    {id:"df5",name:"Pistachios 250g",price:350,description:"Roasted pistachios",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Pistachio_vera.jpg/320px-Pistachio_vera.jpg"},
-    {id:"df6",name:"Dates 500g",price:120,description:"Soft fresh dates",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg"},
+  {id:"dryfruits",title:"Dry Fruits",icon:"🥜",products:[
+    {id:"df1",name:"Cashews 250g",price:250,description:"Whole premium cashews"},
+    {id:"df2",name:"Almonds 250g",price:220,description:"Raw whole almonds"},
+    {id:"df3",name:"Walnut Kernels 250g",price:299,description:"Kashmiri walnuts"},
+    {id:"df4",name:"Raisins 250g",price:99,description:"Sun dried raisins"},
+    {id:"df5",name:"Pistachios 250g",price:350,description:"Roasted pistachios"},
+    {id:"df6",name:"Dates 500g",price:120,description:"Soft fresh dates"},
   ]},
-  {id:"honey",title:"Honey",icon:"ðŸ¯",products:[
-    {id:"hn1",name:"Dabur Honey 500g",price:199,description:"Pure natural honey",img:img('8901207000514')},
-    {id:"hn2",name:"Patanjali Honey 500g",price:170,description:"Pure wild honey",img:img('8904109421277')},
+  {id:"honey",title:"Honey",icon:"🍯",products:[
+    {id:"hn1",name:"Dabur Honey 500g",price:199,description:"Pure natural honey"},
+    {id:"hn2",name:"Patanjali Honey 500g",price:170,description:"Pure wild honey"},
   ]},
-  {id:"household",title:"Household",icon:"ðŸ§¹",products:[
-    {id:"hh1",name:"Harpic Toilet Cleaner 500ml",price:99,description:"Toilet cleaner",img:img('8901207040239')},
-    {id:"hh2",name:"Vim Dishwash Liquid 500ml",price:75,description:"Dish wash liquid",img:img('8901030726446')},
-    {id:"hh3",name:"Surf Excel Matic 1kg",price:199,description:"Washing detergent",img:img('8901030832450')},
-    {id:"hh4",name:"Lizol Floor Cleaner 1L",price:149,description:"Floor cleaner",img:img('8901207046880')},
-    {id:"hh5",name:"Dettol Antiseptic 250ml",price:85,description:"Multipurpose antiseptic",img:img('6281006473526')},
-    {id:"hh6",name:"Good Knight Liquid",price:55,description:"Mosquito repellent",img:img('8901719114588')},
+  {id:"household",title:"Household",icon:"🧹",products:[
+    {id:"hh1",name:"Harpic Toilet Cleaner 500ml",price:99,description:"Toilet cleaner"},
+    {id:"hh2",name:"Vim Dishwash Liquid 500ml",price:75,description:"Dish wash liquid"},
+    {id:"hh3",name:"Surf Excel Matic 1kg",price:199,description:"Washing detergent"},
+    {id:"hh4",name:"Lizol Floor Cleaner 1L",price:149,description:"Floor cleaner"},
+    {id:"hh5",name:"Dettol Antiseptic 250ml",price:85,description:"Multipurpose antiseptic"},
+    {id:"hh6",name:"Good Knight Liquid",price:55,description:"Mosquito repellent"},
   ]},
-  {id:"health",title:"Health",icon:"ðŸ’Š",products:[
-    {id:"hw1",name:"Dabur Chyawanprash 500g",price:195,description:"Immunity booster",img:img('8901207005083')},
-    {id:"hw2",name:"Eno Fruit Salt Original",price:30,description:"Acidity relief",img:img('5000118393095')},
-    {id:"hw3",name:"Hajmola Digestive",price:25,description:"Digestive candy",img:img('8901207006318')},
+  {id:"health",title:"Health",icon:"💊",products:[
+    {id:"hw1",name:"Dabur Chyawanprash 500g",price:195,description:"Immunity booster"},
+    {id:"hw2",name:"Eno Fruit Salt Original",price:30,description:"Acidity relief"},
+    {id:"hw3",name:"Hajmola Digestive",price:25,description:"Digestive candy"},
   ]},
-  {id:"atta",title:"Atta & Rice",icon:"ðŸŒ¾",products:[
-    {id:"at1",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour",img:img('8901725130047')},
-    {id:"at2",name:"India Gate Basmati 5kg",price:450,description:"Premium basmati rice",img:img('8906003960371')},
-    {id:"at3",name:"Toor Dal 1kg",price:120,description:"Yellow pigeon peas",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg"},
-    {id:"at4",name:"Moong Dal 500g",price:65,description:"Green gram lentils",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Moong_dal.jpg/320px-Moong_dal.jpg"},
+  {id:"atta",title:"Atta & Rice",icon:"🌾",products:[
+    {id:"at1",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour"},
+    {id:"at2",name:"India Gate Basmati 5kg",price:450,description:"Premium basmati rice"},
+    {id:"at3",name:"Toor Dal 1kg",price:120,description:"Yellow pigeon peas"},
+    {id:"at4",name:"Moong Dal 500g",price:65,description:"Green gram lentils"},
   ]},
-  {id:"skincare",title:"Skincare",icon:"âœ¨",products:[
-    {id:"sk1",name:"Himalaya Neem Face Wash",price:99,description:"Purifying face wash",img:img('8901138506445')},
-    {id:"sk2",name:"Nivea Soft Cream 200ml",price:199,description:"Moisturiser",img:img('4005900004901')},
-    {id:"sk3",name:"Vaseline Petroleum Jelly",price:89,description:"Deep moisture",img:img('0305210201773')},
-    {id:"sk4",name:"Lakme Sunscreen SPF50",price:249,description:"Broad spectrum SPF",img:img('8901030951244')},
+  {id:"skincare",title:"Skincare",icon:"✨",products:[
+    {id:"sk1",name:"Himalaya Neem Face Wash",price:99,description:"Purifying face wash"},
+    {id:"sk2",name:"Nivea Soft Cream 200ml",price:199,description:"Moisturiser"},
+    {id:"sk3",name:"Vaseline Petroleum Jelly",price:89,description:"Deep moisture"},
+    {id:"sk4",name:"Lakme Sunscreen SPF50",price:249,description:"Broad spectrum SPF"},
   ]},
-  {id:"icecream",title:"Ice Cream",icon:"ðŸ¦",products:[
-    {id:"ic1",name:"Amul Vanilla Cone",price:30,description:"Classic vanilla cone",img:img('8901455540192')},
-    {id:"ic2",name:"Kwality Walls Cornetto",price:50,description:"Chocolate cone",img:img('8901030846113')},
-    {id:"ic3",name:"Mother Dairy Kulfi",price:20,description:"Traditional kulfi",img:img('8906003900406')},
+  {id:"icecream",title:"Ice Cream",icon:"🍦",products:[
+    {id:"ic1",name:"Amul Vanilla Cone",price:30,description:"Classic vanilla cone"},
+    {id:"ic2",name:"Kwality Walls Cornetto",price:50,description:"Chocolate cone"},
+    {id:"ic3",name:"Mother Dairy Kulfi",price:20,description:"Traditional kulfi"},
   ]},
-  {id:"vegetables",title:"Vegetables",icon:"ðŸ¥¦",products:[
-    {id:"vg1",name:"Fresh Tomatoes 1kg",price:100,description:"Farm fresh tomatoes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/320px-Tomato_je.jpg"},
-    {id:"vg2",name:"Onions 1kg",price:40,description:"Red onions",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_onion.jpg/320px-Red_onion.jpg"},
-    {id:"vg3",name:"Potatoes 1kg",price:60,description:"Fresh potatoes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg"},
-    {id:"vg4",name:"Spinach 250g",price:20,description:"Fresh palak",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/SpinachWikipedia.jpg/320px-SpinachWikipedia.jpg"},
-    {id:"vg5",name:"Cauliflower 1pc",price:80,description:"Fresh cauliflower",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Kaldor_floraly.jpg/320px-Kaldor_floraly.jpg"},
-    {id:"vg6",name:"Carrots 1kg",price:50,description:"Fresh carrots",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/320px-Vegetable-Carrot-Bundle-wStalks.jpg"},
-    {id:"vg7",name:"Garlic 250g",price:40,description:"Fresh garlic",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Garlic-beginners.jpg/320px-Garlic-beginners.jpg"},
-    {id:"vg8",name:"Ginger 250g",price:35,description:"Fresh ginger",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Finger_ginger.jpg/320px-Finger_ginger.jpg"},
-    {id:"vg9",name:"Green Chillies 100g",price:15,description:"Fresh green chillies",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Green_chillies.jpg/320px-Green_chillies.jpg"},
-    {id:"vg10",name:"Coriander 100g",price:10,description:"Fresh coriander",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Coriander.jpg/320px-Coriander.jpg"},
-    {id:"vg11",name:"Mushrooms 200g",price:50,description:"Button mushrooms",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg/320px-Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg"},
-    {id:"vg12",name:"Lotus Stem 250g",price:60,description:"Kashmiri nadru",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lotus_root_cross_section.jpg/320px-Lotus_root_cross_section.jpg"},
+  {id:"vegetables",title:"Vegetables",icon:"🥦",products:[
+    {id:"vg1",name:"Fresh Tomatoes 1kg",price:100,description:"Farm fresh tomatoes"},
+    {id:"vg2",name:"Onions 1kg",price:40,description:"Red onions"},
+    {id:"vg3",name:"Potatoes 1kg",price:60,description:"Fresh potatoes"},
+    {id:"vg4",name:"Spinach 250g",price:20,description:"Fresh palak"},
+    {id:"vg5",name:"Cauliflower 1pc",price:80,description:"Fresh cauliflower"},
+    {id:"vg6",name:"Carrots 1kg",price:50,description:"Fresh carrots"},
+    {id:"vg7",name:"Garlic 250g",price:40,description:"Fresh garlic"},
+    {id:"vg8",name:"Ginger 250g",price:35,description:"Fresh ginger"},
+    {id:"vg9",name:"Green Chillies 100g",price:15,description:"Fresh green chillies"},
+    {id:"vg10",name:"Coriander 100g",price:10,description:"Fresh coriander"},
+    {id:"vg11",name:"Mushrooms 200g",price:50,description:"Button mushrooms"},
+    {id:"vg12",name:"Lotus Stem 250g",price:60,description:"Kashmiri nadru"},
   ]},
-  {id:"fruits",title:"Fruits",icon:"ðŸŽ",products:[
-    {id:"fr1",name:"Bananas 6pcs",price:40,description:"Fresh ripe bananas",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Shoot.jpg/320px-Banana-Shoot.jpg"},
-    {id:"fr2",name:"Kashmiri Apples 1kg",price:120,description:"Kashmiri red apples",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg"},
-    {id:"fr3",name:"Pomegranate 500g",price:80,description:"Sweet pomegranate",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Pomegranate_fruit_-_whole_and_halved.jpg/320px-Pomegranate_fruit_-_whole_and_halved.jpg"},
-    {id:"fr4",name:"Oranges 4pcs",price:60,description:"Navel oranges",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg"},
-    {id:"fr5",name:"Green Grapes 500g",price:90,description:"Seedless green grapes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg"},
-    {id:"fr6",name:"Strawberries 250g",price:80,description:"Fresh strawberries",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/320px-PerfectStrawberry.jpg"},
-    {id:"fr7",name:"Mango 1kg",price:200,description:"Sweet Alphonso mangoes",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/320px-Hapus_Mango.jpg"},
-    {id:"fr8",name:"Kiwi 4pcs",price:80,description:"Fresh kiwi",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Kiwi_-_Whole_and_Split.jpg/320px-Kiwi_-_Whole_and_Split.jpg"},
-    {id:"fr9",name:"Watermelon 1kg",price:100,description:"Sweet watermelon",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Slices_of_watermelon.jpg/320px-Slices_of_watermelon.jpg"},
-    {id:"fr10",name:"Cherries 500g",price:150,description:"Fresh Kashmiri cherries",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Cherry_Stella444.jpg/320px-Cherry_Stella444.jpg"},
-    {id:"fr11",name:"Apricots 500g",price:100,description:"Kashmiri apricots",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Apricot_and_apricots.jpg/320px-Apricot_and_apricots.jpg"},
+  {id:"fruits",title:"Fruits",icon:"🍎",products:[
+    {id:"fr1",name:"Bananas 6pcs",price:40,description:"Fresh ripe bananas"},
+    {id:"fr2",name:"Kashmiri Apples 1kg",price:120,description:"Kashmiri red apples"},
+    {id:"fr3",name:"Pomegranate 500g",price:80,description:"Sweet pomegranate"},
+    {id:"fr4",name:"Oranges 4pcs",price:60,description:"Navel oranges"},
+    {id:"fr5",name:"Green Grapes 500g",price:90,description:"Seedless green grapes"},
+    {id:"fr6",name:"Strawberries 250g",price:80,description:"Fresh strawberries"},
+    {id:"fr7",name:"Mango 1kg",price:200,description:"Sweet Alphonso mangoes"},
+    {id:"fr8",name:"Kiwi 4pcs",price:80,description:"Fresh kiwi"},
+    {id:"fr9",name:"Watermelon 1kg",price:100,description:"Sweet watermelon"},
+    {id:"fr10",name:"Cherries 500g",price:150,description:"Kashmiri cherries"},
+    {id:"fr11",name:"Apricots 500g",price:100,description:"Kashmiri apricots"},
   ]},
-  {id:"ramadan",title:"Ramadan Special",icon:"ðŸŒ™",products:[
-    {id:"rm1",name:"Sewai 200g",price:35,description:"Fine vermicelli",img:img('8901207086717')},
-    {id:"rm2",name:"Rooh Afza 750ml",price:180,description:"Rose sherbet",img:img('8901365000015')},
-    {id:"rm3",name:"Medjool Dates 500g",price:350,description:"Premium soft dates",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg"},
-    {id:"rm4",name:"Haleem Mix 200g",price:65,description:"Slow cook haleem",img:img('8906068390026')},
+  {id:"ramadan",title:"Ramadan Special",icon:"🌙",products:[
+    {id:"rm1",name:"Sewai 200g",price:35,description:"Fine vermicelli"},
+    {id:"rm2",name:"Rooh Afza 750ml",price:180,description:"Rose sherbet"},
+    {id:"rm3",name:"Medjool Dates 500g",price:350,description:"Premium soft dates"},
+    {id:"rm4",name:"Haleem Mix 200g",price:65,description:"Slow cook haleem"},
   ]},
 ];
+
+// Apply verified images to products
+GROCERY_CATEGORIES.forEach(cat=>cat.products.forEach(p=>{if(IMGS[p.id])p.img=IMGS[p.id];else p.img='';}));
 
 let cart=JSON.parse(localStorage.getItem('kasheer_cart')||'[]');
 let activeCategory='All';
@@ -659,7 +567,11 @@ function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.r
 function goShop(c){activeCategory=c;showPage('store');}
 function initStore(){renderCategoryBar();renderProducts();tryBackend();}
 function tryBackend(){fetch(API+'/products?limit=100').then(r=>r.json()).then(d=>{if(d.success&&d.data?.length>0){allProducts=d.data;renderProducts();}}).catch(()=>{});}
-function renderCategoryBar(){const bar=document.getElementById('cats-bar');const cats=[{id:'All',title:'All',icon:'ðŸ›’'},...GROCERY_CATEGORIES];bar.innerHTML=cats.map(c=>`<div class="cat-chip ${c.id===activeCategory?'active':''}" onclick="setCategory('${c.id}')">${c.icon} ${c.title}</div>`).join('');}
+function renderCategoryBar(){
+  const bar=document.getElementById('cats-bar');
+  const cats=[{id:'All',title:'All',icon:'🛒'},...GROCERY_CATEGORIES];
+  bar.innerHTML=cats.map(c=>`<div class="cat-chip ${c.id===activeCategory?'active':''}" onclick="setCategory('${c.id}')">${c.icon} ${c.title}</div>`).join('');
+}
 function setCategory(id){activeCategory=id;renderCategoryBar();renderProducts();}
 function filterProducts(){renderProducts();}
 function renderProducts(){
@@ -676,12 +588,26 @@ function renderProducts(){
     prods.forEach(p=>{html+=cardHTML(p);});
     html+='</div>';
   });
-  if(allProducts.length&&activeCategory==='All'){let bp=allProducts;if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));if(bp.length){html+=`<div class="section-heading">ðŸª Local Store Products</div><div class="products-grid">`;bp.forEach(p=>{html+=backendCard(p);});html+='</div>';}}
-  if(!html)html='<div class="empty">No products found ðŸ”</div>';
+  if(allProducts.length&&activeCategory==='All'){
+    let bp=allProducts;if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));
+    if(bp.length){html+=`<div class="section-heading">🏠 Local Store Products</div><div class="products-grid">`;bp.forEach(p=>{html+=backendCard(p);});html+='</div>';}
+  }
+  if(!html)html='<div class="empty">No products found 🔍</div>';
   el.innerHTML=html;
 }
-function cardHTML(p){const qty=getQty('g_'+p.id);const imgEl=p.img?`<img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`:'';const ph=`<div class="prod-placeholder" style="${p.img?'display:none':''}">ðŸ›’</div>`;const qtyEl=qty===0?`<button class="add-btn" onclick="addProduct('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeQty('${p.id}',1)">+</button></div>`;return `<div class="product-card">${imgEl}${ph}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.description}</div><div class="prod-foot"><span class="prod-price">â‚¹${p.price}</span>${qtyEl}</div></div></div>`;}
-function backendCard(p){const qty=getQty('b_'+p.id);const imgEl=p.image_url?`<img class="prod-img" src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=prod-placeholder>ðŸ›’</div>'">`:`<div class="prod-placeholder">ðŸ›’</div>`;const qtyEl=qty===0?`<button class="add-btn" onclick="addBackend('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeBQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeBQty('${p.id}',1)">+</button></div>`;return `<div class="product-card">${imgEl}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.sellers?.store_name||'Local Store'}</div><div class="prod-foot"><span class="prod-price">â‚¹${p.price}</span>${qtyEl}</div></div></div>`;}
+function cardHTML(p){
+  const qty=getQty('g_'+p.id);
+  const imgEl=p.img?`<img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:'';
+  const ph=`<div class="prod-placeholder" style="${p.img?'display:none':''}">🛒</div>`;
+  const qtyEl=qty===0?`<button class="add-btn" onclick="addProduct('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeQty('${p.id}',1)">+</button></div>`;
+  return `<div class="product-card">${imgEl}${ph}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.description}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyEl}</div></div></div>`;
+}
+function backendCard(p){
+  const qty=getQty('b_'+p.id);
+  const imgEl=p.image_url?`<img class="prod-img" src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:`<div class="prod-placeholder">🛒</div>`;
+  const qtyEl=qty===0?`<button class="add-btn" onclick="addBackend('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="changeBQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="changeBQty('${p.id}',1)">+</button></div>`;
+  return `<div class="product-card">${imgEl}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.sellers?.store_name||'Local Store'}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qtyEl}</div></div></div>`;
+}
 function getQty(id){const i=cart.find(c=>c.id===id);return i?i.quantity:0;}
 function findProduct(id){for(const cat of GROCERY_CATEGORIES){const p=cat.products.find(p=>p.id===id);if(p)return p;}return null;}
 function addProduct(productId){const p=findProduct(productId);if(!p)return;const id='g_'+p.id;const i=cart.find(c=>c.id===id);if(i)i.quantity++;else cart.push({id,name:p.name,price:p.price,quantity:1,img:p.img||'',type:'grocery'});saveCart();renderProducts();updateCartBar();}
@@ -690,12 +616,38 @@ function addBackend(productId){const p=allProducts.find(p=>p.id===productId);if(
 function changeBQty(productId,delta){const id='b_'+productId;const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderProducts();updateCartBar();}
 function saveCart(){localStorage.setItem('kasheer_cart',JSON.stringify(cart));}
 function updateCartBar(){const count=cart.reduce((s,i)=>s+i.quantity,0);const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);document.getElementById('cart-count').textContent=count;document.getElementById('cart-total').textContent=total;document.getElementById('cart-bar').className='cart-bar'+(count>0?' visible':'');}
-function renderCart(){const el=document.getElementById('cart-content');if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty<br><br><button class="btn btn-teal" onclick="showPage('store')" style="margin-top:16px;">Start Shopping</button></div>`;return;}const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);const delivery=50;let html=cart.map(i=>{const thumb=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='ðŸ›’'">`:'ðŸ›’';return `<div class="cart-item"><div class="cart-item-thumb">${thumb}</div><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">â‚¹${i.price} Ã— ${i.quantity} = â‚¹${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cartQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cartQty('${i.id}',1)">+</button></div></div>`;}).join('');html+=`<div class="cart-summary"><div class="summary-row"><span>Subtotal</span><span>â‚¹${subtotal}</span></div><div class="summary-row"><span>Delivery</span><span>â‚¹${delivery}</span></div><div class="summary-row total"><span>Total</span><span>â‚¹${subtotal+delivery}</span></div><button class="btn btn-teal" style="width:100%;justify-content:center;margin-top:22px;border-radius:50px;" onclick="alert('Download the Kasheer app to complete your order!')">Checkout on App</button></div>`;el.innerHTML=html;}
+function renderCart(){
+  const el=document.getElementById('cart-content');
+  if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty<br><br><button class="btn btn-teal" onclick="showPage('store')" style="margin-top:16px;">Start Shopping</button></div>`;return;}
+  const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);const delivery=50;
+  let html=cart.map(i=>{const thumb=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';return `<div class="cart-item"><div class="cart-item-thumb">${thumb}</div><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">₹${i.price} × ${i.quantity} = ₹${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cartQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cartQty('${i.id}',1)">+</button></div></div>`;}).join('');
+  html+=`<div class="cart-summary"><div class="summary-row"><span>Subtotal</span><span>₹${subtotal}</span></div><div class="summary-row"><span>Delivery</span><span>₹${delivery}</span></div><div class="summary-row total"><span>Total</span><span>₹${subtotal+delivery}</span></div><button class="btn btn-teal" style="width:100%;justify-content:center;margin-top:22px;border-radius:50px;" onclick="alert('Download the Kasheer app to complete your order!')">Checkout on App</button></div>`;
+  el.innerHTML=html;
+}
 function cartQty(id,delta){const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderCart();updateCartBar();}
 function initSeller(){if(sellerToken)showSellerDash();else{document.getElementById('seller-login-view').style.display='block';document.getElementById('seller-dash-view').style.display='none';}}
-async function sellerLogin(){const email=document.getElementById('seller-email').value;const password=document.getElementById('seller-password').value;const errEl=document.getElementById('login-error');errEl.style.display='none';if(!email||!password){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}try{const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const data=await res.json();if(!data.success)throw new Error(data.message||'Login failed');sellerToken=data.data.token;localStorage.setItem('seller_token',sellerToken);showSellerDash();}catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}}
+async function sellerLogin(){
+  const email=document.getElementById('seller-email').value,password=document.getElementById('seller-password').value;
+  const errEl=document.getElementById('login-error');errEl.style.display='none';
+  if(!email||!password){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
+  try{const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const data=await res.json();if(!data.success)throw new Error(data.message||'Login failed');sellerToken=data.data.token;localStorage.setItem('seller_token',sellerToken);showSellerDash();}
+  catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
+}
 function sellerLogout(){sellerToken=null;localStorage.removeItem('seller_token');document.getElementById('seller-dash-view').style.display='none';document.getElementById('seller-login-view').style.display='block';}
-async function showSellerDash(){document.getElementById('seller-login-view').style.display='none';document.getElementById('seller-dash-view').style.display='block';try{const h={Authorization:'Bearer '+sellerToken};const[dashRes,prodsRes,ordersRes]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller',{headers:h}).catch(()=>({json:()=>({success:false})}))]);const dash=await dashRes.json();const prods=await prodsRes.json();const orders=await ordersRes.json().catch(()=>({success:false}));if(dash.success&&dash.data?.seller){const s=dash.data.seller;document.getElementById('dash-store-name').textContent=s.store_name||'Your Store';document.getElementById('dash-category').textContent=s.category||'';const st=document.getElementById('dash-status');st.textContent=s.is_approved?'Active':'Pending Approval';st.className='status-badge '+(s.is_approved?'badge-active':'badge-pending');}const prodList=prods.success?(prods.data||[]):[];const orderList=orders.success?(orders.data||[]):[];const revenue=orderList.filter(o=>o.status==='delivered').reduce((s,o)=>s+(o.total_amount||0),0);document.getElementById('stat-products').textContent=prodList.length;document.getElementById('stat-orders').textContent=orderList.length;document.getElementById('stat-revenue').textContent='â‚¹'+revenue;document.getElementById('seller-products-content').innerHTML=prodList.length?`<div class="seller-prods-grid">${prodList.map(p=>`<div class="seller-prod-card"><div class="seller-prod-thumb">${p.image_url?`<img src="${p.image_url}" alt="${p.name}">`:'ðŸ›’'}</div><div style="flex:1;min-width:0"><div class="seller-prod-name">${p.name}</div><div class="seller-prod-price">â‚¹${p.price}</div></div></div>`).join('')}</div>`:'<div class="empty">No products yet. Add from the app.</div>';document.getElementById('seller-orders-content').innerHTML=orderList.length?`<div class="orders-list">${orderList.slice(0,30).map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="order-status s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div class="order-amount">â‚¹${o.total_amount||0}</div><div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`:'<div class="empty">No orders yet.</div>';}catch(e){document.getElementById('seller-dash-view').innerHTML='<div class="empty">Could not load dashboard.</div>';}}
+async function showSellerDash(){
+  document.getElementById('seller-login-view').style.display='none';document.getElementById('seller-dash-view').style.display='block';
+  try{
+    const h={Authorization:'Bearer '+sellerToken};
+    const[dashRes,prodsRes,ordersRes]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller',{headers:h}).catch(()=>({json:()=>({success:false})}))]);
+    const dash=await dashRes.json(),prods=await prodsRes.json(),orders=await ordersRes.json().catch(()=>({success:false}));
+    if(dash.success&&dash.data?.seller){const s=dash.data.seller;document.getElementById('dash-store-name').textContent=s.store_name||'Your Store';document.getElementById('dash-category').textContent=s.category||'';const st=document.getElementById('dash-status');st.textContent=s.is_approved?'Active':'Pending Approval';st.className='status-badge '+(s.is_approved?'badge-active':'badge-pending');}
+    const prodList=prods.success?(prods.data||[]):[];const orderList=orders.success?(orders.data||[]):[];
+    const revenue=orderList.filter(o=>o.status==='delivered').reduce((s,o)=>s+(o.total_amount||0),0);
+    document.getElementById('stat-products').textContent=prodList.length;document.getElementById('stat-orders').textContent=orderList.length;document.getElementById('stat-revenue').textContent='₹'+revenue;
+    document.getElementById('seller-products-content').innerHTML=prodList.length?`<div class="seller-prods-grid">${prodList.map(p=>`<div class="seller-prod-card"><div class="seller-prod-thumb">${p.image_url?`<img src="${p.image_url}" alt="${p.name}">`:'🛒'}</div><div style="flex:1;min-width:0"><div class="seller-prod-name">${p.name}</div><div class="seller-prod-price">₹${p.price}</div></div></div>`).join('')}</div>`:'<div class="empty">No products yet.</div>';
+    document.getElementById('seller-orders-content').innerHTML=orderList.length?`<div class="orders-list">${orderList.slice(0,30).map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="order-status s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div class="order-amount">₹${o.total_amount||0}</div><div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`:'<div class="empty">No orders yet.</div>';
+  }catch(e){document.getElementById('seller-dash-view').innerHTML='<div class="empty">Could not load dashboard.</div>';}
+}
 function switchTab(tab){document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['products','orders'][i]===tab));document.getElementById('tab-products').style.display=tab==='products'?'block':'none';document.getElementById('tab-orders').style.display=tab==='orders'?'block':'none';}
 updateCartBar();
 </script>
