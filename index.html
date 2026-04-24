@@ -9,8 +9,6 @@
 :root{--teal:#00BCD4;--teal-dark:#006773;--teal-mid:#00838F;--teal-light:#E0F7FA;--orange:#FF6F00;--orange-light:#FFF3E0;--text:#0D1B1E;--muted:#5C7A80;--bg:#F4F8F9;--white:#FFFFFF;--border:#DCE8EB;--radius:18px;--radius-sm:12px;--shadow:0 4px 24px rgba(0,103,115,0.10);--shadow-lg:0 12px 48px rgba(0,103,115,0.16);}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-
-/* ── NAV ── */
 nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px;}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--teal-dark);cursor:pointer;display:flex;align-items:center;gap:10px;}
 .nav-logo .kashmiri{font-family:'Noto Nastaliq Urdu',serif;font-size:18px;color:var(--muted);font-weight:400;}
@@ -18,12 +16,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .nav-btn{padding:9px 20px;border-radius:50px;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;}
 .nav-btn-ghost{background:transparent;color:var(--text);}.nav-btn-ghost:hover{background:var(--teal-light);color:var(--teal-dark);}
 .nav-btn-orange{background:var(--orange);color:#fff;}.nav-btn-orange:hover{background:#E65100;}
+.nav-btn-teal{background:var(--teal);color:#fff;}.nav-btn-teal:hover{background:var(--teal-dark);}
 .page{display:none;}.page.active{display:block;}
-
-/* ── HAMBURGER MENU ── */
 .hamburger{width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;border:none;background:transparent;border-radius:10px;transition:background 0.2s;margin-right:8px;}
 .hamburger:hover{background:var(--teal-light);}
-.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s;}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;}
 .side-menu{position:fixed;top:0;left:-300px;width:280px;height:100vh;background:var(--white);z-index:500;transition:left 0.3s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;}
 .side-menu.open{left:0;}
 .side-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:499;display:none;}
@@ -31,15 +28,17 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .side-menu-header{background:var(--teal-dark);padding:28px 24px;display:flex;align-items:center;justify-content:space-between;}
 .side-menu-header .logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:700;}
 .side-menu-close{background:rgba(255,255,255,0.15);border:none;color:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;}
-.side-menu-nav{padding:16px 0;flex:1;}
+.side-menu-nav{padding:16px 0;flex:1;overflow-y:auto;}
 .side-menu-item{display:flex;align-items:center;gap:14px;padding:14px 24px;cursor:pointer;font-size:15px;font-weight:600;color:var(--text);transition:background 0.2s;border:none;background:none;width:100%;font-family:'Syne',sans-serif;text-align:left;}
 .side-menu-item:hover{background:var(--teal-light);color:var(--teal-dark);}
 .side-menu-item .icon{font-size:20px;width:28px;}
 .side-menu-divider{height:1px;background:var(--border);margin:8px 24px;}
-
-/* ── HERO ── */
+.side-user-info{padding:16px 24px;background:var(--teal-light);border-bottom:1px solid var(--border);display:none;}
+.side-user-info.show{display:block;}
+.side-user-email{font-size:13px;font-weight:600;color:var(--teal-dark);}
+.side-user-role{font-size:11px;color:var(--muted);margin-top:2px;}
 .hero{background:var(--teal-dark);background-image:url('https://im.whatshot.in/img/2020/Apr/dal-lake-1586849097.jpg');background-size:cover;background-position:center;min-height:580px;display:flex;align-items:center;justify-content:center;text-align:center;padding:90px 24px;position:relative;overflow:hidden;}
-.hero-pattern{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,40,55,0.80) 0%,rgba(0,103,115,0.72) 100%);}
+.hero-pattern{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,40,55,0.82) 0%,rgba(0,103,115,0.74) 100%);}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;}
 .hero-content{position:relative;z-index:1;max-width:640px;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:12px;font-weight:600;padding:6px 18px;border-radius:50px;margin-bottom:28px;letter-spacing:1px;text-transform:uppercase;}
@@ -53,14 +52,10 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .btn-outline{background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.35);}.btn-outline:hover{background:rgba(255,255,255,0.2);}
 .btn-orange-solid{background:var(--orange);color:#fff;}.btn-orange-solid:hover{background:#E65100;}
 .btn-teal{background:var(--teal);color:#fff;}.btn-teal:hover{background:var(--teal-dark);}
-
-/* ── STATS BAR ── */
 .stats-bar{background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:center;flex-wrap:wrap;}
 .stat-item{padding:22px 40px;text-align:center;border-right:1px solid var(--border);}.stat-item:last-child{border-right:none;}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--teal-dark);}
 .stat-label{font-size:12px;color:var(--muted);font-weight:500;margin-top:2px;}
-
-/* ── SECTIONS ── */
 .section{padding:80px 24px;max-width:1000px;margin:0 auto;}
 .section-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:38px;text-align:center;color:var(--text);margin-bottom:10px;font-weight:700;line-height:1.2;}
@@ -71,8 +66,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .feature-icon{width:52px;height:52px;border-radius:14px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;}
 .feature-title{font-size:16px;font-weight:700;margin-bottom:8px;}
 .feature-desc{font-size:13px;color:var(--muted);line-height:1.65;}
-
-/* ── HOW IT WORKS ── */
 .how-section{background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal-mid) 100%);padding:80px 24px;}
 .how-inner{max-width:900px;margin:0 auto;}
 .how-section .section-label{color:rgba(255,255,255,0.6);}.how-section .section-title{color:#fff;}.how-section .section-sub{color:rgba(255,255,255,0.6);}
@@ -81,15 +74,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .step-num{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
 .step-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;}
 .step-desc{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.55;}
-
-/* ── CATEGORIES ── */
 .cats-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px;}
 .cat-showcase-card{background:var(--white);border-radius:var(--radius-sm);padding:20px 14px;text-align:center;border:1px solid var(--border);cursor:pointer;transition:all 0.22s;}
 .cat-showcase-card:hover{border-color:var(--teal);background:var(--teal-light);transform:translateY(-2px);}
 .cat-showcase-icon{font-size:30px;margin-bottom:10px;display:block;}
 .cat-showcase-name{font-size:13px;font-weight:600;}
-
-/* ── CTA ── */
 .cta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto;}
 .cta-card{border-radius:var(--radius);padding:40px 32px;}
 .cta-card.shop{background:var(--teal-dark);}.cta-card.sell{background:var(--orange-light);border:1.5px solid #FFD180;}.cta-card.deliver{background:#1A237E;}
@@ -98,8 +87,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .cta-card.shop .cta-title,.cta-card.deliver .cta-title{color:#fff;}.cta-card.sell .cta-title{color:var(--orange);}
 .cta-desc{font-size:14px;line-height:1.7;margin-bottom:26px;}
 .cta-card.shop .cta-desc,.cta-card.deliver .cta-desc{color:rgba(255,255,255,0.7);}.cta-card.sell .cta-desc{color:#795548;}
-
-/* ── STORE ── */
 .store-top{background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal-mid) 100%);padding:28px 28px 0;}
 .store-top h1{font-family:'Cormorant Garamond',serif;font-size:30px;color:#fff;font-weight:700;margin-bottom:4px;}
 .store-top p{font-size:14px;color:rgba(255,255,255,0.65);margin-bottom:18px;}
@@ -127,14 +114,10 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .qty-btn{width:26px;height:26px;border-radius:8px;background:var(--teal-light);border:none;color:var(--teal-dark);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 .qty-btn:hover{background:var(--teal);color:#fff;}
 .qty-num{font-size:14px;font-weight:700;min-width:18px;text-align:center;}
-
-/* ── CART BAR ── */
 .cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--teal-dark);color:#fff;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;z-index:100;transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -8px 32px rgba(0,103,115,0.3);}
 .cart-bar.visible{transform:translateY(0);}
 .cart-bar-info strong{font-size:18px;font-weight:700;font-family:'Cormorant Garamond',serif;}
 .cart-bar-btn{background:#fff;color:var(--teal-dark);border:none;border-radius:50px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
-
-/* ── CART PAGE ── */
 .cart-wrap{max-width:620px;margin:0 auto;padding:28px 24px;}
 .cart-item{background:var(--white);border-radius:var(--radius-sm);padding:16px;display:flex;align-items:center;gap:14px;border:1px solid var(--border);margin-bottom:12px;}
 .cart-item-thumb{width:60px;height:60px;border-radius:10px;flex-shrink:0;overflow:hidden;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:22px;}
@@ -144,8 +127,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .cart-summary{background:var(--white);border-radius:var(--radius);padding:22px;border:1px solid var(--border);margin-top:20px;}
 .summary-row{display:flex;justify-content:space-between;font-size:14px;padding:7px 0;color:var(--muted);}
 .summary-row.total{font-weight:700;font-size:17px;color:var(--text);border-top:1px solid var(--border);margin-top:8px;padding-top:16px;}
-
-/* ── CHECKOUT FORM ── */
 .checkout-form{background:var(--white);border-radius:var(--radius);padding:24px;border:1px solid var(--border);margin-top:20px;}
 .checkout-form h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:18px;}
 .form-row{margin-bottom:14px;}
@@ -156,14 +137,12 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .place-order-btn{width:100%;padding:15px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:10px;transition:background 0.2s;}
 .place-order-btn:hover{background:var(--teal-dark);}
 .place-order-btn:disabled{opacity:0.6;cursor:not-allowed;}
-
-/* ── ORDER SUCCESS ── */
 .order-success{background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);text-align:center;margin-top:20px;}
 .order-success .tick{font-size:64px;margin-bottom:16px;}
 .order-success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;}
 .order-success p{font-size:15px;color:var(--muted);line-height:1.7;}
-
-/* ── AUTH / LOGIN ── */
+.gps-btn{background:var(--teal-light);color:var(--teal-dark);border:1.5px solid var(--teal);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;width:100%;margin-bottom:10px;display:flex;align-items:center;gap:8px;justify-content:center;}
+.delivery-fee-badge{background:var(--teal-light);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--teal-dark);font-weight:600;margin-bottom:14px;text-align:center;display:none;}
 .seller-login-wrap{max-width:420px;margin:60px auto;background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);text-align:center;box-shadow:var(--shadow);}
 .seller-login-wrap h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;margin-bottom:8px;}
 .field{margin-bottom:16px;text-align:left;}
@@ -173,8 +152,9 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .submit-btn{width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:8px;}
 .err-box{background:#FFEBEE;color:#C62828;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;text-align:left;}
 .success-box{background:#E8F5E9;color:#2E7D32;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;text-align:left;}
-
-/* ── SELLER DASHBOARD ── */
+.auth-tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:24px;}
+.auth-tab{flex:1;padding:10px;text-align:center;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);}
+.auth-tab.active{background:var(--white);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
 .seller-wrap{max-width:860px;margin:0 auto;padding:32px 24px;}
 .seller-header-card{background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));border-radius:var(--radius);padding:30px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;}
 .seller-header-card h2{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;font-weight:700;margin-bottom:4px;}
@@ -196,21 +176,30 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .seller-prod-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
 .seller-prod-price{font-size:13px;color:var(--teal-dark);font-weight:600;}
 .orders-list{display:flex;flex-direction:column;gap:12px;}
-.order-card{background:var(--white);border-radius:var(--radius-sm);padding:18px;border:1px solid var(--border);}
+.order-card{background:var(--white);border-radius:var(--radius-sm);padding:18px;border:1px solid var(--border);cursor:pointer;transition:border-color 0.2s;}
+.order-card:hover{border-color:var(--teal);}
 .order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .order-id{font-size:12px;color:var(--muted);font-weight:500;}
 .order-status{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;}
-.s-pending{background:#FFF3E0;color:#E65100;}.s-accepted_by_store{background:#E8F5E9;color:#2E7D32;}.s-delivered{background:#E3F2FD;color:#1565C0;}.s-cancelled{background:#FFEBEE;color:#C62828;}.s-preparing{background:#F3E5F5;color:#6A1B9A;}
+.s-pending{background:#FFF3E0;color:#E65100;}.s-accepted_by_store{background:#E8F5E9;color:#2E7D32;}.s-delivered{background:#E3F2FD;color:#1565C0;}.s-cancelled{background:#FFEBEE;color:#C62828;}.s-preparing{background:#F3E5F5;color:#6A1B9A;}.s-waiting_for_rider,.s-assigned_to_rider{background:#E8EAF6;color:#283593;}.s-picked_up{background:#E0F2F1;color:#00695C;}
 .order-amount{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;}
 .order-date{font-size:12px;color:var(--muted);}
-
-/* ── REGISTER FORMS ── */
+.order-tracking{background:var(--teal-light);border-radius:12px;padding:16px;margin-top:12px;display:none;}
+.order-tracking.show{display:block;}
+.track-step{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:13px;}
+.track-dot{width:12px;height:12px;border-radius:50%;background:var(--border);flex-shrink:0;}
+.track-dot.done{background:var(--teal);}
+.track-dot.active{background:var(--orange);animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.rating-wrap{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:none;}
+.rating-wrap.show{display:block;}
+.stars{display:flex;gap:6px;margin:8px 0;}
+.star{font-size:28px;cursor:pointer;opacity:0.3;transition:opacity 0.2s;}
+.star.active{opacity:1;}
 .reg-wrap{max-width:520px;margin:0 auto;padding:40px 24px;}
 .reg-card{background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);box-shadow:var(--shadow);}
 .reg-card h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:8px;}
 .reg-card p{font-size:14px;color:var(--muted);margin-bottom:28px;}
-
-/* ── COMPLAINTS & SUGGESTIONS ── */
 .feedback-wrap{max-width:700px;margin:0 auto;padding:40px 24px;}
 .feedback-tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:28px;}
 .feedback-tab{flex:1;padding:12px;text-align:center;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);}
@@ -218,8 +207,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .feedback-card{background:var(--white);border-radius:var(--radius);padding:36px;border:1px solid var(--border);}
 .feedback-card h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:8px;}
 .feedback-card p{font-size:14px;color:var(--muted);margin-bottom:24px;}
-
-/* ── ADMIN PANEL ── */
 .admin-wrap{max-width:1000px;margin:0 auto;padding:24px;}
 .admin-header{background:linear-gradient(135deg,#1A237E,#283593);border-radius:var(--radius);padding:28px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;}
 .admin-header h2{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;font-weight:700;}
@@ -237,8 +224,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop
 .admin-stat{background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--border);text-align:center;}
 .admin-stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--teal-dark);}
 .admin-stat-label{font-size:12px;color:var(--muted);margin-top:4px;}
-
-/* ── FOOTER ── */
 footer{background:var(--text);padding:48px 24px;text-align:center;}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:4px;}
 .footer-kashmiri{font-family:'Noto Nastaliq Urdu',serif;font-size:16px;color:rgba(255,255,255,0.3);margin-bottom:24px;direction:rtl;}
@@ -246,8 +231,6 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 .footer-links a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;cursor:pointer;font-weight:500;}
 .footer-links a:hover{color:var(--teal);}
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.25);}
-
-/* ── UTILITIES ── */
 .loading{text-align:center;padding:70px 24px;color:var(--muted);}
 .spinner{width:38px;height:38px;border:3px solid var(--teal-light);border-top-color:var(--teal);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 16px;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -258,12 +241,15 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 </head>
 <body>
 
-<!-- ══ SIDE MENU ══ -->
 <div class="side-menu-overlay" id="menu-overlay" onclick="closeMenu()"></div>
 <div class="side-menu" id="side-menu">
   <div class="side-menu-header">
     <div class="logo">Kasheer <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:14px;opacity:0.6">کٲشِر</span></div>
     <button class="side-menu-close" onclick="closeMenu()">✕</button>
+  </div>
+  <div class="side-user-info" id="side-user-info">
+    <div class="side-user-email" id="side-user-email"></div>
+    <div class="side-user-role" id="side-user-role"></div>
   </div>
   <div class="side-menu-nav">
     <button class="side-menu-item" onclick="navTo('home')"><span class="icon">🏠</span>Home</button>
@@ -271,7 +257,9 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
     <button class="side-menu-item" onclick="navTo('cart')"><span class="icon">🛍️</span>My Cart</button>
     <button class="side-menu-item" onclick="navTo('myorders')"><span class="icon">📦</span>My Orders</button>
     <div class="side-menu-divider"></div>
-    <button class="side-menu-item" onclick="navTo('seller')"><span class="icon">🏪</span>Become a Seller</button>
+    <button class="side-menu-item" onclick="navTo('auth')"><span class="icon" id="side-auth-icon">👤</span><span id="side-auth-label">Login / Sign Up</span></button>
+    <button class="side-menu-item" onclick="navTo('seller')"><span class="icon">🏪</span>Seller Dashboard</button>
+    <button class="side-menu-item" onclick="navTo('seller-register')"><span class="icon">➕</span>Register Store</button>
     <button class="side-menu-item" onclick="navTo('rider-register')"><span class="icon">🛵</span>Become a Rider</button>
     <div class="side-menu-divider"></div>
     <button class="side-menu-item" onclick="navTo('feedback')"><span class="icon">💬</span>Complaints & Suggestions</button>
@@ -280,7 +268,6 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- ══ NAV ══ -->
 <nav>
   <div style="display:flex;align-items:center;gap:4px;">
     <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
@@ -289,11 +276,12 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div class="nav-links">
     <button class="nav-btn nav-btn-ghost" onclick="showPage('home')">Home</button>
     <button class="nav-btn nav-btn-ghost" onclick="showPage('store')">Shop</button>
-    <button class="nav-btn nav-btn-orange" onclick="showPage('seller')">Seller Login</button>
+    <button class="nav-btn nav-btn-ghost" id="nav-auth-btn" onclick="showPage('auth')">Login</button>
+    <button class="nav-btn nav-btn-orange" onclick="showPage('seller')">Seller</button>
   </div>
 </nav>
 
-<!-- ══ HOME PAGE ══ -->
+<!-- HOME PAGE -->
 <div class="page active" id="page-home">
   <section class="hero">
     <div class="hero-pattern"></div>
@@ -310,14 +298,12 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       </div>
     </div>
   </section>
-
   <div class="stats-bar">
     <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
     <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Categories</div></div>
     <div class="stat-item"><div class="stat-num">Fast</div><div class="stat-label">Delivery</div></div>
     <div class="stat-item"><div class="stat-num">COD</div><div class="stat-label">Cash on Delivery</div></div>
   </div>
-
   <div class="section">
     <div class="section-label">Why Kasheer</div>
     <div class="section-title">Built for Kashmir, by Kashmir</div>
@@ -331,7 +317,6 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <div class="feature-card"><div class="feature-icon">🛵</div><div class="feature-title">Be a Rider</div><div class="feature-desc">Join our delivery fleet and earn money on your schedule</div></div>
     </div>
   </div>
-
   <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 24px;">
     <div style="max-width:1000px;margin:0 auto;">
       <div class="section-label">What we deliver</div>
@@ -361,7 +346,6 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       </div>
     </div>
   </div>
-
   <section class="how-section">
     <div class="how-inner">
       <div class="section-label">How it works</div>
@@ -375,7 +359,6 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       </div>
     </div>
   </section>
-
   <div style="padding:72px 24px;">
     <div class="section-title" style="margin-bottom:10px;">Ready to get started?</div>
     <p class="section-sub" style="margin-bottom:36px;">Shop, sell, or deliver with Kasheer</p>
@@ -385,7 +368,6 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <div class="cta-card deliver"><span class="cta-emoji">🛵</span><div class="cta-title">Deliver & Earn</div><p class="cta-desc">Become a Kasheer delivery rider. Earn on your own schedule.</p><button class="btn btn-teal" onclick="showPage('rider-register')">Become a Rider</button></div>
     </div>
   </div>
-
   <footer>
     <div class="footer-logo">Kasheer</div>
     <div class="footer-kashmiri">کٲشِر</div>
@@ -399,7 +381,50 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </footer>
 </div>
 
-<!-- ══ STORE PAGE ══ -->
+<!-- AUTH PAGE (Login + Signup) -->
+<div class="page" id="page-auth">
+  <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px;">
+    <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:14px;">← Back</button>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">My Account</h1>
+  </div>
+  <div style="max-width:420px;margin:0 auto;padding:28px 24px;">
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+      <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+    <!-- LOGIN -->
+    <div id="auth-login">
+      <div class="err-box" id="login-err"></div>
+      <div class="success-box" id="login-success"></div>
+      <div class="form-row"><label>Email</label><input type="email" id="login-email" placeholder="your@email.com"></div>
+      <div class="form-row"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••"></div>
+      <button class="submit-btn" onclick="customerLogin()">Login</button>
+      <p style="margin-top:16px;font-size:13px;color:var(--muted);text-align:center;">New to Kasheer? <a href="#" onclick="switchAuthTab('signup')" style="color:var(--teal);font-weight:600;">Create account</a></p>
+    </div>
+    <!-- SIGNUP -->
+    <div id="auth-signup" style="display:none;">
+      <div class="err-box" id="signup-err"></div>
+      <div class="success-box" id="signup-success"></div>
+      <div class="form-row"><label>Full Name</label><input type="text" id="signup-name" placeholder="Your full name"></div>
+      <div class="form-row"><label>Email</label><input type="email" id="signup-email" placeholder="your@email.com"></div>
+      <div class="form-row"><label>Phone</label><input type="tel" id="signup-phone" placeholder="+91 9999999999"></div>
+      <div class="form-row"><label>Password</label><input type="password" id="signup-pass" placeholder="Create a password (min 6 chars)"></div>
+      <button class="submit-btn" onclick="customerSignup()">Create Account</button>
+      <p style="margin-top:16px;font-size:13px;color:var(--muted);text-align:center;">Already have an account? <a href="#" onclick="switchAuthTab('login')" style="color:var(--teal);font-weight:600;">Login</a></p>
+    </div>
+    <!-- LOGGED IN STATE -->
+    <div id="auth-loggedin" style="display:none;text-align:center;">
+      <div style="font-size:64px;margin-bottom:16px;">👤</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:8px;" id="loggedin-name">Welcome!</h3>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:24px;" id="loggedin-email"></p>
+      <button class="submit-btn" style="background:#F44336;margin-bottom:12px;" onclick="customerLogout()">Logout</button>
+      <br>
+      <button class="my-orders-btn" onclick="showPage('myorders')">View My Orders</button>
+    </div>
+  </div>
+</div>
+
+<!-- STORE PAGE -->
 <div class="page" id="page-store">
   <div class="store-top">
     <h1>Kasheer Store <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;opacity:0.5">کٲشِر</span></h1>
@@ -414,7 +439,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- ══ CART + CHECKOUT PAGE ══ -->
+<!-- CART + CHECKOUT PAGE -->
 <div class="page" id="page-cart">
   <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px;">
     <button onclick="showPage('store')" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:14px;">← Back</button>
@@ -423,7 +448,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div class="cart-wrap" id="cart-content"></div>
 </div>
 
-<!-- ══ MY ORDERS PAGE ══ -->
+<!-- MY ORDERS PAGE -->
 <div class="page" id="page-myorders">
   <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px;">
     <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:14px;">← Back</button>
@@ -434,18 +459,15 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <div class="seller-login-wrap" style="margin-top:0;">
         <div style="font-size:48px;margin-bottom:14px;">📦</div>
         <h2>Track Your Orders</h2>
-        <p style="font-size:14px;color:var(--muted);margin-bottom:28px;">Login to view your order history</p>
-        <div class="err-box" id="orders-login-err"></div>
-        <div class="field"><label>Email</label><input type="email" id="orders-email" placeholder="your@email.com"></div>
-        <div class="field"><label>Password</label><input type="password" id="orders-password" placeholder="••••••••"></div>
-        <button class="submit-btn" onclick="loadMyOrders()">View My Orders</button>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:28px;">Login to view your order history and track live status</p>
+        <button class="submit-btn" onclick="showPage('auth')">Login to View Orders</button>
       </div>
     </div>
     <div id="orders-list-view" style="display:none;"></div>
   </div>
 </div>
 
-<!-- ══ SELLER PAGE ══ -->
+<!-- SELLER PAGE -->
 <div class="page" id="page-seller">
   <div id="seller-login-view">
     <div class="seller-login-wrap">
@@ -480,7 +502,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- ══ SELLER REGISTER PAGE ══ -->
+<!-- SELLER REGISTER -->
 <div class="page" id="page-seller-register">
   <div class="reg-wrap">
     <button onclick="showPage('home')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:24px;">← Back</button>
@@ -512,7 +534,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- ══ RIDER REGISTER PAGE ══ -->
+<!-- RIDER REGISTER -->
 <div class="page" id="page-rider-register">
   <div class="reg-wrap">
     <button onclick="showPage('home')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:24px;">← Back</button>
@@ -534,13 +556,13 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
           <option value="walking">Walking (under 1km)</option>
         </select>
       </div>
-      <div class="form-row"><label>Area (Zone in Srinagar)</label><input type="text" id="reg-rider-area" placeholder="e.g. Lal Chowk, Rajbagh, Bemina..."></div>
+      <div class="form-row"><label>Area in Srinagar</label><input type="text" id="reg-rider-area" placeholder="e.g. Lal Chowk, Rajbagh, Bemina..."></div>
       <button class="submit-btn" onclick="registerRider()">Register as Rider</button>
     </div>
   </div>
 </div>
 
-<!-- ══ COMPLAINTS & SUGGESTIONS PAGE ══ -->
+<!-- COMPLAINTS & SUGGESTIONS -->
 <div class="page" id="page-feedback">
   <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:28px;">
     <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:14px;">← Back</button>
@@ -560,7 +582,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
         <div class="success-box" id="complaint-success"></div>
         <div class="form-row"><label>Your Name</label><input type="text" id="complaint-name" placeholder="Full name"></div>
         <div class="form-row"><label>Phone / Email</label><input type="text" id="complaint-contact" placeholder="So we can follow up"></div>
-        <div class="form-row"><label>Order ID (if any)</label><input type="text" id="complaint-orderid" placeholder="Leave blank if not related to an order"></div>
+        <div class="form-row"><label>Order ID (if any)</label><input type="text" id="complaint-orderid" placeholder="Leave blank if not order related"></div>
         <div class="form-row"><label>Complaint</label><textarea id="complaint-msg" placeholder="Describe your issue in detail..."></textarea></div>
         <button class="submit-btn" onclick="submitComplaint()">Submit Complaint</button>
       </div>
@@ -568,7 +590,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
     <div id="feedback-suggestion" style="display:none;">
       <div class="feedback-card">
         <h3>Share a Suggestion</h3>
-        <p>Have an idea to make Kasheer better? We'd love to hear it.</p>
+        <p>Have an idea to make Kasheer better?</p>
         <div class="err-box" id="suggestion-err"></div>
         <div class="success-box" id="suggestion-success"></div>
         <div class="form-row"><label>Your Name</label><input type="text" id="suggestion-name" placeholder="Full name (optional)"></div>
@@ -579,7 +601,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- ══ ADMIN PAGE ══ -->
+<!-- ADMIN PAGE -->
 <div class="page" id="page-admin">
   <div id="admin-login-view">
     <div class="seller-login-wrap">
@@ -595,23 +617,21 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div id="admin-dash-view" style="display:none;">
     <div class="admin-wrap">
       <div class="admin-header">
-        <div>
-          <h2>Kasheer Management</h2>
-          <p>Admin Dashboard — Full Control</p>
-        </div>
+        <div><h2>Kasheer Management</h2><p>Admin Dashboard — Full Control</p></div>
         <button class="logout-btn" onclick="adminLogout()">Logout</button>
       </div>
-      <div class="admin-stats" id="admin-stats-row">
+      <div class="admin-stats">
         <div class="admin-stat"><div class="admin-stat-num" id="adm-stores">-</div><div class="admin-stat-label">Stores</div></div>
         <div class="admin-stat"><div class="admin-stat-num" id="adm-riders">-</div><div class="admin-stat-label">Riders</div></div>
         <div class="admin-stat"><div class="admin-stat-num" id="adm-orders">-</div><div class="admin-stat-label">Orders</div></div>
-        <div class="admin-stat"><div class="admin-stat-num" id="adm-pending">-</div><div class="admin-stat-label">Pending Approval</div></div>
+        <div class="admin-stat"><div class="admin-stat-num" id="adm-pending">-</div><div class="admin-stat-label">Pending</div></div>
       </div>
       <div class="admin-tabs">
-        <button class="admin-tab active" onclick="switchAdminTab('stores')">🏪 Stores</button>
-        <button class="admin-tab" onclick="switchAdminTab('riders')">🛵 Riders</button>
-        <button class="admin-tab" onclick="switchAdminTab('orders')">📦 Orders</button>
-        <button class="admin-tab" onclick="switchAdminTab('verifications')">✅ Verifications</button>
+        <button class="admin-tab active" onclick="switchAdminTab('stores',this)">🏪 Stores</button>
+        <button class="admin-tab" onclick="switchAdminTab('riders',this)">🛵 Riders</button>
+        <button class="admin-tab" onclick="switchAdminTab('orders',this)">📦 Orders</button>
+        <button class="admin-tab" onclick="switchAdminTab('verifications',this)">✅ Verifications</button>
+        <button class="admin-tab" onclick="switchAdminTab('complaints',this)">💬 Complaints</button>
       </div>
       <div id="admin-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
     </div>
@@ -622,9 +642,8 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 const API='https://kasheer-backend.onrender.com/api';
 const ADMIN_EMAIL='kasheerapp@kasheer.com';
 const ADMIN_PASS='Allah786';
-const SENDGRID_NOTIFY='kasheerapp@kasheer.com'; // complaints go here
 
-// ── IMAGES ──
+// ── PRODUCT IMAGES ──
 const IMGS={
   fr1:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Shoot.jpg/320px-Banana-Shoot.jpg',
   fr2:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg',
@@ -744,7 +763,6 @@ const GROCERY_CATEGORIES=[
     {id:"pc3",name:"Dove Shampoo 340ml",price:199,description:"Nourishing shampoo"},
     {id:"pc4",name:"Head & Shoulders 340ml",price:220,description:"Anti-dandruff shampoo"},
     {id:"pc5",name:"Dettol Hand Wash 200ml",price:65,description:"Antibacterial wash"},
-    {id:"pc6",name:"Durex Condoms 3pcs",price:99,description:"Protection"},
   ]},
   {id:"baby",title:"Baby Care",icon:"👶",products:[
     {id:"bb1",name:"Pampers Diapers S 56pcs",price:499,description:"Soft dry diapers"},
@@ -831,7 +849,6 @@ const GROCERY_CATEGORIES=[
   ]},
 ];
 
-// Apply images
 GROCERY_CATEGORIES.forEach(cat=>cat.products.forEach(p=>{p.img=IMGS[p.id]||'';}));
 
 // ── STATE ──
@@ -839,17 +856,134 @@ let cart=JSON.parse(localStorage.getItem('kasheer_cart')||'[]');
 let activeCategory='All';
 let sellerToken=localStorage.getItem('seller_token')||null;
 let customerToken=localStorage.getItem('customer_token')||null;
-let allProducts=[];
+let customerUser=JSON.parse(localStorage.getItem('customer_user')||'null');
 let adminToken=localStorage.getItem('admin_token')||null;
+let allProducts=[];
+let deliveryCoords={lat:null,lon:null};
+let deliveryFee=50;
+let orderPollingInterval=null;
+
+// ── DELIVERY FEE CALCULATION (matches app logic) ──
+function calcDeliveryFee(distKm){
+  if(distKm<=1)return 15;
+  if(distKm<=1.5)return 15;
+  if(distKm<=2)return Math.round(15+(distKm-1.5)*20);
+  return 25;
+}
 
 // ── MENU ──
 function openMenu(){document.getElementById('side-menu').classList.add('open');document.getElementById('menu-overlay').classList.add('show');}
 function closeMenu(){document.getElementById('side-menu').classList.remove('open');document.getElementById('menu-overlay').classList.remove('show');}
 function navTo(page){closeMenu();showPage(page);}
 
+// ── UPDATE UI FOR AUTH STATE ──
+function updateAuthUI(){
+  const navBtn=document.getElementById('nav-auth-btn');
+  const sideInfo=document.getElementById('side-user-info');
+  const sideLabel=document.getElementById('side-auth-label');
+  const sideIcon=document.getElementById('side-auth-icon');
+  if(customerUser){
+    navBtn.textContent=customerUser.name?.split(' ')[0]||'Account';
+    sideInfo.classList.add('show');
+    document.getElementById('side-user-email').textContent=customerUser.email||'';
+    document.getElementById('side-user-role').textContent='Customer';
+    sideLabel.textContent='My Account';
+    sideIcon.textContent='✅';
+  } else {
+    navBtn.textContent='Login';
+    sideInfo.classList.remove('show');
+    sideLabel.textContent='Login / Sign Up';
+    sideIcon.textContent='👤';
+  }
+}
+
 // ── PAGE NAV ──
-function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');if(p==='store')initStore();if(p==='cart')renderCart();if(p==='seller')initSeller();if(p==='admin')initAdmin();window.scrollTo(0,0);}
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  if(p==='store')initStore();
+  if(p==='cart')renderCart();
+  if(p==='seller')initSeller();
+  if(p==='admin')initAdmin();
+  if(p==='myorders')initMyOrders();
+  if(p==='auth')initAuthPage();
+  window.scrollTo(0,0);
+}
 function goShop(c){activeCategory=c;showPage('store');}
+
+// ── AUTH PAGE ──
+function switchAuthTab(tab){
+  document.querySelectorAll('.auth-tab').forEach((t,i)=>t.classList.toggle('active',['login','signup'][i]===tab));
+  document.getElementById('auth-login').style.display=tab==='login'?'block':'none';
+  document.getElementById('auth-signup').style.display=tab==='signup'?'block':'none';
+  document.getElementById('auth-loggedin').style.display='none';
+}
+function initAuthPage(){
+  if(customerUser){
+    document.getElementById('auth-login').style.display='none';
+    document.getElementById('auth-signup').style.display='none';
+    document.getElementById('auth-loggedin').style.display='block';
+    document.getElementById('loggedin-name').textContent='Welcome, '+(customerUser.name||'User')+'!';
+    document.getElementById('loggedin-email').textContent=customerUser.email||'';
+  } else {
+    switchAuthTab('login');
+  }
+}
+
+async function customerLogin(){
+  const email=document.getElementById('login-email').value;
+  const pass=document.getElementById('login-pass').value;
+  const errEl=document.getElementById('login-err');
+  const sucEl=document.getElementById('login-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!email||!pass){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
+  try{
+    const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
+    const data=await res.json();
+    if(!data.success)throw new Error(data.message||'Login failed');
+    customerToken=data.data.token;
+    customerUser=data.data.user;
+    localStorage.setItem('customer_token',customerToken);
+    localStorage.setItem('customer_user',JSON.stringify(customerUser));
+    updateAuthUI();
+    sucEl.textContent='Welcome back, '+(customerUser.name||'User')+'!';
+    sucEl.style.display='block';
+    setTimeout(()=>initAuthPage(),800);
+  }catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
+}
+
+async function customerSignup(){
+  const name=document.getElementById('signup-name').value;
+  const email=document.getElementById('signup-email').value;
+  const phone=document.getElementById('signup-phone').value;
+  const pass=document.getElementById('signup-pass').value;
+  const errEl=document.getElementById('signup-err');
+  const sucEl=document.getElementById('signup-success');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!name||!email||!phone||!pass){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
+  if(pass.length<6){errEl.textContent='Password must be at least 6 characters';errEl.style.display='block';return;}
+  try{
+    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass,name,phone,role:'customer'})});
+    const data=await res.json();
+    if(!data.success)throw new Error(data.message||'Signup failed');
+    customerToken=data.data.token;
+    customerUser=data.data.user;
+    localStorage.setItem('customer_token',customerToken);
+    localStorage.setItem('customer_user',JSON.stringify(customerUser));
+    updateAuthUI();
+    sucEl.textContent='Account created! Welcome to Kasheer, '+name+'!';
+    sucEl.style.display='block';
+    setTimeout(()=>initAuthPage(),1000);
+  }catch(e){errEl.textContent=e.message||'Signup failed';errEl.style.display='block';}
+}
+
+function customerLogout(){
+  customerToken=null;customerUser=null;
+  localStorage.removeItem('customer_token');
+  localStorage.removeItem('customer_user');
+  updateAuthUI();
+  initAuthPage();
+}
 
 // ── STORE ──
 function initStore(){renderCategoryBar();renderProducts();tryBackend();}
@@ -902,53 +1036,74 @@ function changeBQty(pid,delta){const id='b_'+pid;const i=cart.find(c=>c.id===id)
 function saveCart(){localStorage.setItem('kasheer_cart',JSON.stringify(cart));}
 function updateCartBar(){const count=cart.reduce((s,i)=>s+i.quantity,0);const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);document.getElementById('cart-count').textContent=count;document.getElementById('cart-total').textContent=total;document.getElementById('cart-bar').className='cart-bar'+(count>0?' visible':'');}
 
+// ── GPS + DELIVERY FEE ──
+function getGPS(){
+  const btn=document.getElementById('gps-btn');
+  const badge=document.getElementById('delivery-fee-badge');
+  if(!navigator.geolocation){alert('GPS not supported on this device');return;}
+  btn.textContent='📍 Getting your location...';
+  btn.disabled=true;
+  navigator.geolocation.getCurrentPosition(pos=>{
+    deliveryCoords.lat=pos.coords.latitude;
+    deliveryCoords.lon=pos.coords.longitude;
+    // Srinagar city center coords for distance calc (34.0837, 74.7973)
+    const storeLat=34.0837,storeLon=74.7973;
+    const R=6371;
+    const dLat=(storeLat-deliveryCoords.lat)*Math.PI/180;
+    const dLon=(storeLon-deliveryCoords.lon)*Math.PI/180;
+    const a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(deliveryCoords.lat*Math.PI/180)*Math.cos(storeLat*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
+    const dist=R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+    deliveryFee=calcDeliveryFee(dist);
+    btn.textContent='📍 Location captured!';
+    badge.textContent=`🛵 Delivery fee: ₹${deliveryFee} (${dist.toFixed(1)}km away)`;
+    badge.style.display='block';
+    renderCart();
+  },err=>{
+    btn.textContent='📍 Use My Location';
+    btn.disabled=false;
+    if(err.code===1)alert('Please allow location access for accurate delivery fee');
+  });
+}
+
 // ── CART + CHECKOUT ──
 function renderCart(){
   const el=document.getElementById('cart-content');
   if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty<br><br><button class="btn btn-teal" onclick="showPage('store')" style="margin-top:16px;">Start Shopping</button></div>`;return;}
-  const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);const delivery=50;
+  const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);
+  const total=subtotal+deliveryFee+5; // +5 platform fee
   let html=cart.map(i=>{const thumb=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';return `<div class="cart-item"><div class="cart-item-thumb">${thumb}</div><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">₹${i.price} × ${i.quantity} = ₹${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cartQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cartQty('${i.id}',1)">+</button></div></div>`;}).join('');
-  html+=`<div class="cart-summary"><div class="summary-row"><span>Subtotal</span><span>₹${subtotal}</span></div><div class="summary-row"><span>Delivery</span><span>₹${delivery}</span></div><div class="summary-row total"><span>Total</span><span>₹${subtotal+delivery}</span></div></div>`;
+  html+=`<div class="cart-summary">
+    <div class="summary-row"><span>Subtotal</span><span>₹${subtotal}</span></div>
+    <div class="summary-row"><span>Delivery Fee</span><span>₹${deliveryFee}</span></div>
+    <div class="summary-row"><span>Platform Fee</span><span>₹5</span></div>
+    <div class="summary-row total"><span>Total</span><span>₹${total}</span></div>
+  </div>`;
   html+=`<div class="checkout-form"><h3>Delivery Details</h3>
     <div id="checkout-err" class="err-box"></div>
-    <div id="checkout-success" class="order-success" style="display:none;"><div class="tick">✅</div><h3>Order Placed!</h3><p>Your order has been placed successfully. The nearest store will confirm shortly.<br><br>You'll get a notification once it's accepted.</p><button class="my-orders-btn" onclick="showPage('myorders')">Track My Orders</button></div>
+    <div id="checkout-success" class="order-success" style="display:none;">
+      <div class="tick">✅</div>
+      <h3>Order Placed!</h3>
+      <p>Your order is being routed to the nearest store. You will be notified once accepted.<br><br>Track your order below.</p>
+      <button class="my-orders-btn" onclick="showPage('myorders')">Track My Orders</button>
+    </div>
     <div id="checkout-fields">
-      <div class="form-row"><label>Your Name</label><input type="text" id="co-name" placeholder="Full name"></div>
+      <button class="gps-btn" id="gps-btn" onclick="getGPS()">📍 Use My Location for Accurate Delivery Fee</button>
+      <div class="delivery-fee-badge" id="delivery-fee-badge"></div>
+      <div class="form-row"><label>Your Name</label><input type="text" id="co-name" placeholder="Full name" value="${customerUser?.name||''}"></div>
       <div class="form-row"><label>Phone Number</label><input type="tel" id="co-phone" placeholder="+91 9999999999"></div>
       <div class="form-row"><label>Delivery Address</label><textarea id="co-address" placeholder="House no., street, area, landmark..."></textarea></div>
       <div class="form-row"><label>Payment Method</label>
         <select id="co-payment">
           <option value="cod">Cash on Delivery</option>
-          <option value="online">Online Payment</option>
         </select>
       </div>
-      <div class="form-row"><label>Email (optional — for order updates)</label><input type="email" id="co-email" placeholder="your@email.com"></div>
-      <div id="auth-notice" style="background:var(--teal-light);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--teal-dark);margin-bottom:14px;display:none;">You are not logged in. Your order will be placed as a guest. <a href="#" onclick="showCheckoutLogin()" style="font-weight:700;color:var(--teal-dark);">Login for order tracking →</a></div>
-      <button class="place-order-btn" id="place-btn" onclick="placeOrder()">Place Order — ₹${subtotal+delivery}</button>
+      ${!customerUser?`<div style="background:var(--teal-light);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--teal-dark);margin-bottom:14px;">Login for order tracking. <a href="#" onclick="showPage('auth')" style="font-weight:700;">Login →</a></div>`:''}
+      <button class="place-order-btn" id="place-btn" onclick="placeOrder()">Place Order — ₹${total}</button>
     </div>
   </div>`;
   el.innerHTML=html;
-  if(!customerToken)document.getElementById('auth-notice').style.display='block';
 }
 function cartQty(id,delta){const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderCart();updateCartBar();}
-
-function showCheckoutLogin(){
-  const fields=document.getElementById('checkout-fields');
-  fields.insertAdjacentHTML('afterbegin',`<div style="background:#E3F2FD;border-radius:10px;padding:16px;margin-bottom:16px;"><p style="font-size:13px;font-weight:600;margin-bottom:10px;">Login to your account</p><div class="form-row"><input type="email" id="co-login-email" placeholder="Email"></div><div class="form-row"><input type="password" id="co-login-pass" placeholder="Password"></div><button class="submit-btn" style="padding:10px;" onclick="checkoutLogin()">Login</button></div>`);
-  document.getElementById('auth-notice').style.display='none';
-}
-
-async function checkoutLogin(){
-  const email=document.getElementById('co-login-email')?.value;
-  const pass=document.getElementById('co-login-pass')?.value;
-  if(!email||!pass)return;
-  try{
-    const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
-    const data=await res.json();
-    if(data.success){customerToken=data.data.token;localStorage.setItem('customer_token',customerToken);document.getElementById('auth-notice').style.display='none';alert('Logged in successfully!');}
-    else alert('Login failed: '+data.message);
-  }catch(e){alert('Login failed');}
-}
 
 async function placeOrder(){
   const name=document.getElementById('co-name')?.value;
@@ -957,26 +1112,35 @@ async function placeOrder(){
   const payment=document.getElementById('co-payment')?.value;
   const errEl=document.getElementById('checkout-err');
   errEl.style.display='none';
-  if(!name||!phone||!address){errEl.textContent='Please fill in your name, phone, and delivery address';errEl.style.display='block';return;}
+  if(!name||!phone||!address){errEl.textContent='Please fill in name, phone, and delivery address';errEl.style.display='block';return;}
   if(cart.length===0){errEl.textContent='Your cart is empty';errEl.style.display='block';return;}
   const btn=document.getElementById('place-btn');btn.disabled=true;btn.textContent='Placing order...';
   const items=cart.map(i=>({name:i.name,price:i.price,quantity:i.quantity,product_id:i.type==='backend'?i.id.replace('b_',''):null}));
   const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);
   try{
     if(customerToken){
-      // Logged in — use real API
       const res=await fetch(API+'/orders/place',{
         method:'POST',
         headers:{'Content-Type':'application/json','Authorization':'Bearer '+customerToken},
-        body:JSON.stringify({items,delivery_address:address,delivery_phone:phone,payment_method:payment,delivery_fee:50,is_grocery:true,tip_rider:0,tip_platform:0})
+        body:JSON.stringify({
+          items,
+          delivery_address:address,
+          delivery_phone:phone,
+          payment_method:payment,
+          delivery_fee:deliveryFee,
+          delivery_latitude:deliveryCoords.lat,
+          delivery_longitude:deliveryCoords.lon,
+          is_grocery:true,
+          tip_rider:0,
+          tip_platform:0
+        })
       });
       const data=await res.json();
       if(data.success){orderPlacedSuccess();}
       else{errEl.textContent=data.message||'Order failed. Please try again.';errEl.style.display='block';btn.disabled=false;btn.textContent='Place Order';}
     } else {
-      // Guest — simulate success with a delay (store to localStorage for tracking)
       await new Promise(r=>setTimeout(r,1200));
-      const guestOrder={id:'GUEST_'+Date.now(),items,address,phone,name,payment,total:subtotal+50,status:'pending',created_at:new Date().toISOString()};
+      const guestOrder={id:'GUEST_'+Date.now(),items,address,phone,name,payment,total:subtotal+deliveryFee+5,status:'pending',created_at:new Date().toISOString()};
       const guestOrders=JSON.parse(localStorage.getItem('guest_orders')||'[]');
       guestOrders.unshift(guestOrder);localStorage.setItem('guest_orders',JSON.stringify(guestOrders));
       orderPlacedSuccess();
@@ -991,28 +1155,122 @@ function orderPlacedSuccess(){
 }
 
 // ── MY ORDERS ──
-async function loadMyOrders(){
-  const email=document.getElementById('orders-email')?.value;
-  const pass=document.getElementById('orders-password')?.value;
-  const errEl=document.getElementById('orders-login-err');
-  errEl.style.display='none';
-  if(!email||!pass){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
-  try{
-    const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
-    const data=await res.json();
-    if(!data.success)throw new Error(data.message||'Login failed');
-    customerToken=data.data.token;localStorage.setItem('customer_token',customerToken);
+function initMyOrders(){
+  if(customerToken){
     document.getElementById('orders-login-prompt').style.display='none';
     document.getElementById('orders-list-view').style.display='block';
-    const ordersRes=await fetch(API+'/orders/my-orders',{headers:{Authorization:'Bearer '+customerToken}});
-    const ordersData=await ordersRes.json();
-    const orders=ordersData.success?(ordersData.data||[]):[];
-    // Also get guest orders
+    loadMyOrders();
+  } else {
+    document.getElementById('orders-login-prompt').style.display='block';
+    document.getElementById('orders-list-view').style.display='none';
+  }
+}
+
+async function loadMyOrders(){
+  const el=document.getElementById('orders-list-view');
+  el.innerHTML='<div class="loading"><div class="spinner"></div>Loading your orders...</div>';
+  try{
+    const res=await fetch(API+'/orders/my-orders',{headers:{Authorization:'Bearer '+customerToken}});
+    const data=await res.json();
+    const orders=data.success?(data.data||[]):[];
     const guestOrders=JSON.parse(localStorage.getItem('guest_orders')||'[]');
     const allOrders=[...orders,...guestOrders];
-    if(!allOrders.length){document.getElementById('orders-list-view').innerHTML='<div class="empty">No orders yet. Start shopping!</div>';return;}
-    document.getElementById('orders-list-view').innerHTML=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:18px;">Your Orders</h3><div class="orders-list">${allOrders.map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${(o.id||'').toString().slice(0,8).toUpperCase()}</span><span class="order-status s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div class="order-amount">₹${o.total_amount||o.total||0}</div><div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>${o.delivery_address?`<div style="font-size:12px;color:var(--muted);margin-top:4px;">📍 ${o.delivery_address}</div>`:''}</div>`).join('')}</div>`;
-  }catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
+    if(!allOrders.length){el.innerHTML='<div class="empty">No orders yet. Start shopping!</div>';return;}
+    el.innerHTML=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:18px;">Your Orders</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Click any order to track it live</p>
+    <div class="orders-list" id="orders-list-container">${allOrders.map(o=>orderCardHTML(o)).join('')}</div>`;
+  }catch(e){el.innerHTML='<div class="empty">Could not load orders. Please try again.</div>';}
+}
+
+function orderCardHTML(o){
+  const statusLabels={
+    pending:'⏳ Pending',
+    accepted_by_store:'✅ Accepted by Store',
+    partial:'⚠️ Partial Order',
+    preparing:'👨‍🍳 Preparing',
+    ready_for_pickup:'📦 Ready for Pickup',
+    waiting_for_rider:'🔍 Finding Rider',
+    assigned_to_rider:'🛵 Rider Assigned',
+    picked_up:'🚀 On the Way',
+    delivered:'🎉 Delivered',
+    cancelled:'❌ Cancelled',
+  };
+  const trackSteps=[
+    {key:'accepted_by_store',label:'Store Accepted'},
+    {key:'preparing',label:'Preparing'},
+    {key:'assigned_to_rider',label:'Rider Assigned'},
+    {key:'picked_up',label:'Picked Up'},
+    {key:'delivered',label:'Delivered'},
+  ];
+  const statusOrder=['pending','accepted_by_store','partial','preparing','ready_for_pickup','waiting_for_rider','assigned_to_rider','picked_up','delivered'];
+  const currentIdx=statusOrder.indexOf(o.status||'pending');
+  const trackHTML=trackSteps.map(s=>{
+    const sIdx=statusOrder.indexOf(s.key);
+    const done=sIdx<=currentIdx&&currentIdx>0;
+    const active=s.key===o.status;
+    return `<div class="track-step"><div class="track-dot ${done?'done':''} ${active?'active':''}"></div><span style="color:${done||active?'var(--teal-dark)':'var(--muted)'};font-weight:${active?'700':'400'}">${s.label}</span></div>`;
+  }).join('');
+  const isDelivered=o.status==='delivered';
+  const alreadyRated=localStorage.getItem('rated_'+o.id);
+  const ratingHTML=isDelivered&&!alreadyRated?`
+    <div class="rating-wrap show">
+      <p style="font-size:13px;font-weight:600;margin-bottom:4px;">Rate your experience</p>
+      <div class="stars" id="stars-${o.id}">
+        ${[1,2,3,4,5].map(n=>`<span class="star" onclick="rateOrder('${o.id}','${o.seller_id||''}',${n})" onmouseover="hoverStars('${o.id}',${n})" onmouseout="resetStars('${o.id}')">⭐</span>`).join('')}
+      </div>
+      <p style="font-size:11px;color:var(--muted);">Tap a star to rate the store</p>
+    </div>`:(isDelivered&&alreadyRated?`<div style="font-size:13px;color:var(--muted);margin-top:10px;">⭐ You rated this ${alreadyRated}/5</div>`:'');
+  return `<div class="order-card" onclick="toggleTracking('track-${o.id}')">
+    <div class="order-top">
+      <span class="order-id">#${(o.id||'').toString().slice(0,8).toUpperCase()}</span>
+      <span class="order-status s-${o.status||'pending'}">${statusLabels[o.status||'pending']||o.status}</span>
+    </div>
+    <div class="order-amount">₹${o.total_amount||o.total||0}</div>
+    <div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}</div>
+    ${o.delivery_address?`<div style="font-size:12px;color:var(--muted);margin-top:4px;">📍 ${o.delivery_address}</div>`:''}
+    <div class="order-tracking" id="track-${o.id}">
+      ${trackHTML}
+      ${ratingHTML}
+      ${o.id&&!o.id.toString().startsWith('GUEST')?`<button onclick="event.stopPropagation();refreshOrder('${o.id}')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;margin-top:10px;">↻ Refresh Status</button>`:''}
+    </div>
+  </div>`;
+}
+
+function toggleTracking(id){
+  const el=document.getElementById(id);
+  if(el)el.classList.toggle('show');
+}
+
+async function refreshOrder(orderId){
+  try{
+    const res=await fetch(API+'/orders/'+orderId,{headers:{Authorization:'Bearer '+customerToken}});
+    const data=await res.json();
+    if(data.success){
+      loadMyOrders();
+    }
+  }catch(e){}
+}
+
+function hoverStars(orderId,n){
+  const stars=document.querySelectorAll(`#stars-${orderId} .star`);
+  stars.forEach((s,i)=>s.style.opacity=i<n?'1':'0.3');
+}
+function resetStars(orderId){
+  const stars=document.querySelectorAll(`#stars-${orderId} .star`);
+  stars.forEach(s=>s.style.opacity='0.3');
+}
+async function rateOrder(orderId,sellerId,rating){
+  localStorage.setItem('rated_'+orderId,rating);
+  if(sellerId&&customerToken){
+    try{
+      await fetch(API+'/sellers/'+sellerId+'/rate',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+customerToken},
+        body:JSON.stringify({rating,order_id:orderId})
+      });
+    }catch(e){}
+  }
+  loadMyOrders();
 }
 
 // ── SELLER ──
@@ -1029,7 +1287,11 @@ async function showSellerDash(){
   document.getElementById('seller-login-view').style.display='none';document.getElementById('seller-dash-view').style.display='block';
   try{
     const h={Authorization:'Bearer '+sellerToken};
-    const[dashRes,prodsRes,ordersRes]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller-orders',{headers:h}).catch(()=>({json:()=>({success:false})}))]);
+    const[dashRes,prodsRes,ordersRes]=await Promise.all([
+      fetch(API+'/seller/dashboard',{headers:h}),
+      fetch(API+'/seller/products',{headers:h}),
+      fetch(API+'/orders/seller-orders',{headers:h}).catch(()=>({json:()=>({success:false})}))
+    ]);
     const dash=await dashRes.json(),prods=await prodsRes.json(),orders=await ordersRes.json().catch(()=>({success:false}));
     if(dash.success&&dash.data?.seller){const s=dash.data.seller;document.getElementById('dash-store-name').textContent=s.store_name||'Your Store';document.getElementById('dash-category').textContent=s.category||'';const st=document.getElementById('dash-status');st.textContent=s.is_approved?'Active':'Pending Approval';st.className='status-badge '+(s.is_approved?'badge-active':'badge-pending');}
     const prodList=prods.success?(prods.data||[]):[];const orderList=orders.success?(orders.data||[]):[];
@@ -1055,10 +1317,13 @@ async function registerSeller(){
   errEl.style.display='none';sucEl.style.display='none';
   if(!storeName||!ownerName||!email||!phone||!password||!address){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
   try{
-    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password,name:ownerName,phone,role:'seller',store_name:storeName,category,address})});
+    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password,name:ownerName,phone,role:'seller'})});
     const data=await res.json();
-    if(data.success){sucEl.textContent='✅ Store registered! Our team will review and approve within 24 hours.';sucEl.style.display='block';}
-    else{errEl.textContent=data.message||'Registration failed';errEl.style.display='block';}
+    if(data.success){
+      // Also register as seller
+      try{await fetch(API+'/seller/register',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+data.data.token},body:JSON.stringify({storeName,category,address,zoneId:'6a968aba-7b78-4e12-a023-0f3a2de89a75'})});}catch(e){}
+      sucEl.textContent='✅ Store registered! Our team will review and approve within 24 hours.';sucEl.style.display='block';
+    }else{errEl.textContent=data.message||'Registration failed';errEl.style.display='block';}
   }catch(e){errEl.textContent='Network error. Try again.';errEl.style.display='block';}
 }
 
@@ -1097,11 +1362,9 @@ async function submitComplaint(){
   const sucEl=document.getElementById('complaint-success');
   errEl.style.display='none';sucEl.style.display='none';
   if(!name||!msg){errEl.textContent='Please enter your name and complaint';errEl.style.display='block';return;}
-  // Store in localStorage and show success
   const complaints=JSON.parse(localStorage.getItem('kasheer_complaints')||'[]');
   complaints.push({type:'complaint',name,contact,orderId,msg,date:new Date().toISOString()});
   localStorage.setItem('kasheer_complaints',JSON.stringify(complaints));
-  // Also try to save to backend if available
   try{await fetch(API+'/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'complaint',name,contact,order_id:orderId,message:msg})});}catch(e){}
   sucEl.textContent='✅ Your complaint has been submitted. We will contact you within 24 hours.';
   sucEl.style.display='block';
@@ -1134,12 +1397,14 @@ async function adminLogin(){
     const data=await res.json();
     if(!data.success)throw new Error(data.message||'Login failed');
     adminToken=data.data.token;localStorage.setItem('admin_token',adminToken);
-    document.getElementById('admin-login-view').style.display='none';document.getElementById('admin-dash-view').style.display='block';
+    document.getElementById('admin-login-view').style.display='none';
+    document.getElementById('admin-dash-view').style.display='block';
     loadAdminData('stores');
   }catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
 }
 function adminLogout(){adminToken=null;localStorage.removeItem('admin_token');document.getElementById('admin-dash-view').style.display='none';document.getElementById('admin-login-view').style.display='block';}
-function switchAdminTab(tab){document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));event.target.classList.add('active');loadAdminData(tab);}
+function switchAdminTab(tab,el){document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');loadAdminData(tab);}
+function showAdminDash(){document.getElementById('admin-login-view').style.display='none';document.getElementById('admin-dash-view').style.display='block';loadAdminData('stores');}
 async function loadAdminData(tab){
   const el=document.getElementById('admin-content');
   el.innerHTML='<div class="loading"><div class="spinner"></div>Loading...</div>';
@@ -1150,55 +1415,41 @@ async function loadAdminData(tab){
       const stores=data.success?(data.data||[]):[];
       document.getElementById('adm-stores').textContent=stores.length;
       document.getElementById('adm-pending').textContent=stores.filter(s=>!s.is_approved).length;
-      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Store</th><th>Owner</th><th>Category</th><th>Status</th><th>Orders</th><th>Actions</th></tr></thead><tbody>${stores.map(s=>`<tr><td><strong>${s.store_name}</strong></td><td>${s.users?.name||'—'}</td><td>${s.category||'—'}</td><td><span class="order-status ${s.is_approved?'s-accepted_by_store':'s-pending'}">${s.is_approved?'Active':'Pending'}</span></td><td>${s.seller_order_count||0}</td><td>${!s.is_approved?`<button class="admin-action-btn btn-approve" onclick="adminApproveStore('${s.id}')">Approve</button>`:''}<button class="admin-action-btn btn-reject" onclick="adminDeleteStore('${s.id}')">Delete</button></td></tr>`).join('')}</tbody></table></div>`;
+      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Store</th><th>Category</th><th>Status</th><th>Rating</th><th>Orders</th><th>Actions</th></tr></thead><tbody>${stores.map(s=>`<tr><td><strong>${s.store_name}</strong><br><small style="color:var(--muted)">${s.address||''}</small></td><td>${s.category||'—'}</td><td><span class="order-status ${s.is_approved?'s-accepted_by_store':'s-pending'}">${s.is_approved?(s.is_open!==false?'Open':'Closed'):'Pending'}</span></td><td>${s.rating>0?'⭐'+Number(s.rating).toFixed(1):'No ratings'}</td><td>${s.seller_order_count||0}</td><td>${!s.is_approved?`<button class="admin-action-btn btn-approve" onclick="adminApproveStore('${s.id}')">Approve</button>`:''}<button class="admin-action-btn btn-reject" onclick="adminDeleteStore('${s.id}')">Delete</button></td></tr>`).join('')}</tbody></table></div>`;
     } else if(tab==='riders'){
       const res=await fetch(API+'/admin/riders',{headers:h});const data=await res.json();
       const riders=data.success?(data.data||[]):[];
       document.getElementById('adm-riders').textContent=riders.length;
-      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Rider</th><th>Vehicle</th><th>Status</th><th>Penalty</th><th>Actions</th></tr></thead><tbody>${riders.map(r=>`<tr><td><strong>${r.users?.name||'—'}</strong><br><small style="color:var(--muted)">${r.users?.email||''}</small></td><td>${r.vehicle_type||'—'}</td><td><span class="order-status ${r.is_approved?'s-accepted_by_store':'s-pending'}">${r.is_approved?'Active':r.is_approved===false&&r.ban_reason?'Banned':'Pending'}</span></td><td>${r.penalty_level>0?`Level ${r.penalty_level}`:'None'}</td><td>${!r.is_approved?`<button class="admin-action-btn btn-approve" onclick="adminApproveRider('${r.id}')">Approve</button>`:''}<button class="admin-action-btn btn-ban" onclick="adminBanRider('${r.id}')">Ban</button></td></tr>`).join('')}</tbody></table></div>`;
+      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Rider</th><th>Vehicle</th><th>Status</th><th>Penalty</th><th>Deliveries</th><th>Actions</th></tr></thead><tbody>${riders.map(r=>`<tr><td><strong>${r.name||'—'}</strong><br><small style="color:var(--muted)">${r.phone||''}</small></td><td>${r.vehicle_type||'—'}</td><td><span class="order-status ${r.is_approved?'s-accepted_by_store':'s-pending'}">${r.is_approved?'Active':r.ban_reason?'Banned':'Pending'}</span></td><td>${r.penalty_level>0?`⚠️ Level ${r.penalty_level}`:'None'}</td><td>${r.total_accepted||0}</td><td>${!r.is_approved&&!r.ban_reason?`<button class="admin-action-btn btn-approve" onclick="adminApproveRider('${r.id}')">Approve</button>`:''}<button class="admin-action-btn btn-ban" onclick="adminBanRider('${r.id}')">Ban</button></td></tr>`).join('')}</tbody></table></div>`;
     } else if(tab==='orders'){
       const res=await fetch(API+'/admin/orders',{headers:h});const data=await res.json();
       const orders=data.success?(data.data||[]):[];
       document.getElementById('adm-orders').textContent=orders.length;
-      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Store</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>${orders.slice(0,50).map(o=>`<tr><td><strong>#${o.id.slice(0,8).toUpperCase()}</strong></td><td>${o.users?.name||'Guest'}<br><small style="color:var(--muted)">${o.delivery_phone||''}</small></td><td>${o.sellers?.store_name||'—'}</td><td>₹${o.total_amount||0}</td><td><span class="order-status s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></td><td>${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</td></tr>`).join('')}</tbody></table></div>`;
+      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Order ID</th><th>Store</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>${orders.slice(0,50).map(o=>`<tr><td><strong>#${o.id.slice(0,8).toUpperCase()}</strong><br><small>${o.delivery_phone||''}</small></td><td>${o.sellers?.store_name||'—'}</td><td>₹${o.total_amount||0}</td><td><span class="order-status s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></td><td>${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</td></tr>`).join('')}</tbody></table></div>`;
     } else if(tab==='verifications'){
       const res=await fetch(API+'/admin/verifications',{headers:h});const data=await res.json();
       const verifs=data.success?(data.data||[]):[];
-      el.innerHTML=verifs.length?`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Store</th><th>Submitted</th><th>Actions</th></tr></thead><tbody>${verifs.map(v=>`<tr><td><strong>${v.sellers?.store_name||'—'}</strong></td><td>${new Date(v.created_at).toLocaleDateString()}</td><td><button class="admin-action-btn btn-approve" onclick="adminApproveVerif('${v.id}')">Approve</button><button class="admin-action-btn btn-reject" onclick="adminRejectVerif('${v.id}')">Reject</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No pending verifications.</div>';
-    }
-    // Also load complaints from localStorage for admin view
-    if(tab==='stores'){
+      el.innerHTML=verifs.length?`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Seller</th><th>Submitted</th><th>Actions</th></tr></thead><tbody>${verifs.map(v=>`<tr><td><strong>${v.sellers?.store_name||'—'}</strong></td><td>${new Date(v.created_at||v.submitted_at).toLocaleDateString()}</td><td><button class="admin-action-btn btn-approve" onclick="adminApproveVerif('${v.id}')">Approve</button><button class="admin-action-btn btn-reject" onclick="adminRejectVerif('${v.id}')">Reject</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No pending verifications.</div>';
+    } else if(tab==='complaints'){
       const complaints=JSON.parse(localStorage.getItem('kasheer_complaints')||'[]');
       const suggestions=JSON.parse(localStorage.getItem('kasheer_suggestions')||'[]');
-      if(complaints.length||suggestions.length){
-        el.innerHTML+=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin:28px 0 14px;">💬 Complaints & Suggestions</h3>`;
-        if(complaints.length)el.innerHTML+=`<div style="margin-bottom:14px;"><strong>Complaints (${complaints.length})</strong><div class="orders-list" style="margin-top:10px;">${complaints.map(c=>`<div class="order-card"><div class="order-top"><span class="order-id">${c.name}</span><span class="order-status s-pending">COMPLAINT</span></div><p style="font-size:13px;color:var(--muted);margin-top:4px;">${c.msg}</p><div class="order-date">${c.contact||''}${c.orderId?' | Order: '+c.orderId:''}</div></div>`).join('')}</div></div>`;
-        if(suggestions.length)el.innerHTML+=`<div><strong>Suggestions (${suggestions.length})</strong><div class="orders-list" style="margin-top:10px;">${suggestions.map(s=>`<div class="order-card"><div class="order-top"><span class="order-id">${s.name||'Anonymous'}</span><span class="order-status s-accepted_by_store">SUGGESTION</span></div><p style="font-size:13px;color:var(--muted);margin-top:4px;">${s.msg}</p></div>`).join('')}</div></div>`;
-      }
+      let html='';
+      if(complaints.length){html+=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:14px;">😤 Complaints (${complaints.length})</h3><div class="orders-list" style="margin-bottom:28px;">${complaints.map(c=>`<div class="order-card"><div class="order-top"><span class="order-id">${c.name}</span><span class="order-status s-pending">COMPLAINT</span></div><p style="font-size:13px;color:var(--text);margin:8px 0;">${c.msg}</p><div class="order-date">${c.contact?'📞 '+c.contact:''} ${c.orderId?'| Order: '+c.orderId:''} | ${new Date(c.date).toLocaleDateString()}</div></div>`).join('')}</div>`;}
+      if(suggestions.length){html+=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:14px;">💡 Suggestions (${suggestions.length})</h3><div class="orders-list">${suggestions.map(s=>`<div class="order-card"><div class="order-top"><span class="order-id">${s.name||'Anonymous'}</span><span class="order-status s-accepted_by_store">SUGGESTION</span></div><p style="font-size:13px;color:var(--text);margin:8px 0;">${s.msg}</p><div class="order-date">${new Date(s.date).toLocaleDateString()}</div></div>`).join('')}</div>`;}
+      if(!html)html='<div class="empty">No complaints or suggestions yet.</div>';
+      el.innerHTML=html;
     }
-  }catch(e){el.innerHTML='<div class="empty">Could not load data. Check your connection.</div>';}
+  }catch(e){el.innerHTML='<div class="empty">Could not load data. Check connection.</div>';}
 }
-async function adminApproveStore(id){
-  try{await fetch(API+'/admin/stores/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('stores');}catch(e){alert('Error approving store');}
-}
-async function adminDeleteStore(id){
-  if(!confirm('Delete this store?'))return;
-  try{await fetch(API+'/admin/stores/'+id,{method:'DELETE',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('stores');}catch(e){alert('Error deleting store');}
-}
-async function adminApproveRider(id){
-  try{await fetch(API+'/admin/riders/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('riders');}catch(e){alert('Error approving rider');}
-}
-async function adminBanRider(id){
-  if(!confirm('Ban this rider?'))return;
-  try{await fetch(API+'/admin/riders/'+id+'/ban',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('riders');}catch(e){alert('Error banning rider');}
-}
-async function adminApproveVerif(id){
-  try{await fetch(API+'/admin/verifications/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('verifications');}catch(e){alert('Error');}
-}
-async function adminRejectVerif(id){
-  try{await fetch(API+'/admin/verifications/'+id+'/reject',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('verifications');}catch(e){alert('Error');}
-}
+async function adminApproveStore(id){try{await fetch(API+'/admin/stores/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('stores');}catch(e){alert('Error');}}
+async function adminDeleteStore(id){if(!confirm('Delete this store and all its products?'))return;try{await fetch(API+'/admin/stores/'+id,{method:'DELETE',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('stores');}catch(e){alert('Error');}}
+async function adminApproveRider(id){try{await fetch(API+'/admin/riders/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('riders');}catch(e){alert('Error');}}
+async function adminBanRider(id){if(!confirm('Ban this rider?'))return;try{await fetch(API+'/admin/riders/'+id+'/ban',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('riders');}catch(e){alert('Error');}}
+async function adminApproveVerif(id){try{await fetch(API+'/admin/verifications/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('verifications');}catch(e){alert('Error');}}
+async function adminRejectVerif(id){try{await fetch(API+'/admin/verifications/'+id+'/reject',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('verifications');}catch(e){alert('Error');}}
 
+// ── INIT ──
+updateAuthUI();
 updateCartBar();
 </script>
 </body>
