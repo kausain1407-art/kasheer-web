@@ -3,1461 +3,650 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kasheer کٔشیٖر — Kashmir Super Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Kasheer کٲشِیر — Kashmir's Local Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Syne:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--teal:#00BCD4;--teal-dark:#006773;--teal-mid:#00838F;--teal-light:#E0F7FA;--orange:#FF6F00;--orange-light:#FFF3E0;--text:#0D1B1E;--muted:#5C7A80;--bg:#F4F8F9;--white:#FFFFFF;--border:#DCE8EB;--radius:18px;--radius-sm:12px;--shadow:0 4px 24px rgba(0,103,115,0.10);--shadow-lg:0 12px 48px rgba(0,103,115,0.16);}
+:root{--teal:#00BCD4;--teal-dark:#006773;--teal-mid:#00838F;--teal-light:#E0F7FA;--orange:#FF6F00;--text:#0D1B1E;--muted:#5C7A80;--bg:#F4F8F9;--white:#fff;--border:#DCE8EB;--r:18px;--rs:12px;}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px;}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--teal-dark);cursor:pointer;display:flex;align-items:center;gap:10px;}
-.nav-logo .ks{font-family:'Noto Nastaliq Urdu',serif;font-size:18px;color:var(--muted);font-weight:400;}
-.nav-links{display:flex;gap:6px;align-items:center;}
-.nav-btn{padding:9px 20px;border-radius:50px;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;}
-.nav-ghost{background:transparent;color:var(--text);}.nav-ghost:hover{background:var(--teal-light);color:var(--teal-dark);}
-.nav-orange{background:var(--orange);color:#fff;}.nav-orange:hover{background:#E65100;}
-.nav-teal{background:var(--teal);color:#fff;}.nav-teal:hover{background:var(--teal-dark);}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);}
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:62px;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--teal-dark);cursor:pointer;display:flex;align-items:center;gap:8px;}
+.nav-logo .ks{font-family:'Noto Nastaliq Urdu',serif;font-size:16px;color:var(--muted);font-weight:400;}
+.nav-links{display:flex;gap:6px;}
+.nb{padding:8px 18px;border-radius:50px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;}
+.nb-ghost{background:transparent;color:var(--text);}.nb-ghost:hover{background:var(--teal-light);color:var(--teal-dark);}
+.nb-orange{background:var(--orange);color:#fff;}.nb-orange:hover{background:#E65100;}
 .page{display:none;}.page.active{display:block;}
-.hamburger{width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;border:none;background:transparent;border-radius:10px;}
-.hamburger:hover{background:var(--teal-light);}
-.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;}
-.side-menu{position:fixed;top:0;left:-300px;width:280px;height:100vh;background:var(--white);z-index:500;transition:left 0.3s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;overflow-y:auto;}
-.side-menu.open{left:0;}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:499;display:none;}
-.overlay.show{display:block;}
-.sm-header{background:var(--teal-dark);padding:28px 24px;display:flex;align-items:center;justify-content:space-between;}
-.sm-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:700;}
-.sm-close{background:rgba(255,255,255,0.15);border:none;color:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:18px;}
-.sm-item{display:flex;align-items:center;gap:14px;padding:14px 24px;cursor:pointer;font-size:15px;font-weight:600;color:var(--text);transition:background 0.2s;border:none;background:none;width:100%;font-family:'Syne',sans-serif;text-align:left;}
-.sm-item:hover{background:var(--teal-light);color:var(--teal-dark);}
-.sm-divider{height:1px;background:var(--border);margin:8px 24px;}
-.sm-section{padding:8px 24px 4px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
 
 /* HERO */
-.hero{background:var(--teal-dark);background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Dal_lake_Srinagar_2.jpg/1280px-Dal_lake_Srinagar_2.jpg');background-size:cover;background-position:center;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;padding:90px 24px;position:relative;overflow:hidden;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,40,55,0.82) 0%,rgba(0,103,115,0.75) 100%);}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;}
-.hero-content{position:relative;z-index:1;max-width:700px;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:12px;font-weight:600;padding:6px 18px;border-radius:50px;margin-bottom:28px;letter-spacing:1px;text-transform:uppercase;}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:80px;line-height:1;color:#fff;margin-bottom:6px;font-weight:700;}
-.hero-ks{font-family:'Noto Nastaliq Urdu',serif;font-size:26px;color:rgba(255,255,255,0.5);margin-bottom:20px;direction:rtl;}
-.hero-sub{font-size:16px;color:rgba(255,255,255,0.78);line-height:1.75;margin-bottom:44px;max-width:540px;margin-left:auto;margin-right:auto;}
-.hero-modules{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.module-btn{display:flex;flex-direction:column;align-items:center;padding:14px 20px;border-radius:16px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;transition:all 0.22s;backdrop-filter:blur(8px);min-width:100px;}
-.module-btn:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.4);transform:translateY(-2px);}
-.module-btn .micon{font-size:28px;margin-bottom:6px;}
-.module-btn.active-mod{background:rgba(255,255,255,0.95);color:var(--teal-dark);border-color:transparent;}
-
-/* MODULE CARDS */
-.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
-.module-card{background:var(--white);border-radius:var(--radius);padding:32px 28px;border:1px solid var(--border);cursor:pointer;transition:all 0.25s;text-align:center;}
-.module-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--teal);}
-.mc-icon{font-size:48px;margin-bottom:16px;}
-.mc-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:6px;}
-.mc-sub{font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6;}
-.mc-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
-.badge-green{background:#E8F5E9;color:#2E7D32;}.badge-blue{background:#E3F2FD;color:#1565C0;}.badge-purple{background:#F3E5F5;color:#6A1B9A;}.badge-orange{background:#FFF3E0;color:#E65100;}.badge-pink{background:#FCE4EC;color:#880E4F;}
+.hero{background:var(--teal-dark);min-height:560px;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:44px 44px;}
+.hero-content{position:relative;z-index:1;max-width:620px;}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;padding:5px 16px;border-radius:50px;margin-bottom:24px;letter-spacing:1px;text-transform:uppercase;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:68px;line-height:1;color:#fff;font-weight:700;margin-bottom:4px;}
+.hero-ks{font-family:'Noto Nastaliq Urdu',serif;font-size:24px;color:rgba(255,255,255,0.4);direction:rtl;margin-bottom:22px;}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.72);line-height:1.75;margin-bottom:36px;max-width:460px;margin-left:auto;margin-right:auto;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;flex-direction:column;align-items:center;padding:12px 26px;border-radius:50px;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;}
+.btn-ks{font-family:'Noto Nastaliq Urdu',serif;font-size:10px;opacity:0.65;display:block;margin-top:2px;direction:rtl;}
+.btn-white{background:#fff;color:var(--teal-dark);}.btn-white:hover{background:var(--teal-light);}
+.btn-outline{background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.3);}.btn-outline:hover{background:rgba(255,255,255,0.18);}
+.btn-orange{background:var(--orange);color:#fff;}.btn-orange:hover{background:#E65100;}
+.btn-teal{background:var(--teal);color:#fff;}.btn-teal:hover{background:var(--teal-dark);}
 
 /* STATS */
 .stats-bar{background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:center;flex-wrap:wrap;}
-.stat-item{padding:22px 40px;text-align:center;border-right:1px solid var(--border);}
+.stat-item{padding:20px 36px;text-align:center;border-right:1px solid var(--border);}
 .stat-item:last-child{border-right:none;}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--teal-dark);}
-.stat-label{font-size:12px;color:var(--muted);font-weight:500;margin-top:2px;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--teal-dark);}
+.stat-label{font-size:11px;color:var(--muted);font-weight:500;margin-top:2px;}
 
-/* SECTION */
-.section{padding:80px 24px;max-width:1100px;margin:0 auto;}
+/* SECTIONS */
+.sec{padding:72px 24px;max-width:1000px;margin:0 auto;}
 .sec-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;text-align:center;}
-.sec-title{font-family:'Cormorant Garamond',serif;font-size:38px;text-align:center;color:var(--text);margin-bottom:10px;font-weight:700;line-height:1.2;}
-.sec-sub{font-size:15px;color:var(--muted);text-align:center;margin-bottom:52px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:36px;text-align:center;color:var(--text);margin-bottom:10px;font-weight:700;line-height:1.2;}
+.sec-sub{font-size:14px;color:var(--muted);text-align:center;margin-bottom:48px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;}
+.feat-card{background:var(--white);border-radius:var(--r);padding:28px 22px;border:1px solid var(--border);transition:all 0.22s;}
+.feat-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,103,115,0.12);border-color:var(--teal);}
+.feat-icon{width:48px;height:48px;border-radius:12px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
+.feat-title{font-size:15px;font-weight:700;margin-bottom:6px;}
+.feat-desc{font-size:13px;color:var(--muted);line-height:1.6;}
 
-/* MODULE PAGES */
-.mod-header{padding:36px 28px;position:relative;overflow:hidden;}
-.mod-header h1{font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;font-weight:700;margin-bottom:4px;}
-.mod-header p{font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:20px;}
-.mod-back{background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:18px;}
-.search-wrap{background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);border-radius:50px;padding:12px 20px;display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+/* HOW */
+.how-sec{background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:72px 24px;}
+.how-inner{max-width:860px;margin:0 auto;}
+.how-sec .sec-label{color:rgba(255,255,255,0.55);}
+.how-sec .sec-title{color:#fff;}
+.how-sec .sec-sub{color:rgba(255,255,255,0.55);}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.step{text-align:center;padding:18px;}
+.step-num{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,0.14);border:2px solid rgba(255,255,255,0.28);color:#fff;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+.step-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
+.step-desc{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;}
+
+/* CATS */
+.cats-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;}
+.cat-card{background:var(--white);border-radius:var(--rs);padding:18px 12px;text-align:center;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;}
+.cat-card:hover{border-color:var(--teal);background:var(--teal-light);transform:translateY(-2px);}
+.cat-icon{font-size:28px;margin-bottom:8px;display:block;}
+.cat-name{font-size:12px;font-weight:600;}
+
+/* CTA */
+.cta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;max-width:860px;margin:0 auto;}
+.cta-card{border-radius:var(--r);padding:36px 28px;}
+.cta-card.shop{background:var(--teal-dark);}
+.cta-card.sell{background:#FFF3E0;border:1.5px solid #FFD180;}
+.cta-card.ride{background:#1A237E;}
+.cta-emoji{font-size:40px;margin-bottom:16px;display:block;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:8px;}
+.cta-card.shop .cta-title,.cta-card.ride .cta-title{color:#fff;}
+.cta-card.sell .cta-title{color:var(--orange);}
+.cta-desc{font-size:13px;line-height:1.7;margin-bottom:22px;}
+.cta-card.shop .cta-desc,.cta-card.ride .cta-desc{color:rgba(255,255,255,0.65);}
+.cta-card.sell .cta-desc{color:#795548;}
+
+/* STORE */
+.store-top{background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px 24px 0;}
+.store-top h1{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:4px;}
+.store-top p{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:16px;}
+.search-wrap{background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);border-radius:50px;padding:11px 18px;display:flex;align-items:center;gap:10px;margin-bottom:18px;}
 .search-wrap input{background:none;border:none;outline:none;color:#fff;font-family:'Syne',sans-serif;font-size:14px;flex:1;}
-.search-wrap input::placeholder{color:rgba(255,255,255,0.45);}
-.cats-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:18px;scrollbar-width:none;}
+.search-wrap input::placeholder{color:rgba(255,255,255,0.4);}
+.cats-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:18px;scrollbar-width:none;}
 .cats-scroll::-webkit-scrollbar{display:none;}
-.cat-chip{flex-shrink:0;padding:8px 18px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Syne',sans-serif;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);transition:all 0.2s;white-space:nowrap;}
+.cat-chip{flex-shrink:0;padding:7px 16px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:'Syne',sans-serif;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);transition:all 0.2s;white-space:nowrap;}
 .cat-chip:hover,.cat-chip.active{background:#fff;color:var(--teal-dark);}
-.products-area{padding:24px 28px 120px;}
-.sec-heading{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);margin:28px 0 16px;}
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;}
-.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;cursor:pointer;}
-.product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.prod-img{width:100%;height:148px;object-fit:contain;display:block;background:#f9f9f9;padding:6px;}
-.prod-ph{width:100%;height:148px;background:linear-gradient(135deg,var(--teal-light),#fff);display:flex;align-items:center;justify-content:center;font-size:40px;}
-.prod-body{padding:12px;}
-.prod-name{font-size:13px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.prod-desc{font-size:11px;color:var(--muted);margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.products-area{padding:20px 24px 120px;}
+.sec-heading{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;color:var(--text);margin:24px 0 14px;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;}
+.prod-card{background:var(--white);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:all 0.2s;}
+.prod-card:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,103,115,0.1);}
+.prod-img{width:100%;height:145px;object-fit:cover;display:block;background:#f0f0f0;}
+.prod-ph{width:100%;height:145px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:40px;}
+.prod-body{padding:11px;}
+.prod-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.prod-desc{font-size:11px;color:var(--muted);margin-bottom:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .prod-foot{display:flex;align-items:center;justify-content:space-between;}
-.prod-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--teal-dark);}
-.add-btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
-.qty-row{display:flex;align-items:center;gap:6px;}
-.qty-btn{width:26px;height:26px;border-radius:8px;background:var(--teal-light);border:none;color:var(--teal-dark);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.prod-price{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--teal-dark);}
+.add-btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
+.add-btn:hover{background:var(--teal-dark);}
+.qty-row{display:flex;align-items:center;gap:5px;}
+.qty-btn{width:24px;height:24px;border-radius:7px;background:var(--teal-light);border:none;color:var(--teal-dark);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 .qty-btn:hover{background:var(--teal);color:#fff;}
-.qty-num{font-size:14px;font-weight:700;min-width:18px;text-align:center;}
+.qty-num{font-size:13px;font-weight:700;min-width:16px;text-align:center;}
 
 /* CART BAR */
-.cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--teal-dark);color:#fff;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;z-index:100;transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -8px 32px rgba(0,103,115,0.3);}
+.cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--teal-dark);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;z-index:100;transform:translateY(100%);transition:transform 0.32s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -6px 24px rgba(0,103,115,0.3);}
 .cart-bar.visible{transform:translateY(0);}
-.cart-bar-btn{background:#fff;color:var(--teal-dark);border:none;border-radius:50px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
+.cart-bar strong{font-family:'Cormorant Garamond',serif;font-size:17px;}
+.cart-bar-btn{background:#fff;color:var(--teal-dark);border:none;border-radius:50px;padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
 
 /* CART PAGE */
-.cart-wrap{max-width:620px;margin:0 auto;padding:28px 24px;}
-.cart-item{background:var(--white);border-radius:var(--radius-sm);padding:16px;display:flex;align-items:center;gap:14px;border:1px solid var(--border);margin-bottom:12px;}
-.ci-thumb{width:60px;height:60px;border-radius:10px;flex-shrink:0;overflow:hidden;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:22px;}
-.ci-thumb img{width:100%;height:100%;object-fit:contain;}
-.cart-summary{background:var(--white);border-radius:var(--radius);padding:22px;border:1px solid var(--border);margin-top:20px;}
-.sum-row{display:flex;justify-content:space-between;font-size:14px;padding:7px 0;color:var(--muted);}
-.sum-row.total{font-weight:700;font-size:17px;color:var(--text);border-top:1px solid var(--border);margin-top:8px;padding-top:16px;}
-.checkout-form{background:var(--white);border-radius:var(--radius);padding:24px;border:1px solid var(--border);margin-top:20px;}
-.checkout-form h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:18px;}
-.frow{margin-bottom:14px;}
-.frow label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;}
-.frow input,.frow select,.frow textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Syne',sans-serif;outline:none;transition:border 0.2s;background:var(--bg);color:var(--text);}
-.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--teal);background:#fff;}
-.frow textarea{resize:vertical;min-height:80px;}
-.place-btn{width:100%;padding:15px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:10px;}
-.place-btn:disabled{opacity:0.6;cursor:not-allowed;}
-.order-success{background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);text-align:center;margin-top:20px;}
-.order-success .tick{font-size:64px;margin-bottom:16px;}
-.order-success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;}
+.cart-wrap{max-width:600px;margin:0 auto;padding:24px;}
+.cart-item{background:var(--white);border-radius:var(--rs);padding:14px;display:flex;align-items:center;gap:12px;border:1px solid var(--border);margin-bottom:10px;}
+.cart-thumb{width:56px;height:56px;border-radius:9px;flex-shrink:0;overflow:hidden;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.cart-thumb img{width:100%;height:100%;object-fit:cover;}
+.cart-item-name{font-size:14px;font-weight:700;margin-bottom:2px;}
+.cart-item-price{font-size:12px;color:var(--teal-dark);font-weight:600;}
+.cart-summary{background:var(--white);border-radius:var(--r);padding:20px;border:1px solid var(--border);margin-top:18px;}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;color:var(--muted);}
+.sum-row.total{font-weight:700;font-size:16px;color:var(--text);border-top:1px solid var(--border);margin-top:8px;padding-top:14px;}
 
-/* FORMS */
-.form-wrap{max-width:500px;margin:0 auto;padding:40px 24px;}
-.form-card{background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);box-shadow:var(--shadow);}
-.form-card h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:8px;}
-.form-card p{font-size:14px;color:var(--muted);margin-bottom:28px;}
-.submit-btn{width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:8px;}
-.err-box{background:#FFEBEE;color:#C62828;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;text-align:left;}
-.suc-box{background:#E8F5E9;color:#2E7D32;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;text-align:left;}
+/* SELLER */
+.seller-login-wrap{max-width:400px;margin:56px auto;background:var(--white);border-radius:var(--r);padding:38px;border:1px solid var(--border);text-align:center;box-shadow:0 4px 24px rgba(0,103,115,0.08);}
+.seller-login-wrap h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:6px;}
+.seller-login-wrap p{font-size:13px;color:var(--muted);margin-bottom:26px;}
+.field{margin-bottom:14px;text-align:left;}
+.field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;letter-spacing:0.5px;text-transform:uppercase;}
+.field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--rs);font-size:13px;font-family:'Syne',sans-serif;outline:none;transition:border 0.2s;color:var(--text);background:var(--bg);}
+.field input:focus{border-color:var(--teal);background:#fff;}
+.submit-btn{width:100%;padding:13px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:6px;}
+.submit-btn:hover{background:var(--teal-dark);}
+.err-box{background:#FFEBEE;color:#C62828;border-radius:9px;padding:10px 14px;font-size:12px;margin-bottom:14px;display:none;text-align:left;}
+.seller-wrap{max-width:840px;margin:0 auto;padding:28px 24px;}
+.seller-hdr{background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));border-radius:var(--r);padding:26px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;}
+.seller-hdr h2{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;font-weight:700;margin-bottom:3px;}
+.seller-hdr p{font-size:12px;color:rgba(255,255,255,0.6);}
+.s-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:10px;font-weight:700;margin-top:10px;text-transform:uppercase;}
+.s-active{background:rgba(255,255,255,0.18);color:#fff;}.s-pending{background:rgba(255,200,0,0.22);color:#FFE082;}
+.logout-btn{background:rgba(255,255,255,0.14);border:none;color:#fff;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+.stat-box{background:var(--white);border-radius:var(--rs);padding:18px;border:1px solid var(--border);text-align:center;}
+.stat-box-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal-dark);}
+.stat-box-label{font-size:11px;color:var(--muted);margin-top:2px;font-weight:500;}
+.tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--rs);padding:4px;margin-bottom:20px;}
+.tab{flex:1;padding:9px;text-align:center;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);}
+.tab.active{background:var(--white);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.07);}
+.seller-prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
+.seller-prod-card{background:var(--white);border-radius:var(--rs);padding:14px;border:1px solid var(--border);display:flex;gap:10px;align-items:center;}
+.seller-prod-thumb{width:50px;height:50px;border-radius:9px;background:var(--teal-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;}
+.seller-prod-thumb img{width:100%;height:100%;object-fit:cover;}
+.seller-prod-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+.seller-prod-price{font-size:12px;color:var(--teal-dark);font-weight:600;}
+.orders-list{display:flex;flex-direction:column;gap:10px;}
+.order-card{background:var(--white);border-radius:var(--rs);padding:16px;border:1px solid var(--border);}
+.order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.order-id{font-size:11px;color:var(--muted);}
+.order-status{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;}
+.os-pending{background:#FFF3E0;color:#E65100;}.os-accepted_by_store,.os-confirmed{background:#E8F5E9;color:#2E7D32;}.os-delivered{background:#E3F2FD;color:#1565C0;}.os-cancelled{background:#FFEBEE;color:#C62828;}
+.order-amount{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;}
+.order-date{font-size:11px;color:var(--muted);}
 
-/* SELLER DASH */
-.seller-wrap{max-width:900px;margin:0 auto;padding:32px 24px;}
-.seller-hcard{background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));border-radius:var(--radius);padding:30px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;}
-.seller-hcard h2{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;font-weight:700;margin-bottom:4px;}
-.seller-hcard p{font-size:13px;color:rgba(255,255,255,0.65);}
-.sbadge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;margin-top:12px;text-transform:uppercase;}
-.sbadge-active{background:rgba(255,255,255,0.2);color:#fff;}
-.sbadge-pending{background:rgba(255,200,0,0.25);color:#FFE082;}
-.logout-btn{background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 18px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;}
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;}
-.sstat{background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--border);text-align:center;}
-.sstat-num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--teal-dark);}
-.sstat-label{font-size:12px;color:var(--muted);margin-top:3px;font-weight:500;}
-.tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:22px;}
-.tab{flex:1;padding:10px;text-align:center;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);}
-.tab.active{background:var(--white);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-.prod-list-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
-.prod-list-card{background:var(--white);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);display:flex;gap:12px;align-items:center;}
-.plt{width:54px;height:54px;border-radius:10px;background:var(--teal-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;}
-.plt img{width:100%;height:100%;object-fit:contain;}
-
-/* ORDERS */
-.orders-list{display:flex;flex-direction:column;gap:12px;}
-.order-card{background:var(--white);border-radius:var(--radius-sm);padding:18px;border:1px solid var(--border);}
-.order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.order-id{font-size:12px;color:var(--muted);font-weight:500;}
-.ostatus{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;}
-.s-pending{background:#FFF3E0;color:#E65100;}.s-accepted_by_store,.s-confirmed{background:#E8F5E9;color:#2E7D32;}.s-delivered,.s-completed{background:#E3F2FD;color:#1565C0;}.s-cancelled{background:#FFEBEE;color:#C62828;}.s-preparing{background:#F3E5F5;color:#6A1B9A;}
-
-/* EVENTS */
-.events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding:24px 28px;}
-.event-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;cursor:pointer;}
-.event-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.event-img{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#6A1B9A,#1565C0);display:flex;align-items:center;justify-content:center;font-size:60px;}
-.event-body{padding:18px;}
-.event-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:6px;}
-.event-meta{font-size:13px;color:var(--muted);margin-bottom:12px;}
-.event-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal-dark);}
-.ticket-btn{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:12px;width:100%;}
-
-/* MARKET - 2ND HAND */
-.market-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;padding:24px 28px;}
-.listing-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;cursor:pointer;}
-.listing-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.listing-img{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,var(--teal-light),#fff);display:flex;align-items:center;justify-content:center;font-size:50px;}
-.listing-body{padding:14px;}
-.listing-title{font-size:15px;font-weight:700;margin-bottom:4px;}
-.listing-meta{font-size:12px;color:var(--muted);margin-bottom:10px;}
-.listing-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal-dark);}
-.listing-cond{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#E8F5E9;color:#2E7D32;margin-left:8px;}
-.contact-btn{background:var(--orange);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:10px;width:100%;}
-
-/* FIX */
-.fix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;padding:24px 28px;}
-.fix-card{background:var(--white);border-radius:var(--radius);padding:28px 22px;border:1px solid var(--border);text-align:center;cursor:pointer;transition:all 0.25s;}
-.fix-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--teal);}
-.fix-icon{font-size:44px;margin-bottom:14px;}
-.fix-title{font-size:16px;font-weight:700;margin-bottom:6px;}
-.fix-price{font-size:13px;color:var(--muted);margin-bottom:14px;}
-.fix-btn{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;width:100%;}
-.fix-emergency{background:#F44336;color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;width:100%;margin-top:8px;}
-
-/* CLOTHING */
-.clothing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;padding:24px 28px;}
-.cloth-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;cursor:pointer;}
-.cloth-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.cloth-img{width:100%;height:220px;object-fit:cover;background:linear-gradient(135deg,#FCE4EC,#fff);display:flex;align-items:center;justify-content:center;font-size:60px;}
-.cloth-body{padding:14px;}
-.cloth-title{font-size:14px;font-weight:700;margin-bottom:4px;}
-.cloth-store{font-size:11px;color:var(--muted);margin-bottom:10px;}
-
-/* ADMIN */
-.admin-wrap{max-width:1100px;margin:0 auto;padding:24px;}
-.admin-header{background:linear-gradient(135deg,#1A237E,#283593);border-radius:var(--radius);padding:28px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;}
-.admin-header h2{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;font-weight:700;}
-.admin-tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:22px;overflow-x:auto;}
-.atab{flex-shrink:0;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);white-space:nowrap;}
-.atab.active{background:var(--white);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:24px;}
-.astat{background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--border);text-align:center;}
-.astat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--teal-dark);}
-.astat-label{font-size:12px;color:var(--muted);margin-top:4px;}
-.admin-table{width:100%;border-collapse:collapse;}
-.admin-table th{text-align:left;padding:12px 16px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid var(--border);background:var(--bg);}
-.admin-table td{padding:14px 16px;font-size:14px;border-bottom:1px solid var(--border);background:var(--white);}
-.admin-table tr:hover td{background:#F0FAFB;}
-.aabtn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:'Syne',sans-serif;margin-right:4px;}
-.aapprove{background:#E8F5E9;color:#2E7D32;}.areject{background:#FFEBEE;color:#C62828;}.aban{background:#FFF3E0;color:#E65100;}
-
-/* FEEDBACK */
-.fb-tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:28px;}
-.fb-tab{flex:1;padding:12px;text-align:center;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);}
-.fb-tab.active{background:var(--white);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-
-/* FOOTER */
-footer{background:var(--text);padding:48px 24px;text-align:center;}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:4px;}
-.footer-ks{font-family:'Noto Nastaliq Urdu',serif;font-size:16px;color:rgba(255,255,255,0.3);margin-bottom:20px;direction:rtl;}
-.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:20px;flex-wrap:wrap;}
-.footer-links a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;cursor:pointer;font-weight:500;}
+footer{background:var(--text);padding:44px 24px;text-align:center;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;font-weight:700;margin-bottom:3px;}
+.footer-ks{font-family:'Noto Nastaliq Urdu',serif;font-size:14px;color:rgba(255,255,255,0.28);margin-bottom:20px;direction:rtl;}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.footer-links a{color:rgba(255,255,255,0.4);font-size:12px;text-decoration:none;cursor:pointer;font-weight:500;}
 .footer-links a:hover{color:var(--teal);}
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.25);}
-
-/* UTILS */
-.loading{text-align:center;padding:70px 24px;color:var(--muted);}
-.spinner{width:38px;height:38px;border:3px solid var(--teal-light);border-top-color:var(--teal);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 16px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.22);}
+.loading{text-align:center;padding:64px 24px;color:var(--muted);}
+.spinner{width:36px;height:36px;border:3px solid var(--teal-light);border-top-color:var(--teal);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 14px;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.empty{text-align:center;padding:70px 24px;color:var(--muted);font-size:15px;}
-@media(max-width:640px){.hero-title{font-size:52px;}.nav-links .nav-ghost{display:none;}.hero-modules{gap:8px;}.module-btn{min-width:80px;padding:10px 12px;font-size:12px;}}
+.empty{text-align:center;padding:64px 24px;color:var(--muted);font-size:14px;}
+@media(max-width:640px){.hero-title{font-size:46px;}.steps{grid-template-columns:repeat(2,1fr);}.stat-item{border-right:none;border-bottom:1px solid var(--border);flex:1 1 50%;}.nb-ghost{display:none;}.cta-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- SIDE MENU -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="side-menu" id="side-menu">
-  <div class="sm-header">
-    <div class="sm-logo">Kasheer <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:14px;opacity:0.6">کٔشیٖر</span></div>
-    <button class="sm-close" onclick="closeMenu()">✕</button>
-  </div>
-  <div style="padding:16px 0;flex:1;">
-    <button class="sm-item" onclick="nav('home')"><span style="font-size:20px;width:28px">🏠</span>Home</button>
-    <div class="sm-section">Shop</div>
-    <button class="sm-item" onclick="nav('grocery')"><span style="font-size:20px;width:28px">🛒</span>Grocery</button>
-    <button class="sm-item" onclick="nav('fix')"><span style="font-size:20px;width:28px">🔧</span>Fix — Services</button>
-    <button class="sm-item" onclick="nav('events')"><span style="font-size:20px;width:28px">🎟️</span>Events</button>
-    <button class="sm-item" onclick="nav('market')"><span style="font-size:20px;width:28px">📦</span>2nd Hand Market</button>
-    <button class="sm-item" onclick="nav('clothing')"><span style="font-size:20px;width:28px">👕</span>Clothing</button>
-    <div class="sm-divider"></div>
-    <button class="sm-item" onclick="nav('cart')"><span style="font-size:20px;width:28px">🛍️</span>My Cart</button>
-    <button class="sm-item" onclick="nav('myorders')"><span style="font-size:20px;width:28px">📦</span>My Orders</button>
-    <div class="sm-divider"></div>
-    <button class="sm-item" onclick="nav('seller')"><span style="font-size:20px;width:28px">🏪</span>Seller Dashboard</button>
-    <button class="sm-item" onclick="nav('seller-register')"><span style="font-size:20px;width:28px">➕</span>Register Store</button>
-    <button class="sm-item" onclick="nav('rider-register')"><span style="font-size:20px;width:28px">🛵</span>Become a Rider</button>
-    <div class="sm-divider"></div>
-    <button class="sm-item" onclick="nav('feedback')"><span style="font-size:20px;width:28px">💬</span>Complaints & Suggestions</button>
-    <button class="sm-item" onclick="nav('admin')"><span style="font-size:20px;width:28px">⚙️</span>Kasheer Management</button>
-  </div>
-</div>
-
-<!-- NAV -->
 <nav>
-  <div style="display:flex;align-items:center;gap:4px;">
-    <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
-    <div class="nav-logo" onclick="nav('home')">Kasheer <span class="ks">کٔشیٖر</span></div>
-  </div>
+  <div class="nav-logo" onclick="showPage('home')">Kasheer <span class="ks">کٲشِیر</span></div>
   <div class="nav-links">
-    <button class="nav-btn nav-ghost" onclick="nav('home')">Home</button>
-    <button class="nav-btn nav-ghost" onclick="nav('grocery')">🛒 Grocery</button>
-    <button class="nav-btn nav-ghost" onclick="nav('events')">🎟️ Events</button>
-    <button class="nav-btn nav-orange" onclick="nav('seller')">Seller Login</button>
+    <button class="nb nb-ghost" onclick="showPage('home')">Home</button>
+    <button class="nb nb-ghost" onclick="showPage('store')">Shop</button>
+    <button class="nb nb-orange" onclick="showPage('seller')">Seller Login</button>
   </div>
 </nav>
 
-<!-- ══ HOME ══ -->
+<!-- HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-grid"></div>
     <div class="hero-content">
-      <div class="hero-badge">🏔️ Kashmir's Super Platform — Now Live</div>
+      <div class="hero-badge">🏔️ Kashmir's First Hyperlocal Delivery</div>
       <div class="hero-title">Kasheer</div>
-      <div class="hero-ks">کٔشیٖر — کٲشِیرِ گوڈنیٚچ سُپَر پلیٹ فارم</div>
-      <p class="hero-sub">Grocery delivery · Home services · Events & ticketing · Buy/sell second hand · Kasheer Clothing — all in one platform built for Kashmir.</p>
-      <div class="hero-modules">
-        <button class="module-btn" onclick="nav('grocery')"><span class="micon">🛒</span>Grocery</button>
-        <button class="module-btn" onclick="nav('fix')"><span class="micon">🔧</span>Fix</button>
-        <button class="module-btn" onclick="nav('events')"><span class="micon">🎟️</span>Events</button>
-        <button class="module-btn" onclick="nav('market')"><span class="micon">📦</span>2nd Hand</button>
-        <button class="module-btn" onclick="nav('clothing')"><span class="micon">👕</span>Clothing</button>
+      <div class="hero-ks">کٲشِیر — کٲشِیرۍ گوڈ نیچ ڈِلیوری</div>
+      <p class="hero-sub">Kashmir's first hyperlocal delivery platform — groceries, handmade goods, and more from stores near you. Fast. Local. Yours.</p>
+      <div class="hero-btns">
+        <button class="btn btn-white" onclick="showPage('store')">Shop Now<span class="btn-ks">ہُنہ خریداری کرو</span></button>
+        <button class="btn btn-outline" onclick="showPage('seller')">Sell on Kasheer<span class="btn-ks">کٲشِیر پیٹھ سوزِو</span></button>
+        <button class="btn btn-orange" onclick="alert('Download the Kasheer app to become a delivery agent!')">Become a Rider<span class="btn-ks">ڈِلیوری ایجنٹ بنو</span></button>
       </div>
     </div>
   </section>
 
   <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Modules</div></div>
-    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
+    <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label">Products</div></div>
+    <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Categories</div></div>
     <div class="stat-item"><div class="stat-num">Fast</div><div class="stat-label">Delivery</div></div>
     <div class="stat-item"><div class="stat-num">COD</div><div class="stat-label">Cash on Delivery</div></div>
-    <div class="stat-item"><div class="stat-num">Local</div><div class="stat-label">Kashmir Only</div></div>
   </div>
 
-  <div class="section">
-    <div class="sec-label">Everything in one place</div>
-    <div class="sec-title">Kashmir's Super Platform</div>
-    <p class="sec-sub">Five modules. One ecosystem. Built for the people of Kashmir.</p>
-    <div class="modules-grid">
-      <div class="module-card" onclick="nav('grocery')">
-        <div class="mc-icon">🛒</div>
-        <div class="mc-title">Kasheer Grocery</div>
-        <div class="mc-sub">Order groceries, snacks, drinks and daily essentials from local stores. Fast delivery to your door.</div>
-        <span class="mc-badge badge-green">⚡ Fast Delivery</span>
-      </div>
-      <div class="module-card" onclick="nav('fix')">
-        <div class="mc-icon">🔧</div>
-        <div class="mc-title">Kasheer Fix</div>
-        <div class="mc-sub">Book plumbers, electricians, carpenters, cleaners and more. Normal or emergency booking available.</div>
-        <span class="mc-badge badge-blue">🆘 Emergency Available</span>
-      </div>
-      <div class="module-card" onclick="nav('events')">
-        <div class="mc-icon">🎟️</div>
-        <div class="mc-title">Kasheer Events</div>
-        <div class="mc-sub">Buy tickets to local events. QR code on purchase. Organizers can also hire us to manage their entire event.</div>
-        <span class="mc-badge badge-purple">🎭 Tickets + Management</span>
-      </div>
-      <div class="module-card" onclick="nav('market')">
-        <div class="mc-icon">📦</div>
-        <div class="mc-title">Kasheer 2nd Hand Market</div>
-        <div class="mc-sub">Buy and sell used phones, bikes, electronics and more. Chat with sellers, boost your listing visibility.</div>
-        <span class="mc-badge badge-orange">🔄 Buy & Sell</span>
-      </div>
-      <div class="module-card" onclick="nav('clothing')">
-        <div class="mc-icon">👕</div>
-        <div class="mc-title">Kasheer Clothing</div>
-        <div class="mc-sub">Discover local fashion brands and clothing stores across Kashmir. Seller storefronts, commission model.</div>
-        <span class="mc-badge badge-pink">👗 Local Fashion</span>
+  <div class="sec">
+    <div class="sec-label">Why Kasheer</div>
+    <div class="sec-title">Built for Kashmir, by Kashmir</div>
+    <p class="sec-sub">Everything you need, from stores right around the corner</p>
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon">🛒</div><div class="feat-title">Local Grocery</div><div class="feat-desc">Fresh groceries and daily essentials from nearby stores delivered fast</div></div>
+      <div class="feat-card"><div class="feat-icon">🏺</div><div class="feat-title">Kashmiri Brands</div><div class="feat-desc">Khyber dairy, local bakeries, and authentic Kashmiri products you love</div></div>
+      <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Fast Delivery</div><div class="feat-desc">Nearest rider delivers in minutes, not hours</div></div>
+      <div class="feat-card"><div class="feat-icon">💰</div><div class="feat-title">Fair Prices</div><div class="feat-desc">No hidden charges — you pay store prices, nothing more</div></div>
+      <div class="feat-card"><div class="feat-icon">📱</div><div class="feat-title">App + Web</div><div class="feat-desc">Order from our Android app or right here on the website</div></div>
+      <div class="feat-card"><div class="feat-icon">🚴</div><div class="feat-title">Be a Rider</div><div class="feat-desc">Join our delivery fleet and earn money on your schedule</div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 24px;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <div class="sec-label">What we deliver</div>
+      <div class="sec-title">Everything You Need</div>
+      <p class="sec-sub" style="margin-bottom:32px;">Snacks to spices, dairy to dry fruits</p>
+      <div class="cats-showcase">
+        <div class="cat-card" onclick="goShop('snacks')"><span class="cat-icon">🍿</span><div class="cat-name">Snacks</div></div>
+        <div class="cat-card" onclick="goShop('chocolates')"><span class="cat-icon">🍫</span><div class="cat-name">Chocolates</div></div>
+        <div class="cat-card" onclick="goShop('drinks')"><span class="cat-icon">🥤</span><div class="cat-name">Drinks</div></div>
+        <div class="cat-card" onclick="goShop('dairy')"><span class="cat-icon">🥛</span><div class="cat-name">Dairy</div></div>
+        <div class="cat-card" onclick="goShop('fruits')"><span class="cat-icon">🍎</span><div class="cat-name">Fruits</div></div>
+        <div class="cat-card" onclick="goShop('vegetables')"><span class="cat-icon">🥦</span><div class="cat-name">Vegetables</div></div>
+        <div class="cat-card" onclick="goShop('noodles')"><span class="cat-icon">🍜</span><div class="cat-name">Noodles</div></div>
+        <div class="cat-card" onclick="goShop('grocery')"><span class="cat-icon">🧂</span><div class="cat-name">Grocery</div></div>
+        <div class="cat-card" onclick="goShop('tea')"><span class="cat-icon">☕</span><div class="cat-name">Tea & Coffee</div></div>
+        <div class="cat-card" onclick="goShop('personal')"><span class="cat-icon">🧴</span><div class="cat-name">Personal Care</div></div>
+        <div class="cat-card" onclick="goShop('baby')"><span class="cat-icon">👶</span><div class="cat-name">Baby Care</div></div>
+        <div class="cat-card" onclick="goShop('dryfruits')"><span class="cat-icon">🥜</span><div class="cat-name">Dry Fruits</div></div>
+        <div class="cat-card" onclick="goShop('oil')"><span class="cat-icon">🫙</span><div class="cat-name">Oil & Ghee</div></div>
+        <div class="cat-card" onclick="goShop('household')"><span class="cat-icon">🧹</span><div class="cat-name">Household</div></div>
+        <div class="cat-card" onclick="goShop('honey')"><span class="cat-icon">🍯</span><div class="cat-name">Honey</div></div>
+        <div class="cat-card" onclick="goShop('atta')"><span class="cat-icon">🌾</span><div class="cat-name">Atta & Rice</div></div>
+        <div class="cat-card" onclick="goShop('skincare')"><span class="cat-icon">✨</span><div class="cat-name">Skincare</div></div>
+        <div class="cat-card" onclick="goShop('health')"><span class="cat-icon">💊</span><div class="cat-name">Health</div></div>
+        <div class="cat-card" onclick="goShop('icecream')"><span class="cat-icon">🍦</span><div class="cat-name">Ice Cream</div></div>
+        <div class="cat-card" onclick="goShop('ramadan')"><span class="cat-icon">🌙</span><div class="cat-name">Ramadan</div></div>
       </div>
     </div>
   </div>
 
-  <section style="background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal-mid) 100%);padding:80px 24px;">
-    <div style="max-width:900px;margin:0 auto;">
-      <div class="sec-label" style="color:rgba(255,255,255,0.6);">How it works</div>
-      <div class="sec-title" style="color:#fff;">One platform, five services</div>
-      <p class="sec-sub" style="color:rgba(255,255,255,0.6);margin-bottom:44px;">Select a module and start using it instantly</p>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px;">
-        <div style="text-align:center;padding:20px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">🛒</div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Grocery</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.55);">Order from local stores</div>
-        </div>
-        <div style="text-align:center;padding:20px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">🔧</div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Fix</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.55);">Book service providers</div>
-        </div>
-        <div style="text-align:center;padding:20px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">🎟️</div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Events</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.55);">Tickets + QR code</div>
-        </div>
-        <div style="text-align:center;padding:20px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">📦</div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">2nd Hand</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.55);">Buy & sell used items</div>
-        </div>
-        <div style="text-align:center;padding:20px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">👕</div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Clothing</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.55);">Local fashion brands</div>
-        </div>
+  <section class="how-sec">
+    <div class="how-inner">
+      <div class="sec-label">How it works</div>
+      <div class="sec-title">Order in 4 Steps</div>
+      <p class="sec-sub" style="margin-bottom:40px;">Getting your order has never been easier</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-title">Browse</div><div class="step-desc">Find products from stores near you</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-title">Add to Cart</div><div class="step-desc">Pick what you need</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-title">Pay</div><div class="step-desc">Online or cash on delivery</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-title">Delivered</div><div class="step-desc">Rider brings it to your door</div></div>
       </div>
     </div>
   </section>
 
-  <div style="padding:72px 24px;">
-    <div class="sec-title" style="margin-bottom:10px;">Get started today</div>
-    <p class="sec-sub" style="margin-bottom:36px;">Shop, sell, or deliver with Kasheer</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1000px;margin:0 auto;">
-      <div style="background:var(--teal-dark);border-radius:var(--radius);padding:36px 28px;">
-        <div style="font-size:44px;margin-bottom:16px;">🛍️</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:10px;">Start Shopping</div>
-        <p style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:24px;">Browse groceries, events, second hand items and more from local sellers.</p>
-        <button class="nav-btn nav-teal" onclick="nav('grocery')" style="background:#fff;color:var(--teal-dark);">Open Grocery →</button>
-      </div>
-      <div style="background:var(--orange-light);border:1.5px solid #FFD180;border-radius:var(--radius);padding:36px 28px;">
-        <div style="font-size:44px;margin-bottom:16px;">🏪</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--orange);margin-bottom:10px;">Start Selling</div>
-        <p style="font-size:14px;color:#795548;line-height:1.7;margin-bottom:24px;">Register your store across any module. First 50 grocery orders free. Simple commission.</p>
-        <button class="nav-btn nav-orange" onclick="nav('seller-register')">Become a Seller →</button>
-      </div>
-      <div style="background:#1A237E;border-radius:var(--radius);padding:36px 28px;">
-        <div style="font-size:44px;margin-bottom:16px;">🛵</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:10px;">Deliver & Earn</div>
-        <p style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:24px;">Become a Kasheer delivery rider. Earn on your own schedule across Srinagar.</p>
-        <button class="nav-btn nav-teal" onclick="nav('rider-register')">Become a Rider →</button>
-      </div>
+  <div style="padding:64px 24px;">
+    <div class="sec-title" style="margin-bottom:8px;">Ready to get started?</div>
+    <p class="sec-sub" style="margin-bottom:32px;">Shop, sell, or deliver with Kasheer</p>
+    <div class="cta-grid">
+      <div class="cta-card shop"><span class="cta-emoji">🛍️</span><div class="cta-title">Start Shopping</div><p class="cta-desc">Browse local stores and get fresh products delivered to your doorstep.</p><button class="btn btn-white" onclick="showPage('store')">Open Store</button></div>
+      <div class="cta-card sell"><span class="cta-emoji">🏪</span><div class="cta-title">Start Selling</div><p class="cta-desc">Register your store and reach customers nearby. Simple commission model.</p><button class="btn btn-orange" onclick="showPage('seller')">Become a Seller</button></div>
+      <div class="cta-card ride"><span class="cta-emoji">🚴</span><div class="cta-title">Deliver & Earn</div><p class="cta-desc">Become a Kasheer delivery rider. Earn on your own schedule across Kashmir.</p><button class="btn btn-teal" onclick="alert('Download the Kasheer app to register as a rider!')">Become a Rider</button></div>
     </div>
   </div>
 
   <footer>
     <div class="footer-logo">Kasheer</div>
-    <div class="footer-ks">کٔشیٖر</div>
+    <div class="footer-ks">کٲشِیر</div>
     <div class="footer-links">
-      <a onclick="nav('home')">Home</a>
-      <a onclick="nav('grocery')">Grocery</a>
-      <a onclick="nav('fix')">Fix</a>
-      <a onclick="nav('events')">Events</a>
-      <a onclick="nav('market')">2nd Hand</a>
-      <a onclick="nav('clothing')">Clothing</a>
-      <a onclick="nav('feedback')">Complaints</a>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('store')">Shop</a>
+      <a onclick="showPage('seller')">Sell</a>
     </div>
     <div class="footer-copy">© 2026 Kasheer. Made with love for Kashmir 🏔️</div>
   </footer>
 </div>
 
-<!-- ══ GROCERY ══ -->
-<div class="page" id="page-grocery">
-  <div class="mod-header" style="background:linear-gradient(135deg,#006773,#00838F);">
-    <button class="mod-back" onclick="nav('home')">← Back</button>
-    <h1>🛒 Kasheer Grocery</h1>
+<!-- STORE -->
+<div class="page" id="page-store">
+  <div class="store-top">
+    <h1>Kasheer Store <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:16px;opacity:0.45">کٲشِیر</span></h1>
     <p>Fresh products from local stores near you</p>
-    <div class="search-wrap"><span style="color:rgba(255,255,255,0.5)">🔍</span><input type="text" id="g-search" placeholder="Search products..." oninput="renderGrocery()"></div>
-    <div class="cats-scroll" id="g-cats"></div>
+    <div class="search-wrap"><span style="color:rgba(255,255,255,0.45);font-size:14px;">🔍</span><input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()"></div>
+    <div class="cats-scroll" id="cats-bar"></div>
   </div>
-  <div class="products-area" id="g-products"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+  <div class="products-area" id="store-content"><div class="loading"><div class="spinner"></div>Loading products...</div></div>
   <div class="cart-bar" id="cart-bar">
     <div><strong id="cart-count">0</strong> items &nbsp;·&nbsp; ₹<span id="cart-total">0</span></div>
-    <button class="cart-bar-btn" onclick="nav('cart')">View Cart</button>
+    <button class="cart-bar-btn" onclick="showPage('cart')">View Cart →</button>
   </div>
 </div>
 
-<!-- ══ CART ══ -->
+<!-- CART -->
 <div class="page" id="page-cart">
-  <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px;">
-    <button class="mod-back" onclick="nav('grocery')" style="margin-bottom:14px;">← Back</button>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">Your Cart</h1>
+  <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:22px;">
+    <button onclick="showPage('store')" style="background:rgba(255,255,255,0.14);border:none;color:#fff;padding:8px 18px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:12px;font-weight:600;margin-bottom:12px;">← Back to Store</button>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;font-weight:700;">Your Cart</h1>
   </div>
   <div class="cart-wrap" id="cart-content"></div>
 </div>
 
-<!-- ══ MY ORDERS ══ -->
-<div class="page" id="page-myorders">
-  <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px;">
-    <button class="mod-back" onclick="nav('home')" style="margin-bottom:14px;">← Back</button>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">My Orders</h1>
-  </div>
-  <div style="max-width:700px;margin:0 auto;padding:28px 24px;" id="myorders-content">
-    <div id="orders-login-view">
-      <div class="form-card" style="margin-top:0;">
-        <div style="font-size:48px;margin-bottom:14px;">📦</div>
-        <h2>Track Your Orders</h2>
-        <p>Login to view your order history</p>
-        <div class="err-box" id="orders-err"></div>
-        <div class="frow"><label>Email</label><input type="email" id="orders-email" placeholder="your@email.com"></div>
-        <div class="frow"><label>Password</label><input type="password" id="orders-pass" placeholder="••••••••"></div>
-        <button class="submit-btn" onclick="loadOrders()">View My Orders</button>
-      </div>
-    </div>
-    <div id="orders-list" style="display:none;"></div>
-  </div>
-</div>
-
-<!-- ══ FIX ══ -->
-<div class="page" id="page-fix">
-  <div class="mod-header" style="background:linear-gradient(135deg,#1565C0,#1976D2);">
-    <button class="mod-back" onclick="nav('home')">← Back</button>
-    <h1>🔧 Kasheer Fix</h1>
-    <p>Book trusted service providers in Srinagar. Normal or emergency booking.</p>
-  </div>
-  <div class="fix-grid" id="fix-content"></div>
-  <div style="background:var(--white);margin:0 28px 28px;border-radius:var(--radius);padding:28px;border:1px solid var(--border);">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:8px;">🆘 Emergency Booking</div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Need someone urgently? Emergency booking guarantees a provider within 1 hour. 30% surcharge applies.</p>
-    <button onclick="bookEmergency()" style="background:#F44336;color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Book Emergency Service 🆘</button>
-  </div>
-  <!-- Book Service Modal -->
-  <div id="fix-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;display:none;align-items:center;justify-content:center;padding:24px;">
-    <div style="background:var(--white);border-radius:var(--radius);padding:32px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;" id="fix-modal-title">Book Service</div>
-        <button onclick="closeFixModal()" style="background:var(--bg);border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px;">✕</button>
-      </div>
-      <div class="err-box" id="fix-err"></div>
-      <div class="suc-box" id="fix-suc"></div>
-      <div class="frow"><label>Your Name</label><input type="text" id="fix-name" placeholder="Full name"></div>
-      <div class="frow"><label>Phone</label><input type="tel" id="fix-phone" placeholder="+91 9999999999"></div>
-      <div class="frow"><label>Address</label><textarea id="fix-address" placeholder="Your address in Srinagar"></textarea></div>
-      <div class="frow"><label>Problem Description</label><textarea id="fix-desc" placeholder="Describe the issue..."></textarea></div>
-      <div class="frow"><label>Preferred Time</label><input type="datetime-local" id="fix-time"></div>
-      <div id="fix-emergency-notice" style="background:#FFEBEE;border-radius:10px;padding:12px;font-size:13px;color:#C62828;margin-bottom:14px;display:none;">🆘 Emergency booking — 30% surcharge applies. Provider guaranteed within 1 hour.</div>
-      <button class="submit-btn" onclick="submitFixBooking()">Confirm Booking</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ EVENTS ══ -->
-<div class="page" id="page-events">
-  <div class="mod-header" style="background:linear-gradient(135deg,#4A148C,#6A1B9A);">
-    <button class="mod-back" onclick="nav('home')">← Back</button>
-    <h1>🎟️ Kasheer Events</h1>
-    <p>Discover local events · Buy tickets · Get QR code · Organize your event with us</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <button class="cat-chip active" id="ev-tab-browse" onclick="switchEvTab('browse')">Browse Events</button>
-      <button class="cat-chip" id="ev-tab-manage" onclick="switchEvTab('manage')">Event Management Service</button>
-      <button class="cat-chip" id="ev-tab-organizer" onclick="switchEvTab('organizer')">I'm an Organizer</button>
-    </div>
-  </div>
-  <div id="ev-browse">
-    <div class="events-grid" id="events-content"><div class="loading"><div class="spinner"></div>Loading events...</div></div>
-  </div>
-  <div id="ev-manage" style="display:none;">
-    <div style="max-width:700px;margin:0 auto;padding:32px 24px;">
-      <div style="background:linear-gradient(135deg,#4A148C,#6A1B9A);border-radius:var(--radius);padding:32px;color:#fff;margin-bottom:24px;">
-        <div style="font-size:48px;margin-bottom:12px;">🎭</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:8px;">We Manage Your Event</div>
-        <p style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;">From planning to execution — our team handles everything. Submit a request and we'll contact you with pricing.</p>
-      </div>
-      <div class="form-card">
-        <h2>Submit Event Request</h2>
-        <p>Tell us about your event and we'll get back to you within 24 hours</p>
-        <div class="err-box" id="evm-err"></div>
-        <div class="suc-box" id="evm-suc"></div>
-        <div class="frow"><label>Your Name</label><input type="text" id="evm-name" placeholder="Full name"></div>
-        <div class="frow"><label>Phone</label><input type="tel" id="evm-phone" placeholder="+91 9999999999"></div>
-        <div class="frow"><label>Event Type</label>
-          <select id="evm-type">
-            <option value="wedding">Wedding</option>
-            <option value="birthday">Birthday Party</option>
-            <option value="corporate">Corporate Event</option>
-            <option value="concert">Concert / Show</option>
-            <option value="sports">Sports Event</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="frow"><label>Expected Crowd</label><input type="text" id="evm-crowd" placeholder="e.g. 100-200 people"></div>
-        <div class="frow"><label>Budget (Rs.)</label><input type="number" id="evm-budget" placeholder="Your approximate budget"></div>
-        <div class="frow"><label>Event Date</label><input type="date" id="evm-date"></div>
-        <div class="frow"><label>Details</label><textarea id="evm-details" placeholder="Any specific requirements or ideas..."></textarea></div>
-        <button class="submit-btn" onclick="submitEventMgmt()">Submit Request</button>
-      </div>
-    </div>
-  </div>
-  <div id="ev-organizer" style="display:none;">
-    <div style="max-width:700px;margin:0 auto;padding:32px 24px;">
-      <div class="form-card">
-        <div style="font-size:48px;margin-bottom:14px;">🎪</div>
-        <h2>Create an Event</h2>
-        <p>List your event on Kasheer and sell tickets. We take 8% commission per ticket.</p>
-        <div class="err-box" id="ev-org-err"></div>
-        <div class="suc-box" id="ev-org-suc"></div>
-        <div class="frow"><label>Event Title</label><input type="text" id="ev-title" placeholder="Event name"></div>
-        <div class="frow"><label>Description</label><textarea id="ev-desc" placeholder="What is this event about?"></textarea></div>
-        <div class="frow"><label>Venue</label><input type="text" id="ev-venue" placeholder="Location in Srinagar"></div>
-        <div class="frow"><label>Date & Time</label><input type="datetime-local" id="ev-datetime"></div>
-        <div class="frow"><label>Ticket Price (Rs.)</label><input type="number" id="ev-ticket-price" placeholder="0 for free events"></div>
-        <div class="frow"><label>Total Tickets Available</label><input type="number" id="ev-quota" placeholder="e.g. 200"></div>
-        <div class="frow"><label>Organizer Email</label><input type="email" id="ev-org-email" placeholder="your@email.com"></div>
-        <div class="frow"><label>Organizer Password</label><input type="password" id="ev-org-pass" placeholder="Create a password"></div>
-        <button class="submit-btn" onclick="createEvent()">Create Event</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ 2ND HAND MARKET ══ -->
-<div class="page" id="page-market">
-  <div class="mod-header" style="background:linear-gradient(135deg,#E65100,#FF6F00);">
-    <button class="mod-back" onclick="nav('home')">← Back</button>
-    <h1>📦 Kasheer 2nd Hand Market</h1>
-    <p>Buy and sell used items across Kashmir. Phones · Electronics · Bikes · More</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <button class="cat-chip active" id="mkt-tab-browse" onclick="switchMktTab('browse')">Browse Listings</button>
-      <button class="cat-chip" id="mkt-tab-sell" onclick="switchMktTab('sell')">Sell an Item</button>
-    </div>
-  </div>
-  <div id="mkt-browse">
-    <div style="padding:16px 28px;display:flex;gap:10px;flex-wrap:wrap;">
-      <button class="nav-btn nav-ghost" onclick="filterMarket('all')" id="mkt-all" style="border:1.5px solid var(--border);">All</button>
-      <button class="nav-btn nav-ghost" onclick="filterMarket('phones')" style="border:1.5px solid var(--border);">📱 Phones</button>
-      <button class="nav-btn nav-ghost" onclick="filterMarket('electronics')" style="border:1.5px solid var(--border);">💻 Electronics</button>
-      <button class="nav-btn nav-ghost" onclick="filterMarket('bikes')" style="border:1.5px solid var(--border);">🏍️ Bikes</button>
-      <button class="nav-btn nav-ghost" onclick="filterMarket('furniture')" style="border:1.5px solid var(--border);">🛋️ Furniture</button>
-      <button class="nav-btn nav-ghost" onclick="filterMarket('other')" style="border:1.5px solid var(--border);">📦 Other</button>
-    </div>
-    <div class="market-grid" id="market-content"></div>
-  </div>
-  <div id="mkt-sell" style="display:none;">
-    <div style="max-width:600px;margin:0 auto;padding:32px 24px;">
-      <div class="form-card">
-        <div style="font-size:48px;margin-bottom:14px;">📦</div>
-        <h2>List Your Item</h2>
-        <p>Sell your used items. Boost visibility for Rs.99–499.</p>
-        <div class="err-box" id="mkt-err"></div>
-        <div class="suc-box" id="mkt-suc"></div>
-        <div class="frow"><label>Title</label><input type="text" id="mkt-title" placeholder="e.g. iPhone 13 128GB"></div>
-        <div class="frow"><label>Category</label>
-          <select id="mkt-cat">
-            <option value="phones">Phones</option>
-            <option value="electronics">Electronics</option>
-            <option value="bikes">Bikes</option>
-            <option value="furniture">Furniture</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="frow"><label>Description</label><textarea id="mkt-desc" placeholder="Describe the item, its condition, any issues..."></textarea></div>
-        <div class="frow"><label>Price (Rs.)</label><input type="number" id="mkt-price" placeholder="Your asking price"></div>
-        <div class="frow"><label>Condition</label>
-          <select id="mkt-cond">
-            <option value="Like New">Like New</option>
-            <option value="Good">Good</option>
-            <option value="Fair">Fair</option>
-            <option value="For Parts">For Parts</option>
-          </select>
-        </div>
-        <div class="frow"><label>Location</label><input type="text" id="mkt-loc" placeholder="Area in Srinagar"></div>
-        <div class="frow"><label>Your Name</label><input type="text" id="mkt-name" placeholder="Full name"></div>
-        <div class="frow"><label>Phone (shown to buyers)</label><input type="tel" id="mkt-phone" placeholder="+91 9999999999"></div>
-        <div style="background:var(--orange-light);border-radius:10px;padding:14px;margin-bottom:16px;">
-          <div style="font-weight:700;font-size:14px;color:var(--orange);margin-bottom:6px;">🚀 Boost Your Listing</div>
-          <p style="font-size:13px;color:#795548;">Get 5x more views with a featured listing.</p>
-          <select id="mkt-boost" style="width:100%;margin-top:10px;padding:10px;border:1.5px solid #FFD180;border-radius:10px;background:#fff;font-family:'Syne',sans-serif;">
-            <option value="none">No boost (Free)</option>
-            <option value="basic">Basic Boost — Rs.99 (3 days)</option>
-            <option value="pro">Pro Boost — Rs.249 (7 days)</option>
-            <option value="featured">Featured — Rs.499 (14 days)</option>
-          </select>
-        </div>
-        <button class="submit-btn" onclick="submitListing()">Post Listing</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ CLOTHING ══ -->
-<div class="page" id="page-clothing">
-  <div class="mod-header" style="background:linear-gradient(135deg,#880E4F,#AD1457);">
-    <button class="mod-back" onclick="nav('home')">← Back</button>
-    <h1>👕 Kasheer Clothing</h1>
-    <p>Discover local fashion from Kashmir's best clothing brands and designers</p>
-    <div class="cats-scroll">
-      <button class="cat-chip active" onclick="filterClothing('all')">All</button>
-      <button class="cat-chip" onclick="filterClothing('men')">Men</button>
-      <button class="cat-chip" onclick="filterClothing('women')">Women</button>
-      <button class="cat-chip" onclick="filterClothing('kids')">Kids</button>
-      <button class="cat-chip" onclick="filterClothing('traditional')">Traditional</button>
-      <button class="cat-chip" onclick="filterClothing('winter')">Winter</button>
-    </div>
-  </div>
-  <div class="clothing-grid" id="clothing-content"></div>
-  <div style="background:var(--white);margin:0 28px 28px;border-radius:var(--radius);padding:28px;border:1px solid var(--border);">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:8px;">🏪 Sell Your Clothing</div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">List your clothing brand or store on Kasheer. We take 10% commission per sale. Register as a seller to get started.</p>
-    <button onclick="nav('seller-register')" style="background:var(--teal);color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Register as Clothing Seller →</button>
-  </div>
-</div>
-
-<!-- ══ SELLER ══ -->
+<!-- SELLER -->
 <div class="page" id="page-seller">
   <div id="seller-login-view">
-    <div class="form-wrap">
-      <div class="form-card">
-        <div style="font-size:48px;margin-bottom:14px;">🏪</div>
-        <h2>Seller Login</h2>
-        <p>Access your Kasheer store dashboard</p>
-        <div class="err-box" id="sl-err"></div>
-        <div class="frow"><label>Email</label><input type="email" id="sl-email" placeholder="your@email.com"></div>
-        <div class="frow"><label>Password</label><input type="password" id="sl-pass" placeholder="••••••••"></div>
-        <button class="submit-btn" onclick="sellerLogin()">Login to Dashboard</button>
-        <p style="margin-top:18px;font-size:13px;color:var(--muted);">No store? <a href="#" style="color:var(--teal);font-weight:600;" onclick="nav('seller-register')">Register here</a></p>
-      </div>
+    <div class="seller-login-wrap">
+      <div style="font-size:44px;margin-bottom:12px;">🏪</div>
+      <h2>Seller Login</h2>
+      <p>Access your Kasheer store dashboard</p>
+      <div class="err-box" id="login-error"></div>
+      <div class="field"><label>Email</label><input type="email" id="seller-email" placeholder="your@email.com"></div>
+      <div class="field"><label>Password</label><input type="password" id="seller-password" placeholder="••••••••"></div>
+      <button class="submit-btn" onclick="sellerLogin()">Login to Dashboard</button>
+      <p style="margin-top:16px;font-size:12px;color:var(--muted);">No store yet? <a href="#" style="color:var(--teal);font-weight:600;" onclick="alert('Download the Kasheer app to register as a seller!')">Register on the app</a></p>
     </div>
   </div>
   <div id="seller-dash-view" style="display:none;">
     <div class="seller-wrap">
-      <div class="seller-hcard">
-        <div><h2 id="dash-store-name">Your Store</h2><p id="dash-cat"></p><span class="sbadge sbadge-active" id="dash-status">Active</span></div>
+      <div class="seller-hdr">
+        <div><h2 id="dash-store-name">Your Store</h2><p id="dash-category"></p><span class="s-badge s-active" id="dash-status">Active</span></div>
         <button class="logout-btn" onclick="sellerLogout()">Logout</button>
       </div>
       <div class="stats-row">
-        <div class="sstat"><div class="sstat-num" id="s-prods">-</div><div class="sstat-label">Products</div></div>
-        <div class="sstat"><div class="sstat-num" id="s-orders">-</div><div class="sstat-label">Orders</div></div>
-        <div class="sstat"><div class="sstat-num" id="s-rev">-</div><div class="sstat-label">Revenue</div></div>
+        <div class="stat-box"><div class="stat-box-num" id="stat-products">—</div><div class="stat-box-label">Products</div></div>
+        <div class="stat-box"><div class="stat-box-num" id="stat-orders">—</div><div class="stat-box-label">Orders</div></div>
+        <div class="stat-box"><div class="stat-box-num" id="stat-revenue">—</div><div class="stat-box-label">Revenue</div></div>
       </div>
       <div class="tabs">
-        <button class="tab active" onclick="switchSellerTab('products')">Products</button>
-        <button class="tab" onclick="switchSellerTab('orders')">Orders</button>
+        <button class="tab active" onclick="switchTab('products')">Products</button>
+        <button class="tab" onclick="switchTab('orders')">Orders</button>
       </div>
-      <div id="st-products"><div id="seller-prods-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></div>
-      <div id="st-orders" style="display:none;"><div id="seller-orders-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ SELLER REGISTER ══ -->
-<div class="page" id="page-seller-register">
-  <div class="form-wrap">
-    <button onclick="nav('home')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:24px;">← Back</button>
-    <div class="form-card">
-      <div style="font-size:48px;margin-bottom:14px;">🏪</div>
-      <h2>Register Your Store</h2>
-      <p>Join Kasheer and start selling to customers near you</p>
-      <div class="err-box" id="sr-err"></div>
-      <div class="suc-box" id="sr-suc"></div>
-      <div class="frow"><label>Store Name</label><input type="text" id="sr-store" placeholder="e.g. Ali General Store"></div>
-      <div class="frow"><label>Your Name</label><input type="text" id="sr-name" placeholder="Full name"></div>
-      <div class="frow"><label>Email</label><input type="email" id="sr-email" placeholder="your@email.com"></div>
-      <div class="frow"><label>Phone</label><input type="tel" id="sr-phone" placeholder="+91 9999999999"></div>
-      <div class="frow"><label>Password</label><input type="password" id="sr-pass" placeholder="Create a password"></div>
-      <div class="frow"><label>Category / Module</label>
-        <select id="sr-cat">
-          <option value="Groceries">Groceries</option>
-          <option value="Clothing">Clothing</option>
-          <option value="Bakery">Bakery</option>
-          <option value="Pharmacy">Pharmacy</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Handmade">Handmade</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div class="frow"><label>Store Address</label><textarea id="sr-address" placeholder="Full address in Srinagar"></textarea></div>
-      <button class="submit-btn" onclick="registerSeller()">Register Store</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ RIDER REGISTER ══ -->
-<div class="page" id="page-rider-register">
-  <div class="form-wrap">
-    <button onclick="nav('home')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:24px;">← Back</button>
-    <div class="form-card">
-      <div style="font-size:48px;margin-bottom:14px;">🛵</div>
-      <h2>Become a Rider</h2>
-      <p>Join our delivery team and earn money on your schedule</p>
-      <div class="err-box" id="rr-err"></div>
-      <div class="suc-box" id="rr-suc"></div>
-      <div class="frow"><label>Full Name</label><input type="text" id="rr-name" placeholder="Your full name"></div>
-      <div class="frow"><label>Email</label><input type="email" id="rr-email" placeholder="your@email.com"></div>
-      <div class="frow"><label>Phone</label><input type="tel" id="rr-phone" placeholder="+91 9999999999"></div>
-      <div class="frow"><label>Password</label><input type="password" id="rr-pass" placeholder="Create a password"></div>
-      <div class="frow"><label>Vehicle Type</label>
-        <select id="rr-vehicle">
-          <option value="bike">Bike</option>
-          <option value="scooter">Scooter</option>
-          <option value="bicycle">Bicycle</option>
-          <option value="walking">Walking (under 1km)</option>
-        </select>
-      </div>
-      <div class="frow"><label>Area in Srinagar</label><input type="text" id="rr-area" placeholder="e.g. Lal Chowk, Rajbagh..."></div>
-      <button class="submit-btn" onclick="registerRider()">Register as Rider</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ FEEDBACK ══ -->
-<div class="page" id="page-feedback">
-  <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:28px;">
-    <button class="mod-back" onclick="nav('home')" style="margin-bottom:14px;">← Back</button>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">Complaints & Suggestions</h1>
-    <p style="font-size:14px;color:rgba(255,255,255,0.65);margin-top:4px;">We listen. We improve.</p>
-  </div>
-  <div style="max-width:700px;margin:0 auto;padding:32px 24px;">
-    <div class="fb-tabs">
-      <button class="fb-tab active" onclick="switchFb('complaint')">😤 Complaint</button>
-      <button class="fb-tab" onclick="switchFb('suggestion')">💡 Suggestion</button>
-    </div>
-    <div id="fb-complaint">
-      <div class="form-card">
-        <h2>File a Complaint</h2><p>Had a bad experience? Tell us and we'll fix it.</p>
-        <div class="err-box" id="fb-cerr"></div><div class="suc-box" id="fb-csuc"></div>
-        <div class="frow"><label>Your Name</label><input type="text" id="fb-cname"></div>
-        <div class="frow"><label>Phone / Email</label><input type="text" id="fb-ccontact"></div>
-        <div class="frow"><label>Module</label>
-          <select id="fb-cmodule">
-            <option>Grocery</option><option>Fix</option><option>Events</option><option>2nd Hand Market</option><option>Clothing</option><option>Other</option>
-          </select>
-        </div>
-        <div class="frow"><label>Complaint</label><textarea id="fb-cmsg" placeholder="Describe your issue..."></textarea></div>
-        <button class="submit-btn" onclick="submitComplaint()">Submit Complaint</button>
-      </div>
-    </div>
-    <div id="fb-suggestion" style="display:none;">
-      <div class="form-card">
-        <h2>Share a Suggestion</h2><p>Have an idea to make Kasheer better?</p>
-        <div class="err-box" id="fb-serr"></div><div class="suc-box" id="fb-ssuc"></div>
-        <div class="frow"><label>Your Name (optional)</label><input type="text" id="fb-sname"></div>
-        <div class="frow"><label>Suggestion</label><textarea id="fb-smsg" placeholder="Your idea..."></textarea></div>
-        <button class="submit-btn" onclick="submitSuggestion()">Send Suggestion</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ ADMIN ══ -->
-<div class="page" id="page-admin">
-  <div id="admin-login-view">
-    <div class="form-wrap">
-      <div class="form-card">
-        <div style="font-size:48px;margin-bottom:14px;">⚙️</div>
-        <h2>Kasheer Management</h2>
-        <p>Admin access only</p>
-        <div class="err-box" id="adm-err"></div>
-        <div class="frow"><label>Email</label><input type="email" id="adm-email" placeholder="admin@kasheer.com"></div>
-        <div class="frow"><label>Password</label><input type="password" id="adm-pass" placeholder="••••••••"></div>
-        <button class="submit-btn" onclick="adminLogin()">Access Panel</button>
-      </div>
-    </div>
-  </div>
-  <div id="admin-dash-view" style="display:none;">
-    <div class="admin-wrap">
-      <div class="admin-header">
-        <div>
-          <h2>Kasheer Management</h2>
-          <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;">Admin Dashboard — Full Control</p>
-        </div>
-        <button class="logout-btn" onclick="adminLogout()">Logout</button>
-      </div>
-      <div class="admin-stats" id="adm-stats">
-        <div class="astat"><div class="astat-num" id="adm-stores">-</div><div class="astat-label">Stores</div></div>
-        <div class="astat"><div class="astat-num" id="adm-riders">-</div><div class="astat-label">Riders</div></div>
-        <div class="astat"><div class="astat-num" id="adm-orders">-</div><div class="astat-label">Orders</div></div>
-        <div class="astat"><div class="astat-num" id="adm-pending">-</div><div class="astat-label">Pending</div></div>
-        <div class="astat"><div class="astat-num" id="adm-events-count">-</div><div class="astat-label">Events</div></div>
-        <div class="astat"><div class="astat-num" id="adm-listings">-</div><div class="astat-label">Listings</div></div>
-      </div>
-      <div class="admin-tabs">
-        <button class="atab active" onclick="switchAdminTab('stores',this)">🏪 Stores</button>
-        <button class="atab" onclick="switchAdminTab('riders',this)">🛵 Riders</button>
-        <button class="atab" onclick="switchAdminTab('orders',this)">📦 Orders</button>
-        <button class="atab" onclick="switchAdminTab('events',this)">🎟️ Events</button>
-        <button class="atab" onclick="switchAdminTab('market',this)">📦 Listings</button>
-        <button class="atab" onclick="switchAdminTab('verifications',this)">✅ Verify</button>
-        <button class="atab" onclick="switchAdminTab('complaints',this)">💬 Feedback</button>
-      </div>
-      <div id="admin-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+      <div id="tab-products"><div id="seller-products-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></div>
+      <div id="tab-orders" style="display:none;"><div id="seller-orders-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></div>
     </div>
   </div>
 </div>
 
 <script>
 const API='https://kasheer-backend.onrender.com/api';
-const ADMIN_EMAIL='kasheerapp@kasheer.com';
-const ADMIN_PASS='Allah786';
+// Open Food Facts CDN — images are freely hotlinkable
+function off(code,suffix){const c=code.toString();if(c.length>=13){return'https://images.openfoodfacts.org/images/products/'+c.slice(0,3)+'/'+c.slice(3,6)+'/'+c.slice(6,9)+'/'+c.slice(9)+'/'+suffix+'.400.jpg';}return'https://images.openfoodfacts.org/images/products/'+c+'/'+suffix+'.400.jpg';}
+// Wikipedia Commons — free, no hotlink block
+const W='https://upload.wikimedia.org/wikipedia/commons/thumb/';
 
-// BigBasket images
-const BB='https://www.bbassets.com/media/uploads/p/s/';
-const IMGS={
-  snk_lays1:BB+'294273_16-lays-wafer-style-classic-salted.jpg',
-  snk_lays2:BB+'294273_16-lays-wafer-style-classic-salted.jpg',
-  snk_lays5:BB+'294273_16-lays-wafer-style-classic-salted.jpg',
-  snk_kur1:BB+'102761_18-kurkure-namkeen-masala-munch.jpg',
-  snk_kur3:BB+'102761_18-kurkure-namkeen-masala-munch.jpg',
-  snk_bin1:BB+'20006262_5-bingo-mad-angles-chips-mmmm-masala.jpg',
-  snk_hal1:BB+'40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
-  snk_hal2:BB+'40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
-  snk_dor1:BB+'40109565_18-doritos-nacho-chips-nacho-cheese-flavour.jpg',
-  snk_pri1:BB+'100550_19-pringles-original.jpg',
-  snk_act1:BB+'189220_8-act-ii-instant-popcorn-classic-salted-hot-fresh-delicious.jpg',
-  sw_cad1:BB+'20005973_16-cadbury-perk-double-chocolate-bar.jpg',
-  sw_cad4:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_cad5:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_5star:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_kit1:BB+'40018531_68-nestle-kitkat-crispy-wafer-bar.jpg',
-  sw_kit2:BB+'40018531_68-nestle-kitkat-crispy-wafer-bar.jpg',
-  sw_ore1:BB+'40088487_11-cadbury-oreo-vanilla-flavoured-creme-biscuit.jpg',
-  sw_ore2:BB+'40088487_11-cadbury-oreo-vanilla-flavoured-creme-biscuit.jpg',
-  pa1:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  pa2:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  dr1:BB+'40116679_3-coca-cola-soft-drink.jpg',
-  dr2:BB+'40095438_3-pepsi-soft-drink.jpg',
-  dr3:BB+'294312_8-sprite-soft-drink.jpg',
-  dr4:BB+'294306_10-thums-up-soft-drink.jpg',
-  dr8:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr9:BB+'294294_5-red-bull-energy-drink.jpg',
-  dr13:BB+'102852_6-amul-kool-koko-chocolate-milk.jpg',
-  dr14:BB+'100113_12-amul-mango-lassi.jpg',
-  db1:BB+'100191_14-amul-taaza-toned-fresh-milk.jpg',
-  db2:BB+'100177_27-amul-pasteurised-butter.jpg',
-  db3:BB+'100234_11-amul-fresh-paneer.jpg',
-  db7:BB+'100168_5-britannia-whole-wheat-bread.jpg',
-  hn1:BB+'100078_16-dabur-honey.jpg',
-  hn2:BB+'40102060_8-patanjali-honey.jpg',
-  fr1:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Shoot.jpg/320px-Banana-Shoot.jpg',
-  fr2:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/320px-Red_Apple.jpg',
-  fr3:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Pomegranate_fruit_-_whole_and_halved.jpg/320px-Pomegranate_fruit_-_whole_and_halved.jpg',
-  fr7:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/320px-Hapus_Mango.jpg',
-  fr9:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Slices_of_watermelon.jpg/320px-Slices_of_watermelon.jpg',
-  fr10:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Cherry_Stella444.jpg/320px-Cherry_Stella444.jpg',
-  vg1:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/320px-Tomato_je.jpg',
-  vg2:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_onion.jpg/320px-Red_onion.jpg',
-  vg3:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg',
-  df1:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
-  df2:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Almonds_together.jpg/320px-Almonds_together.jpg',
-  df3:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Walnut_kernel.jpg/320px-Walnut_kernel.jpg',
-};
-
-const GROCERY_CATEGORIES=[
-  {id:"snacks",title:"Snacks",icon:"🍿",products:[
-    {id:"snk_lays2",name:"Lay's Magic Masala 52g",price:20,description:"Tangy masala chips"},
-    {id:"snk_lays1",name:"Lay's Classic Salted 28g",price:10,description:"Classic salted chips"},
-    {id:"snk_lays5",name:"Lay's Magic Masala 90g",price:35,description:"Large masala chips"},
-    {id:"snk_kur1",name:"Kurkure Masala Munch 40g",price:10,description:"Spicy corn puffs"},
-    {id:"snk_kur3",name:"Kurkure Masala 90g",price:20,description:"Large corn puffs"},
-    {id:"snk_bin1",name:"Bingo Mad Angles 45g",price:20,description:"Triangular masala chips"},
-    {id:"snk_hal1",name:"Haldiram's Aloo Bhujia 42g",price:10,description:"Crispy potato sev"},
-    {id:"snk_hal2",name:"Haldiram's Bhujia 150g",price:45,description:"Crispy sev large"},
-    {id:"snk_dor1",name:"Doritos Nacho Cheese 60g",price:30,description:"Cheesy nacho chips"},
-    {id:"snk_pri1",name:"Pringles Original 107g",price:110,description:"Stacked crisps"},
-    {id:"snk_act1",name:"Act II Popcorn Butter 30g",price:10,description:"Buttery popcorn"},
+const CATS=[
+  {id:'snacks',title:'Snacks',icon:'🍿',products:[
+    {id:'lays_mm',name:"Lay's Magic Masala 52g",price:20,desc:'Tangy masala chips',img:off('8901019017044','front_en')},
+    {id:'lays_cs',name:"Lay's Classic Salted 26g",price:10,desc:'Classic salted chips',img:off('8901019022529','front_en')},
+    {id:'kurkure',name:'Kurkure Masala Munch 40g',price:10,desc:'Spicy corn puffs',img:off('8901491504427','front_en')},
+    {id:'haldirams',name:"Haldiram's Aloo Bhujia 150g",price:45,desc:'Crispy potato sev',img:off('8906003510056','front_en')},
+    {id:'pringles',name:'Pringles Original 107g',price:110,desc:'Stacked crisps',img:off('5053990101426','front_en')},
+    {id:'act2',name:'Act II Popcorn Butter 30g',price:10,desc:'Buttery popcorn',img:off('8906001300246','front_en')},
+    {id:'mnms',name:"M&M's Peanut 45g",price:80,desc:'Peanut M&Ms',img:off('5000159461122','front_en')},
+    {id:'skittles',name:'Skittles Original 45g',price:70,desc:'Fruity candy',img:off('4009900521536','front_en')},
+    {id:'haribo',name:'Haribo Gold Bears 80g',price:120,desc:'Classic gummy bears',img:off('4001686325568','front_en')},
   ]},
-  {id:"sweet",title:"Chocolates & Sweets",icon:"🍫",products:[
-    {id:"sw_cad4",name:"Cadbury Dairy Milk 24g",price:20,description:"Classic milk chocolate"},
-    {id:"sw_cad5",name:"Cadbury Dairy Milk Silk 60g",price:99,description:"Premium chocolate"},
-    {id:"sw_5star",name:"Cadbury 5 Star 22g",price:10,description:"Caramel chocolate"},
-    {id:"sw_kit1",name:"KitKat 2 Finger 19g",price:10,description:"Crispy wafer bar"},
-    {id:"sw_kit2",name:"KitKat 4 Finger 37g",price:30,description:"4 finger wafer"},
-    {id:"sw_cad1",name:"Cadbury Perk 13g",price:10,description:"Chocolate wafer bar"},
-    {id:"sw_nut1",name:"Nutella 200g",price:280,description:"Hazelnut cocoa spread"},
-    {id:"sw_tob1",name:"Toblerone Milk 100g",price:180,description:"Swiss milk chocolate"},
-    {id:"sw_her1",name:"Hershey's Milk Chocolate 40g",price:60,description:"American chocolate"},
-    {id:"sw_fer1",name:"Ferrero Rocher 3pcs",price:150,description:"Hazelnut chocolates"},
-    {id:"sw_kinder1",name:"Kinder Joy",price:40,description:"Chocolate egg with toy"},
-    {id:"sw_ore1",name:"Oreo Original 50g",price:10,description:"Classic cream cookies"},
-    {id:"sw_ore2",name:"Oreo Original 120g",price:30,description:"Cream cookies pack"},
+  {id:'chocolates',title:'Chocolates & Sweets',icon:'🍫',products:[
+    {id:'dm',name:'Cadbury Dairy Milk 24g',price:20,desc:'Classic milk chocolate',img:off('7622210809292','front_en')},
+    {id:'dm_silk',name:'Cadbury Dairy Milk Silk 60g',price:99,desc:'Premium chocolate',img:off('7622210951038','front_en')},
+    {id:'5star',name:'Cadbury 5 Star 22g',price:10,desc:'Caramel chocolate',img:off('7622210809308','front_en')},
+    {id:'kitkat2',name:'KitKat 2 Finger 19g',price:10,desc:'Crispy wafer bar',img:off('8901058852554','front_en')},
+    {id:'kitkat4',name:'KitKat 4 Finger 37g',price:30,desc:'4 finger wafer',img:off('8901058816402','front_en')},
+    {id:'munch',name:'Nestle Munch 26g',price:10,desc:'Crunchy wafer bar',img:off('8901058501108','front_en')},
+    {id:'barone',name:'Nestle Bar-One 27g',price:10,desc:'Nougat caramel bar',img:off('8901058503140','front_en')},
+    {id:'milkybar',name:'Milkybar 13g',price:10,desc:'White chocolate',img:off('8901058501870','front_en')},
+    {id:'nutella200',name:'Nutella 200g',price:280,desc:'Hazelnut cocoa spread',img:off('3017620402678','front_en')},
+    {id:'nutella400',name:'Nutella 400g',price:520,desc:'Large Nutella jar',img:off('3017620422003','front_en')},
+    {id:'toblerone',name:'Toblerone Milk 100g',price:180,desc:'Swiss milk chocolate',img:off('7622300489434','front_en')},
+    {id:'hersheys',name:"Hershey's Milk Chocolate 40g",price:60,desc:'American chocolate',img:off('0034000002603','front_en')},
+    {id:'ferrero',name:'Ferrero Rocher 3pcs',price:150,desc:'Hazelnut chocolates',img:off('3054990007735','front_en')},
+    {id:'kinderjoy',name:'Kinder Joy',price:40,desc:'Chocolate egg with toy',img:off('8000500254981','front_en')},
+    {id:'snickers',name:'Snickers 50g',price:85,desc:'Peanut caramel bar',img:off('5000159461244','front_en')},
+    {id:'twix',name:'Twix 50g',price:90,desc:'Caramel cookie bar',img:off('5000159461459','front_en')},
+    {id:'oreo50',name:'Oreo Original 50g',price:10,desc:'Classic cream cookies',img:off('7622210413529','front_en')},
+    {id:'oreo120',name:'Oreo Original 120g',price:30,desc:'Cream cookies pack',img:off('7622210413536','front_en')},
+    {id:'chocopie',name:'Lotte Choco Pie 6pk',price:60,desc:'Choco marshmallow pie',img:off('8801062155100','front_en')},
   ]},
-  {id:"drinks",title:"Drinks",icon:"🥤",products:[
-    {id:"dr1",name:"Coca-Cola 750ml",price:45,description:"Classic cola"},
-    {id:"dr2",name:"Pepsi 750ml",price:45,description:"Bold cola"},
-    {id:"dr3",name:"Sprite 750ml",price:45,description:"Lemon lime soda"},
-    {id:"dr4",name:"Thums Up 750ml",price:45,description:"Strong cola"},
-    {id:"dr6",name:"Maaza Mango 250ml",price:20,description:"Mango drink"},
-    {id:"dr8",name:"Tropicana Orange 1L",price:99,description:"Fresh orange juice"},
-    {id:"dr9",name:"Red Bull Energy 250ml",price:125,description:"Energy drink"},
-    {id:"dr13",name:"Amul Kool Milkshake",price:25,description:"Chocolate milkshake"},
-    {id:"dr14",name:"Amul Mango Lassi 200ml",price:30,description:"Mango lassi"},
+  {id:'drinks',title:'Drinks',icon:'🥤',products:[
+    {id:'coke750',name:'Coca-Cola 750ml',price:45,desc:'Classic cola',img:off('5449000000996','front_en')},
+    {id:'pepsi750',name:'Pepsi 750ml',price:45,desc:'Bold cola',img:off('4060800021070','front_en')},
+    {id:'sprite750',name:'Sprite 750ml',price:45,desc:'Lemon lime soda',img:off('5449000133328','front_en')},
+    {id:'thumsup',name:'Thums Up 750ml',price:45,desc:'Strong cola',img:off('8902080001513','front_en')},
+    {id:'fanta',name:'Fanta Orange 750ml',price:45,desc:'Orange soda',img:off('5449000020277','front_en')},
+    {id:'maaza',name:'Maaza Mango 250ml',price:20,desc:'Mango drink',img:off('8902080001681','front_en')},
+    {id:'frooti',name:'Frooti Mango 200ml',price:15,desc:'Classic mango drink',img:off('8906068310017','front_en')},
+    {id:'tropicana',name:'Tropicana Orange 1L',price:99,desc:'Fresh orange juice',img:off('0048500203200','front_en')},
+    {id:'redbull',name:'Red Bull Energy 250ml',price:125,desc:'Energy drink',img:off('9002490100070','front_en')},
+    {id:'sting',name:'Sting Energy 250ml',price:30,desc:'Strawberry energy',img:off('8901491222664','front_en')},
+    {id:'coke_can',name:'Coca-Cola Can 330ml',price:40,desc:'Cola can',img:off('5449000000439','front_en')},
+    {id:'amul_kool',name:'Amul Kool Milkshake',price:25,desc:'Chocolate milkshake',img:off('8901455530018','front_en')},
+    {id:'lassi',name:'Amul Mango Lassi 200ml',price:30,desc:'Mango lassi',img:off('8901455529043','front_en')},
   ]},
-  {id:"dairy",title:"Dairy & Bakery",icon:"🥛",products:[
-    {id:"db1",name:"Amul Full Cream Milk 1L",price:68,description:"Full cream milk"},
-    {id:"db2",name:"Amul Butter 500g",price:255,description:"Pasteurised butter"},
-    {id:"db3",name:"Amul Paneer 200g",price:80,description:"Fresh cottage cheese"},
-    {id:"db5",name:"Mother Dairy Curd 400g",price:40,description:"Fresh set curd"},
-    {id:"db7",name:"Britannia Bread 400g",price:45,description:"Sandwich bread"},
+  {id:'dairy',title:'Dairy & Bakery',icon:'🥛',products:[
+    {id:'amul_milk',name:'Amul Full Cream Milk 1L',price:68,desc:'Full cream milk',img:off('8901455008013','front_en')},
+    {id:'amul_butter',name:'Amul Butter 500g',price:255,desc:'Pasteurised butter',img:off('8901455001281','front_en')},
+    {id:'amul_paneer',name:'Amul Paneer 200g',price:80,desc:'Fresh cottage cheese',img:off('8901455012027','front_en')},
+    {id:'amul_cheese',name:'Amul Cheese Slices 200g',price:90,desc:'Processed cheese',img:off('8901455006354','front_en')},
+    {id:'md_curd',name:'Mother Dairy Curd 400g',price:40,desc:'Fresh set curd',img:off('8906003900017','front_en')},
+    {id:'amul_cream',name:'Amul Fresh Cream 200ml',price:45,desc:'Cooking cream',img:off('8901455010771','front_en')},
+    {id:'brit_bread',name:'Britannia Bread 400g',price:45,desc:'Sandwich bread',img:off('8901063850010','front_en')},
+    {id:'eggs',name:'Farm Eggs 6pcs',price:70,desc:'Farm fresh eggs',img:W+'8/8a/Chicken_eggs_2009.jpg/320px-Chicken_eggs_2009.jpg'},
+    {id:'amul_mozz',name:'Amul Mozzarella 200g',price:140,desc:'Mozzarella cheese',img:off('8901455015189','front_en')},
   ]},
-  {id:"vegetables",title:"Vegetables",icon:"🥦",products:[
-    {id:"vg1",name:"Fresh Tomatoes 1kg",price:100,description:"Farm fresh tomatoes"},
-    {id:"vg2",name:"Onions 1kg",price:40,description:"Red onions"},
-    {id:"vg3",name:"Potatoes 1kg",price:60,description:"Fresh potatoes"},
-    {id:"vg4",name:"Spinach 250g",price:20,description:"Fresh palak"},
-    {id:"vg5",name:"Cauliflower 1pc",price:80,description:"Fresh cauliflower"},
-    {id:"vg6",name:"Carrots 1kg",price:50,description:"Fresh carrots"},
-    {id:"vg7",name:"Garlic 250g",price:40,description:"Fresh garlic"},
-    {id:"vg8",name:"Ginger 250g",price:35,description:"Fresh ginger"},
-    {id:"vg12",name:"Lotus Stem 250g",price:60,description:"Kashmiri nadru"},
+  {id:'noodles',title:'Noodles & Pasta',icon:'🍜',products:[
+    {id:'maggi70',name:'Maggi Masala Noodles 70g',price:14,desc:'Classic masala noodles',img:off('8901058851304','front_en')},
+    {id:'maggi4pk',name:'Maggi Noodles 4 Pack',price:56,desc:'4 pack masala noodles',img:off('8901058858860','front_en')},
+    {id:'yippee',name:'Yippee Magic Masala 70g',price:15,desc:'Magic masala noodles',img:off('8901725191979','front_en')},
+    {id:'chings',name:"Ching's Hakka Noodles 150g",price:35,desc:'Chinese noodles',img:off('8904072300017','front_en')},
+    {id:'knorr',name:'Knorr Soupy Noodles',price:20,desc:'Soup noodles mix',img:off('8901030785641','front_en')},
   ]},
-  {id:"fruits",title:"Fruits",icon:"🍎",products:[
-    {id:"fr1",name:"Bananas 6pcs",price:40,description:"Fresh ripe bananas"},
-    {id:"fr2",name:"Kashmiri Apples 1kg",price:120,description:"Kashmiri red apples"},
-    {id:"fr3",name:"Pomegranate 500g",price:80,description:"Sweet pomegranate"},
-    {id:"fr7",name:"Mango 1kg",price:200,description:"Sweet Alphonso mangoes"},
-    {id:"fr9",name:"Watermelon 1kg",price:100,description:"Sweet watermelon"},
-    {id:"fr10",name:"Cherries 500g",price:150,description:"Kashmiri cherries"},
+  {id:'grocery',title:'Grocery & Spices',icon:'🧂',products:[
+    {id:'tata_salt',name:'Tata Salt 1kg',price:25,desc:'Iodized table salt',img:off('8901872000189','front_en')},
+    {id:'aashirvaad',name:'Aashirvaad Atta 5kg',price:240,desc:'Whole wheat flour',img:off('8901725130047','front_en')},
+    {id:'mdh_garam',name:'MDH Garam Masala 100g',price:55,desc:'Spice blend',img:off('8906010200078','front_en')},
+    {id:'mdh_chaat',name:'MDH Chaat Masala 50g',price:30,desc:'Tangy chaat spice',img:off('8906010200009','front_en')},
+    {id:'tata_sugar',name:'Tata Sugar 1kg',price:45,desc:'Refined white sugar',img:off('8901872000127','front_en')},
+    {id:'catch_haldi',name:'Catch Turmeric 100g',price:30,desc:'Pure haldi powder',img:off('8906013600116','front_en')},
+    {id:'catch_chilli',name:'Catch Red Chilli 100g',price:35,desc:'Red chilli powder',img:off('8906013600093','front_en')},
   ]},
-  {id:"grocery",title:"Grocery & Spices",icon:"🧂",products:[
-    {id:"gr1",name:"Tata Salt 1kg",price:25,description:"Iodized table salt"},
-    {id:"gr2",name:"Aashirvaad Atta 5kg",price:240,description:"Whole wheat flour"},
-    {id:"gr3",name:"MDH Garam Masala 100g",price:55,description:"Spice blend"},
-    {id:"gr5",name:"Tata Sugar 1kg",price:45,description:"Refined white sugar"},
+  {id:'tea',title:'Tea & Coffee',icon:'☕',products:[
+    {id:'tata_tea',name:'Tata Tea Gold 500g',price:220,desc:'Premium blend tea',img:off('8901872004101','front_en')},
+    {id:'red_label',name:'Red Label Tea 500g',price:210,desc:'Classic tea',img:off('8901030855955','front_en')},
+    {id:'nescafe',name:'Nescafe Classic 200g',price:399,desc:'Instant coffee',img:off('7613035694002','front_en')},
+    {id:'bru',name:'Bru Gold Coffee 200g',price:370,desc:'Filter coffee blend',img:off('8901030802209','front_en')},
+    {id:'bournvita',name:'Bournvita 500g',price:225,desc:'Chocolate health drink',img:off('7622210952486','front_en')},
+    {id:'horlicks',name:'Horlicks Original 500g',price:225,desc:'Malted health drink',img:off('8901030654518','front_en')},
+    {id:'nescafe3in1',name:'Nescafe 3in1 Sachets 10pk',price:120,desc:'Coffee sachets',img:off('7613035693999','front_en')},
   ]},
-  {id:"tea",title:"Tea & Coffee",icon:"☕",products:[
-    {id:"tc1",name:"Tata Tea Gold 500g",price:220,description:"Premium blend tea"},
-    {id:"tc3",name:"Nescafe Classic 200g",price:399,description:"Instant coffee"},
-    {id:"tc5",name:"Bournvita 500g",price:225,description:"Chocolate health drink"},
-    {id:"tc6",name:"Horlicks Original 500g",price:225,description:"Malted health drink"},
+  {id:'personal',title:'Personal Care',icon:'🧴',products:[
+    {id:'dove_lotion',name:'Dove Body Lotion 200ml',price:175,desc:'Moisturising lotion',img:off('8901030971562','front_en')},
+    {id:'colgate',name:'Colgate MaxFresh 150g',price:85,desc:'Cooling toothpaste',img:off('8901520022034','front_en')},
+    {id:'dove_shampoo',name:'Dove Shampoo 340ml',price:199,desc:'Nourishing shampoo',img:off('8901030971999','front_en')},
+    {id:'hs',name:'Head & Shoulders 340ml',price:220,desc:'Anti-dandruff shampoo',img:off('8006540797983','front_en')},
+    {id:'dettol_hw',name:'Dettol Hand Wash 200ml',price:65,desc:'Antibacterial wash',img:off('6281006473519','front_en')},
+    {id:'parachute',name:'Parachute Coconut Oil 200ml',price:75,desc:'Pure coconut oil',img:off('8901384001008','front_en')},
   ]},
-  {id:"personal",title:"Personal Care",icon:"🧴",products:[
-    {id:"pc1",name:"Dove Body Lotion 200ml",price:175,description:"Moisturising lotion"},
-    {id:"pc2",name:"Colgate MaxFresh 150g",price:85,description:"Cooling toothpaste"},
-    {id:"pc3",name:"Dove Shampoo 340ml",price:199,description:"Nourishing shampoo"},
-    {id:"pc5",name:"Dettol Hand Wash 200ml",price:65,description:"Antibacterial wash"},
+  {id:'baby',title:'Baby Care',icon:'👶',products:[
+    {id:'pampers',name:'Pampers Diapers S 56pcs',price:499,desc:'Soft dry diapers',img:off('4015400543039','front_en')},
+    {id:'jb_powder',name:'Johnson Baby Powder 200g',price:149,desc:'Gentle baby powder',img:off('3574661000014','front_en')},
+    {id:'cerelac',name:'Cerelac Wheat 300g',price:199,desc:'Infant cereal',img:off('7613035341593','front_en')},
+    {id:'jb_shampoo',name:'Johnson Baby Shampoo 200ml',price:129,desc:'No-tears shampoo',img:off('3574661000083','front_en')},
+    {id:'himalaya_baby',name:'Himalaya Baby Lotion',price:99,desc:'Baby lotion',img:off('8901138510367','front_en')},
   ]},
-  {id:"dryfruits",title:"Dry Fruits",icon:"🥜",products:[
-    {id:"df1",name:"Cashews 250g",price:250,description:"Whole premium cashews"},
-    {id:"df2",name:"Almonds 250g",price:220,description:"Raw whole almonds"},
-    {id:"df3",name:"Walnut Kernels 250g",price:299,description:"Kashmiri walnuts"},
-    {id:"df4",name:"Raisins 250g",price:99,description:"Sun dried raisins"},
-    {id:"df5",name:"Pistachios 250g",price:350,description:"Roasted pistachios"},
+  {id:'oil',title:'Oil & Ghee',icon:'🫙',products:[
+    {id:'fortune',name:'Fortune Sunflower Oil 1L',price:130,desc:'Refined sunflower oil',img:off('8906009001018','front_en')},
+    {id:'saffola',name:'Saffola Gold Oil 1L',price:160,desc:'Blended cooking oil',img:off('8901396018006','front_en')},
+    {id:'amul_ghee',name:'Amul Pure Ghee 500ml',price:290,desc:'Pure cow ghee',img:off('8901455001939','front_en')},
+    {id:'dabur_mustard',name:'Dabur Mustard Oil 1L',price:120,desc:'Kachi ghani mustard',img:off('8901207086809','front_en')},
   ]},
-  {id:"honey",title:"Honey",icon:"🍯",products:[
-    {id:"hn1",name:"Dabur Honey 500g",price:199,description:"Pure natural honey"},
-    {id:"hn2",name:"Patanjali Honey 500g",price:170,description:"Pure wild honey"},
+  {id:'dryfruits',title:'Dry Fruits',icon:'🥜',products:[
+    {id:'cashews',name:'Cashews 250g',price:250,desc:'Whole premium cashews',img:W+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg'},
+    {id:'almonds',name:'Almonds 250g',price:220,desc:'Raw whole almonds',img:W+'c/c6/Almonds_together.jpg/320px-Almonds_together.jpg'},
+    {id:'walnuts',name:'Kashmiri Walnuts 250g',price:299,desc:'Kashmiri walnut kernels',img:W+'a/aa/Walnut_kernel.jpg/320px-Walnut_kernel.jpg'},
+    {id:'raisins',name:'Raisins 250g',price:99,desc:'Sun dried raisins',img:W+'c/cd/Bowl_of_raisins.jpg/320px-Bowl_of_raisins.jpg'},
+    {id:'pistachios',name:'Pistachios 250g',price:350,desc:'Roasted pistachios',img:W+'1/12/Pistachio_vera.jpg/320px-Pistachio_vera.jpg'},
+    {id:'dates',name:'Dates 500g',price:120,desc:'Soft sweet dates',img:W+'4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg'},
+    {id:'dabur_honey',name:'Dabur Honey 500g',price:199,desc:'Pure natural honey',img:off('8901207000514','front_en')},
   ]},
-  {id:"household",title:"Household",icon:"🧹",products:[
-    {id:"hh1",name:"Harpic Toilet Cleaner",price:99,description:"Toilet cleaner"},
-    {id:"hh2",name:"Vim Dishwash Liquid",price:75,description:"Dish wash liquid"},
-    {id:"hh3",name:"Surf Excel Matic 1kg",price:199,description:"Washing detergent"},
+  {id:'honey',title:'Honey',icon:'🍯',products:[
+    {id:'dabur_h',name:'Dabur Honey 500g',price:199,desc:'Pure natural honey',img:off('8901207000514','front_en')},
+    {id:'patanjali_h',name:'Patanjali Honey 500g',price:170,desc:'Pure wild honey',img:off('8904109421277','front_en')},
   ]},
-  {id:"pasta",title:"Noodles",icon:"🍜",products:[
-    {id:"pa1",name:"Maggi Masala Noodles 70g",price:14,description:"Classic masala noodles"},
-    {id:"pa2",name:"Maggi Noodles 4pk",price:56,description:"4 pack noodles"},
-    {id:"pa3",name:"Yippee Magic Masala 70g",price:15,description:"Magic masala noodles"},
+  {id:'household',title:'Household',icon:'🧹',products:[
+    {id:'harpic',name:'Harpic Toilet Cleaner 500ml',price:99,desc:'Toilet cleaner',img:off('8901207040239','front_en')},
+    {id:'vim',name:'Vim Dishwash Liquid 500ml',price:75,desc:'Dish wash liquid',img:off('8901030726446','front_en')},
+    {id:'surfexcel',name:'Surf Excel Matic 1kg',price:199,desc:'Washing detergent',img:off('8901030832450','front_en')},
+    {id:'lizol',name:'Lizol Floor Cleaner 1L',price:149,desc:'Floor cleaner',img:off('8901207046880','front_en')},
+    {id:'dettol_anti',name:'Dettol Antiseptic 250ml',price:85,desc:'Multipurpose antiseptic',img:off('6281006473526','front_en')},
+    {id:'goodknight',name:'Good Knight Liquid',price:55,desc:'Mosquito repellent',img:off('8901719114588','front_en')},
   ]},
-  {id:"oil",title:"Oil & Ghee",icon:"🫙",products:[
-    {id:"og1",name:"Fortune Sunflower Oil 1L",price:130,description:"Refined sunflower oil"},
-    {id:"og3",name:"Amul Pure Ghee 500ml",price:290,description:"Pure cow ghee"},
-    {id:"og4",name:"Dabur Mustard Oil 1L",price:120,description:"Kachi ghani mustard"},
+  {id:'health',title:'Health',icon:'💊',products:[
+    {id:'chyawanprash',name:'Dabur Chyawanprash 500g',price:195,desc:'Immunity booster',img:off('8901207005083','front_en')},
+    {id:'eno',name:'Eno Fruit Salt Original',price:30,desc:'Acidity relief',img:off('5000118393095','front_en')},
+    {id:'hajmola',name:'Hajmola Digestive',price:25,desc:'Digestive candy',img:off('8901207006318','front_en')},
   ]},
-  {id:"baby",title:"Baby Care",icon:"👶",products:[
-    {id:"bb1",name:"Pampers Diapers S 56pcs",price:499,description:"Soft dry diapers"},
-    {id:"bb2",name:"Johnson Baby Powder 200g",price:149,description:"Gentle baby powder"},
-    {id:"bb3",name:"Cerelac Wheat 300g",price:199,description:"Infant cereal"},
+  {id:'atta',title:'Atta & Rice',icon:'🌾',products:[
+    {id:'atta5kg',name:'Aashirvaad Atta 5kg',price:240,desc:'Whole wheat flour',img:off('8901725130047','front_en')},
+    {id:'india_gate',name:'India Gate Basmati 5kg',price:450,desc:'Premium basmati rice',img:off('8906003960371','front_en')},
+    {id:'toor_dal',name:'Toor Dal 1kg',price:120,desc:'Yellow pigeon peas',img:W+'6/64/Dal-chawal.jpg/320px-Dal-chawal.jpg'},
+    {id:'moong_dal',name:'Moong Dal 500g',price:65,desc:'Green gram lentils',img:W+'b/bc/Moong_dal.jpg/320px-Moong_dal.jpg'},
   ]},
-  {id:"icecream",title:"Ice Cream",icon:"🍦",products:[
-    {id:"ic1",name:"Amul Vanilla Cone",price:30,description:"Classic vanilla cone"},
-    {id:"ic2",name:"Kwality Walls Cornetto",price:50,description:"Chocolate cone"},
-    {id:"ic3",name:"Mother Dairy Kulfi",price:20,description:"Traditional kulfi"},
+  {id:'skincare',title:'Skincare',icon:'✨',products:[
+    {id:'himalaya_fw',name:'Himalaya Neem Face Wash',price:99,desc:'Purifying face wash',img:off('8901138506445','front_en')},
+    {id:'nivea_soft',name:'Nivea Soft Cream 200ml',price:199,desc:'Moisturiser',img:off('4005900004901','front_en')},
+    {id:'vaseline',name:'Vaseline Petroleum Jelly',price:89,desc:'Deep moisture',img:off('0305210201773','front_en')},
   ]},
-  {id:"ramadan",title:"Ramadan Special",icon:"🌙",products:[
-    {id:"rm1",name:"Sewai 200g",price:35,description:"Fine vermicelli"},
-    {id:"rm2",name:"Rooh Afza 750ml",price:180,description:"Rose sherbet"},
-    {id:"rm3",name:"Medjool Dates 500g",price:350,description:"Premium soft dates"},
+  {id:'icecream',title:'Ice Cream',icon:'🍦',products:[
+    {id:'amul_cone',name:'Amul Vanilla Cone',price:30,desc:'Classic vanilla cone',img:off('8901455540192','front_en')},
+    {id:'cornetto',name:'Kwality Walls Cornetto',price:50,desc:'Chocolate cone',img:off('8901030846113','front_en')},
+    {id:'kulfi',name:'Mother Dairy Kulfi',price:20,desc:'Traditional kulfi',img:off('8906003900406','front_en')},
+  ]},
+  {id:'vegetables',title:'Vegetables',icon:'🥦',products:[
+    {id:'tomatoes',name:'Fresh Tomatoes 1kg',price:100,desc:'Farm fresh tomatoes',img:W+'8/89/Tomato_je.jpg/320px-Tomato_je.jpg'},
+    {id:'onions',name:'Onions 1kg',price:40,desc:'Red onions',img:W+'1/15/Red_onion.jpg/320px-Red_onion.jpg'},
+    {id:'potatoes',name:'Potatoes 1kg',price:60,desc:'Fresh potatoes',img:W+'a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg'},
+    {id:'spinach',name:'Spinach 250g',price:20,desc:'Fresh palak',img:W+'7/70/SpinachWikipedia.jpg/320px-SpinachWikipedia.jpg'},
+    {id:'cauliflower',name:'Cauliflower 1pc',price:80,desc:'Fresh cauliflower',img:W+'2/25/Kaldor_floraly.jpg/320px-Kaldor_floraly.jpg'},
+    {id:'carrots',name:'Carrots 1kg',price:50,desc:'Fresh carrots',img:W+'a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/320px-Vegetable-Carrot-Bundle-wStalks.jpg'},
+    {id:'garlic',name:'Garlic 250g',price:40,desc:'Fresh garlic',img:W+'1/1e/Garlic-beginners.jpg/320px-Garlic-beginners.jpg'},
+    {id:'ginger',name:'Ginger 250g',price:35,desc:'Fresh ginger',img:W+'9/9e/Finger_ginger.jpg/320px-Finger_ginger.jpg'},
+    {id:'green_chilli',name:'Green Chillies 100g',price:15,desc:'Fresh green chillies',img:W+'1/19/Green_chillies.jpg/320px-Green_chillies.jpg'},
+    {id:'coriander',name:'Coriander 100g',price:10,desc:'Fresh coriander',img:W+'d/d2/Coriander.jpg/320px-Coriander.jpg'},
+    {id:'lotus_stem',name:'Lotus Stem (Nadru) 250g',price:60,desc:'Kashmiri nadru',img:W+'3/30/Lotus_root_cross_section.jpg/320px-Lotus_root_cross_section.jpg'},
+    {id:'mushrooms',name:'Mushrooms 200g',price:50,desc:'Button mushrooms',img:W+'0/0b/Agaricus_bisporus%2C_Malm%C3%B6%2C_2016.jpg/320px-Agaricus_bisporus%2C_Malm%C3%B6%2C_2016.jpg'},
+  ]},
+  {id:'fruits',title:'Fruits',icon:'🍎',products:[
+    {id:'bananas',name:'Bananas 6pcs',price:40,desc:'Fresh ripe bananas',img:W+'8/8a/Banana-Shoot.jpg/320px-Banana-Shoot.jpg'},
+    {id:'apples',name:'Kashmiri Apples 1kg',price:120,desc:'Kashmiri red apples',img:W+'1/15/Red_Apple.jpg/320px-Red_Apple.jpg'},
+    {id:'pomegranate',name:'Pomegranate 500g',price:80,desc:'Sweet pomegranate',img:W+'7/74/Pomegranate_fruit_-_whole_and_halved.jpg/320px-Pomegranate_fruit_-_whole_and_halved.jpg'},
+    {id:'oranges',name:'Oranges 4pcs',price:60,desc:'Navel oranges',img:W+'4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg'},
+    {id:'grapes',name:'Green Grapes 500g',price:90,desc:'Seedless green grapes',img:W+'b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg'},
+    {id:'strawberries',name:'Strawberries 250g',price:80,desc:'Fresh strawberries',img:W+'2/29/PerfectStrawberry.jpg/320px-PerfectStrawberry.jpg'},
+    {id:'mango',name:'Mango 1kg',price:200,desc:'Sweet Alphonso mangoes',img:W+'9/90/Hapus_Mango.jpg/320px-Hapus_Mango.jpg'},
+    {id:'kiwi',name:'Kiwi 4pcs',price:80,desc:'Fresh kiwi',img:W+'1/15/Kiwi_-_Whole_and_Split.jpg/320px-Kiwi_-_Whole_and_Split.jpg'},
+    {id:'watermelon',name:'Watermelon 1kg',price:100,desc:'Sweet watermelon',img:W+'4/4d/Slices_of_watermelon.jpg/320px-Slices_of_watermelon.jpg'},
+    {id:'cherries',name:'Kashmiri Cherries 500g',price:150,desc:'Fresh Kashmiri cherries',img:W+'b/bb/Cherry_Stella444.jpg/320px-Cherry_Stella444.jpg'},
+    {id:'apricots',name:'Kashmiri Apricots 500g',price:100,desc:'Kashmiri apricots',img:W+'2/2a/Apricot_and_apricots.jpg/320px-Apricot_and_apricots.jpg'},
+  ]},
+  {id:'ramadan',title:'Ramadan Special',icon:'🌙',products:[
+    {id:'sewai',name:'Sewai Vermicelli 200g',price:35,desc:'Fine vermicelli',img:off('8901207086717','front_en')},
+    {id:'roohafza',name:'Rooh Afza 750ml',price:180,desc:'Rose sherbet',img:off('8901365000015','front_en')},
+    {id:'dates_med',name:'Medjool Dates 500g',price:350,desc:'Premium soft dates',img:W+'4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg'},
+    {id:'haleem',name:'Haleem Mix 200g',price:65,desc:'Slow cook haleem',img:off('8906068390026','front_en')},
   ]},
 ];
-GROCERY_CATEGORIES.forEach(c=>c.products.forEach(p=>{p.img=IMGS[p.id]||'';}));
 
-const FIX_SERVICES=[
-  {id:"plumber",icon:"🔧",title:"Plumber",desc:"Pipe repairs, leaks, installations",price:"From Rs.200"},
-  {id:"electrician",icon:"⚡",title:"Electrician",desc:"Wiring, switches, appliances",price:"From Rs.250"},
-  {id:"carpenter",icon:"🔨",title:"Carpenter",desc:"Furniture repair, woodwork",price:"From Rs.300"},
-  {id:"painter",icon:"🎨",title:"Painter",desc:"Interior & exterior painting",price:"From Rs.500/day"},
-  {id:"cleaner",icon:"🧹",title:"House Cleaner",desc:"Deep cleaning, regular cleaning",price:"From Rs.400"},
-  {id:"ac_technician",icon:"❄️",title:"AC Technician",desc:"AC service, repair, installation",price:"From Rs.350"},
-  {id:"appliance",icon:"🖥️",title:"Appliance Repair",desc:"TV, fridge, washing machine",price:"From Rs.200"},
-  {id:"laundry",icon:"👕",title:"Laundry Service",desc:"Wash, dry, iron service",price:"From Rs.5/piece"},
-];
-
-const MARKET_LISTINGS=[
-  {id:"m1",icon:"📱",title:"iPhone 12 128GB",category:"phones",price:32000,condition:"Good",location:"Lal Chowk",seller:"Ahmad",phone:"9876543210",desc:"6 months old, minor scratches, all accessories included"},
-  {id:"m2",icon:"💻",title:"Dell Laptop i5",category:"electronics",price:28000,condition:"Good",location:"Rajbagh",seller:"Tariq",phone:"9876543211",desc:"2020 model, 8GB RAM, 256GB SSD, minor wear"},
-  {id:"m3",icon:"🏍️",title:"Honda Activa 2021",category:"bikes",price:65000,condition:"Like New",location:"Bemina",seller:"Imran",phone:"9876543212",desc:"12000 km driven, good condition, single owner"},
-  {id:"m4",icon:"📺",title:"Samsung TV 43 inch",category:"electronics",price:18000,condition:"Good",location:"Jawahar Nagar",seller:"Faisal",phone:"9876543213",desc:"4K Smart TV, 2 years old, all remotes included"},
-  {id:"m5",icon:"📱",title:"Samsung Galaxy S21",category:"phones",price:28000,condition:"Like New",location:"Sopore",seller:"Bilal",phone:"9876543214",desc:"8 months old, scratch-free, with original box"},
-  {id:"m6",icon:"🛋️",title:"Wooden Sofa Set",category:"furniture",price:15000,condition:"Fair",location:"Anantnag",seller:"Zahoor",phone:"9876543215",desc:"3+1+1 sofa set, some wear but solid wood"},
-];
-
-const EVENTS_DATA=[
-  {id:"e1",icon:"🎵",title:"Srinagar Music Festival",venue:"SKICC, Dal Lake",date:"2026-05-15",time:"18:00",price:500,description:"Annual music festival with local and regional artists. 3 stages, 20+ performers.",tickets_left:80},
-  {id:"e2",icon:"🏃",title:"Kashmir Marathon 2026",venue:"Polo Ground, Srinagar",date:"2026-05-20",time:"06:00",price:200,description:"Annual marathon through the city. 5km, 10km, and 21km categories.",tickets_left:200},
-  {id:"e3",icon:"🎨",title:"Kashmiri Art Exhibition",venue:"Lalit Kala Academy",date:"2026-05-25",time:"10:00",price:0,description:"Free entry exhibition showcasing local Kashmiri artists and craftspeople.",tickets_left:500},
-  {id:"e4",icon:"🎭",title:"Kasheer Comedy Night",venue:"Hotel Grand, Srinagar",date:"2026-06-01",time:"20:00",price:800,description:"An evening of stand-up comedy with top comedians from across India.",tickets_left:30},
-];
-
-const CLOTHING_DATA=[
-  {id:"c1",icon:"👗",title:"Kashmiri Phiran (Women)",store:"Wullar Fashion",price:2500,category:"traditional"},
-  {id:"c2",icon:"🧥",title:"Winter Wool Jacket",store:"Kashmir Weavers",price:3500,category:"winter"},
-  {id:"c3",icon:"👔",title:"Pashmina Shawl",store:"Dal Crafts",price:4500,category:"traditional"},
-  {id:"c4",icon:"👕",title:"Printed Tee — Kashmir",store:"Street by Kasheer",price:499,category:"men"},
-  {id:"c5",icon:"👗",title:"Embroidered Salwar",store:"Gulshan Boutique",price:1800,category:"women"},
-  {id:"c6",icon:"🧣",title:"Woolen Stole",store:"Wullar Fashion",price:850,category:"women"},
-  {id:"c7",icon:"👶",title:"Kids Winter Set",store:"Little Kasheer",price:1200,category:"kids"},
-  {id:"c8",icon:"🧥",title:"Leather Jacket — Men",store:"Srinagar Styles",price:5500,category:"men"},
-];
-
-// STATE
 let cart=JSON.parse(localStorage.getItem('kasheer_cart')||'[]');
 let activeCat='All';
 let sellerToken=localStorage.getItem('seller_token')||null;
-let customerToken=localStorage.getItem('customer_token')||null;
-let adminToken=localStorage.getItem('admin_token')||null;
-let allBackendProducts=[];
-let fixIsEmergency=false;
-let selectedFixService=null;
-let mktFilter='all';
-let clothingFilter='all';
+let backendProds=[];
 
-// MENU
-function openMenu(){document.getElementById('side-menu').classList.add('open');document.getElementById('overlay').classList.add('show');}
-function closeMenu(){document.getElementById('side-menu').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
-function nav(p){closeMenu();showPage(p);}
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');if(p==='store')initStore();if(p==='cart')renderCart();if(p==='seller')initSeller();window.scrollTo(0,0);}
+function goShop(c){activeCat=c;showPage('store');}
+function initStore(){renderCatBar();renderProducts();loadBackend();}
+function loadBackend(){fetch(API+'/products?limit=100').then(r=>r.json()).then(d=>{if(d.success&&d.data?.length){backendProds=d.data;renderProducts();}}).catch(()=>{});}
 
-// PAGE NAV
-function showPage(p){
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.getElementById('page-'+p).classList.add('active');
-  if(p==='grocery')initGrocery();
-  if(p==='cart')renderCart();
-  if(p==='seller')initSeller();
-  if(p==='admin')initAdmin();
-  if(p==='fix')initFix();
-  if(p==='events')initEvents();
-  if(p==='market')initMarket();
-  if(p==='clothing')initClothing();
-  window.scrollTo(0,0);
-}
-
-// GROCERY
-function initGrocery(){renderCatBar();renderGrocery();tryBackend();}
-function tryBackend(){fetch(API+'/products?limit=100').then(r=>r.json()).then(d=>{if(d.success&&d.data?.length>0){allBackendProducts=d.data;renderGrocery();}}).catch(()=>{});}
 function renderCatBar(){
-  const bar=document.getElementById('g-cats');
-  const cats=[{id:'All',title:'All',icon:'🏪'},...GROCERY_CATEGORIES];
-  bar.innerHTML=cats.map(c=>`<div class="cat-chip ${c.id===activeCat?'active':''}" onclick="setCat('${c.id}')">${c.icon} ${c.title}</div>`).join('');
+  const bar=document.getElementById('cats-bar');
+  const all=[{id:'All',title:'All',icon:'🛒'},...CATS];
+  bar.innerHTML=all.map(c=>`<div class="cat-chip ${c.id===activeCat?'active':''}" onclick="setCat('${c.id}')">${c.icon} ${c.title}</div>`).join('');
 }
-function setCat(id){activeCat=id;renderCatBar();renderGrocery();}
-function renderGrocery(){
-  const el=document.getElementById('g-products');
-  const q=(document.getElementById('g-search')?.value||'').toLowerCase().trim();
+function setCat(id){activeCat=id;renderCatBar();renderProducts();}
+function filterProducts(){renderProducts();}
+
+function renderProducts(){
+  const el=document.getElementById('store-content');
+  const q=(document.getElementById('search-input')?.value||'').toLowerCase().trim();
   let html='';
-  const cats=activeCat==='All'?GROCERY_CATEGORIES:GROCERY_CATEGORIES.filter(c=>c.id===activeCat);
+  const cats=activeCat==='All'?CATS:CATS.filter(c=>c.id===activeCat);
   cats.forEach(cat=>{
     let prods=cat.products;
-    if(q)prods=prods.filter(p=>p.name.toLowerCase().includes(q)||p.description.toLowerCase().includes(q));
+    if(q)prods=prods.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
     if(!prods.length)return;
     if(activeCat==='All')html+=`<div class="sec-heading">${cat.icon} ${cat.title}</div>`;
-    html+='<div class="products-grid">';prods.forEach(p=>{html+=prodCard(p);});html+='</div>';
+    html+='<div class="products-grid">'+prods.map(p=>cardHTML(p)).join('')+'</div>';
   });
-  if(allBackendProducts.length&&(activeCat==='All'||activeCat==='backend')){
-    let bp=allBackendProducts;if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));
-    if(bp.length){html+=`<div class="sec-heading">🏠 Local Store Products</div><div class="products-grid">`;bp.forEach(p=>{html+=backendCard(p);});html+='</div>';}
+  if(backendProds.length&&activeCat==='All'){
+    let bp=backendProds;
+    if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));
+    if(bp.length)html+=`<div class="sec-heading">🏪 Local Store Products</div><div class="products-grid">`+bp.map(p=>bCard(p)).join('')+'</div>';
   }
-  if(!html)html='<div class="empty">No products found 🔍</div>';
-  el.innerHTML=html;
+  el.innerHTML=html||'<div class="empty">No products found 🔍</div>';
 }
-function prodCard(p){
-  const qty=getQty('g_'+p.id);
-  const imgEl=p.img?`<img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:'';
-  const ph=`<div class="prod-ph" style="${p.img?'display:none':''}">🛒</div>`;
-  const qEl=qty===0?`<button class="add-btn" onclick="addProd('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="chgQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="chgQty('${p.id}',1)">+</button></div>`;
-  return `<div class="product-card">${imgEl}${ph}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.description}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qEl}</div></div></div>`;
-}
-function backendCard(p){
-  const qty=getQty('b_'+p.id);
-  const img=p.image_url?`<img class="prod-img" src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:`<div class="prod-ph">🛒</div>`;
-  const qEl=qty===0?`<button class="add-btn" onclick="addBE('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="chgBEQty('${p.id}',-1)">-</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="chgBEQty('${p.id}',1)">+</button></div>`;
-  return `<div class="product-card">${img}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.sellers?.store_name||'Local Store'}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qEl}</div></div></div>`;
-}
-function getQty(id){const i=cart.find(c=>c.id===id);return i?i.quantity:0;}
-function findProd(id){for(const cat of GROCERY_CATEGORIES){const p=cat.products.find(p=>p.id===id);if(p)return p;}return null;}
-function addProd(pid){const p=findProd(pid);if(!p)return;const id='g_'+p.id;const i=cart.find(c=>c.id===id);if(i)i.quantity++;else cart.push({id,name:p.name,price:p.price,quantity:1,img:p.img||'',type:'grocery'});saveCart();renderGrocery();updateCartBar();}
-function chgQty(pid,delta){const id='g_'+pid;const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderGrocery();updateCartBar();}
-function addBE(pid){const p=allBackendProducts.find(p=>p.id===pid);if(!p)return;const id='b_'+p.id;const i=cart.find(c=>c.id===id);if(i)i.quantity++;else cart.push({id,name:p.name,price:p.price,quantity:1,img:p.image_url||'',type:'backend',seller_id:p.seller_id});saveCart();renderGrocery();updateCartBar();}
-function chgBEQty(pid,delta){const id='b_'+pid;const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderGrocery();updateCartBar();}
-function saveCart(){localStorage.setItem('kasheer_cart',JSON.stringify(cart));}
-function updateCartBar(){const count=cart.reduce((s,i)=>s+i.quantity,0);const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);document.getElementById('cart-count').textContent=count;document.getElementById('cart-total').textContent=total;document.getElementById('cart-bar').className='cart-bar'+(count>0?' visible':'');}
 
-// CART
+function cardHTML(p){
+  const qty=getQty('g_'+p.id);
+  const imgHTML=`<img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><div class="prod-ph" style="display:none">🛒</div>`;
+  const qEl=qty===0?`<button class="add-btn" onclick="addG('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="chgG('${p.id}',-1)">−</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="chgG('${p.id}',1)">+</button></div>`;
+  return `<div class="prod-card">${imgHTML}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.desc}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qEl}</div></div></div>`;
+}
+function bCard(p){
+  const qty=getQty('b_'+p.id);
+  const imgHTML=p.image_url?`<img class="prod-img" src="${p.image_url}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<div class=prod-ph>🛒</div>'">`:`<div class="prod-ph">🛒</div>`;
+  const qEl=qty===0?`<button class="add-btn" onclick="addB('${p.id}')">+ Add</button>`:`<div class="qty-row"><button class="qty-btn" onclick="chgB('${p.id}',-1)">−</button><span class="qty-num">${qty}</span><button class="qty-btn" onclick="chgB('${p.id}',1)">+</button></div>`;
+  return `<div class="prod-card">${imgHTML}<div class="prod-body"><div class="prod-name">${p.name}</div><div class="prod-desc">${p.sellers?.store_name||'Local Store'}</div><div class="prod-foot"><span class="prod-price">₹${p.price}</span>${qEl}</div></div></div>`;
+}
+
+function getQty(id){const i=cart.find(c=>c.id===id);return i?i.quantity:0;}
+function findG(id){for(const c of CATS){const p=c.products.find(p=>p.id===id);if(p)return p;}return null;}
+function addG(id){const p=findG(id);if(!p)return;const cid='g_'+id;const i=cart.find(c=>c.id===cid);if(i)i.quantity++;else cart.push({id:cid,name:p.name,price:p.price,quantity:1,img:p.img,type:'grocery'});saveCart();renderProducts();updateBar();}
+function chgG(id,d){const cid='g_'+id;const i=cart.find(c=>c.id===cid);if(!i)return;i.quantity+=d;if(i.quantity<=0)cart=cart.filter(c=>c.id!==cid);saveCart();renderProducts();updateBar();}
+function addB(id){const p=backendProds.find(p=>p.id===id);if(!p)return;const cid='b_'+id;const i=cart.find(c=>c.id===cid);if(i)i.quantity++;else cart.push({id:cid,name:p.name,price:p.price,quantity:1,img:p.image_url||'',type:'backend',seller_id:p.seller_id});saveCart();renderProducts();updateBar();}
+function chgB(id,d){const cid='b_'+id;const i=cart.find(c=>c.id===cid);if(!i)return;i.quantity+=d;if(i.quantity<=0)cart=cart.filter(c=>c.id!==cid);saveCart();renderProducts();updateBar();}
+function saveCart(){localStorage.setItem('kasheer_cart',JSON.stringify(cart));}
+function updateBar(){const cnt=cart.reduce((s,i)=>s+i.quantity,0);const tot=cart.reduce((s,i)=>s+i.price*i.quantity,0);document.getElementById('cart-count').textContent=cnt;document.getElementById('cart-total').textContent=tot;document.getElementById('cart-bar').className='cart-bar'+(cnt>0?' visible':'');}
+
 function renderCart(){
   const el=document.getElementById('cart-content');
-  if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty<br><br><button class="nav-btn nav-teal" onclick="nav('grocery')" style="margin-top:16px;">Shop Now</button></div>`;return;}
-  const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);const del=50;
-  let html=cart.map(i=>{const th=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';return `<div class="cart-item"><div class="ci-thumb">${th}</div><div style="flex:1"><div style="font-size:15px;font-weight:700;margin-bottom:3px;">${i.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">₹${i.price} × ${i.quantity} = ₹${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cQty('${i.id}',1)">+</button></div></div>`;}).join('');
-  html+=`<div class="cart-summary"><div class="sum-row"><span>Subtotal</span><span>₹${sub}</span></div><div class="sum-row"><span>Delivery</span><span>₹${del}</span></div><div class="sum-row total"><span>Total</span><span>₹${sub+del}</span></div></div>`;
-  html+=`<div class="checkout-form"><h3>Delivery Details</h3><div class="err-box" id="co-err"></div><div id="co-success" class="order-success" style="display:none;"><div class="tick">✅</div><h3>Order Placed!</h3><p>Your order is confirmed. The nearest store will accept it shortly.</p><button onclick="nav('myorders')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:10px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;margin-top:12px;">Track My Orders</button></div><div id="co-fields"><div class="frow"><label>Your Name</label><input type="text" id="co-name" placeholder="Full name"></div><div class="frow"><label>Phone</label><input type="tel" id="co-phone" placeholder="+91 9999999999"></div><div class="frow"><label>Delivery Address</label><textarea id="co-addr" placeholder="House no., street, area, landmark..."></textarea></div><div class="frow"><label>Payment Method</label><select id="co-pay"><option value="cod">Cash on Delivery</option><option value="online">Online Payment</option></select></div><button class="place-btn" id="co-btn" onclick="placeOrder()">Place Order — ₹${sub+del}</button></div></div>`;
+  if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:56px;">Your cart is empty<br><br><button class="btn btn-teal" onclick="showPage('store')" style="margin-top:14px;">Start Shopping</button></div>`;return;}
+  const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);
+  let html=cart.map(i=>{const th=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';return`<div class="cart-item"><div class="cart-thumb">${th}</div><div style="flex:1"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">₹${i.price} × ${i.quantity} = ₹${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cartChg('${i.id}',-1)">−</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cartChg('${i.id}',1)">+</button></div></div>`;}).join('');
+  html+=`<div class="cart-summary"><div class="sum-row"><span>Subtotal</span><span>₹${sub}</span></div><div class="sum-row"><span>Delivery</span><span>₹50</span></div><div class="sum-row total"><span>Total</span><span>₹${sub+50}</span></div><button class="btn btn-teal" style="width:100%;justify-content:center;margin-top:20px;border-radius:50px;" onclick="alert('Download the Kasheer app to complete your order!')">Checkout on App →</button></div>`;
   el.innerHTML=html;
 }
-function cQty(id,delta){const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderCart();updateCartBar();}
-async function placeOrder(){
-  const name=document.getElementById('co-name')?.value;
-  const phone=document.getElementById('co-phone')?.value;
-  const addr=document.getElementById('co-addr')?.value;
-  const pay=document.getElementById('co-pay')?.value;
-  const errEl=document.getElementById('co-err');errEl.style.display='none';
-  if(!name||!phone||!addr){errEl.textContent='Please fill in name, phone and address';errEl.style.display='block';return;}
-  const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Placing order...';
-  try{
-    await new Promise(r=>setTimeout(r,1000));
-    const gOrders=JSON.parse(localStorage.getItem('guest_orders')||'[]');
-    gOrders.unshift({id:'G'+Date.now(),items:cart,address:addr,phone,name,payment:pay,total:cart.reduce((s,i)=>s+i.price*i.quantity,0)+50,status:'pending',created_at:new Date().toISOString()});
-    localStorage.setItem('guest_orders',JSON.stringify(gOrders));
-    cart=[];saveCart();updateCartBar();
-    document.getElementById('co-fields').style.display='none';
-    document.getElementById('co-success').style.display='block';
-  }catch(e){errEl.textContent='Error placing order. Try again.';errEl.style.display='block';btn.disabled=false;btn.textContent='Place Order';}
-}
+function cartChg(id,d){const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=d;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderCart();updateBar();}
 
-// MY ORDERS
-async function loadOrders(){
-  const email=document.getElementById('orders-email')?.value;
-  const pass=document.getElementById('orders-pass')?.value;
-  const errEl=document.getElementById('orders-err');errEl.style.display='none';
-  if(!email||!pass){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
-  try{
-    const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
-    const data=await res.json();
-    if(!data.success)throw new Error(data.message||'Login failed');
-    customerToken=data.data.token;localStorage.setItem('customer_token',customerToken);
-    document.getElementById('orders-login-view').style.display='none';
-    document.getElementById('orders-list').style.display='block';
-    const oRes=await fetch(API+'/orders/my-orders',{headers:{Authorization:'Bearer '+customerToken}});
-    const oData=await oRes.json();
-    const orders=[...(oData.success?oData.data||[]:[]),...JSON.parse(localStorage.getItem('guest_orders')||'[]')];
-    if(!orders.length){document.getElementById('orders-list').innerHTML='<div class="empty">No orders yet. Start shopping!</div>';return;}
-    document.getElementById('orders-list').innerHTML=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:18px;">Your Orders</h3><div class="orders-list">${orders.map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${(o.id||'').toString().slice(0,8).toUpperCase()}</span><span class="ostatus s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;">₹${o.total_amount||o.total||0}</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`;
-  }catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
-}
-
-// FIX
-function initFix(){
-  const el=document.getElementById('fix-content');
-  el.innerHTML=FIX_SERVICES.map(s=>`<div class="fix-card"><div class="fix-icon">${s.icon}</div><div class="fix-title">${s.title}</div><div class="fix-price">${s.price}</div><p style="font-size:12px;color:var(--muted);margin-bottom:14px;">${s.desc}</p><button class="fix-btn" onclick="openFixModal('${s.id}',false)">Book Now</button><button class="fix-emergency" onclick="openFixModal('${s.id}',true)">🆘 Emergency</button></div>`).join('');
-}
-function openFixModal(serviceId,isEmergency){
-  selectedFixService=FIX_SERVICES.find(s=>s.id===serviceId);
-  fixIsEmergency=isEmergency;
-  const m=document.getElementById('fix-modal');
-  document.getElementById('fix-modal-title').textContent=(isEmergency?'🆘 Emergency: ':'📅 Book: ')+selectedFixService.title;
-  document.getElementById('fix-emergency-notice').style.display=isEmergency?'block':'none';
-  m.style.display='flex';
-}
-function closeFixModal(){document.getElementById('fix-modal').style.display='none';}
-function bookEmergency(){openFixModal(FIX_SERVICES[0].id,true);}
-async function submitFixBooking(){
-  const name=document.getElementById('fix-name').value;
-  const phone=document.getElementById('fix-phone').value;
-  const addr=document.getElementById('fix-address').value;
-  const desc=document.getElementById('fix-desc').value;
-  const errEl=document.getElementById('fix-err');const sucEl=document.getElementById('fix-suc');
-  errEl.style.display='none';sucEl.style.display='none';
-  if(!name||!phone||!addr){errEl.textContent='Please fill in all required fields';errEl.style.display='block';return;}
-  await new Promise(r=>setTimeout(r,800));
-  const bookings=JSON.parse(localStorage.getItem('fix_bookings')||'[]');
-  bookings.push({service:selectedFixService.title,name,phone,address:addr,desc,isEmergency:fixIsEmergency,status:'pending',created_at:new Date().toISOString()});
-  localStorage.setItem('fix_bookings',JSON.stringify(bookings));
-  sucEl.textContent=fixIsEmergency?'✅ Emergency booking confirmed! A provider will contact you within 1 hour.':'✅ Booking submitted! A provider will contact you within 2-3 hours.';
-  sucEl.style.display='block';
-  document.getElementById('fix-name').value='';document.getElementById('fix-phone').value='';document.getElementById('fix-address').value='';document.getElementById('fix-desc').value='';
-}
-
-// EVENTS
-function initEvents(){renderEvents();}
-function switchEvTab(tab){
-  ['browse','manage','organizer'].forEach(t=>{
-    document.getElementById('ev-'+t).style.display=t===tab?'block':'none';
-    document.getElementById('ev-tab-'+t)?.classList.toggle('active',t===tab);
-  });
-  if(tab==='browse')renderEvents();
-}
-function renderEvents(){
-  const el=document.getElementById('events-content');
-  el.innerHTML=EVENTS_DATA.map(e=>`<div class="event-card"><div class="event-img">${e.icon}</div><div class="event-body"><div class="event-title">${e.title}</div><div class="event-meta">📍 ${e.venue}<br>📅 ${new Date(e.date).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})} · ${e.time}<br>🎟️ ${e.tickets_left} tickets left</div><p style="font-size:13px;color:var(--muted);margin-bottom:12px;">${e.description}</p><div class="event-price">${e.price===0?'FREE':'₹'+e.price}</div><button class="ticket-btn" onclick="buyTicket('${e.id}')">Get Ticket${e.price>0?' — ₹'+e.price:' (Free)'}</button></div></div>`).join('');
-}
-function buyTicket(eventId){
-  const ev=EVENTS_DATA.find(e=>e.id===eventId);if(!ev)return;
-  const qr='KSR-'+eventId.toUpperCase()+'-'+Date.now().toString(36).toUpperCase();
-  const tickets=JSON.parse(localStorage.getItem('my_tickets')||'[]');
-  tickets.push({event:ev.title,venue:ev.venue,date:ev.date,price:ev.price,qr,purchased_at:new Date().toISOString()});
-  localStorage.setItem('my_tickets',JSON.stringify(tickets));
-  alert(`✅ Ticket purchased!\n\nEvent: ${ev.title}\nDate: ${ev.date}\nVenue: ${ev.venue}\n\nYour QR Code: ${qr}\n\n(In the app, this would show as a scannable QR code)`);
-}
-async function submitEventMgmt(){
-  const name=document.getElementById('evm-name').value;
-  const phone=document.getElementById('evm-phone').value;
-  const type=document.getElementById('evm-type').value;
-  const crowd=document.getElementById('evm-crowd').value;
-  const budget=document.getElementById('evm-budget').value;
-  const errEl=document.getElementById('evm-err');const sucEl=document.getElementById('evm-suc');
-  errEl.style.display='none';sucEl.style.display='none';
-  if(!name||!phone||!crowd||!budget){errEl.textContent='Please fill in all required fields';errEl.style.display='block';return;}
-  await new Promise(r=>setTimeout(r,800));
-  const reqs=JSON.parse(localStorage.getItem('event_requests')||'[]');
-  reqs.push({name,phone,type,crowd,budget,status:'requested',created_at:new Date().toISOString()});
-  localStorage.setItem('event_requests',JSON.stringify(reqs));
-  sucEl.textContent='✅ Request submitted! Our events team will contact you within 24 hours with a pricing proposal.';
-  sucEl.style.display='block';
-}
-async function createEvent(){
-  const errEl=document.getElementById('ev-org-err');const sucEl=document.getElementById('ev-org-suc');
-  errEl.style.display='none';sucEl.style.display='none';
-  const title=document.getElementById('ev-title').value;
-  if(!title){errEl.textContent='Please fill in event title';errEl.style.display='block';return;}
-  await new Promise(r=>setTimeout(r,800));
-  sucEl.textContent='✅ Event submitted for review! We will publish it within 24 hours after verification. Commission is 8% per ticket sold.';
-  sucEl.style.display='block';
-}
-
-// MARKET
-function initMarket(){renderMarket();}
-function filterMarket(cat){mktFilter=cat;renderMarket();}
-function renderMarket(){
-  const el=document.getElementById('market-content');
-  const listings=mktFilter==='all'?MARKET_LISTINGS:MARKET_LISTINGS.filter(l=>l.category===mktFilter);
-  if(!listings.length){el.innerHTML='<div class="empty" style="grid-column:1/-1;">No listings in this category yet.</div>';return;}
-  el.innerHTML=listings.map(l=>`<div class="listing-card"><div class="listing-img">${l.icon}</div><div class="listing-body"><div class="listing-title">${l.title}<span class="listing-cond">${l.condition}</span></div><div class="listing-meta">📍 ${l.location} · Seller: ${l.seller}</div><p style="font-size:12px;color:var(--muted);margin-bottom:10px;">${l.desc}</p><div class="listing-price">₹${l.price.toLocaleString()}</div><button class="contact-btn" onclick="contactSeller('${l.id}')">Contact Seller</button></div></div>`).join('');
-}
-function switchMktTab(tab){
-  document.getElementById('mkt-browse').style.display=tab==='browse'?'block':'none';
-  document.getElementById('mkt-sell').style.display=tab==='sell'?'block':'none';
-  document.getElementById('mkt-tab-browse')?.classList.toggle('active',tab==='browse');
-  document.getElementById('mkt-tab-sell')?.classList.toggle('active',tab==='sell');
-}
-function contactSeller(id){const l=MARKET_LISTINGS.find(l=>l.id===id);if(!l)return;window.open('tel:'+l.phone);}
-async function submitListing(){
-  const title=document.getElementById('mkt-title').value;
-  const price=document.getElementById('mkt-price').value;
-  const phone=document.getElementById('mkt-phone').value;
-  const errEl=document.getElementById('mkt-err');const sucEl=document.getElementById('mkt-suc');
-  errEl.style.display='none';sucEl.style.display='none';
-  if(!title||!price||!phone){errEl.textContent='Please fill in title, price and phone';errEl.style.display='block';return;}
-  const boost=document.getElementById('mkt-boost').value;
-  await new Promise(r=>setTimeout(r,800));
-  const listings=JSON.parse(localStorage.getItem('my_listings')||'[]');
-  listings.push({title,price,phone,boost,status:'pending',created_at:new Date().toISOString()});
-  localStorage.setItem('my_listings',JSON.stringify(listings));
-  const msg=boost!=='none'?`✅ Listing submitted! Boost selected: ${boost}. Please complete payment at checkout. Your listing goes live after review.`:'✅ Listing submitted! It will go live after review (usually within 2 hours).';
-  sucEl.textContent=msg;sucEl.style.display='block';
-}
-
-// CLOTHING
-function initClothing(){renderClothing();}
-function filterClothing(cat){clothingFilter=cat;renderClothing();}
-function renderClothing(){
-  const el=document.getElementById('clothing-content');
-  const items=clothingFilter==='all'?CLOTHING_DATA:CLOTHING_DATA.filter(c=>c.category===clothingFilter);
-  el.innerHTML=items.map(c=>`<div class="cloth-card"><div class="cloth-img">${c.icon}</div><div class="cloth-body"><div class="cloth-title">${c.title}</div><div class="cloth-store">${c.store}</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal-dark);margin-bottom:10px;">₹${c.price.toLocaleString()}</div><button style="background:var(--teal);color:#fff;border:none;border-radius:10px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;width:100%;" onclick="alert('To purchase clothing items, download the Kasheer app!')">Buy Now</button></div></div>`).join('');
-}
-
-// SELLER
-function initSeller(){if(sellerToken)showSellerDash();else{document.getElementById('seller-login-view').style.display='block';document.getElementById('seller-dash-view').style.display='none';}}
+function initSeller(){if(sellerToken)showDash();else{document.getElementById('seller-login-view').style.display='block';document.getElementById('seller-dash-view').style.display='none';}}
 async function sellerLogin(){
-  const email=document.getElementById('sl-email').value,pass=document.getElementById('sl-pass').value;
-  const errEl=document.getElementById('sl-err');errEl.style.display='none';
-  if(!email||!pass){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
-  try{const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});const d=await res.json();if(!d.success)throw new Error(d.message||'Login failed');sellerToken=d.data.token;localStorage.setItem('seller_token',sellerToken);showSellerDash();}
-  catch(e){document.getElementById('sl-err').textContent=e.message||'Login failed';document.getElementById('sl-err').style.display='block';}
+  const em=document.getElementById('seller-email').value,pw=document.getElementById('seller-password').value,err=document.getElementById('login-error');
+  err.style.display='none';
+  if(!em||!pw){err.textContent='Please enter email and password';err.style.display='block';return;}
+  try{const r=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em,password:pw})});const d=await r.json();if(!d.success)throw new Error(d.message||'Login failed');sellerToken=d.data.token;localStorage.setItem('seller_token',sellerToken);showDash();}
+  catch(e){err.textContent=e.message||'Login failed';err.style.display='block';}
 }
 function sellerLogout(){sellerToken=null;localStorage.removeItem('seller_token');document.getElementById('seller-dash-view').style.display='none';document.getElementById('seller-login-view').style.display='block';}
-async function showSellerDash(){
-  document.getElementById('seller-login-view').style.display='none';document.getElementById('seller-dash-view').style.display='block';
+
+async function showDash(){
+  document.getElementById('seller-login-view').style.display='none';
+  document.getElementById('seller-dash-view').style.display='block';
   try{
     const h={Authorization:'Bearer '+sellerToken};
-    const[dR,pR,oR]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller-orders',{headers:h}).catch(()=>({json:()=>({success:false})}))]);
-    const d=await dR.json(),p=await pR.json(),o=await oR.json().catch(()=>({success:false}));
-    if(d.success&&d.data?.seller){const s=d.data.seller;document.getElementById('dash-store-name').textContent=s.store_name||'Your Store';document.getElementById('dash-cat').textContent=s.category||'';const st=document.getElementById('dash-status');st.textContent=s.is_approved?'Active':'Pending';st.className='sbadge '+(s.is_approved?'sbadge-active':'sbadge-pending');}
-    const pl=p.success?(p.data||[]):[];const ol=o.success?(o.data||[]):[];
-    const rev=ol.filter(x=>x.status==='delivered').reduce((s,x)=>s+(x.total_amount||0),0);
-    document.getElementById('s-prods').textContent=pl.length;document.getElementById('s-orders').textContent=ol.length;document.getElementById('s-rev').textContent='₹'+rev;
-    document.getElementById('seller-prods-content').innerHTML=pl.length?`<div class="prod-list-grid">${pl.map(p=>`<div class="prod-list-card"><div class="plt">${p.image_url?`<img src="${p.image_url}">`:'🛒'}</div><div style="flex:1;min-width:0"><div class="seller-prod-name" style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">₹${p.price}</div></div></div>`).join('')}</div>`:'<div class="empty">No products yet. Add from the mobile app.</div>';
-    document.getElementById('seller-orders-content').innerHTML=ol.length?`<div class="orders-list">${ol.slice(0,30).map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="ostatus s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;">₹${o.total_amount||0}</div><div style="font-size:12px;color:var(--muted);">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`:'<div class="empty">No orders yet.</div>';
-  }catch(e){document.getElementById('seller-dash-view').innerHTML='<div class="empty">Could not load dashboard.</div>';}
+    const[dr,pr,or]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller',{headers:h}).catch(()=>({json:()=>({success:false})}))]);
+    const dd=await dr.json(),pd=await pr.json(),od=await or.json().catch(()=>({success:false}));
+    if(dd.success&&dd.data?.seller){const s=dd.data.seller;document.getElementById('dash-store-name').textContent=s.store_name||'Your Store';document.getElementById('dash-category').textContent=s.category||'';const st=document.getElementById('dash-status');st.textContent=s.is_approved?'Active':'Pending';st.className='s-badge '+(s.is_approved?'s-active':'s-pending');}
+    const pl=pd.success?(pd.data||[]):[];const ol=od.success?(od.data||[]):[];
+    document.getElementById('stat-products').textContent=pl.length;
+    document.getElementById('stat-orders').textContent=ol.length;
+    document.getElementById('stat-revenue').textContent='₹'+ol.filter(o=>o.status==='delivered').reduce((s,o)=>s+(o.total_amount||0),0);
+    document.getElementById('seller-products-content').innerHTML=pl.length?`<div class="seller-prods-grid">${pl.map(p=>`<div class="seller-prod-card"><div class="seller-prod-thumb">${p.image_url?`<img src="${p.image_url}" alt="${p.name}">`:'🛒'}</div><div style="flex:1;min-width:0"><div class="seller-prod-name">${p.name}</div><div class="seller-prod-price">₹${p.price}</div></div></div>`).join('')}</div>`:'<div class="empty">No products yet. Add from the app.</div>';
+    document.getElementById('seller-orders-content').innerHTML=ol.length?`<div class="orders-list">${ol.slice(0,30).map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="order-status os-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div class="order-amount">₹${o.total_amount||0}</div><div class="order-date">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`:'<div class="empty">No orders yet.</div>';
+  }catch(e){document.getElementById('seller-dash-view').innerHTML='<div class="empty">Could not load dashboard. Please try again.</div>';}
 }
-function switchSellerTab(tab){document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['products','orders'][i]===tab));document.getElementById('st-products').style.display=tab==='products'?'block':'none';document.getElementById('st-orders').style.display=tab==='orders'?'block':'none';}
-
-// SELLER REGISTER
-async function registerSeller(){
-  const store=document.getElementById('sr-store').value,name=document.getElementById('sr-name').value,email=document.getElementById('sr-email').value,phone=document.getElementById('sr-phone').value,pass=document.getElementById('sr-pass').value,cat=document.getElementById('sr-cat').value,addr=document.getElementById('sr-address').value;
-  const errEl=document.getElementById('sr-err');const sucEl=document.getElementById('sr-suc');errEl.style.display='none';sucEl.style.display='none';
-  if(!store||!name||!email||!phone||!pass||!addr){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
-  try{const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass,name,phone,role:'seller',store_name:store,category:cat,address:addr})});const d=await res.json();if(d.success){sucEl.textContent='✅ Store registered! Our team will review and approve within 24 hours.';sucEl.style.display='block';}else{errEl.textContent=d.message||'Registration failed';errEl.style.display='block';}}
-  catch(e){errEl.textContent='Network error. Try again.';errEl.style.display='block';}
-}
-
-// RIDER REGISTER
-async function registerRider(){
-  const name=document.getElementById('rr-name').value,email=document.getElementById('rr-email').value,phone=document.getElementById('rr-phone').value,pass=document.getElementById('rr-pass').value,vehicle=document.getElementById('rr-vehicle').value,area=document.getElementById('rr-area').value;
-  const errEl=document.getElementById('rr-err');const sucEl=document.getElementById('rr-suc');errEl.style.display='none';sucEl.style.display='none';
-  if(!name||!email||!phone||!pass||!area){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
-  try{const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass,name,phone,role:'rider',vehicle_type:vehicle,area})});const d=await res.json();if(d.success){sucEl.textContent='✅ Application submitted! Our team will contact you within 24 hours.';sucEl.style.display='block';}else{errEl.textContent=d.message||'Registration failed';errEl.style.display='block';}}
-  catch(e){errEl.textContent='Network error. Try again.';errEl.style.display='block';}
-}
-
-// FEEDBACK
-function switchFb(tab){document.querySelectorAll('.fb-tab').forEach((t,i)=>t.classList.toggle('active',['complaint','suggestion'][i]===tab));document.getElementById('fb-complaint').style.display=tab==='complaint'?'block':'none';document.getElementById('fb-suggestion').style.display=tab==='suggestion'?'block':'none';}
-async function submitComplaint(){
-  const name=document.getElementById('fb-cname').value,contact=document.getElementById('fb-ccontact').value,msg=document.getElementById('fb-cmsg').value;
-  const errEl=document.getElementById('fb-cerr');const sucEl=document.getElementById('fb-csuc');errEl.style.display='none';sucEl.style.display='none';
-  if(!name||!msg){errEl.textContent='Please enter name and complaint';errEl.style.display='block';return;}
-  const c=JSON.parse(localStorage.getItem('kasheer_complaints')||'[]');c.push({type:'complaint',name,contact,msg,module:document.getElementById('fb-cmodule').value,date:new Date().toISOString()});localStorage.setItem('kasheer_complaints',JSON.stringify(c));
-  sucEl.textContent='✅ Complaint submitted. We will contact you within 24 hours.';sucEl.style.display='block';
-  document.getElementById('fb-cname').value='';document.getElementById('fb-ccontact').value='';document.getElementById('fb-cmsg').value='';
-}
-async function submitSuggestion(){
-  const msg=document.getElementById('fb-smsg').value;
-  const errEl=document.getElementById('fb-serr');const sucEl=document.getElementById('fb-ssuc');errEl.style.display='none';sucEl.style.display='none';
-  if(!msg){errEl.textContent='Please write your suggestion';errEl.style.display='block';return;}
-  const s=JSON.parse(localStorage.getItem('kasheer_suggestions')||'[]');s.push({type:'suggestion',name:document.getElementById('fb-sname').value,msg,date:new Date().toISOString()});localStorage.setItem('kasheer_suggestions',JSON.stringify(s));
-  sucEl.textContent='✅ Thank you! Your suggestion has been recorded.';sucEl.style.display='block';
-  document.getElementById('fb-sname').value='';document.getElementById('fb-smsg').value='';
-}
-
-// ADMIN
-function initAdmin(){if(adminToken)showAdminDash();else{document.getElementById('admin-login-view').style.display='block';document.getElementById('admin-dash-view').style.display='none';}}
-async function adminLogin(){
-  const email=document.getElementById('adm-email').value,pass=document.getElementById('adm-pass').value;
-  const errEl=document.getElementById('adm-err');errEl.style.display='none';
-  if(email!==ADMIN_EMAIL||pass!==ADMIN_PASS){errEl.textContent='Invalid admin credentials';errEl.style.display='block';return;}
-  try{const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});const d=await res.json();if(!d.success)throw new Error(d.message||'Login failed');adminToken=d.data.token;localStorage.setItem('admin_token',adminToken);document.getElementById('admin-login-view').style.display='none';document.getElementById('admin-dash-view').style.display='block';loadAdminData('stores',document.querySelector('.atab'));}
-  catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
-}
-function adminLogout(){adminToken=null;localStorage.removeItem('admin_token');document.getElementById('admin-dash-view').style.display='none';document.getElementById('admin-login-view').style.display='block';}
-function switchAdminTab(tab,el){document.querySelectorAll('.atab').forEach(t=>t.classList.remove('active'));el.classList.add('active');loadAdminData(tab,el);}
-async function loadAdminData(tab){
-  const el=document.getElementById('admin-content');
-  el.innerHTML='<div class="loading"><div class="spinner"></div>Loading...</div>';
-  const h={Authorization:'Bearer '+adminToken};
-  try{
-    if(tab==='stores'){
-      const res=await fetch(API+'/admin/stores',{headers:h});const d=await res.json();
-      const stores=d.success?(d.data||[]):[];
-      document.getElementById('adm-stores').textContent=stores.length;
-      document.getElementById('adm-pending').textContent=stores.filter(s=>!s.is_approved).length;
-      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Store</th><th>Category</th><th>Status</th><th>Orders</th><th>Actions</th></tr></thead><tbody>${stores.map(s=>`<tr><td><strong>${s.store_name}</strong></td><td>${s.category||'—'}</td><td><span class="ostatus ${s.is_approved?'s-confirmed':'s-pending'}">${s.is_approved?'Active':'Pending'}</span></td><td>${s.seller_order_count||0}</td><td>${!s.is_approved?`<button class="aabtn aapprove" onclick="aApproveStore('${s.id}')">Approve</button>`:''}<button class="aabtn areject" onclick="aDeleteStore('${s.id}')">Delete</button></td></tr>`).join('')}</tbody></table></div>`;
-      // Show complaints in admin
-      const complaints=JSON.parse(localStorage.getItem('kasheer_complaints')||'[]');
-      const suggestions=JSON.parse(localStorage.getItem('kasheer_suggestions')||'[]');
-      if(complaints.length||suggestions.length){el.innerHTML+=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin:28px 0 14px;">💬 Feedback</h3><div class="orders-list">${[...complaints,...suggestions].map(c=>`<div class="order-card"><div class="order-top"><span class="order-id">${c.name||'Anonymous'}</span><span class="ostatus ${c.type==='complaint'?'s-pending':'s-confirmed'}">${c.type.toUpperCase()}${c.module?' — '+c.module:''}</span></div><p style="font-size:13px;color:var(--muted);margin-top:4px;">${c.msg}</p><div style="font-size:12px;color:var(--muted);margin-top:4px;">${c.contact||''}</div></div>`).join('')}</div>`;}
-    } else if(tab==='riders'){
-      const res=await fetch(API+'/admin/riders',{headers:h});const d=await res.json();
-      const riders=d.success?(d.data||[]):[];
-      document.getElementById('adm-riders').textContent=riders.length;
-      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Rider</th><th>Vehicle</th><th>Status</th><th>Penalty</th><th>Actions</th></tr></thead><tbody>${riders.map(r=>`<tr><td><strong>${r.users?.name||r.name||'—'}</strong><br><small>${r.users?.email||''}</small></td><td>${r.vehicle_type||'—'}</td><td><span class="ostatus ${r.is_approved?'s-confirmed':'s-pending'}">${r.is_approved?'Active':'Pending'}</span></td><td>${r.penalty_level>0?'Level '+r.penalty_level:'None'}</td><td>${!r.is_approved?`<button class="aabtn aapprove" onclick="aApproveRider('${r.id}')">Approve</button>`:''}<button class="aabtn aban" onclick="aBanRider('${r.id}')">Ban</button></td></tr>`).join('')}</tbody></table></div>`;
-    } else if(tab==='orders'){
-      const res=await fetch(API+'/admin/orders',{headers:h});const d=await res.json();
-      const orders=d.success?(d.data||[]):[];
-      document.getElementById('adm-orders').textContent=orders.length;
-      el.innerHTML=`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Store</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>${orders.slice(0,50).map(o=>`<tr><td><strong>#${o.id.slice(0,8).toUpperCase()}</strong></td><td>${o.users?.name||'Guest'}<br><small>${o.delivery_phone||''}</small></td><td>${o.sellers?.store_name||'—'}</td><td>₹${o.total_amount||0}</td><td><span class="ostatus s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></td><td>${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</td></tr>`).join('')}</tbody></table></div>`;
-    } else if(tab==='events'){
-      const evReqs=JSON.parse(localStorage.getItem('event_requests')||'[]');
-      document.getElementById('adm-events-count').textContent=EVENTS_DATA.length+evReqs.length;
-      el.innerHTML=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:16px;">Live Events</h3><div class="orders-list">${EVENTS_DATA.map(e=>`<div class="order-card"><div class="order-top"><span class="order-id">${e.title}</span><span class="ostatus s-confirmed">LIVE</span></div><div style="font-size:13px;color:var(--muted);">${e.venue} · ${e.date} · ₹${e.price} · ${e.tickets_left} tickets left</div></div>`).join('')}</div>${evReqs.length?`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin:24px 0 14px;">Event Management Requests</h3><div class="orders-list">${evReqs.map(r=>`<div class="order-card"><div class="order-top"><span class="order-id">${r.name}</span><span class="ostatus s-pending">${r.status.toUpperCase()}</span></div><div style="font-size:13px;color:var(--muted);">${r.type} · ${r.crowd} people · Budget: ₹${r.budget}</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">${r.phone}</div></div>`).join('')}</div>`:''}`;
-    } else if(tab==='market'){
-      const myListings=JSON.parse(localStorage.getItem('my_listings')||'[]');
-      document.getElementById('adm-listings').textContent=MARKET_LISTINGS.length+myListings.length;
-      el.innerHTML=`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:16px;">2nd Hand Market Listings</h3><div class="orders-list">${[...MARKET_LISTINGS,...myListings.map(l=>({...l,icon:'📦',seller:l.name||'User',location:'Srinagar'}))].map(l=>`<div class="order-card"><div class="order-top"><span class="order-id">${l.title}</span><span class="ostatus s-confirmed">ACTIVE</span></div><div style="font-size:13px;color:var(--muted);">${l.category||'other'} · ₹${(l.price||0).toLocaleString()} · ${l.location||'Srinagar'}</div></div>`).join('')}</div>`;
-    } else if(tab==='verifications'){
-      const res=await fetch(API+'/admin/verifications',{headers:h});const d=await res.json();
-      const vs=d.success?(d.data||[]):[];
-      el.innerHTML=vs.length?`<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Store</th><th>Submitted</th><th>Actions</th></tr></thead><tbody>${vs.map(v=>`<tr><td><strong>${v.sellers?.store_name||'—'}</strong></td><td>${new Date(v.created_at||Date.now()).toLocaleDateString()}</td><td><button class="aabtn aapprove" onclick="aApproveVerif('${v.id}')">Approve</button><button class="aabtn areject" onclick="aRejectVerif('${v.id}')">Reject</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No pending verifications.</div>';
-    } else if(tab==='complaints'){
-      const c=JSON.parse(localStorage.getItem('kasheer_complaints')||'[]');
-      const s=JSON.parse(localStorage.getItem('kasheer_suggestions')||'[]');
-      el.innerHTML=`<div class="orders-list">${[...c,...s].length?[...c,...s].map(x=>`<div class="order-card"><div class="order-top"><span class="order-id">${x.name||'Anonymous'}</span><span class="ostatus ${x.type==='complaint'?'s-pending':'s-confirmed'}">${x.type?.toUpperCase()}${x.module?' — '+x.module:''}</span></div><p style="font-size:13px;color:var(--muted);margin-top:4px;">${x.msg}</p></div>`).join(''):'<div class="empty">No feedback yet.</div>'}</div>`;
-    }
-  }catch(e){el.innerHTML='<div class="empty">Could not load data.</div>';}
-}
-async function aApproveStore(id){try{await fetch(API+'/admin/stores/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('stores');}catch(e){alert('Error');}}
-async function aDeleteStore(id){if(!confirm('Delete this store?'))return;try{await fetch(API+'/admin/stores/'+id,{method:'DELETE',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('stores');}catch(e){alert('Error');}}
-async function aApproveRider(id){try{await fetch(API+'/admin/riders/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('riders');}catch(e){alert('Error');}}
-async function aBanRider(id){if(!confirm('Ban this rider?'))return;try{await fetch(API+'/admin/riders/'+id+'/ban',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('riders');}catch(e){alert('Error');}}
-async function aApproveVerif(id){try{await fetch(API+'/admin/verifications/'+id+'/approve',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('verifications');}catch(e){alert('Error');}}
-async function aRejectVerif(id){try{await fetch(API+'/admin/verifications/'+id+'/reject',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken}});loadAdminData('verifications');}catch(e){alert('Error');}}
-
-updateCartBar();
+function switchTab(t){document.querySelectorAll('.tab').forEach((x,i)=>x.classList.toggle('active',['products','orders'][i]===t));document.getElementById('tab-products').style.display=t==='products'?'block':'none';document.getElementById('tab-orders').style.display=t==='orders'?'block':'none';}
+updateBar();
 </script>
 </body>
 </html>
