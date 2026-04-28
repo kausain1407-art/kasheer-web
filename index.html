@@ -1703,13 +1703,16 @@ async function registerSeller(){
   const errEl=document.getElementById('sr-err'),sucEl=document.getElementById('sr-suc');
   errEl.style.display='none';sucEl.style.display='none';
   const missing=[];
-  if(!store)missing.push('Store Name');
-  if(!name)missing.push('Your Name');
-  if(!email)missing.push('Email');
-  if(!phone)missing.push('Phone');
-  if(!pass)missing.push('Password');
+  const fieldMap={store:'sr-store',name:'sr-name',email:'sr-email',phone:'sr-phone',pass:'sr-pass'};
+  // Clear previous highlights
+  Object.values(fieldMap).forEach(id=>{const el=document.getElementById(id);if(el)el.style.border='';});
+  if(!store){missing.push('Store Name');document.getElementById('sr-store').style.border='2px solid #C62828';}
+  if(!name){missing.push('Your Name');document.getElementById('sr-name').style.border='2px solid #C62828';}
+  if(!email){missing.push('Email');document.getElementById('sr-email').style.border='2px solid #C62828';}
+  if(!phone){missing.push('Phone');document.getElementById('sr-phone').style.border='2px solid #C62828';}
+  if(!pass){missing.push('Password');document.getElementById('sr-pass').style.border='2px solid #C62828';}
   if(missing.length){
-    errEl.textContent='Missing required fields: '+missing.join(', ');
+    errEl.innerHTML='Please fill in: <strong>'+missing.join(', ')+'</strong>';
     errEl.style.display='block';
     errEl.scrollIntoView({behavior:'smooth',block:'center'});
     return;
