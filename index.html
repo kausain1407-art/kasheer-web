@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -55,6 +55,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop
 .modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
 .module-card{background:var(--white);border-radius:var(--radius);padding:32px 28px;border:1px solid var(--border);cursor:pointer;transition:all 0.25s;text-align:center;position:relative;overflow:hidden;}
 .module-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--teal);}
+.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--teal-dark));opacity:0;transition:opacity 0.25s;}
+.module-card:hover::before{opacity:1;}
 .mc-icon{font-size:48px;margin-bottom:16px;}
 .mc-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:8px;}
 .mc-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px;}
@@ -63,7 +65,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop
 .mod-header{padding:36px 28px;position:relative;overflow:hidden;}
 .mod-header h1{font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;font-weight:700;margin-bottom:4px;}
 .mod-header p{font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:20px;}
-.mod-back{background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:18px;}
+.mod-back{background:rgba(255,255,255,0.15);border:none;color:#fff;padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:18px;transition:background 0.2s;}
+.mod-back:hover{background:rgba(255,255,255,0.28);}
 .search-wrap{background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);border-radius:50px;padding:12px 20px;display:flex;align-items:center;gap:10px;margin-bottom:18px;}
 .search-wrap input{background:none;border:none;outline:none;color:#fff;font-family:'Syne',sans-serif;font-size:14px;flex:1;}
 .search-wrap input::placeholder{color:rgba(255,255,255,0.45);}
@@ -74,19 +77,21 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop
 .products-area{padding:24px 28px 120px;}
 .sec-heading{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text);margin:28px 0 16px;display:flex;align-items:center;gap:10px;}
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;}
-.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;}
+.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.22s;cursor:pointer;}
 .product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
 .prod-img-wrap{width:100%;height:160px;background:#f9f9f9;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.prod-img-wrap img{width:100%;height:100%;object-fit:contain;padding:8px;}
+.prod-img-wrap img{width:100%;height:100%;object-fit:contain;padding:8px;transition:transform 0.3s;}
+.product-card:hover .prod-img-wrap img{transform:scale(1.06);}
 .prod-emoji{font-size:52px;}
 .prod-body{padding:12px;}
 .prod-name{font-size:13px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .prod-desc{font-size:11px;color:var(--muted);margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .prod-foot{display:flex;align-items:center;justify-content:space-between;}
 .prod-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--teal-dark);}
-.add-btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
+.add-btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:background 0.2s;}
+.add-btn:hover{background:var(--teal-dark);}
 .qty-row{display:flex;align-items:center;gap:6px;}
-.qty-btn{width:28px;height:28px;border-radius:8px;background:var(--teal-light);border:none;color:var(--teal-dark);font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.qty-btn{width:28px;height:28px;border-radius:8px;background:var(--teal-light);border:none;color:var(--teal-dark);font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
 .qty-btn:hover{background:var(--teal);color:#fff;}
 .qty-num{font-size:14px;font-weight:700;min-width:20px;text-align:center;}
 .cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--teal-dark);color:#fff;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;z-index:100;transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -8px 32px rgba(0,103,115,0.3);}
@@ -106,7 +111,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop
 .frow input,.frow select,.frow textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Syne',sans-serif;outline:none;transition:border 0.2s;background:var(--bg);color:var(--text);}
 .frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--teal);background:#fff;}
 .frow textarea{resize:vertical;min-height:80px;}
-.place-btn{width:100%;padding:15px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:10px;}
+.place-btn{width:100%;padding:15px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:10px;transition:background 0.2s;}
+.place-btn:hover{background:var(--teal-dark);}
 .place-btn:disabled{opacity:0.6;cursor:not-allowed;}
 .order-success{background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);text-align:center;margin-top:20px;}
 .order-success .tick{font-size:64px;margin-bottom:16px;}
@@ -115,7 +121,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop
 .form-card{background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);box-shadow:var(--shadow);}
 .form-card h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:8px;}
 .form-card p{font-size:14px;color:var(--muted);margin-bottom:28px;}
-.submit-btn{width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:8px;}
+.submit-btn{width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:8px;transition:background 0.2s;}
+.submit-btn:hover{background:var(--teal-dark);}
 .err-box{background:#FFEBEE;color:#C62828;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;}
 .suc-box{background:#E8F5E9;color:#2E7D32;border-radius:10px;padding:11px 15px;font-size:13px;margin-bottom:16px;display:none;}
 .seller-wrap{max-width:900px;margin:0 auto;padding:32px 24px;}
@@ -129,29 +136,31 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop
 .sstat{background:var(--white);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--border);text-align:center;}
 .sstat-num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--teal-dark);}
 .sstat-label{font-size:12px;color:var(--muted);margin-top:3px;font-weight:500;}
-.tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:22px;}
-.tab{flex:1;padding:10px;text-align:center;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);}
+.tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:22px;flex-wrap:wrap;}
+.tab{flex:1;padding:10px;text-align:center;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);white-space:nowrap;}
 .tab.active{background:var(--white);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
 .orders-list{display:flex;flex-direction:column;gap:12px;}
 .order-card{background:var(--white);border-radius:var(--radius-sm);padding:18px;border:1px solid var(--border);}
 .order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .order-id{font-size:12px;color:var(--muted);font-weight:500;}
 .ostatus{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;}
-.s-pending{background:#FFF3E0;color:#E65100;}.s-confirmed{background:#E8F5E9;color:#2E7D32;}.s-delivered{background:#E3F2FD;color:#1565C0;}.s-cancelled{background:#FFEBEE;color:#C62828;}
-.coming-page{padding:50px 24px;max-width:700px;margin:0 auto;text-align:center;}
-.cp-icon{font-size:80px;margin-bottom:20px;}
-.cp-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;margin-bottom:12px;}
-.cp-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:30px;}
-.cp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px;text-align:left;}
-.cp-card{background:var(--white);border-radius:var(--radius);padding:28px;border:1px solid var(--border);}
-.cp-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:12px;}
-.cp-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px;}
-.cp-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:50px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;}
-.cp-btn-teal{background:var(--teal);color:#fff;}.cp-btn-teal:hover{background:var(--teal-dark);}
-.cp-btn-outline{background:var(--teal-light);color:var(--teal-dark);}.cp-btn-outline:hover{background:var(--teal);color:#fff;}
+.s-pending{background:#FFF3E0;color:#E65100;}.s-confirmed{background:#E8F5E9;color:#2E7D32;}.s-delivered{background:#E3F2FD;color:#1565C0;}.s-cancelled{background:#FFEBEE;color:#C62828;}.s-preparing{background:#F3E5F5;color:#6A1B9A;}
+/* First to card */
+.first-card{background:var(--white);border-radius:var(--radius);padding:40px 32px;border:2px dashed var(--border);text-align:center;margin:32px auto;max-width:560px;}
+.first-card .first-icon{font-size:64px;margin-bottom:18px;}
+.first-card h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;margin-bottom:10px;}
+.first-card p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:28px;}
+.first-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:background 0.2s;text-decoration:none;}
+.first-btn:hover{background:var(--teal-dark);}
+.first-btn-orange{background:var(--orange);}.first-btn-orange:hover{background:#E65100;}
+.first-btn-purple{background:#6A1B9A;}.first-btn-purple:hover{background:#4A148C;}
 .fb-tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:22px;}
 .fb-tab{flex:1;padding:10px;text-align:center;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif;color:var(--muted);}
 .fb-tab.active{background:var(--white);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+/* Module tabs for events/market/fix/clothing */
+.mod-tabs{display:flex;gap:0;background:rgba(255,255,255,0.1);border-radius:50px;padding:4px;margin-bottom:0;overflow-x:auto;}
+.mod-tab{flex-shrink:0;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Syne',sans-serif;color:rgba(255,255,255,0.7);background:none;transition:all 0.2s;white-space:nowrap;}
+.mod-tab.active{background:#fff;color:var(--teal-dark);}
 .loading{text-align:center;padding:70px 24px;color:var(--muted);}
 .spinner{width:38px;height:38px;border:3px solid var(--teal-light);border-top-color:var(--teal);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 16px;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -167,6 +176,8 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 </style>
 </head>
 <body>
+
+<!-- SIDE MENU -->
 <div class="overlay" id="overlay" onclick="closeSide()"></div>
 <div class="side-menu" id="sidemenu">
   <div class="sm-header">
@@ -188,6 +199,8 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div class="sm-divider"></div>
   <button class="sm-item" onclick="nav('feedback');closeSide()">💬 Feedback</button>
 </div>
+
+<!-- NAV -->
 <nav>
   <div class="nav-logo" onclick="nav('home')">Kasheer <span class="ks">کٲشِیر</span></div>
   <div class="nav-links">
@@ -198,10 +211,11 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <button class="hamburger" onclick="openSide()"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div class="page active" id="page-home">
   <section class="hero">
-    <div class="hero-overlay"></div><div class="hero-grid"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
     <div class="hero-content">
       <div class="hero-badge">🏔️ Kashmir's First Super Platform</div>
       <div class="hero-title">Kasheer</div>
@@ -211,13 +225,13 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
         <button class="module-btn" onclick="nav('grocery')"><span class="micon">🛒</span>Grocery</button>
         <button class="module-btn" onclick="nav('events')"><span class="micon">🎪</span>Events</button>
         <button class="module-btn" onclick="nav('market')"><span class="micon">🔄</span>2nd Hand</button>
-        <button class="module-btn" onclick="nav('fix')"><span class="micon">🔧</span>Fix</button>
+        <button class="module-btn" onclick="nav('fix')"><span class="micon">🔧</span>Fix & Services</button>
         <button class="module-btn" onclick="nav('clothing')"><span class="micon">👗</span>Clothing</button>
       </div>
     </div>
   </section>
   <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">600+</div><div class="stat-label">Products</div></div>
+    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
     <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Modules</div></div>
     <div class="stat-item"><div class="stat-num">Fast</div><div class="stat-label">Delivery</div></div>
     <div class="stat-item"><div class="stat-num">COD</div><div class="stat-label">Cash on Delivery</div></div>
@@ -225,26 +239,54 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div class="section">
     <div class="sec-label">Everything Kashmir needs</div>
     <div class="sec-title">One Platform. Many Possibilities.</div>
-    <p class="sec-sub">From groceries to events, second-hand deals to home repairs — Kasheer does it all</p>
+    <p class="sec-sub">From your daily groceries to events, second-hand deals to home repairs — Kasheer does it all</p>
     <div class="modules-grid">
-      <div class="module-card" onclick="nav('grocery')"><div class="mc-icon">🛒</div><div class="mc-title">Grocery</div><div class="mc-sub">Fresh groceries, snacks, dairy and daily essentials from local stores near you</div><span class="mc-action">Shop Now →</span></div>
-      <div class="module-card" onclick="nav('events')"><div class="mc-icon">🎪</div><div class="mc-title">Events</div><div class="mc-sub">Be the first to hold an event in Kashmir with Kasheer — we manage tickets, promotion and more</div><span class="mc-action">Explore →</span></div>
-      <div class="module-card" onclick="nav('market')"><div class="mc-icon">🔄</div><div class="mc-title">2nd Hand Market</div><div class="mc-sub">Be the first to sell on Kashmir's first second-hand marketplace — list your items with Kasheer</div><span class="mc-action">Browse →</span></div>
-      <div class="module-card" onclick="nav('fix')"><div class="mc-icon">🔧</div><div class="mc-title">Fix & Services</div><div class="mc-sub">Book plumbers, electricians, cleaners and other home service professionals near you</div><span class="mc-action">Book Now →</span></div>
-      <div class="module-card" onclick="nav('clothing')"><div class="mc-icon">👗</div><div class="mc-title">Clothing</div><div class="mc-sub">Kashmiri fashion, phirans, handmade clothes and winter wear from local designers</div><span class="mc-action">View →</span></div>
+      <div class="module-card" onclick="nav('grocery')">
+        <div class="mc-icon">🛒</div>
+        <div class="mc-title">Grocery</div>
+        <div class="mc-sub">Fresh groceries, snacks, dairy and daily essentials from local stores near you</div>
+        <span class="mc-action">Shop Now →</span>
+      </div>
+      <div class="module-card" onclick="nav('events')">
+        <div class="mc-icon">🎪</div>
+        <div class="mc-title">Events</div>
+        <div class="mc-sub">Buy tickets to local events or host your own event with Kasheer managing everything</div>
+        <span class="mc-action">Explore →</span>
+      </div>
+      <div class="module-card" onclick="nav('market')">
+        <div class="mc-icon">🔄</div>
+        <div class="mc-title">2nd Hand Market</div>
+        <div class="mc-sub">Buy and sell used phones, electronics, furniture and more across Kashmir</div>
+        <span class="mc-action">Browse →</span>
+      </div>
+      <div class="module-card" onclick="nav('fix')">
+        <div class="mc-icon">🔧</div>
+        <div class="mc-title">Fix & Services</div>
+        <div class="mc-sub">Book plumbers, electricians, cleaners and other home service professionals</div>
+        <span class="mc-action">Book Now →</span>
+      </div>
+      <div class="module-card" onclick="nav('clothing')">
+        <div class="mc-icon">👗</div>
+        <div class="mc-title">Clothing</div>
+        <div class="mc-sub">Kashmiri phirans, pashminas, handmade clothes and winter wear from local designers</div>
+        <span class="mc-action">View Collection →</span>
+      </div>
     </div>
   </div>
   <footer>
     <div class="footer-logo">Kasheer</div>
     <div class="footer-ks">کٲشِیر</div>
     <div class="footer-links">
-      <a onclick="nav('home')">Home</a><a onclick="nav('grocery')">Shop</a><a onclick="nav('seller-login')">Sell</a><a onclick="nav('feedback')">Feedback</a>
+      <a onclick="nav('home')">Home</a>
+      <a onclick="nav('grocery')">Shop</a>
+      <a onclick="nav('seller-login')">Sell</a>
+      <a onclick="nav('feedback')">Feedback</a>
     </div>
     <div class="footer-copy">© 2026 Kasheer. Made with love for Kashmir 🏔️</div>
   </footer>
 </div>
 
-<!-- GROCERY -->
+<!-- GROCERY PAGE -->
 <div class="page" id="page-grocery">
   <div class="mod-header" style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));">
     <button class="mod-back" onclick="nav('home')">← Back</button>
@@ -260,7 +302,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- CART -->
+<!-- CART PAGE -->
 <div class="page" id="page-cart">
   <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:24px;">
     <button class="mod-back" onclick="nav('grocery')" style="margin-bottom:14px;">← Back to Shop</button>
@@ -269,165 +311,228 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div class="cart-wrap" id="cart-content"></div>
 </div>
 
-<!-- EVENTS -->
+<!-- EVENTS PAGE -->
 <div class="page" id="page-events">
-  <div class="mod-header" style="background:linear-gradient(135deg,#6A1B9A,#1565C0);">
+  <div class="mod-header" style="background:linear-gradient(135deg,#6A1B9A,#1565C0);padding-bottom:0;">
     <button class="mod-back" onclick="nav('home')">← Back</button>
     <h1>🎪 Events</h1>
-    <p>Kashmir Events — be the first to hold an event with Kasheer</p>
+    <p>Kashmir Events — attend, host, or let us manage it all</p>
+    <div class="mod-tabs" id="events-tabs" style="margin-bottom:0;">
+      <button class="mod-tab active" onclick="switchEventsTab('attend')">🎟️ Attend Events</button>
+      <button class="mod-tab" onclick="switchEventsTab('hold')">🎪 Hold an Event</button>
+    </div>
   </div>
-  <div class="coming-page">
-    <div class="cp-icon">🎪</div>
-    <div class="cp-title">Be the First to Hold an Event in Kashmir</div>
-    <p class="cp-sub">No events yet — but yours could be the first. Kasheer handles everything: ticket sales, promotion, and on-ground coordination. Want to sell your products or services? Become a seller on Kasheer.</p>
-    <div class="cp-cards">
-      <div class="cp-card">
-        <h3>🎤 Host an Event</h3>
-        <p>Concert, comedy night, exhibition, marathon — bring your event to Kashmir with Kasheer managing it all.</p>
-        <button class="cp-btn cp-btn-teal" onclick="nav('event-holder')">Register as Event Holder →</button>
-      </div>
-      <div class="cp-card">
-        <h3>🪐 Sell on Kasheer</h3>
-        <p>Have a store or products to sell? Register as a seller and reach customers across Kashmir.</p>
-        <button class="cp-btn cp-btn-outline" onclick="nav('seller-register')">Become a Seller →</button>
+  <!-- Attend tab -->
+  <div id="events-attend">
+    <div class="first-card" style="margin-top:48px;">
+      <div class="first-icon">🎟️</div>
+      <h2>Be the First to Attend</h2>
+      <p>No events are listed yet — but Kashmir's first event marketplace is almost here. Get notified when the first events go live.</p>
+      <button class="first-btn first-btn-purple" onclick="nav('feedback')">Notify Me When Live →</button>
+    </div>
+  </div>
+  <!-- Hold an event tab -->
+  <div id="events-hold" style="display:none;">
+    <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
+      <div class="form-card">
+        <div style="font-size:48px;margin-bottom:14px;">🎪</div>
+        <h2>Hold an Event with Kasheer</h2>
+        <p>Submit your event request and our team will handle everything — ticketing, promotion, and on-ground coordination.</p>
+        <div class="err-box" id="event-err"></div>
+        <div class="suc-box" id="event-suc"></div>
+        <div class="frow"><label>Event Name</label><input type="text" id="ev-name" placeholder="e.g. Srinagar Music Night 2026"></div>
+        <div class="frow"><label>Event Type</label>
+          <select id="ev-type">
+            <option>Concert / Music Event</option>
+            <option>Sports / Marathon</option>
+            <option>Exhibition / Art Show</option>
+            <option>Comedy Night</option>
+            <option>Corporate Event</option>
+            <option>Wedding / Social</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="frow"><label>Expected Crowd Size</label><input type="text" id="ev-crowd" placeholder="e.g. 200-500 people"></div>
+        <div class="frow"><label>Venue / Location</label><input type="text" id="ev-venue" placeholder="e.g. Sher-i-Kashmir Stadium, Srinagar"></div>
+        <div class="frow"><label>Event Date</label><input type="date" id="ev-date"></div>
+        <div class="frow"><label>Budget (approximate)</label><input type="text" id="ev-budget" placeholder="e.g. ₹2,00,000"></div>
+        <div class="frow"><label>Your Name</label><input type="text" id="ev-orgname" placeholder="Organizer name"></div>
+        <div class="frow"><label>Phone / WhatsApp</label><input type="tel" id="ev-phone" placeholder="+91 9999999999"></div>
+        <div class="frow"><label>Email</label><input type="email" id="ev-email" placeholder="your@email.com"></div>
+        <div class="frow"><label>Additional Details</label><textarea id="ev-details" placeholder="Tell us more about your event..."></textarea></div>
+        <button class="submit-btn" onclick="submitEventRequest()">Submit Event Request</button>
+        <p style="font-size:12px;color:var(--muted);margin-top:14px;text-align:center;">Our team will contact you within 24 hours with a quote and next steps.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EVENT HOLDER REGISTER -->
-<div class="page" id="page-event-holder">
-  <div class="mod-header" style="background:linear-gradient(135deg,#6A1B9A,#1565C0);">
-    <button class="mod-back" onclick="nav('events')">← Back to Events</button>
-    <h1>🎤 Register as Event Holder</h1>
-    <p>Tell us about your event and we'll set everything up</p>
-  </div>
-  <div class="form-wrap">
-    <div class="form-card">
-      <div style="font-size:48px;margin-bottom:14px;">🎪</div>
-      <h2>Host an Event with Kasheer</h2>
-      <p>Fill in the details below and our events team will get back to you within 24 hours</p>
-      <div class="err-box" id="eh-err"></div>
-      <div class="suc-box" id="eh-suc"></div>
-      <div class="frow"><label>Your Name</label><input type="text" id="eh-name" placeholder="Full name"></div>
-      <div class="frow"><label>Phone</label><input type="tel" id="eh-phone" placeholder="+91 9999999999"></div>
-      <div class="frow"><label>Email</label><input type="email" id="eh-email" placeholder="your@email.com"></div>
-      <div class="frow"><label>Event Name</label><input type="text" id="eh-event" placeholder="e.g. Srinagar Music Festival"></div>
-      <div class="frow"><label>Event Type</label>
-        <select id="eh-type">
-          <option>Concert / Music</option>
-          <option>Comedy Night</option>
-          <option>Exhibition / Art</option>
-          <option>Marathon / Sports</option>
-          <option>Food Festival</option>
-          <option>Corporate Event</option>
-          <option>Wedding / Private Event</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="frow"><label>Expected Date</label><input type="date" id="eh-date"></div>
-      <div class="frow"><label>Expected Venue / Location</label><input type="text" id="eh-venue" placeholder="e.g. SKICC, Dal Lake, Srinagar"></div>
-      <div class="frow"><label>Expected Attendance</label>
-        <select id="eh-attendance">
-          <option>Under 100</option>
-          <option>100 - 500</option>
-          <option>500 - 1000</option>
-          <option>1000 - 5000</option>
-          <option>5000+</option>
-        </select>
-      </div>
-      <div class="frow"><label>Ticket Price (Rs.)</label><input type="number" id="eh-price" placeholder="0 for free events"></div>
-      <div class="frow"><label>Tell us more about your event</label><textarea id="eh-desc" placeholder="Describe your event, what you need from Kasheer, any questions..."></textarea></div>
-      <button class="submit-btn" onclick="registerEventHolder()">Submit Event Request</button>
-    </div>
-  </div>
-</div>
-
-<!-- 2ND HAND MARKET -->
+<!-- 2ND HAND MARKET PAGE -->
 <div class="page" id="page-market">
-  <div class="mod-header" style="background:linear-gradient(135deg,#4A148C,#1A237E);">
+  <div class="mod-header" style="background:linear-gradient(135deg,#4A148C,#1A237E);padding-bottom:0;">
     <button class="mod-back" onclick="nav('home')">← Back</button>
     <h1>🔄 2nd Hand Market</h1>
     <p>Buy and sell used items across Kashmir</p>
+    <div class="mod-tabs" style="margin-bottom:0;">
+      <button class="mod-tab active" onclick="switchMarketTab('buy')">🛍️ Buy Items</button>
+      <button class="mod-tab" onclick="switchMarketTab('sell')">➕ Sell an Item</button>
+    </div>
   </div>
-  <div class="coming-page">
-    <div class="cp-icon">🔄</div>
-    <div class="cp-title">Be the First to Sell Here</div>
-    <p class="cp-sub">No listings yet — but yours could be the first on Kashmir's first second-hand marketplace. Phones, electronics, furniture, bikes — list anything. Or register as a seller to sell new products on Kasheer.</p>
-    <div class="cp-cards">
-      <div class="cp-card">
-        <h3>📱 List a Used Item</h3>
-        <p>Want to sell something second-hand? Get in touch and we'll list it for you manually while the full marketplace is being built.</p>
-        <a class="cp-btn cp-btn-teal" href="mailto:market@kasheer.online">📧 market@kasheer.online</a>
-      </div>
-      <div class="cp-card">
-        <h3>🪐 Sell New Products</h3>
-        <p>Have a store or new products to sell? Register as a Kasheer seller and reach customers across Kashmir today.</p>
-        <button class="cp-btn cp-btn-outline" onclick="nav('seller-register')">Become a Seller →</button>
+  <div id="market-buy">
+    <div class="first-card" style="margin-top:48px;">
+      <div class="first-icon">🔄</div>
+      <h2>Be the First to List</h2>
+      <p>The Kasheer 2nd Hand Market is launching soon. Phones, electronics, furniture, bikes — all in one place across Kashmir. List your item now and be the first seller.</p>
+      <button class="first-btn first-btn-purple" onclick="switchMarketTab('sell')" style="margin-right:12px;">List Your Item →</button>
+    </div>
+  </div>
+  <div id="market-sell" style="display:none;">
+    <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
+      <div class="form-card">
+        <div style="font-size:48px;margin-bottom:14px;">📱</div>
+        <h2>List Your Item</h2>
+        <p>Be the first seller on Kasheer 2nd Hand Market — reach buyers across Kashmir.</p>
+        <div class="err-box" id="market-err"></div>
+        <div class="suc-box" id="market-suc"></div>
+        <div class="frow"><label>Item Title</label><input type="text" id="mk-title" placeholder="e.g. iPhone 13 Pro 256GB"></div>
+        <div class="frow"><label>Category</label>
+          <select id="mk-cat">
+            <option>Mobile Phone</option>
+            <option>Laptop / Computer</option>
+            <option>Electronics</option>
+            <option>Bike / Scooter</option>
+            <option>Furniture</option>
+            <option>Clothing</option>
+            <option>Books</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="frow"><label>Condition</label>
+          <select id="mk-condition">
+            <option>Like New</option>
+            <option>Good</option>
+            <option>Fair</option>
+            <option>For Parts</option>
+          </select>
+        </div>
+        <div class="frow"><label>Price (₹)</label><input type="number" id="mk-price" placeholder="Your asking price"></div>
+        <div class="frow"><label>Location in Kashmir</label><input type="text" id="mk-location" placeholder="e.g. Rajbagh, Srinagar"></div>
+        <div class="frow"><label>Description</label><textarea id="mk-desc" placeholder="Describe the item, what's included, any defects..."></textarea></div>
+        <div class="frow"><label>Your Name</label><input type="text" id="mk-name" placeholder="Your name"></div>
+        <div class="frow"><label>Phone / WhatsApp</label><input type="tel" id="mk-phone" placeholder="+91 9999999999"></div>
+        <button class="submit-btn" onclick="submitListing()">Submit Listing</button>
+        <p style="font-size:12px;color:var(--muted);margin-top:14px;text-align:center;">Our team will review and publish your listing within 24 hours.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FIX & SERVICES -->
+<!-- FIX & SERVICES PAGE -->
 <div class="page" id="page-fix">
-  <div class="mod-header" style="background:linear-gradient(135deg,#E65100,#BF360C);">
+  <div class="mod-header" style="background:linear-gradient(135deg,#E65100,#BF360C);padding-bottom:0;">
     <button class="mod-back" onclick="nav('home')">← Back</button>
     <h1>🔧 Fix & Services</h1>
     <p>Home services across Kashmir</p>
+    <div class="mod-tabs" style="margin-bottom:0;">
+      <button class="mod-tab active" onclick="switchFixTab('book')">📅 Book a Service</button>
+      <button class="mod-tab" onclick="switchFixTab('join')">🔧 Join as Provider</button>
+    </div>
   </div>
-  <div class="coming-page">
-    <div class="cp-icon">🔧</div>
-    <div class="cp-title">Be the First Service Provider</div>
-    <p class="cp-sub">No service providers listed yet — but yours could be the first. Plumbers, electricians, carpenters, cleaners and more — register now and be ready when the module launches.</p>
-    <div class="cp-cards">
-      <div class="cp-card">
-        <h3>🔧 Register as Provider</h3>
-        <p>Plumber, electrician, carpenter or any other professional? Get in touch and be first on the platform.</p>
-        <a class="cp-btn cp-btn-teal" href="mailto:fix@kasheer.online">📧 fix@kasheer.online</a>
-      </div>
-      <div class="cp-card">
-        <h3>🪐 Sell on Kasheer</h3>
-        <p>Have a store or products? Register as a Kasheer seller and reach customers across Kashmir right now.</p>
-        <button class="cp-btn cp-btn-outline" onclick="nav('seller-register')">Become a Seller →</button>
+  <div id="fix-book">
+    <div class="first-card" style="margin-top:48px;">
+      <div class="first-icon">🔧</div>
+      <h2>Be the First to Book</h2>
+      <p>Kasheer Fix is coming soon — book verified plumbers, electricians, carpenters and more across Srinagar and Kashmir. Register your interest and get early access.</p>
+      <button class="first-btn first-btn-orange" onclick="switchFixTab('join')" style="margin-right:12px;">Join as Provider</button>
+      <button class="first-btn" onclick="nav('feedback')" style="margin-top:12px;background:#333;">Get Notified →</button>
+    </div>
+  </div>
+  <div id="fix-join" style="display:none;">
+    <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
+      <div class="form-card">
+        <div style="font-size:48px;margin-bottom:14px;">🔧</div>
+        <h2>Join as Service Provider</h2>
+        <p>Be the first professional on Kasheer Fix — reach customers across Kashmir who need your skills.</p>
+        <div class="err-box" id="fix-err"></div>
+        <div class="suc-box" id="fix-suc"></div>
+        <div class="frow"><label>Your Name</label><input type="text" id="fix-name" placeholder="Full name"></div>
+        <div class="frow"><label>Service Type</label>
+          <select id="fix-service">
+            <option>Plumber</option>
+            <option>Electrician</option>
+            <option>Carpenter</option>
+            <option>Painter</option>
+            <option>Cleaner</option>
+            <option>AC Technician</option>
+            <option>Welder</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="frow"><label>Years of Experience</label><input type="text" id="fix-exp" placeholder="e.g. 5 years"></div>
+        <div class="frow"><label>Area in Kashmir</label><input type="text" id="fix-area" placeholder="e.g. Srinagar, Anantnag..."></div>
+        <div class="frow"><label>Phone / WhatsApp</label><input type="tel" id="fix-phone" placeholder="+91 9999999999"></div>
+        <div class="frow"><label>Email</label><input type="email" id="fix-email" placeholder="your@email.com"></div>
+        <button class="submit-btn" onclick="submitFixProvider()">Register as Provider</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CLOTHING -->
+<!-- CLOTHING PAGE -->
 <div class="page" id="page-clothing">
-  <div class="mod-header" style="background:linear-gradient(135deg,#880E4F,#4A148C);">
+  <div class="mod-header" style="background:linear-gradient(135deg,#880E4F,#4A148C);padding-bottom:0;">
     <button class="mod-back" onclick="nav('home')">← Back</button>
     <h1>👗 Clothing</h1>
     <p>Kashmiri fashion and handmade clothes</p>
+    <div class="mod-tabs" style="margin-bottom:0;">
+      <button class="mod-tab active" onclick="switchClothingTab('browse')">👗 Browse</button>
+      <button class="mod-tab" onclick="switchClothingTab('sell')">➕ Sell Clothing</button>
+    </div>
   </div>
-  <div class="coming-page">
-    <div class="cp-icon">👗</div>
-    <div class="cp-title">Be the First to Sell Clothing Here</div>
-    <p class="cp-sub">No clothing listings yet — but yours could be the first. Phirans, pashminas, winter wear, and handmade Kashmiri fashion — bring your boutique to Kasheer.</p>
-    <div class="cp-cards">
-      <div class="cp-card">
-        <h3>👗 Register Your Boutique</h3>
-        <p>Designer or boutique owner? Get in touch and we'll set up your clothing store on Kasheer.</p>
-        <a class="cp-btn cp-btn-teal" href="mailto:clothing@kasheer.online">📧 clothing@kasheer.online</a>
-      </div>
-      <div class="cp-card">
-        <h3>🪐 General Seller</h3>
-        <p>Selling any products? Register as a Kasheer seller and reach customers across Kashmir right now.</p>
-        <button class="cp-btn cp-btn-outline" onclick="nav('seller-register')">Become a Seller →</button>
+  <div id="clothing-browse">
+    <div class="first-card" style="margin-top:48px;">
+      <div class="first-icon">👗</div>
+      <h2>Be the First Designer Listed</h2>
+      <p>Kasheer Clothing is launching soon — phirans, pashminas, handmade winter wear from Kashmir's best designers and boutiques. Register your store now and be the first.</p>
+      <button class="first-btn" onclick="switchClothingTab('sell')" style="background:#880E4F;">List Your Store →</button>
+    </div>
+  </div>
+  <div id="clothing-sell" style="display:none;">
+    <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
+      <div class="form-card">
+        <div style="font-size:48px;margin-bottom:14px;">👗</div>
+        <h2>Sell Clothing on Kasheer</h2>
+        <p>Be the first clothing seller on Kasheer — reach customers across Kashmir with your designs.</p>
+        <div class="err-box" id="cloth-err"></div>
+        <div class="suc-box" id="cloth-suc"></div>
+        <div class="frow"><label>Store / Brand Name</label><input type="text" id="cl-store" placeholder="e.g. Kashmir Phiran House"></div>
+        <div class="frow"><label>Your Name</label><input type="text" id="cl-name" placeholder="Full name"></div>
+        <div class="frow"><label>Category</label>
+          <select id="cl-cat">
+            <option>Phiran / Traditional</option>
+            <option>Pashmina / Shawls</option>
+            <option>Winter Wear</option>
+            <option>Casual Clothing</option>
+            <option>Kids Clothing</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="frow"><label>Phone</label><input type="tel" id="cl-phone" placeholder="+91 9999999999"></div>
+        <div class="frow"><label>Email</label><input type="email" id="cl-email" placeholder="your@email.com"></div>
+        <div class="frow"><label>Location</label><input type="text" id="cl-location" placeholder="e.g. Lal Chowk, Srinagar"></div>
+        <button class="submit-btn" onclick="submitClothingSeller()">Register Clothing Store</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MY ORDERS -->
+<!-- MY ORDERS PAGE -->
 <div class="page" id="page-myorders">
   <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:28px;">
     <button class="mod-back" onclick="nav('home')" style="margin-bottom:14px;">← Back</button>
     <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">My Orders 📦</h1>
   </div>
-  <div style="max-width:700px;margin:0 auto;padding:28px 24px;">
+  <div style="max-width:700px;margin:0 auto;padding:28px 24px;" id="myorders-content">
     <div class="form-card">
       <h2>Track Your Orders</h2>
       <p>Enter your login details to view your orders</p>
@@ -440,7 +545,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- SELLER LOGIN -->
+<!-- SELLER LOGIN PAGE -->
 <div class="page" id="page-seller-login">
   <div id="sl-login-view">
     <div class="form-wrap">
@@ -478,7 +583,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- SELLER REGISTER -->
+<!-- SELLER REGISTER PAGE -->
 <div class="page" id="page-seller-register">
   <div class="form-wrap">
     <button onclick="nav('home')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:24px;">← Back</button>
@@ -488,21 +593,21 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <p>Join Kasheer and start selling to customers near you</p>
       <div class="err-box" id="sr-err"></div>
       <div class="suc-box" id="sr-suc"></div>
-      <div class="frow"><label>Store Name</label><input type="text" id="sr-store" placeholder="e.g. Ali General Store" autocomplete="organization" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
-      <div class="frow"><label>Your Name</label><input type="text" id="sr-name" placeholder="Full name" autocomplete="name" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
-      <div class="frow"><label>Email</label><input type="email" id="sr-email" placeholder="your@email.com" autocomplete="email" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
-      <div class="frow"><label>Phone</label><input type="tel" id="sr-phone" placeholder="+91 9999999999" autocomplete="tel" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
-      <div class="frow"><label>Password</label><input type="password" id="sr-pass" placeholder="Create a password" autocomplete="new-password" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
+      <div class="frow"><label>Store Name</label><input type="text" id="sr-store" placeholder="e.g. Ali General Store"></div>
+      <div class="frow"><label>Your Name</label><input type="text" id="sr-name" placeholder="Full name"></div>
+      <div class="frow"><label>Email</label><input type="email" id="sr-email" placeholder="your@email.com"></div>
+      <div class="frow"><label>Phone</label><input type="tel" id="sr-phone" placeholder="+91 9999999999"></div>
+      <div class="frow"><label>Password</label><input type="password" id="sr-pass" placeholder="Create a password"></div>
       <div class="frow"><label>Category</label>
         <select id="sr-cat"><option>Groceries</option><option>Bakery</option><option>Pharmacy</option><option>Electronics</option><option>Clothing</option><option>Other</option></select>
       </div>
       <div class="frow"><label>Store Address</label><textarea id="sr-address" placeholder="Full address in Srinagar"></textarea></div>
-      <button class="submit-btn" onclick="this.disabled=true;this.textContent='Processing…';setTimeout(()=>registerSeller().finally(()=>{if(document.getElementById('sr-err').style.display!=='none'||!document.getElementById('sr-suc').style.display||document.getElementById('sr-suc').style.display==='none'){this.disabled=false;this.textContent='Register Store';}}),80)">Register Store</button>
+      <button class="submit-btn" onclick="registerSeller()">Register Store</button>
     </div>
   </div>
 </div>
 
-<!-- RIDER REGISTER -->
+<!-- RIDER REGISTER PAGE -->
 <div class="page" id="page-rider-register">
   <div class="form-wrap">
     <button onclick="nav('home')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:24px;">← Back</button>
@@ -517,7 +622,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <div class="frow"><label>Phone</label><input type="tel" id="rr-phone" placeholder="+91 9999999999"></div>
       <div class="frow"><label>Password</label><input type="password" id="rr-pass" placeholder="Create a password"></div>
       <div class="frow"><label>Vehicle</label>
-        <select id="rr-vehicle"><option value="bike">Bike</option><option value="scooter">Scooter</option><option value="bicycle">Bicycle</option><option value="walking">Walking</option></select>
+        <select id="rr-vehicle"><option value="bike">Bike</option><option value="scooter">Scooter</option><option value="bicycle">Bicycle</option><option value="walking">Walking (under 1km)</option></select>
       </div>
       <div class="frow"><label>Area in Srinagar</label><input type="text" id="rr-area" placeholder="e.g. Lal Chowk, Rajbagh..."></div>
       <button class="submit-btn" onclick="registerRider()">Register as Rider</button>
@@ -525,11 +630,12 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   </div>
 </div>
 
-<!-- FEEDBACK -->
+<!-- FEEDBACK PAGE -->
 <div class="page" id="page-feedback">
   <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal-mid));padding:28px;">
     <button class="mod-back" onclick="nav('home')" style="margin-bottom:14px;">← Back</button>
     <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:700;">Feedback 💬</h1>
+    <p style="font-size:14px;color:rgba(255,255,255,0.65);margin-top:4px;">Complaints and suggestions</p>
   </div>
   <div style="max-width:700px;margin:0 auto;padding:32px 24px;">
     <div class="fb-tabs">
@@ -542,7 +648,9 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
         <div class="err-box" id="fb-cerr"></div><div class="suc-box" id="fb-csuc"></div>
         <div class="frow"><label>Your Name</label><input type="text" id="fb-cname"></div>
         <div class="frow"><label>Phone / Email</label><input type="text" id="fb-ccontact"></div>
-        <div class="frow"><label>Module</label><select id="fb-cmodule"><option>Grocery</option><option>Events</option><option>2nd Hand Market</option><option>Fix & Services</option><option>Other</option></select></div>
+        <div class="frow"><label>Module</label>
+          <select id="fb-cmodule"><option>Grocery</option><option>Events</option><option>2nd Hand Market</option><option>Fix & Services</option><option>Other</option></select>
+        </div>
         <div class="frow"><label>Complaint</label><textarea id="fb-cmsg" placeholder="Describe your issue..."></textarea></div>
         <button class="submit-btn" onclick="submitComplaint()">Submit Complaint</button>
       </div>
@@ -565,914 +673,771 @@ const BB='https://www.bbassets.com/media/uploads/p/s/';
 const WK='https://upload.wikimedia.org/wikipedia/commons/thumb/';
 
 const IMGS={
-  // SNACKS — Zepto CDN images
-  snk_lays1:'https://cdn.zeptonow.com/production/cms/product_variant/ed32b300-78c2-4978-896d-4c7e15909a28/Lay-s-Classic-Salted-Crunchy-Potato-Chips.jpeg',
-  snk_lays2:'https://cdn.zeptonow.com/production/cms/product_variant/bd714169-68eb-49c0-869f-b08194218333/Lay-s-India-s-Magic-Masala-Crunchy-Potato-Chips.jpeg',
-  snk_lays3:'https://cdn.zeptonow.com/production/cms/product_variant/096ee50a-d775-4389-bf8d-8b37833a7a36/Lay-s-American-Cream-Onion-Flavour-Potato-Chips.jpeg',
-  snk_lays4:'https://cdn.zeptonow.com/production/cms/product_variant/869bece3-229f-45e3-8355-f650282adfbf/Lay-s-West-Indies-Hot-n-Sweet-Chilli-Potato-Chips.jpeg',
-  snk_lays5:'https://cdn.zeptonow.com/production/cms/product_variant/bd714169-68eb-49c0-869f-b08194218333/Lay-s-India-s-Magic-Masala-Crunchy-Potato-Chips.jpeg',
-  snk_lays6:'https://cdn.zeptonow.com/production/cms/product_variant/096ee50a-d775-4389-bf8d-8b37833a7a36/Lay-s-American-Cream-Onion-Flavour-Potato-Chips.jpeg',
-  snk_lays7:'https://cdn.zeptonow.com/production/cms/product_variant/748ffc8d-db79-46b9-b967-04adf0446e62/Lay-s-Spanish-Tomato-Tango-Flavour-Potato-Chips.jpeg',
-  snk_lays8:'https://cdn.zeptonow.com/production/cms/product_variant/bd714169-68eb-49c0-869f-b08194218333/Lay-s-India-s-Magic-Masala-Crunchy-Potato-Chips.jpeg',
-  snk_lays9:'https://cdn.zeptonow.com/production/cms/product_variant/096ee50a-d775-4389-bf8d-8b37833a7a36/Lay-s-American-Cream-Onion-Flavour-Potato-Chips.jpeg',
-  snk_lays10:'https://cdn.zeptonow.com/production/cms/product_variant/ed32b300-78c2-4978-896d-4c7e15909a28/Lay-s-Classic-Salted-Crunchy-Potato-Chips.jpeg',
-  snk_kur1:'https://cdn.zeptonow.com/production/cms/product_variant/46a31dc4-38ca-41b0-b42e-034e59e9de6d/Kurkure-Namkeen-Masala-Munch-Crunchy-Snacks.jpeg',
-  snk_kur2:'https://cdn.zeptonow.com/production/cms/product_variant/9878628c-b5aa-4c96-bd22-54f95001171d/Kurkure-Namkeen-Green-Chutney-Style-Crunchy-Snacks.jpeg',
-  snk_kur3:'https://cdn.zeptonow.com/production/cms/product_variant/0efe8daa-8c5e-4e74-834b-b3c178384a90/Kurkure-Namkeen-Schezwan-Chutney-Flavour-Snacks.jpeg',
-  snk_kur4:'https://cdn.zeptonow.com/production/cms/product_variant/0bcb1ab8-fc48-4fae-a20d-958199bc6908/Kurkure-Namkeen-Playz-Puffcorn-Yummy-Cheese-Snacks.png',
-  snk_kur5:'https://cdn.zeptonow.com/production/cms/product_variant/46a31dc4-38ca-41b0-b42e-034e59e9de6d/Kurkure-Namkeen-Masala-Munch-Crunchy-Snacks.jpeg',
-  snk_bin1:'https://cdn.zeptonow.com/production/cms/product_variant/46a31dc4-38ca-41b0-b42e-034e59e9de6d/Kurkure-Namkeen-Masala-Munch-Crunchy-Snacks.jpeg',
-  snk_bin2:'https://cdn.zeptonow.com/production/cms/product_variant/9878628c-b5aa-4c96-bd22-54f95001171d/Kurkure-Namkeen-Green-Chutney-Style-Crunchy-Snacks.jpeg',
-  snk_bin3:'https://cdn.zeptonow.com/production/cms/product_variant/0efe8daa-8c5e-4e74-834b-b3c178384a90/Kurkure-Namkeen-Schezwan-Chutney-Flavour-Snacks.jpeg',
-  snk_bin4:'https://cdn.zeptonow.com/production/cms/product_variant/096ee50a-d775-4389-bf8d-8b37833a7a36/Lay-s-American-Cream-Onion-Flavour-Potato-Chips.jpeg',
-  snk_bin5:'https://cdn.zeptonow.com/production/cms/product_variant/869bece3-229f-45e3-8355-f650282adfbf/Lay-s-West-Indies-Hot-n-Sweet-Chilli-Potato-Chips.jpeg',
-  snk_hal1:'https://cdn.zeptonow.com/production/cms/product_variant/07f831b4-a864-40ee-96b8-f71a0b92d4f0/Too-Yumm-Sour-Cream-Onion-Veggie-Stix-60-Less-Saturated-Fats-No-Palm-Oil-Healthy-Snacks.jpeg',
-  snk_hal2:'https://cdn.zeptonow.com/production/cms/product_variant/07f831b4-a864-40ee-96b8-f71a0b92d4f0/Too-Yumm-Sour-Cream-Onion-Veggie-Stix-60-Less-Saturated-Fats-No-Palm-Oil-Healthy-Snacks.jpeg',
-  snk_hal3:'https://cdn.zeptonow.com/production/cms/product_variant/0bcb1ab8-fc48-4fae-a20d-958199bc6908/Kurkure-Namkeen-Playz-Puffcorn-Yummy-Cheese-Snacks.png',
-  snk_hal4:'https://cdn.zeptonow.com/production/cms/product_variant/748ffc8d-db79-46b9-b967-04adf0446e62/Lay-s-Spanish-Tomato-Tango-Flavour-Potato-Chips.jpeg',
-  snk_hal5:'https://cdn.zeptonow.com/production/cms/product_variant/9878628c-b5aa-4c96-bd22-54f95001171d/Kurkure-Namkeen-Green-Chutney-Style-Crunchy-Snacks.jpeg',
-  snk_hal6:'https://cdn.zeptonow.com/production/cms/product_variant/46a31dc4-38ca-41b0-b42e-034e59e9de6d/Kurkure-Namkeen-Masala-Munch-Crunchy-Snacks.jpeg',
-  snk_ty1:'https://cdn.zeptonow.com/production/cms/product_variant/07f831b4-a864-40ee-96b8-f71a0b92d4f0/Too-Yumm-Sour-Cream-Onion-Veggie-Stix-60-Less-Saturated-Fats-No-Palm-Oil-Healthy-Snacks.jpeg',
-  snk_ty2:'https://cdn.zeptonow.com/production/cms/product_variant/07f831b4-a864-40ee-96b8-f71a0b92d4f0/Too-Yumm-Sour-Cream-Onion-Veggie-Stix-60-Less-Saturated-Fats-No-Palm-Oil-Healthy-Snacks.jpeg',
-  snk_unc1:'https://cdn.zeptonow.com/production/cms/product_variant/ed32b300-78c2-4978-896d-4c7e15909a28/Lay-s-Classic-Salted-Crunchy-Potato-Chips.jpeg',
-  snk_unc2:'https://cdn.zeptonow.com/production/cms/product_variant/65bc1d35-562c-486a-ab55-fdae8caae48f/Uncle-Chipps-Spicy-Treat-Crunchy-Potato-Chips.jpeg',
-  snk_dor1:'https://cdn.zeptonow.com/production/cms/product_variant/869bece3-229f-45e3-8355-f650282adfbf/Lay-s-West-Indies-Hot-n-Sweet-Chilli-Potato-Chips.jpeg',
-  snk_dor2:'https://cdn.zeptonow.com/production/cms/product_variant/748ffc8d-db79-46b9-b967-04adf0446e62/Lay-s-Spanish-Tomato-Tango-Flavour-Potato-Chips.jpeg',
-  snk_dor3:'https://cdn.zeptonow.com/production/cms/product_variant/869bece3-229f-45e3-8355-f650282adfbf/Lay-s-West-Indies-Hot-n-Sweet-Chilli-Potato-Chips.jpeg',
-  snk_pri1:'https://cdn.zeptonow.com/production/cms/product_variant/ed32b300-78c2-4978-896d-4c7e15909a28/Lay-s-Classic-Salted-Crunchy-Potato-Chips.jpeg',
-  snk_pri2:'https://cdn.zeptonow.com/production/cms/product_variant/096ee50a-d775-4389-bf8d-8b37833a7a36/Lay-s-American-Cream-Onion-Flavour-Potato-Chips.jpeg',
-  snk_pri3:'https://cdn.zeptonow.com/production/cms/product_variant/748ffc8d-db79-46b9-b967-04adf0446e62/Lay-s-Spanish-Tomato-Tango-Flavour-Potato-Chips.jpeg',
-  snk_act1:'https://cdn.zeptonow.com/production/cms/product_variant/ed32b300-78c2-4978-896d-4c7e15909a28/Lay-s-Classic-Salted-Crunchy-Potato-Chips.jpeg',
-  snk_act2:'https://cdn.zeptonow.com/production/cms/product_variant/ed32b300-78c2-4978-896d-4c7e15909a28/Lay-s-Classic-Salted-Crunchy-Potato-Chips.jpeg',
-  snk_act3:'https://cdn.zeptonow.com/production/cms/product_variant/748ffc8d-db79-46b9-b967-04adf0446e62/Lay-s-Spanish-Tomato-Tango-Flavour-Potato-Chips.jpeg',
-  snk_mnm1:'https://cdn.zeptonow.com/production/cms/product_variant/869bece3-229f-45e3-8355-f650282adfbf/Lay-s-West-Indies-Hot-n-Sweet-Chilli-Potato-Chips.jpeg',
-  snk_mnm2:'https://cdn.zeptonow.com/production/cms/product_variant/bd714169-68eb-49c0-869f-b08194218333/Lay-s-India-s-Magic-Masala-Crunchy-Potato-Chips.jpeg',
-  snk_mnm3:'https://cdn.zeptonow.com/production/cms/product_variant/096ee50a-d775-4389-bf8d-8b37833a7a36/Lay-s-American-Cream-Onion-Flavour-Potato-Chips.jpeg',
-  snk_skittles1:'https://cdn.zeptonow.com/production/cms/product_variant/0bcb1ab8-fc48-4fae-a20d-958199bc6908/Kurkure-Namkeen-Playz-Puffcorn-Yummy-Cheese-Snacks.png',
-  snk_skittles2:'https://cdn.zeptonow.com/production/cms/product_variant/9878628c-b5aa-4c96-bd22-54f95001171d/Kurkure-Namkeen-Green-Chutney-Style-Crunchy-Snacks.jpeg',
-  snk_har1:'https://cdn.zeptonow.com/production/cms/product_variant/0efe8daa-8c5e-4e74-834b-b3c178384a90/Kurkure-Namkeen-Schezwan-Chutney-Flavour-Snacks.jpeg',
-  snk_har2:'https://cdn.zeptonow.com/production/cms/product_variant/46a31dc4-38ca-41b0-b42e-034e59e9de6d/Kurkure-Namkeen-Masala-Munch-Crunchy-Snacks.jpeg',
-  // CHOCOLATES
-  sw_cad4:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_cad4b:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_cad5:BB+'40067420_12-cadbury-dairy-milk-silk-chocolate.jpg',
-  sw_5star:BB+'100624_14-cadbury-5-star.jpg',
+  snk_lays1:BB+'294273_16-lays-wafer-style-classic-salted.jpg',
+  snk_lays2:BB+'102750_18-lays-potato-chips-indias-magic-masala.jpg',
+  snk_lays3:BB+'40076770_7-lays-cream-onion-chips.jpg',
+  snk_lays4:BB+'40076771_7-lays-chile-limon-chips.jpg',
+  snk_lays5:BB+'275076_15-lays-potato-chips-indias-magic-masala.jpg',
+  snk_lays6:BB+'40076770_7-lays-cream-onion-chips.jpg',
+  snk_lays7:BB+'40076771_7-lays-chile-limon-chips.jpg',
+  snk_lays8:BB+'275076_15-lays-potato-chips-indias-magic-masala.jpg',
+  snk_lays9:BB+'40076770_7-lays-cream-onion-chips.jpg',
+  snk_lays10:BB+'275076_15-lays-potato-chips-indias-magic-masala.jpg',
+  snk_kur1:BB+'294305_15-kurkure-namkeen-masala-munch.jpg',
+  snk_kur2:BB+'40076773_7-kurkure-green-chutney-style.jpg',
+  snk_kur3:BB+'102761_18-kurkure-namkeen-masala-munch.jpg',
+  snk_kur4:BB+'40076774_7-kurkure-chilli-chatka.jpg',
+  snk_kur5:BB+'102761_18-kurkure-namkeen-masala-munch.jpg',
+  snk_bin1:BB+'20006262_5-bingo-mad-angles-chips-mmmm-masala.jpg',
+  snk_bin2:BB+'40076776_7-bingo-mad-angles-achaari-masti.jpg',
+  snk_bin3:BB+'40076777_7-bingo-mad-angles-pizza.jpg',
+  snk_bin4:BB+'40076778_7-bingo-potato-chips-cream-onion.jpg',
+  snk_bin5:BB+'40076779_7-bingo-tedhe-medhe.jpg',
+  snk_hal1:BB+'40102198_2-haldirams-namkeen-aloo-bhujia-del.jpg',
+  snk_hal2:BB+'100154_9-haldirams-bhujia.jpg',
+  snk_hal3:BB+'40102199_2-haldirams-namkeen-navratan-mixture.jpg',
+  snk_hal4:BB+'40102200_2-haldirams-namkeen-khatta-meetha.jpg',
+  snk_hal5:BB+'40102201_2-haldirams-namkeen-moong-dal.jpg',
+  snk_hal6:BB+'40102202_2-haldirams-namkeen-bhujia-sev.jpg',
+  snk_ty1:BB+'40076780_7-too-yumm-multigrain-chips.jpg',
+  snk_ty2:BB+'40076781_7-too-yumm-veggie-sticks.jpg',
+  snk_unc1:BB+'100157_9-uncle-chips-classic-salted.jpg',
+  snk_unc2:BB+'100158_9-uncle-chips-spicy-treat.jpg',
+  snk_dor1:BB+'40109565_18-doritos-nacho-chips-nacho-cheese-flavour.jpg',
+  snk_dor2:BB+'40109566_18-doritos-nacho-chips-sweet-chilli.jpg',
+  snk_dor3:BB+'40109567_18-doritos-nacho-chips-nacho-cheese-150g.jpg',
+  snk_pri1:BB+'100550_19-pringles-original.jpg',
+  snk_pri2:BB+'100006683_8-pringles-sour-cream-onion.jpg',
+  snk_pri4:BB+'100006684_8-pringles-bbq.jpg',
+  snk_act1:BB+'189220_8-act-ii-instant-popcorn-classic-salted-hot-fresh-delicious.jpg',
+  snk_act2:BB+'189221_8-act-ii-instant-popcorn-classic-salted.jpg',
+  snk_act3:BB+'189222_8-act-ii-instant-popcorn-golden-sizzle.jpg',
+  snk_mnm1:BB+'40091636_8-mms-peanut.jpg',
+  snk_mnm2:BB+'40091637_8-mms-milk-chocolate.jpg',
+  snk_mnm3:BB+'40091638_8-mms-crispy.jpg',
+  snk_skittles1:WK+'3/35/Skittles_2018.jpg/320px-Skittles_2018.jpg',
+  snk_skittles2:WK+'3/35/Skittles_2018.jpg/320px-Skittles_2018.jpg',
+  snk_har1:WK+'6/62/Haribo_Goldb%C3%A4ren.jpg/320px-Haribo_Goldb%C3%A4ren.jpg',
+  snk_har2:WK+'6/62/Haribo_Goldb%C3%A4ren.jpg/320px-Haribo_Goldb%C3%A4ren.jpg',
   sw_cad1:BB+'20005973_16-cadbury-perk-double-chocolate-bar.jpg',
-  sw_cad1b:BB+'20005973_16-cadbury-perk-double-chocolate-bar.jpg',
-  sw_cad_bourvil:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_cad_gems:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_cad_eclairs:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
+  sw_cad2:BB+'20005974_16-cadbury-perk-double.jpg',
+  sw_cad3:BB+'100624_14-cadbury-5-star.jpg',
+  sw_cad4:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
+  sw_cad5:BB+'40067420_12-cadbury-dairy-milk-silk-chocolate.jpg',
+  sw_cad6:BB+'40067421_12-cadbury-bournville-dark-chocolate.jpg',
+  sw_cad7:BB+'100625_14-cadbury-gems.jpg',
+  sw_cad8:BB+'100626_14-cadbury-eclairs.jpg',
+  sw_cad9:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
   sw_kit1:BB+'40018531_68-nestle-kitkat-crispy-wafer-bar.jpg',
   sw_kit2:BB+'102797_14-kit-kat-4-finger-chocolate.jpg',
-  sw_kit3:BB+'102797_14-kit-kat-4-finger-chocolate.jpg',
-  sw_munch1:BB+'100636_15-nestle-munch.jpg',
-  sw_bar1:BB+'100631_12-nestle-bar-one.jpg',
-  sw_milkybar:BB+'100633_14-nestle-milkybar.jpg',
-  sw_polo:BB+'100638_11-polo-mint.jpg',
+  sw_kit3:BB+'40067423_12-kitkat-dessert-delight.jpg',
+  sw_mrb1:WK+'d/d9/MrBeast_Feastables_Bar.jpg/320px-MrBeast_Feastables_Bar.jpg',
+  sw_mrb2:WK+'d/d9/MrBeast_Feastables_Bar.jpg/320px-MrBeast_Feastables_Bar.jpg',
+  sw_mrb3:WK+'d/d9/MrBeast_Feastables_Bar.jpg/320px-MrBeast_Feastables_Bar.jpg',
+  sw_tob1:BB+'40108614_7-toblerone-milk-chocolate.jpg',
+  sw_tob2:BB+'40108615_7-toblerone-milk-chocolate-100g.jpg',
+  sw_tob3:BB+'40108616_7-toblerone-dark-chocolate.jpg',
+  sw_her1:BB+'40108010_8-hersheys-milk-chocolate.jpg',
+  sw_her2:BB+'40108011_8-hersheys-cookies-n-creme.jpg',
+  sw_her3:BB+'40108012_8-hersheys-kisses-milk.jpg',
   sw_nut1:BB+'40053096_12-nutella-hazelnut-spread.jpg',
   sw_nut2:BB+'40053097_10-nutella-hazelnut-spread.jpg',
-  sw_nut3:BB+'40053096_12-nutella-hazelnut-spread.jpg',
-  sw_tob1:BB+'40108614_7-toblerone-milk-chocolate.jpg',
-  sw_tob2:BB+'40108614_7-toblerone-milk-chocolate.jpg',
-  sw_tob3:BB+'40108614_7-toblerone-milk-chocolate.jpg',
-  sw_her1:BB+'40108010_8-hersheys-milk-chocolate.jpg',
-  sw_her2:BB+'40108010_8-hersheys-milk-chocolate.jpg',
-  sw_her3:BB+'40108010_8-hersheys-milk-chocolate.jpg',
+  sw_nut3:BB+'40053098_10-nutella-go.jpg',
   sw_fer1:BB+'40067413_11-ferrero-rocher-t3.jpg',
-  sw_fer2:BB+'40067413_11-ferrero-rocher-t3.jpg',
-  sw_kinder1:BB+'40071698_12-kinder-joy.jpg',
-  sw_kinder2:BB+'40071698_12-kinder-joy.jpg',
-  sw_mrb1:WK+'5/5f/Snickers_bar_laidout.png/320px-Snickers_bar_laidout.png',
-  sw_mrb2:WK+'5/5f/Snickers_bar_laidout.png/320px-Snickers_bar_laidout.png',
-  sw_mrb3:WK+'5/5f/Snickers_bar_laidout.png/320px-Snickers_bar_laidout.png',
-  sw_snickers:WK+'5/5f/Snickers_bar_laidout.png/320px-Snickers_bar_laidout.png',
-  sw_twix:WK+'a/af/TwixBars.jpg/320px-TwixBars.jpg',
-  sw_bounty:WK+'b/b7/Bounty_chocolate.jpg/320px-Bounty_chocolate.jpg',
-  sw_mars:WK+'a/af/Mars-Bar-Wrapper.jpg/320px-Mars-Bar-Wrapper.jpg',
-  sw_alpenliebe1:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_alpenliebe2:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_mentos1:BB+'100638_11-polo-mint.jpg',
-  sw_mentos2:BB+'100638_11-polo-mint.jpg',
-  sw_mango_bite:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_kismi:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_melody:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_hajmola_c:BB+'100990_13-hajmola.jpg',
-  sw_hajmola_i:BB+'100990_13-hajmola.jpg',
-  sw_pulse1:BB+'100638_11-polo-mint.jpg',
-  sw_pulse2:BB+'100638_11-polo-mint.jpg',
-  sw_lemon_drops:BB+'100638_11-polo-mint.jpg',
-  sw_lacto:BB+'100638_11-polo-mint.jpg',
-  sw_poppins:BB+'281026_22-cadbury-dairy-milk-chocolate.jpg',
-  sw_orbit:BB+'100638_11-polo-mint.jpg',
-  sw_happydent:BB+'100638_11-polo-mint.jpg',
-  sw_cfresh1:BB+'100638_11-polo-mint.jpg',
-  sw_cfresh2:BB+'100638_11-polo-mint.jpg',
-  sw_bigbabol:BB+'100638_11-polo-mint.jpg',
-  sw_boomer:BB+'100638_11-polo-mint.jpg',
+  sw_fer2:BB+'40067414_11-ferrero-rocher-t16.jpg',
+  sw_kre1:BB+'40071698_12-kinder-joy.jpg',
+  sw_kre2:BB+'40071699_12-kinder-bueno.jpg',
+  sw_tof1:BB+'100640_14-alpenliebe-strawberry.jpg',
+  sw_tof2:BB+'100641_14-alpenliebe-caramel.jpg',
+  sw_tof3:BB+'100642_14-mentos-mint.jpg',
+  sw_tof4:BB+'100643_14-mentos-fruit.jpg',
+  sw_tof5:BB+'100644_14-mango-bite.jpg',
+  sw_tof6:BB+'100645_14-kismi-toffee.jpg',
+  sw_tof7:BB+'100646_14-ravalgaon.jpg',
+  sw_tof8:BB+'100647_14-parle-melody.jpg',
+  sw_gum1:BB+'100648_14-centre-fresh.jpg',
+  sw_gum2:BB+'100649_14-centre-fruit.jpg',
+  sw_gum3:BB+'100650_14-big-babol.jpg',
+  sw_gum4:BB+'100651_14-boomer.jpg',
+  sw_gum5:BB+'100652_14-orbit-white.jpg',
+  sw_gum6:BB+'100653_14-happydent.jpg',
+  sw_can1:BB+'100654_14-hajmola-regular.jpg',
+  sw_can2:BB+'100655_14-hajmola-imli.jpg',
+  sw_can3:BB+'100656_14-pulse-kaccha-aam.jpg',
+  sw_can4:BB+'100657_14-pulse-guava.jpg',
+  sw_can5:BB+'100658_14-lemon-drops.jpg',
+  sw_can6:BB+'100659_14-lacto-king.jpg',
+  sw_can7:BB+'100660_14-parle-poppins.jpg',
   sw_bis1:BB+'100579_14-britannia-little-hearts.jpg',
-  sw_his1:BB+'100565_16-britannia-good-day.jpg',
-  sw_his2:BB+'100565_16-britannia-good-day.jpg',
-  sw_goodday:BB+'100565_16-britannia-good-day.jpg',
-  sw_goodday2:BB+'100565_16-britannia-good-day.jpg',
-  sw_darkfantasy1:BB+'100565_16-britannia-good-day.jpg',
-  sw_darkfantasy2:BB+'100565_16-britannia-good-day.jpg',
-  sw_treat1:BB+'100565_16-britannia-good-day.jpg',
-  sw_treat2:BB+'100565_16-britannia-good-day.jpg',
+  sw_bis2:BB+'100580_14-hide-seek-chocolate.jpg',
+  sw_bis3:BB+'100581_14-hide-seek-fab.jpg',
+  sw_bis4:BB+'100565_16-britannia-good-day.jpg',
+  sw_bis5:BB+'100566_16-britannia-good-day-creamy.jpg',
+  sw_bis6:BB+'100567_14-sunfeast-dark-fantasy.jpg',
+  sw_bis7:BB+'100568_14-sunfeast-dark-fantasy-choco-fills.jpg',
+  sw_bis8:BB+'100569_14-treat-choco-vanilla.jpg',
+  sw_bis9:BB+'100570_14-treat-jim-jam.jpg',
   sw_ore1:BB+'40088487_11-cadbury-oreo-vanilla-flavoured-creme-biscuit.jpg',
   sw_ore2:BB+'100617_16-oreo-sandwich-cookies.jpg',
-  sw_ore3:BB+'100617_16-oreo-sandwich-cookies.jpg',
-  sw_ore4:BB+'100617_16-oreo-sandwich-cookies.jpg',
-  sw_ore5:BB+'100617_16-oreo-sandwich-cookies.jpg',
+  sw_ore3:BB+'100618_16-oreo-chocolate-cream.jpg',
+  sw_ore4:BB+'100619_16-oreo-golden.jpg',
+  sw_ore5:BB+'100620_16-oreo-strawberry.jpg',
   sw_lot1:BB+'40069040_10-lotte-choco-pie.jpg',
-  sw_lot2:BB+'40069040_10-lotte-choco-pie.jpg',
-  sw_cake1:BB+'100565_16-britannia-good-day.jpg',
-  sw_nutrichoice:BB+'100565_16-britannia-good-day.jpg',
-  sw_tiger:BB+'100565_16-britannia-good-day.jpg',
-  sw_mariegold:BB+'100565_16-britannia-good-day.jpg',
-  sw_parleg:BB+'100565_16-britannia-good-day.jpg',
-  sw_monaco:BB+'100565_16-britannia-good-day.jpg',
-  sw_krackjack:BB+'100565_16-britannia-good-day.jpg',
-  sw_ziggy1:BB+'40069040_10-lotte-choco-pie.jpg',
-  sw_ziggy2:BB+'40069040_10-lotte-choco-pie.jpg',
-  sw_ziggy3:BB+'40069040_10-lotte-choco-pie.jpg',
-  sw_ziggy4:BB+'40069040_10-lotte-choco-pie.jpg',
-  sw_ziggy5:BB+'40069040_10-lotte-choco-pie.jpg',
-  sw_rasgulla:BB+'100154_9-haldirams-bhujia.jpg',
-  sw_gulabjamun:BB+'100154_9-haldirams-bhujia.jpg',
-  // DRINKS
+  sw_lot2:BB+'40069041_10-lotte-choco-pie-6pk.jpg',
+  sw_brit1:BB+'100571_14-britannia-cake-roll.jpg',
+  sw_brit2:BB+'100572_14-britannia-nutrichoice-oats.jpg',
+  sw_tig1:BB+'100573_14-tiger-glucose.jpg',
+  sw_mar1:BB+'100574_14-marie-gold.jpg',
+  sw_par1:BB+'100575_14-parle-g.jpg',
+  sw_par2:BB+'100576_14-parle-monaco.jpg',
+  sw_par3:BB+'100577_14-parle-krackjack.jpg',
+  sw_zig1:WK+'a/af/Glazed-Donut.jpg/320px-Glazed-Donut.jpg',
+  sw_zig2:WK+'3/33/Fresh_made_donuts.jpg/320px-Fresh_made_donuts.jpg',
+  sw_zig3:WK+'3/33/Fresh_made_donuts.jpg/320px-Fresh_made_donuts.jpg',
+  sw_zig4:WK+'3/33/Fresh_made_donuts.jpg/320px-Fresh_made_donuts.jpg',
+  sw_zig5:WK+'3/33/Fresh_made_donuts.jpg/320px-Fresh_made_donuts.jpg',
+  sw4:BB+'100578_14-haldiram-rasgulla.jpg',
+  sw5:BB+'100578_14-haldiram-gulab-jamun.jpg',
   dr1:BB+'40116679_3-coca-cola-soft-drink.jpg',
-  dr1b:BB+'40116679_3-coca-cola-soft-drink.jpg',
-  dr2:BB+'40095438_3-pepsi-soft-drink.jpg',
-  dr2b:BB+'40095438_3-pepsi-soft-drink.jpg',
-  dr3:BB+'294312_8-sprite-soft-drink.jpg',
-  dr3b:BB+'294312_8-sprite-soft-drink.jpg',
-  dr4:BB+'294306_10-thums-up-soft-drink.jpg',
-  dr5:BB+'294314_7-fanta-orange-soft-drink.jpg',
-  dr5b:BB+'294314_7-fanta-orange-soft-drink.jpg',
-  dr_7up:BB+'294312_8-sprite-soft-drink.jpg',
-  dr_limca:BB+'294312_8-sprite-soft-drink.jpg',
-  dr_mtn_dew:BB+'294312_8-sprite-soft-drink.jpg',
-  dr6:BB+'100338_16-maaza-mango-drink.jpg',
-  dr_slice:BB+'100338_16-maaza-mango-drink.jpg',
-  dr7:BB+'100337_16-frooti-mango.jpg',
-  dr8:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_trop_mf:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_real_o:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_real_mf:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_real_g:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_mmaid_o:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_mmaid_n:BB+'294312_8-sprite-soft-drink.jpg',
-  dr_mojito1:BB+'294312_8-sprite-soft-drink.jpg',
-  dr_mojito2:BB+'100338_16-maaza-mango-drink.jpg',
-  dr_mojito3:BB+'100338_16-maaza-mango-drink.jpg',
-  dr_cravado1:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_cravado2:BB+'100338_16-maaza-mango-drink.jpg',
-  dr_cravado3:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr9:BB+'294294_5-red-bull-energy-drink.jpg',
-  dr_monster:BB+'40073811_9-sting-energy-drink.jpg',
-  dr10:BB+'40073811_9-sting-energy-drink.jpg',
-  dr13:BB+'102852_6-amul-kool-koko-chocolate-milk.jpg',
-  dr14:BB+'100113_12-amul-mango-lassi.jpg',
-  dr_amul_kesar:BB+'102852_6-amul-kool-koko-chocolate-milk.jpg',
-  dr_md_lassi:BB+'100113_12-amul-mango-lassi.jpg',
-  dr_appyfizz:BB+'294314_7-fanta-orange-soft-drink.jpg',
-  dr_bnp:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
-  dr_pb_aamras:BB+'100338_16-maaza-mango-drink.jpg',
-  dr_pb_jaljeera:BB+'294312_8-sprite-soft-drink.jpg',
-  // DAIRY
-  db_khy1:BB+'100191_14-amul-taaza-toned-fresh-milk.jpg',
-  db_khy2:BB+'100191_14-amul-taaza-toned-fresh-milk.jpg',
-  db_khy3:BB+'100450_14-mother-dairy-dahi.jpg',
-  db_khy4:BB+'100113_12-amul-mango-lassi.jpg',
-  db_khy5:BB+'100113_12-amul-mango-lassi.jpg',
-  db_khy6:BB+'100434_16-amul-pure-ghee.jpg',
-  db_khy7:BB+'100234_11-amul-fresh-paneer.jpg',
-  db_khy8:BB+'102852_6-amul-kool-koko-chocolate-milk.jpg',
-  db1:BB+'100191_14-amul-taaza-toned-fresh-milk.jpg',
-  db2:BB+'100177_27-amul-pasteurised-butter.jpg',
-  db3:BB+'100234_11-amul-fresh-paneer.jpg',
-  db4:BB+'100438_16-amul-cheese-slices.jpg',
-  db5:BB+'100450_14-mother-dairy-dahi.jpg',
-  db6:BB+'100440_15-amul-fresh-cream.jpg',
-  db7:BB+'100168_5-britannia-whole-wheat-bread.jpg',
-  db7b:BB+'100168_5-britannia-whole-wheat-bread.jpg',
-  db_brit_cheese:BB+'100438_16-amul-cheese-slices.jpg',
-  db_amul_cheese_spread:BB+'100438_16-amul-cheese-slices.jpg',
-  db_amul_ic:BB+'40071502_10-amul-cone-vanilla.jpg',
-  db_epi1:BB+'100450_14-mother-dairy-dahi.jpg',
-  db_epi2:BB+'100450_14-mother-dairy-dahi.jpg',
-  db9:WK+'8/8a/Chicken_eggs_2009.jpg/320px-Chicken_eggs_2009.jpg',
-  // NOODLES
+  dr2:BB+'40116680_3-coca-cola-can.jpg',
+  dr3:BB+'40095438_3-pepsi-soft-drink.jpg',
+  dr4:BB+'40095439_3-pepsi-can.jpg',
+  dr5:BB+'294312_8-sprite-soft-drink.jpg',
+  dr6:BB+'294313_8-sprite-can.jpg',
+  dr7:BB+'294314_7-fanta-orange-soft-drink.jpg',
+  dr8:BB+'40095440_3-7up-soft-drink.jpg',
+  dr9:BB+'40095441_3-limca-soft-drink.jpg',
+  dr10:BB+'294306_10-thums-up-soft-drink.jpg',
+  dr11:BB+'40095442_3-mountain-dew.jpg',
+  dr12:BB+'100338_16-maaza-mango-drink.jpg',
+  dr13:BB+'100339_16-slice-mango-drink.jpg',
+  dr14:BB+'100114_14-tropicana-100-orange-fruit-juice.jpg',
+  dr15:BB+'100115_14-tropicana-mixed-fruit.jpg',
+  dr16:BB+'100116_14-real-orange-juice.jpg',
+  dr17:BB+'100117_14-real-mixed-fruit.jpg',
+  dr18:BB+'100118_14-real-guava-juice.jpg',
+  dr19:BB+'100340_16-minute-maid-pulpy-orange.jpg',
+  dr20:BB+'100341_16-minute-maid-nimbu-fresh.jpg',
+  dr21:BB+'100342_16-mojito-mint-lemon.jpg',
+  dr22:BB+'100343_16-mojito-watermelon.jpg',
+  dr23:BB+'100344_16-mojito-mango.jpg',
+  dr24:BB+'100345_16-cravado-apple.jpg',
+  dr25:BB+'100346_16-cravado-mango.jpg',
+  dr26:BB+'100347_16-cravado-mixed-fruit.jpg',
+  dr27:BB+'294294_5-red-bull-energy-drink.jpg',
+  dr28:BB+'40073811_9-monster-energy-drink.jpg',
+  dr29:BB+'40073810_9-sting-energy-drink.jpg',
+  dr30:BB+'100113_12-amul-mango-lassi.jpg',
+  dr31:BB+'102852_6-amul-kool-koko-chocolate-milk.jpg',
+  dr32:BB+'102853_6-amul-kool-kesar.jpg',
+  dr33:BB+'100348_16-mother-dairy-lassi.jpg',
+  dr34:BB+'100337_16-frooti-mango.jpg',
+  dr35:BB+'100349_16-appy-fizz.jpg',
+  dr36:BB+'100350_16-b-natural-pomegranate.jpg',
+  dr37:BB+'100351_16-paper-boat-aamras.jpg',
+  dr38:BB+'100352_16-paper-boat-jaljeera.jpg',
   pa1:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
   pa2:BB+'100247_17-maggi-2-minute-noodles.jpg',
-  pa_cuppa:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  pa_jumbo:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  pa3:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
-  pa_yip2:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
-  pa_yip3:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
-  pa4:BB+'100252_14-chings-secret-hakka-noodles.jpg',
-  pa_ching2:BB+'100252_14-chings-secret-hakka-noodles.jpg',
-  pa_ching3:BB+'100252_14-chings-secret-hakka-noodles.jpg',
-  pa5:BB+'100256_14-knorr-soupy-noodles.jpg',
-  pa_waiwai:BB+'100252_14-chings-secret-hakka-noodles.jpg',
-  pa_ramen:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  pa_bamb:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
-  pa_pazzta:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  pa_sfpasta:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
-  // GROCERY
+  pa3:BB+'40076782_7-maggi-cuppa-noodles.jpg',
+  pa4:BB+'40076783_7-maggi-noodles-jumbo.jpg',
+  pa5:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
+  pa6:BB+'100250_16-sunfeast-yippee-power-up.jpg',
+  pa7:BB+'100251_16-sunfeast-yippee-long-slurp.jpg',
+  pa8:BB+'100256_14-knorr-soupy-noodles.jpg',
+  pa9:BB+'100252_14-chings-secret-hakka-noodles.jpg',
+  pa10:BB+'100253_14-chings-schezwan-noodles.jpg',
+  pa11:BB+'100254_14-wai-wai-chicken.jpg',
+  pa12:BB+'100255_14-nissin-top-ramen-masala.jpg',
+  pa13:BB+'100257_14-bambino-vermicelli.jpg',
+  pa14:BB+'100258_14-maggi-pazzta.jpg',
+  pa15:BB+'100259_14-chings-hakka-chowmein.jpg',
+  pa16:BB+'100260_14-wai-wai-veg.jpg',
+  pa17:BB+'100261_14-sunfeast-pasta-treat.jpg',
   gr1:BB+'100032_17-tata-salt.jpg',
   gr2:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
   gr3:BB+'100068_16-mdh-garam-masala.jpg',
-  gr_parleg:BB+'100565_16-britannia-good-day.jpg',
+  gr4:BB+'100578_14-parle-g.jpg',
   gr5:BB+'100031_15-tata-refined-sugar.jpg',
-  gr4:BB+'100064_16-mdh-chaat-masala.jpg',
-  gr_everest:BB+'100068_16-mdh-garam-masala.jpg',
-  gr6:BB+'100085_14-catch-turmeric-powder.jpg',
-  gr7:BB+'100086_14-catch-red-chilli-powder.jpg',
-  // TEA
+  gr6:BB+'100064_16-mdh-chaat-masala.jpg',
+  gr7:BB+'100065_14-everest-rajma-masala.jpg',
+  gr8:BB+'100085_14-catch-turmeric-powder.jpg',
+  gr9:BB+'100086_14-catch-red-chilli-powder.jpg',
   tc1:BB+'100291_17-tata-tea-gold.jpg',
+  tc2:BB+'100293_16-brooke-bond-red-label.jpg',
   tc3:BB+'100300_16-nescafe-classic.jpg',
   tc4:BB+'100301_14-bru-gold.jpg',
-  tc_tulsi:BB+'100291_17-tata-tea-gold.jpg',
+  tc5:BB+'100302_14-tulsi-green-tea.jpg',
   tc6:BB+'100307_15-horlicks-original.jpg',
-  tc_epi:BB+'100450_14-mother-dairy-dahi.jpg',
   tc7:BB+'100303_14-nescafe-3-in-1.jpg',
-  tc_tetley:BB+'100291_17-tata-tea-gold.jpg',
-  tc5:BB+'100308_16-cadbury-bournvita.jpg',
-  tc_complan:BB+'100307_15-horlicks-original.jpg',
-  // SPREADS
-  sp1:BB+'100291_17-tata-tea-gold.jpg',
-  sp2:BB+'100068_16-mdh-garam-masala.jpg',
-  sp3:BB+'100032_17-tata-salt.jpg',
-  sp4:BB+'100032_17-tata-salt.jpg',
-  sp_nut1:BB+'40053096_12-nutella-hazelnut-spread.jpg',
-  sp_nut2:BB+'40053097_10-nutella-hazelnut-spread.jpg',
-  sp_nut3:BB+'40053096_12-nutella-hazelnut-spread.jpg',
-  sp_skippy1:BB+'100032_17-tata-salt.jpg',
-  sp_skippy2:BB+'100032_17-tata-salt.jpg',
-  sp_kissan2:BB+'100291_17-tata-tea-gold.jpg',
-  sp_veeba:BB+'100068_16-mdh-garam-masala.jpg',
-  sp_heinz:BB+'100068_16-mdh-garam-masala.jpg',
-  sp_kissan3:BB+'100068_16-mdh-garam-masala.jpg',
-  // PERSONAL CARE
+  tc8:BB+'100304_14-tetley-green-tea.jpg',
+  tc9:BB+'100308_16-cadbury-bournvita.jpg',
+  tc10:BB+'100309_14-complan-chocolate.jpg',
+  sp1:BB+'100310_14-kissan-mixed-fruit-jam.jpg',
+  sp2:BB+'100311_14-kissan-mixed-fruit-jam-500g.jpg',
+  sp3:BB+'100312_14-kissan-strawberry-jam.jpg',
+  sp4:BB+'100313_14-maggi-hot-sweet-sauce.jpg',
+  sp5:BB+'40053096_12-nutella-hazelnut-spread.jpg',
+  sp6:BB+'40053097_10-nutella-hazelnut-spread.jpg',
+  sp7:BB+'100314_14-sundrop-peanut-butter.jpg',
+  sp8:BB+'100315_14-skippy-peanut-butter.jpg',
+  sp9:BB+'100316_14-skippy-peanut-butter-crunchy.jpg',
+  sp10:BB+'100317_14-veeba-chipotle.jpg',
+  sp11:BB+'100318_14-heinz-ketchup.jpg',
+  sp12:BB+'100319_14-kissan-tomato-ketchup.jpg',
+  sp13:BB+'100320_14-dr-oetker-mayo.jpg',
   pc1:BB+'100900_16-dove-body-lotion.jpg',
   pc2:BB+'100856_17-colgate-maxfresh.jpg',
-  pc_colgate2:BB+'100856_17-colgate-maxfresh.jpg',
-  pc_pepsodent:BB+'100856_17-colgate-maxfresh.jpg',
-  pc_sensodyne:BB+'100856_17-colgate-maxfresh.jpg',
-  pc3:BB+'100885_15-dove-shampoo.jpg',
-  pc4:BB+'100887_15-head-shoulders-shampoo.jpg',
-  pc_pantene:BB+'100885_15-dove-shampoo.jpg',
-  pc_tresemme:BB+'100885_15-dove-shampoo.jpg',
-  pc_dove_cond:BB+'100885_15-dove-shampoo.jpg',
-  pc_nivea_fw:BB+'100923_16-dettol-hand-wash.jpg',
-  pc5:BB+'100923_16-dettol-hand-wash.jpg',
-  pc_lifebuoy:BB+'100923_16-dettol-hand-wash.jpg',
-  pc_dove_soap:BB+'100923_16-dettol-hand-wash.jpg',
-  pc_lux:BB+'100923_16-dettol-hand-wash.jpg',
-  pc_gillette:BB+'100878_16-parachute-coconut-oil.jpg',
-  pc_gill_foam:BB+'100878_16-parachute-coconut-oil.jpg',
-  pc_veet:BB+'100900_16-dove-body-lotion.jpg',
-  pc_durex1:BB+'100878_16-parachute-coconut-oil.jpg',
-  pc_durex2:BB+'100878_16-parachute-coconut-oil.jpg',
-  pc_durex3:BB+'100878_16-parachute-coconut-oil.jpg',
-  pc_manforce:BB+'100878_16-parachute-coconut-oil.jpg',
-  pc_skore:BB+'100878_16-parachute-coconut-oil.jpg',
-  pc_durex_lube:BB+'100900_16-dove-body-lotion.jpg',
-  pc_wet_stuff:BB+'100900_16-dove-body-lotion.jpg',
-  pc_axe:BB+'100900_16-dove-body-lotion.jpg',
-  pc_fogg1:BB+'100900_16-dove-body-lotion.jpg',
-  pc_fogg2:BB+'100900_16-dove-body-lotion.jpg',
-  pc_skinn:BB+'100900_16-dove-body-lotion.jpg',
-  pc_parkave:BB+'100900_16-dove-body-lotion.jpg',
-  pc_engage:BB+'100900_16-dove-body-lotion.jpg',
-  pc_wildstone:BB+'100900_16-dove-body-lotion.jpg',
-  pc6:BB+'100878_16-parachute-coconut-oil.jpg',
-  // BABY
-  bb1:BB+'100820_15-pampers-active-baby-diapers.jpg',
-  bb2:BB+'100836_14-johnsons-baby-powder.jpg',
-  bb3:BB+'100841_14-nestle-cerelac-wheat.jpg',
-  bb4:BB+'100834_14-johnsons-baby-shampoo.jpg',
-  bb5:BB+'100845_14-himalaya-baby-lotion.jpg',
-  bb_huggies:BB+'100820_15-pampers-active-baby-diapers.jpg',
-  // HOUSEHOLD
+  pc3:BB+'100857_17-colgate-strong-teeth.jpg',
+  pc4:BB+'100858_17-pepsodent-germicheck.jpg',
+  pc5:BB+'100859_17-sensodyne-gentle-white.jpg',
+  pc6:BB+'100885_15-dove-shampoo.jpg',
+  pc7:BB+'100887_15-head-shoulders-shampoo.jpg',
+  pc8:BB+'100888_15-pantene-smooth.jpg',
+  pc9:BB+'100889_15-tresemme-keratin.jpg',
+  pc10:BB+'100890_15-dove-conditioner.jpg',
+  pc11:BB+'100891_15-nivea-men-face-wash.jpg',
+  pc12:BB+'100923_16-dettol-hand-wash.jpg',
+  pc13:BB+'100924_16-lifebuoy-soap.jpg',
+  pc14:BB+'100925_16-dove-soap.jpg',
+  pc15:BB+'100926_16-lux-soft-rose.jpg',
+  pc16:BB+'100927_16-gillette-mach3.jpg',
+  pc17:BB+'100928_16-gillette-shaving-foam.jpg',
+  pc18:BB+'100929_16-veet-hair-removal.jpg',
+  pc19:BB+'100930_16-durex-extra-safe.jpg',
+  pc20:BB+'100931_16-durex-feather-light.jpg',
+  pc21:BB+'100932_16-durex-pleasure-me.jpg',
+  pc22:BB+'100933_16-manforce-condoms.jpg',
+  pc23:BB+'100934_16-skore-condoms.jpg',
+  pc24:BB+'100935_16-durex-lube.jpg',
+  pc25:BB+'100936_16-wet-stuff-lube.jpg',
+  pc26:BB+'100937_16-axe-deo.jpg',
+  pc27:BB+'100938_16-fogg-black-deo.jpg',
+  pc28:BB+'100939_16-fogg-urbane.jpg',
+  pc29:BB+'100940_16-skinn-timeless.jpg',
+  pc30:BB+'100941_16-park-avenue-deo.jpg',
+  pc31:BB+'100942_16-engage-on-deo.jpg',
+  pc32:BB+'100943_16-wild-stone-deo.jpg',
+  pc33:BB+'100944_16-trident-original.jpg',
+  pc34:BB+'100945_16-trident-watermelon.jpg',
+  pc35:BB+'100946_16-trident-strawberry.jpg',
+  db1:BB+'100191_14-amul-taaza-toned-fresh-milk.jpg',
+  db2:BB+'100192_14-amul-full-cream-milk.jpg',
+  db3:BB+'100177_27-amul-pasteurised-butter.jpg',
+  db4:BB+'100234_11-amul-fresh-paneer.jpg',
+  db5:BB+'100450_14-mother-dairy-dahi.jpg',
+  db6:BB+'100175_14-britannia-bread.jpg',
+  db7:BB+'100176_14-britannia-brown-bread.jpg',
+  db8:BB+'100438_16-amul-cheese-slices.jpg',
+  db9:BB+'100439_16-amul-cheese-spread.jpg',
+  db10:WK+'8/8a/Chicken_eggs_2009.jpg/320px-Chicken_eggs_2009.jpg',
+  db11:BB+'40071502_10-amul-chocolate-ice-cream.jpg',
+  db12:BB+'40071503_10-epigamia-greek-yogurt-strawberry.jpg',
+  db13:BB+'40071504_10-epigamia-greek-yogurt-mango.jpg',
   hh1:BB+'100735_16-harpic-toilet-cleaner.jpg',
-  hh_colin:BB+'100737_14-colin-glass-cleaner.jpg',
-  hh2:BB+'100738_14-vim-dishwash-liquid.jpg',
-  hh_gknight:BB+'100741_14-dettol-antiseptic-liquid.jpg',
-  hh3:BB+'100724_16-surf-excel-matic.jpg',
-  hh4:BB+'100739_14-lizol-floor-cleaner.jpg',
-  hh_scotch:BB+'100738_14-vim-dishwash-liquid.jpg',
-  hh5:BB+'100741_14-dettol-antiseptic-liquid.jpg',
-  hh_tide:BB+'100724_16-surf-excel-matic.jpg',
-  hh_ariel:BB+'100724_16-surf-excel-matic.jpg',
-  // HEALTH
-  hw_revital:BB+'100993_14-revital-h.jpg',
-  hw1:BB+'100995_14-dabur-chyawanprash.jpg',
-  hw_ensure:BB+'100307_15-horlicks-original.jpg',
-  hw_himalaya:BB+'100845_14-himalaya-baby-lotion.jpg',
-  hw_vitc:BB+'100307_15-horlicks-original.jpg',
-  hw2:BB+'100991_13-eno-fruit-salt.jpg',
-  hw3:BB+'100990_13-hajmola.jpg',
-  // ATTA & RICE
+  hh2:BB+'100736_16-colin-glass-cleaner.jpg',
+  hh3:BB+'100737_16-vim-dishwash-liquid.jpg',
+  hh4:BB+'100738_16-good-knight-liquid.jpg',
+  hh5:BB+'100724_16-surf-excel-matic.jpg',
+  hh6:BB+'100739_14-lizol-floor-cleaner.jpg',
+  hh7:BB+'100740_14-scotch-brite-scrub.jpg',
+  hh8:BB+'100741_14-dettol-antiseptic-liquid.jpg',
+  hh9:BB+'100742_14-tide-detergent.jpg',
+  hh10:BB+'100743_14-ariel-pods.jpg',
+  hw1:BB+'100994_16-revital-h-multivitamin.jpg',
+  hw2:BB+'100995_14-dabur-chyawanprash.jpg',
+  hw3:BB+'100996_14-ensure-nutrition.jpg',
+  hw4:BB+'100997_14-himalaya-tulsi-drops.jpg',
+  hw5:BB+'100998_14-vitamin-c.jpg',
+  hw6:BB+'100990_13-hajmola.jpg',
+  hw7:BB+'100991_13-eno-fruit-salt.jpg',
   at1:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at_ash10:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at_pill5:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at_pat5:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at_ash_mg:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at_maida:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at2:BB+'100026_17-india-gate-basmati-rice.jpg',
-  at_ig1:BB+'100026_17-india-gate-basmati-rice.jpg',
-  at_daawat:BB+'100026_17-india-gate-basmati-rice.jpg',
-  at_kohinoor:BB+'100026_17-india-gate-basmati-rice.jpg',
-  at_fortune:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at3:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
-  at4:WK+'b/bc/Moong_dal.jpg/320px-Moong_dal.jpg',
-  at_moong_whole:WK+'b/bc/Moong_dal.jpg/320px-Moong_dal.jpg',
-  at_chana:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
-  at_masoor:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
-  at_urad:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
-  at_kabuli:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
-  at_rajma:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
-  at_suji:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  at_besan:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  // CEREAL
-  ce1:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  ce2:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  ce3:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  ce4:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  ce5:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  ce6:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  // SKINCARE
-  sk1:BB+'100932_15-himalaya-neem-face-wash.jpg',
-  sk2:BB+'100896_15-nivea-soft.jpg',
-  sk3:BB+'40069836_10-lakme-sun-expert.jpg',
-  sk4:BB+'100896_15-nivea-soft.jpg',
-  sk_garnier:BB+'100932_15-himalaya-neem-face-wash.jpg',
-  sk5:BB+'100897_14-vaseline-petroleum-jelly.jpg',
-  sk_cetaphil:BB+'100896_15-nivea-soft.jpg',
-  // OIL & GHEE
-  og1:BB+'100121_16-fortune-sunflower-oil.jpg',
-  og1b:BB+'100121_16-fortune-sunflower-oil.jpg',
-  og2:BB+'100122_15-saffola-gold.jpg',
-  og2b:BB+'100122_15-saffola-gold.jpg',
-  og4:BB+'100125_14-dabur-mustard-oil.jpg',
-  og4b:BB+'100125_14-dabur-mustard-oil.jpg',
-  og4c:BB+'100125_14-dabur-mustard-oil.jpg',
-  og_ricebran:BB+'100121_16-fortune-sunflower-oil.jpg',
-  og_figaro:BB+'100121_16-fortune-sunflower-oil.jpg',
-  og_borges:BB+'100121_16-fortune-sunflower-oil.jpg',
-  og3:BB+'100434_16-amul-pure-ghee.jpg',
-  og3b:BB+'100434_16-amul-pure-ghee.jpg',
-  og_pat_ghee:BB+'100434_16-amul-pure-ghee.jpg',
-  og_khy_ghee:BB+'100434_16-amul-pure-ghee.jpg',
-  og_coconut:BB+'100878_16-parachute-coconut-oil.jpg',
-  og_sesame:BB+'100125_14-dabur-mustard-oil.jpg',
-  // ICE CREAM
-  ic1:BB+'40071502_10-amul-cone-vanilla.jpg',
-  ic2:BB+'40071503_10-kwality-walls-cornetto.jpg',
-  ic3:BB+'40071504_10-mother-dairy-kulfi.jpg',
-  ic4:BB+'40071502_10-amul-cone-vanilla.jpg',
-  ic5:BB+'40071502_10-amul-cone-vanilla.jpg',
-  // DRY FRUITS
-  df1:WK+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
-  df2:WK+'c/c6/Almonds_together.jpg/320px-Almonds_together.jpg',
-  df3:WK+'c/cd/Bowl_of_raisins.jpg/320px-Bowl_of_raisins.jpg',
-  df4:WK+'a/aa/Walnut_kernel.jpg/320px-Walnut_kernel.jpg',
-  df5:WK+'1/12/Pistachio_vera.jpg/320px-Pistachio_vera.jpg',
-  df6:WK+'2/2a/Apricot_and_apricots.jpg/320px-Apricot_and_apricots.jpg',
-  df7:WK+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
-  // HONEY
-  hn1:BB+'100078_16-dabur-honey.jpg',
-  hn2:BB+'40102060_8-patanjali-honey.jpg',
-  hn3:BB+'100078_16-dabur-honey.jpg',
-  // VEGETABLES
+  at2:BB+'100037_17-aashirvaad-atta-10kg.jpg',
+  at3:BB+'100038_17-pillsbury-atta.jpg',
+  at4:BB+'100039_17-patanjali-atta.jpg',
+  at5:BB+'100040_17-aashirvaad-multigrain-atta.jpg',
+  at6:BB+'100041_17-pillsbury-maida.jpg',
+  at7:BB+'100026_17-india-gate-basmati-rice.jpg',
+  at8:BB+'100027_17-india-gate-basmati-1kg.jpg',
+  at9:BB+'100028_17-daawat-super-basmati.jpg',
+  at10:BB+'100029_17-kohinoor-basmati.jpg',
+  at11:BB+'100030_17-fortune-sona-masoori.jpg',
+  at12:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
+  at13:WK+'b/bc/Moong_dal.jpg/320px-Moong_dal.jpg',
+  at14:WK+'b/bc/Moong_dal.jpg/320px-Moong_dal.jpg',
+  at15:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
+  at16:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
+  at17:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
+  at18:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
+  at19:WK+'d/d3/Dal_makhani.jpg/320px-Dal_makhani.jpg',
+  at20:WK+'f/f4/Semolina.jpg/320px-Semolina.jpg',
+  at21:WK+'a/a1/24701-nature-natural-beauty.jpg/320px-24701-nature-natural-beauty.jpg',
+  ce1:BB+'100045_16-kelloggs-corn-flakes.jpg',
+  ce2:BB+'100046_16-quaker-oats.jpg',
+  ce3:BB+'100047_16-muesli-fruit-nut.jpg',
+  ce4:BB+'100048_16-kelloggs-chocos.jpg',
+  ce5:BB+'100049_16-kelloggs-special-k.jpg',
+  ce6:BB+'100050_16-quaker-oats-instant.jpg',
   vg1:WK+'8/89/Tomato_je.jpg/320px-Tomato_je.jpg',
   vg2:WK+'1/15/Red_onion.jpg/320px-Red_onion.jpg',
   vg3:WK+'a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg',
   vg4:WK+'7/70/SpinachWikipedia.jpg/320px-SpinachWikipedia.jpg',
-  vg5:WK+'e/e3/Red_capsicum_and_cross_section.jpg/320px-Red_capsicum_and_cross_section.jpg',
-  vg6:WK+'2/25/Kaldor_floraly.jpg/320px-Kaldor_floraly.jpg',
-  vg7:WK+'5/5f/Cabbage_and_cross_section_on_white.jpg/320px-Cabbage_and_cross_section_on_white.jpg',
+  vg5:WK+'2/25/Kaldor_floraly.jpg/320px-Kaldor_floraly.jpg',
+  vg6:WK+'e/ef/Cauliflower.jpg/320px-Cauliflower.jpg',
+  vg7:WK+'5/5d/Cabbages_2.jpg/320px-Cabbages_2.jpg',
   vg8:WK+'a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/320px-Vegetable-Carrot-Bundle-wStalks.jpg',
-  vg9:WK+'3/37/Pisum_sativum_-_Seeds_2.jpg/320px-Pisum_sativum_-_Seeds_2.jpg',
-  vg10:WK+'5/58/Brinjal_Solanum_melongena_by_Raju_Kasambe.jpg/320px-Brinjal_Solanum_melongena_by_Raju_Kasambe.jpg',
-  vg11:WK+'5/59/Cucumber_BNC.jpg/320px-Cucumber_BNC.jpg',
+  vg9:WK+'3/37/Peas_in_pods_-_Studio.jpg/320px-Peas_in_pods_-_Studio.jpg',
+  vg10:WK+'e/e0/Eggplant_Whole.jpg/320px-Eggplant_Whole.jpg',
+  vg11:WK+'8/8a/Cucumber_closeup.jpg/320px-Cucumber_closeup.jpg',
   vg12:WK+'1/1e/Garlic-beginners.jpg/320px-Garlic-beginners.jpg',
   vg13:WK+'9/9e/Finger_ginger.jpg/320px-Finger_ginger.jpg',
   vg14:WK+'1/19/Green_chillies.jpg/320px-Green_chillies.jpg',
   vg15:WK+'d/d2/Coriander.jpg/320px-Coriander.jpg',
-  vg16:WK+'d/d2/Coriander.jpg/320px-Coriander.jpg',
-  vg17:WK+'a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg',
-  vg18:WK+'a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg',
-  vg19:WK+'5/5c/FruitAutumn.jpg/320px-FruitAutumn.jpg',
-  vg20:WK+'a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg',
-  vg21:WK+'6/68/Okra_-_Abelmoschus_esculentus.jpg/320px-Okra_-_Abelmoschus_esculentus.jpg',
-  vg22:WK+'6/60/Beetroot.JPG/320px-Beetroot.JPG',
-  vg23:WK+'4/4a/Sweetcorn.jpg/320px-Sweetcorn.jpg',
+  vg16:WK+'4/40/Bunch_of_mint.jpg/320px-Bunch_of_mint.jpg',
+  vg17:WK+'4/4d/Radish_ps10.jpg/320px-Radish_ps10.jpg',
+  vg18:WK+'3/30/Turnip_2622027.jpg/320px-Turnip_2622027.jpg',
+  vg19:WK+'5/59/Pumpkin_Whole_and_Half.jpg/320px-Pumpkin_Whole_and_Half.jpg',
+  vg20:WK+'4/44/Lagenaria_siceraria1.jpg/320px-Lagenaria_siceraria1.jpg',
+  vg21:WK+'2/21/Okra_produced_in_Tatsumi_Osaka.jpg/320px-Okra_produced_in_Tatsumi_Osaka.jpg',
+  vg22:WK+'9/96/Beetroot_together_cropped.jpg/320px-Beetroot_together_cropped.jpg',
+  vg23:WK+'4/4e/Corn_on_the_cob_8.jpg/320px-Corn_on_the_cob_8.jpg',
   vg24:WK+'3/3f/Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg/320px-Oyster_mushroom_%28Pleurotus_ostreatus%29.jpg',
   vg25:WK+'3/30/Lotus_root_cross_section.jpg/320px-Lotus_root_cross_section.jpg',
-  vg26:WK+'a/ab/Potato_and_cross_section.jpg/320px-Potato_and_cross_section.jpg',
-  vg27:WK+'d/d2/Coriander.jpg/320px-Coriander.jpg',
-  vg28:WK+'d/d2/Coriander.jpg/320px-Coriander.jpg',
-  // FRUITS
+  vg26:WK+'3/3e/Kohlrabi_purple.jpg/320px-Kohlrabi_purple.jpg',
+  vg27:WK+'d/d3/Fenugreek_Leaves_%28Methi%29.jpg/320px-Fenugreek_Leaves_%28Methi%29.jpg',
+  vg28:WK+'2/2e/Green_onions.jpg/320px-Green_onions.jpg',
   fr1:WK+'8/8a/Banana-Shoot.jpg/320px-Banana-Shoot.jpg',
   fr2:WK+'1/15/Red_Apple.jpg/320px-Red_Apple.jpg',
   fr3:WK+'7/74/Pomegranate_fruit_-_whole_and_halved.jpg/320px-Pomegranate_fruit_-_whole_and_halved.jpg',
   fr4:WK+'4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg',
   fr5:WK+'b/bb/Table_grapes_on_white.jpg/320px-Table_grapes_on_white.jpg',
   fr6:WK+'b/bb/Cherry_Stella444.jpg/320px-Cherry_Stella444.jpg',
-  fr7:WK+'1/15/Red_Apple.jpg/320px-Red_Apple.jpg',
-  fr8:WK+'2/2a/Apricot_and_apricots.jpg/320px-Apricot_and_apricots.jpg',
+  fr7:WK+'0/06/Pyrus_communis_Rocha.jpg/320px-Pyrus_communis_Rocha.jpg',
+  fr8:WK+'9/9e/Autumn_Red_peaches.jpg/320px-Autumn_Red_peaches.jpg',
   fr9:WK+'2/2a/Apricot_and_apricots.jpg/320px-Apricot_and_apricots.jpg',
-  fr10:WK+'e/e6/Plum_Diagramm.png/320px-Plum_Diagramm.png',
+  fr10:WK+'e/e5/Plum_on_branch.jpg/320px-Plum_on_branch.jpg',
   fr11:WK+'2/29/PerfectStrawberry.jpg/320px-PerfectStrawberry.jpg',
   fr12:WK+'4/4d/Slices_of_watermelon.jpg/320px-Slices_of_watermelon.jpg',
   fr13:WK+'9/90/Hapus_Mango.jpg/320px-Hapus_Mango.jpg',
   fr14:WK+'c/cb/Pineapple_and_cross_section.jpg/320px-Pineapple_and_cross_section.jpg',
-  fr15:WK+'9/90/Hapus_Mango.jpg/320px-Hapus_Mango.jpg',
-  fr16:WK+'6/6b/Guava_ID.jpg/320px-Guava_ID.jpg',
+  fr15:WK+'d/d3/Papaya_cross_section_BNC.jpg/320px-Papaya_cross_section_BNC.jpg',
+  fr16:WK+'0/00/Guava_ID.jpg/320px-Guava_ID.jpg',
   fr17:WK+'1/15/Kiwi_-_Whole_and_Split.jpg/320px-Kiwi_-_Whole_and_Split.jpg',
-  fr18:WK+'4/43/Oranges_and_orange_juice.jpg/320px-Oranges_and_orange_juice.jpg',
-  fr19:WK+'b/bb/Cherry_Stella444.jpg/320px-Cherry_Stella444.jpg',
+  fr18:WK+'b/b5/Lemon_edited.jpg/320px-Lemon_edited.jpg',
+  fr19:WK+'4/44/Mulberry_Morus.jpg/320px-Mulberry_Morus.jpg',
   fr20:WK+'4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg',
-  // SANITARY
-  san1:BB+'100820_15-pampers-active-baby-diapers.jpg',
-  san2:BB+'100820_15-pampers-active-baby-diapers.jpg',
-  san3:BB+'100820_15-pampers-active-baby-diapers.jpg',
-  san4:BB+'100820_15-pampers-active-baby-diapers.jpg',
-  // BAKING
-  bk1:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  bk2:BB+'100031_15-tata-refined-sugar.jpg',
-  bk3:BB+'100036_17-aashirvaad-whole-wheat-atta.jpg',
-  bk4:BB+'40053096_12-nutella-hazelnut-spread.jpg',
-  bk5:BB+'100032_17-tata-salt.jpg',
-  bk6:BB+'40053096_12-nutella-hazelnut-spread.jpg',
-  // READY TO COOK
-  rc1:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
-  rc2:BB+'100249_16-sunfeast-yippee-noodles-magic-masala.jpg',
-  rc3:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  rc4:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  rc5:BB+'102806_16-maggi-2-minute-noodles-masala.jpg',
-  rc6:BB+'40053096_12-nutella-hazelnut-spread.jpg',
-  // STATIONERY
-  st1:BB+'100032_17-tata-salt.jpg',
-  st2:BB+'100032_17-tata-salt.jpg',
-  st3:BB+'100032_17-tata-salt.jpg',
-  st4:BB+'100032_17-tata-salt.jpg',
-  // PETS
-  pt1:WK+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
-  pt2:WK+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
-  pt3:WK+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
-  // RAMADAN
+  san1:BB+'100320_14-whisper-ultra.jpg',
+  san2:BB+'100321_14-stayfree-secure.jpg',
+  san3:BB+'100322_14-sofy-bodyfit.jpg',
+  san4:BB+'100323_14-whisper-choice.jpg',
+  bb1:BB+'100820_15-pampers-active-baby-diapers.jpg',
+  bb2:BB+'100836_14-johnsons-baby-powder.jpg',
+  bb3:BB+'100841_14-nestle-cerelac-wheat.jpg',
+  bb4:BB+'100845_14-himalaya-baby-lotion.jpg',
+  bb5:BB+'100846_14-huggies-diapers.jpg',
+  bb6:BB+'100834_14-johnsons-baby-shampoo.jpg',
+  sk1:BB+'100932_15-himalaya-neem-face-wash.jpg',
+  sk2:BB+'100896_15-nivea-soft.jpg',
+  sk3:BB+'100933_15-lakme-sunscreen.jpg',
+  sk4:BB+'100897_14-vaseline-petroleum-jelly.jpg',
+  sk5:BB+'100898_14-garnier-micellar-water.jpg',
+  sk6:BB+'100899_14-cetaphil-moisturising.jpg',
+  og1:BB+'100121_16-fortune-sunflower-oil.jpg',
+  og2:BB+'100122_16-fortune-sunflower-oil-5l.jpg',
+  og3:BB+'100122_15-saffola-gold.jpg',
+  og4:BB+'100123_15-saffola-gold-5l.jpg',
+  og5:BB+'100125_14-dabur-mustard-oil.jpg',
+  og6:BB+'100126_14-dabur-mustard-oil-5l.jpg',
+  og7:BB+'100127_14-fortune-rice-bran-oil.jpg',
+  og8:BB+'100128_14-figaro-olive-oil.jpg',
+  og9:BB+'100129_14-borges-extra-virgin.jpg',
+  og10:BB+'100434_16-amul-pure-ghee.jpg',
+  og11:BB+'100435_16-amul-pure-ghee-1l.jpg',
+  og12:BB+'100436_16-patanjali-cow-ghee.jpg',
+  og13:BB+'100437_16-khyber-pure-ghee.jpg',
+  og14:BB+'100878_16-parachute-coconut-oil.jpg',
+  og15:BB+'100879_16-sesame-oil.jpg',
+  hn1:BB+'100078_16-dabur-honey.jpg',
+  hn2:BB+'40102060_8-patanjali-honey.jpg',
+  hn3:BB+'100079_14-apis-himalaya-honey.jpg',
+  df1:WK+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
+  df2:WK+'c/c6/Almonds_together.jpg/320px-Almonds_together.jpg',
+  df3:WK+'c/cd/Bowl_of_raisins.jpg/320px-Bowl_of_raisins.jpg',
+  df4:WK+'a/aa/Walnut_kernel.jpg/320px-Walnut_kernel.jpg',
+  df5:WK+'1/12/Pistachio_vera.jpg/320px-Pistachio_vera.jpg',
+  df6:WK+'d/d9/Dried_figs.jpg/320px-Dried_figs.jpg',
+  df7:WK+'b/b2/Mixed_nuts.jpg/320px-Mixed_nuts.jpg',
   rm1:BB+'100270_15-sewai.jpg',
   rm2:BB+'100272_14-rooh-afza.jpg',
   rm3:WK+'4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg',
   rm4:BB+'100271_13-haleem-mix.jpg',
-  rm5:WK+'4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg',
-  rm6:BB+'100270_15-sewai.jpg',
-  rm7:WK+'a/a8/Cashew_nut_and_shell_2.jpg/320px-Cashew_nut_and_shell_2.jpg',
-  rm8:WK+'4/47/Medjool_Dates_from_Israel.jpg/320px-Medjool_Dates_from_Israel.jpg',
+  rm5:BB+'100273_13-sheer-khurma-mix.jpg',
+  bk1:BB+'100041_17-pillsbury-maida.jpg',
+  bk2:WK+'1/12/Brown_sugar.jpg/320px-Brown_sugar.jpg',
+  bk3:BB+'100280_14-weikfield-baking-powder.jpg',
+  bk4:BB+'100281_14-morde-dark-chocolate.jpg',
+  bk5:BB+'100282_14-vanilla-essence.jpg',
+  bk6:BB+'100283_14-cocoa-powder.jpg',
+  rc1:BB+'100284_14-mtr-poha-mix.jpg',
+  rc2:BB+'100285_14-gits-idli-mix.jpg',
+  rc3:BB+'100286_14-itc-dal-makhani.jpg',
+  rc4:BB+'100287_14-haldiram-dal-makhani.jpg',
+  rc5:BB+'100288_14-mtr-butter-chicken.jpg',
+  rc6:BB+'100289_14-gits-gulab-jamun-mix.jpg',
+  st1:BB+'100290_14-classmate-notebook.jpg',
+  st2:BB+'100291_14-reynolds-ball-pen.jpg',
+  st3:BB+'100292_14-fevicol.jpg',
+  st4:BB+'100293_14-stapler.jpg',
+  ty1:WK+'9/96/Cricket_bat_and_ball.jpg/320px-Cricket_bat_and_ball.jpg',
+  ty2:WK+'8/8a/LEGO_Color_Bricks.jpg/320px-LEGO_Color_Bricks.jpg',
+  ty3:WK+'2/28/Badminton_rackets.jpg/320px-Badminton_rackets.jpg',
+  ty4:WK+'c/c0/Chess_board_with_chess_set.jpg/320px-Chess_board_with_chess_set.jpg',
+  pt1:BB+'100294_14-pedigree-dog-food.jpg',
+  pt2:BB+'100295_14-whiskas-cat-food.jpg',
+  pt3:BB+'100296_14-milkbone-dog-treat.jpg',
+  ic1:BB+'40071502_10-amul-cone-vanilla.jpg',
+  ic2:BB+'40071503_10-kwality-walls-cornetto.jpg',
+  ic3:BB+'40071504_10-mother-dairy-kulfi.jpg',
+  ic4:BB+'40071505_10-amul-chocolate-ice-cream.jpg',
+  ic5:BB+'40071506_10-amul-strawberry-ice-cream.jpg',
 };
 
 const CATS=[
   {id:'snacks',title:'Snacks',icon:'🍿',products:[
-    {id:'snk_lays1',name:"Lay's Classic Salted 28g",price:10,description:'Classic salted chips'},
-    {id:'snk_lays2',name:"Lay's Magic Masala 52g",price:20,description:'Tangy masala chips'},
-    {id:'snk_lays3',name:"Lay's Cream & Onion 52g",price:20,description:'Creamy onion chips'},
-    {id:'snk_lays4',name:"Lay's Chile Limon 52g",price:20,description:'Chilli lemon chips'},
+    {id:'snk_lays1',name:"Lay's Classic Salted 28g",price:10,description:'Classic salted potato chips'},
+    {id:'snk_lays2',name:"Lay's Magic Masala 52g",price:20,description:'Tangy masala flavour chips'},
+    {id:'snk_lays3',name:"Lay's Cream & Onion 52g",price:20,description:'Creamy onion flavour chips'},
+    {id:'snk_lays4',name:"Lay's Chile Limon 52g",price:20,description:'Chilli lemon flavour chips'},
     {id:'snk_lays5',name:"Lay's Magic Masala 90g",price:35,description:'Large masala chips'},
     {id:'snk_lays6',name:"Lay's Cream & Onion 90g",price:35,description:'Large cream onion chips'},
     {id:'snk_lays7',name:"Lay's Chile Limon 90g",price:35,description:'Large chilli lemon chips'},
-    {id:'snk_lays8',name:"Lay's Magic Masala 150g",price:50,description:'Extra large masala chips'},
-    {id:'snk_lays9',name:"Lay's Cream & Onion 150g",price:50,description:'Extra large cream onion'},
+    {id:'snk_lays8',name:"Lay's Magic Masala 150g",price:50,description:'Large pack masala chips'},
+    {id:'snk_lays9',name:"Lay's Cream & Onion 150g",price:50,description:'Large pack cream onion'},
     {id:'snk_lays10',name:"Lay's Family Pack 300g",price:95,description:'Family size masala chips'},
     {id:'snk_kur1',name:'Kurkure Masala Munch 36g',price:10,description:'Spicy masala corn puffs'},
     {id:'snk_kur2',name:'Kurkure Green Chutney 50g',price:20,description:'Tangy green chutney puffs'},
-    {id:'snk_kur3',name:'Kurkure Solid Masti 90g',price:20,description:'Extra spicy corn puffs'},
-    {id:'snk_kur4',name:'Kurkure Chilli Chatka 90g',price:20,description:'Fiery chilli corn puffs'},
-    {id:'snk_kur5',name:'Kurkure Masala Munch 150g',price:50,description:'Large corn puffs pack'},
+    {id:'snk_kur3',name:'Kurkure Solid Masti 90g',price:35,description:'Extra spicy corn puffs'},
+    {id:'snk_kur4',name:'Kurkure Chilli Chatka 90g',price:35,description:'Fiery chilli corn puffs'},
+    {id:'snk_kur5',name:'Kurkure Masala Munch 150g',price:50,description:'Large pack masala puffs'},
     {id:'snk_bin1',name:'Bingo Mad Angles Masala 45g',price:20,description:'Triangular masala chips'},
-    {id:'snk_bin2',name:'Bingo Mad Angles Achaari 72g',price:30,description:'Tangy pickle chips'},
+    {id:'snk_bin2',name:'Bingo Mad Angles Achaari 72g',price:30,description:'Tangy pickle flavour chips'},
     {id:'snk_bin3',name:'Bingo Mad Angles Pizza 72g',price:30,description:'Pizza flavour chips'},
-    {id:'snk_bin4',name:'Bingo Potato Chips Cream 90g',price:35,description:'Cream onion potato chips'},
+    {id:'snk_bin4',name:'Bingo Potato Chips Cream 90g',price:35,description:'Creamy onion potato chips'},
     {id:'snk_bin5',name:'Bingo Tedhe Medhe 90g',price:35,description:'Twisted corn snack'},
     {id:'snk_hal1',name:"Haldiram's Aloo Bhujia 42g",price:10,description:'Crispy potato sev'},
-    {id:'snk_hal2',name:"Haldiram's Aloo Bhujia 150g",price:45,description:'Crispy sev large pack'},
-    {id:'snk_hal3',name:"Haldiram's Navratan Mix 150g",price:55,description:'Mixed crunchy namkeen'},
-    {id:'snk_hal4',name:"Haldiram's Khatta Meetha 150g",price:55,description:'Sweet sour namkeen'},
+    {id:'snk_hal2',name:"Haldiram's Aloo Bhujia 150g",price:45,description:'Crispy potato sev large'},
+    {id:'snk_hal3',name:"Haldiram's Navratan Mixture 150g",price:55,description:'Mixed crunchy namkeen'},
+    {id:'snk_hal4',name:"Haldiram's Khatta Meetha 150g",price:55,description:'Sweet & sour namkeen'},
     {id:'snk_hal5',name:"Haldiram's Moong Dal 150g",price:60,description:'Crispy fried moong dal'},
     {id:'snk_hal6',name:"Haldiram's Bhujia Sev 200g",price:85,description:'Fine gram flour sev'},
     {id:'snk_ty1',name:'Too Yumm Multigrain 50g',price:20,description:'Baked multigrain chips'},
     {id:'snk_ty2',name:'Too Yumm Veggie Sticks 70g',price:30,description:'Baked veggie sticks'},
-    {id:'snk_unc1',name:'Uncle Chips Classic 50g',price:20,description:'Classic salted chips'},
-    {id:'snk_unc2',name:'Uncle Chips Spicy 100g',price:40,description:'Spicy flavour chips'},
-    {id:'snk_dor1',name:'Doritos Nacho Cheese 60g',price:30,description:'Cheesy nacho chips'},
-    {id:'snk_dor2',name:'Doritos Sweet Chilli 80g',price:50,description:'Sweet chilli chips'},
-    {id:'snk_dor3',name:'Doritos Nacho Cheese 150g',price:90,description:'Large nacho chips'},
-    {id:'snk_pri1',name:'Pringles Original 107g',price:110,description:'Stacked potato crisps'},
-    {id:'snk_pri2',name:'Pringles Sour Cream 107g',price:110,description:'Sour cream crisps'},
-    {id:'snk_pri3',name:'Pringles BBQ 110g',price:120,description:'Smoky BBQ crisps'},
-    {id:'snk_act1',name:'Act II Popcorn Butter 30g',price:10,description:'Buttery popcorn'},
+    {id:'snk_unc1',name:'Uncle Chips Classic Salted 50g',price:20,description:'Classic salted chips'},
+    {id:'snk_unc2',name:'Uncle Chips Spicy Treat 100g',price:40,description:'Spicy flavour chips'},
+    {id:'snk_dor1',name:'Doritos Nacho Cheese 60g',price:30,description:'Cheesy nacho tortilla chips'},
+    {id:'snk_dor2',name:'Doritos Sweet Chilli 80g',price:50,description:'Sweet chilli tortilla chips'},
+    {id:'snk_dor3',name:'Doritos Nacho Cheese 150g',price:90,description:'Large cheesy nacho chips'},
+    {id:'snk_pri1',name:'Pringles Original 107g',price:110,description:'Classic stacked crisps'},
+    {id:'snk_pri2',name:'Pringles Sour Cream 107g',price:110,description:'Sour cream onion crisps'},
+    {id:'snk_pri4',name:'Pringles BBQ 110g',price:120,description:'Smoky BBQ crisps'},
+    {id:'snk_act1',name:'Act II Popcorn Butter 30g',price:10,description:'Buttery microwave popcorn'},
     {id:'snk_act2',name:'Act II Classic Salted 90g',price:30,description:'Classic salted popcorn'},
     {id:'snk_act3',name:'Act II Golden Sizzle 90g',price:35,description:'Golden sizzle popcorn'},
     {id:'snk_mnm1',name:"M&M's Peanut 45g",price:80,description:'Peanut M&Ms'},
-    {id:'snk_mnm2',name:"M&M's Milk Chocolate 45g",price:75,description:'Classic milk chocolate M&Ms'},
-    {id:'snk_mnm3',name:"M&M's Crispy 45g",price:80,description:'Crispy centre M&Ms'},
-    {id:'snk_skittles1',name:'Skittles Original 45g',price:70,description:'Fruity chewy candy'},
+    {id:'snk_mnm2',name:"M&M's Milk Chocolate 45g",price:80,description:'Milk chocolate M&Ms'},
+    {id:'snk_mnm3',name:"M&M's Crispy 45g",price:80,description:'Crispy M&Ms'},
+    {id:'snk_skittles1',name:'Skittles Original 45g',price:70,description:'Fruity rainbow candy'},
     {id:'snk_skittles2',name:'Skittles Wild Berry 45g',price:70,description:'Wild berry candy'},
     {id:'snk_har1',name:'Haribo Gold Bears 80g',price:120,description:'Classic gummy bears'},
-    {id:'snk_har2',name:'Haribo Starmix 80g',price:120,description:'Assorted gummy mix'},
+    {id:'snk_har2',name:'Haribo Starmix 80g',price:120,description:'Mixed gummy candy'},
   ]},
   {id:'sweet',title:'Chocolates & Sweets',icon:'🍫',products:[
     {id:'sw_cad1',name:'Cadbury Perk 13g',price:10,description:'Chocolate wafer bar'},
-    {id:'sw_cad1b',name:'Cadbury Perk Double 26g',price:20,description:'Double chocolate wafer'},
-    {id:'sw_5star',name:'Cadbury 5 Star 21g',price:10,description:'Caramel chocolate bar'},
+    {id:'sw_cad2',name:'Cadbury Perk Double 26g',price:20,description:'Double chocolate wafer'},
+    {id:'sw_cad3',name:'Cadbury 5 Star 21g',price:10,description:'Caramel chocolate bar'},
     {id:'sw_cad4',name:'Cadbury Dairy Milk 24g',price:20,description:'Classic milk chocolate'},
-    {id:'sw_cad4b',name:'Cadbury Dairy Milk 40g',price:40,description:'Milk chocolate bar'},
-    {id:'sw_cad5',name:'Cadbury Dairy Milk Silk 60g',price:99,description:'Premium smooth chocolate'},
-    {id:'sw_cad_bourvil',name:'Cadbury Bournville Dark 80g',price:85,description:'Rich dark chocolate'},
-    {id:'sw_cad_gems',name:'Cadbury Gems 22g',price:10,description:'Colourful chocolate gems'},
-    {id:'sw_cad_eclairs',name:'Cadbury Eclairs 50g',price:20,description:'Chocolate caramel toffee'},
-    {id:'sw_kit1',name:'KitKat 2 Finger 18g',price:10,description:'Crispy wafer bar'},
-    {id:'sw_kit2',name:'KitKat 4 Finger 36.5g',price:30,description:'4 finger wafer bar'},
+    {id:'sw_cad5',name:'Cadbury Dairy Milk Silk 60g',price:99,description:'Smooth premium chocolate'},
+    {id:'sw_cad6',name:'Cadbury Bournville Dark 80g',price:99,description:'Rich dark chocolate'},
+    {id:'sw_cad7',name:'Cadbury Gems 22g',price:10,description:'Colourful chocolate buttons'},
+    {id:'sw_cad8',name:'Cadbury Eclairs Toffee 50g',price:20,description:'Chocolate caramel toffees'},
+    {id:'sw_cad9',name:'Cadbury Dairy Milk 40g',price:40,description:'Classic milk chocolate'},
+    {id:'sw_kit1',name:'KitKat 2 Finger 18g',price:10,description:'Crispy wafer chocolate'},
+    {id:'sw_kit2',name:'KitKat 4 Finger 36.5g',price:30,description:'4 finger wafer chocolate'},
     {id:'sw_kit3',name:'KitKat Dessert Delight 50g',price:50,description:'Premium dessert chocolate'},
-    {id:'sw_munch1',name:'Nestle Munch 13g',price:5,description:'Crunchy wafer bar'},
-    {id:'sw_bar1',name:'Nestle Bar-One 27g',price:10,description:'Nougat caramel bar'},
-    {id:'sw_milkybar',name:'Milkybar 13g',price:10,description:'White chocolate bar'},
-    {id:'sw_polo',name:'Polo Mint Roll',price:10,description:'Classic minty candy'},
-    {id:'sw_mrb1',name:'MrBeast Feastables Original 60g',price:220,description:'Viral MrBeast chocolate'},
-    {id:'sw_mrb2',name:'MrBeast Feastables Peanut 60g',price:230,description:'MrBeast peanut chocolate'},
-    {id:'sw_mrb3',name:'MrBeast Feastables Almond 60g',price:230,description:'MrBeast almond chocolate'},
+    {id:'sw_mrb1',name:'MrBeast Feastables Original 60g',price:250,description:'MrBeast chocolate bar'},
+    {id:'sw_mrb2',name:'MrBeast Feastables Peanut Butter 60g',price:250,description:'MrBeast peanut butter choc'},
+    {id:'sw_mrb3',name:'MrBeast Feastables Almond 60g',price:250,description:'MrBeast almond chocolate'},
     {id:'sw_tob1',name:'Toblerone Milk 35g',price:120,description:'Swiss milk chocolate'},
-    {id:'sw_tob2',name:'Toblerone Milk 100g',price:180,description:'Swiss milk chocolate bar'},
-    {id:'sw_tob3',name:'Toblerone Dark 100g',price:190,description:'Swiss dark chocolate'},
-    {id:'sw_her1',name:"Hershey's Milk Chocolate 40g",price:60,description:'American milk chocolate'},
-    {id:'sw_her2',name:"Hershey's Cookies n Creme 40g",price:65,description:'Cookies and cream bar'},
-    {id:'sw_her3',name:"Hershey's Kisses Milk 100g",price:150,description:'Bite-size chocolate kisses'},
+    {id:'sw_tob2',name:'Toblerone Milk 100g',price:299,description:'Swiss milk chocolate bar'},
+    {id:'sw_tob3',name:'Toblerone Dark 100g',price:299,description:'Swiss dark chocolate bar'},
+    {id:'sw_her1',name:"Hershey's Milk Chocolate 40g",price:80,description:'Classic American chocolate'},
+    {id:'sw_her2',name:"Hershey's Cookies n Creme 40g",price:80,description:'White choc with cookies'},
+    {id:'sw_her3',name:"Hershey's Kisses 100g",price:199,description:'Classic Hershey kisses bag'},
     {id:'sw_nut1',name:'Nutella 180g',price:199,description:'Hazelnut cocoa spread'},
-    {id:'sw_nut2',name:'Nutella 350g',price:349,description:'Large Nutella jar'},
-    {id:'sw_nut3',name:'Nutella Go 52g',price:120,description:'Nutella with breadsticks'},
-    {id:'sw_fer1',name:'Ferrero Rocher 3pcs',price:150,description:'Hazelnut chocolate truffles'},
-    {id:'sw_fer2',name:'Ferrero Rocher 16pcs',price:650,description:'Gift box chocolates'},
-    {id:'sw_kinder1',name:'Kinder Joy',price:40,description:'Chocolate egg with toy'},
-    {id:'sw_kinder2',name:'Kinder Bueno 43g',price:80,description:'Wafer hazelnut cream'},
-    {id:'sw_snickers',name:'Snickers 50g',price:85,description:'Peanut caramel chocolate'},
-    {id:'sw_twix',name:'Twix 50g',price:90,description:'Caramel cookie bar'},
-    {id:'sw_bounty',name:'Bounty 57g',price:85,description:'Coconut milk chocolate'},
-    {id:'sw_mars',name:'Mars Bar 51g',price:85,description:'Nougat caramel bar'},
-    {id:'sw_alpenliebe1',name:'Alpenliebe Strawberry 50g',price:20,description:'Strawberry toffee candy'},
-    {id:'sw_alpenliebe2',name:'Alpenliebe Caramel 50g',price:20,description:'Caramel toffee candy'},
-    {id:'sw_mentos1',name:'Mentos Mint Roll 40g',price:15,description:'Fresh mint candy roll'},
-    {id:'sw_mentos2',name:'Mentos Fruit Roll 40g',price:15,description:'Fruity candy roll'},
-    {id:'sw_mango_bite',name:'Mango Bite Toffee 50g',price:20,description:'Mango flavour toffee'},
-    {id:'sw_kismi',name:'Kismi Toffee Bar 50g',price:20,description:'Elaichi toffee bar'},
-    {id:'sw_melody',name:'Parle Melody 50g',price:20,description:'Chocolate caramel toffee'},
-    {id:'sw_hajmola_c',name:'Hajmola Candy Regular 50g',price:20,description:'Tangy digestive candy'},
-    {id:'sw_hajmola_i',name:'Hajmola Imli 50g',price:20,description:'Tamarind digestive candy'},
-    {id:'sw_pulse1',name:'Pulse Candy Kaccha Aam 50g',price:20,description:'Raw mango candy'},
-    {id:'sw_pulse2',name:'Pulse Candy Guava 50g',price:20,description:'Guava flavour candy'},
-    {id:'sw_poppins',name:'Parle Poppins 50g',price:20,description:'Fruity chewy candy'},
-    {id:'sw_cfresh1',name:'Centre Fresh Mint Gum 5pcs',price:5,description:'Fresh mint chewing gum'},
-    {id:'sw_cfresh2',name:'Centre Fruit Gum 5pcs',price:5,description:'Fruity chewing gum'},
-    {id:'sw_bigbabol',name:'Big Babol Bubblegum',price:5,description:'Big bubble gum'},
-    {id:'sw_boomer',name:'Boomer Bubblegum',price:2,description:'Classic bubblegum'},
-    {id:'sw_orbit',name:'Orbit White Gum 14pcs',price:35,description:'Whitening chewing gum'},
-    {id:'sw_happydent',name:'Happydent White 9pcs',price:10,description:'Whitening gum'},
+    {id:'sw_nut2',name:'Nutella 350g',price:349,description:'Hazelnut cocoa spread large'},
+    {id:'sw_nut3',name:'Nutella & Go 52g',price:99,description:'Nutella with breadsticks'},
+    {id:'sw_fer1',name:'Ferrero Rocher 3pcs',price:120,description:'Premium hazelnut chocolates'},
+    {id:'sw_fer2',name:'Ferrero Rocher 16pcs',price:499,description:'Premium hazelnut box'},
+    {id:'sw_kre1',name:'Kinder Joy 1pc',price:40,description:'Chocolate egg with toy'},
+    {id:'sw_kre2',name:'Kinder Bueno 43g',price:80,description:'Wafer with hazelnut cream'},
+    {id:'sw_tof1',name:'Alpenliebe Strawberry 50g',price:20,description:'Strawberry toffees'},
+    {id:'sw_tof2',name:'Alpenliebe Caramel 50g',price:20,description:'Creamy caramel toffees'},
+    {id:'sw_tof3',name:'Mentos Mint Roll 40g',price:20,description:'Chewy mint candy'},
+    {id:'sw_tof4',name:'Mentos Fruit Roll 40g',price:20,description:'Chewy fruit candy'},
+    {id:'sw_tof5',name:'Mango Bite Toffee 50g',price:20,description:'Tangy mango toffees'},
+    {id:'sw_tof6',name:'Kismi Toffee Bar 50g',price:20,description:'Classic Kismi toffee bars'},
+    {id:'sw_tof7',name:'Ravalgaon Toffee Mix 50g',price:20,description:'Assorted toffees'},
+    {id:'sw_tof8',name:'Parle Melody Toffee 50g',price:20,description:'Chocolate caramel toffees'},
+    {id:'sw_gum1',name:'Centre Fresh Gum 5pcs',price:5,description:'Refreshing mint gum'},
+    {id:'sw_gum2',name:'Centre Fruit Gum 5pcs',price:5,description:'Fruit flavoured gum'},
+    {id:'sw_gum3',name:'Big Babol Bubblegum 1pc',price:5,description:'Classic bubble gum'},
+    {id:'sw_gum4',name:'Boomer Bubblegum 1pc',price:5,description:'Original bubble gum'},
+    {id:'sw_gum5',name:'Orbit White Gum 14pcs',price:30,description:'Sugar free whitening gum'},
+    {id:'sw_gum6',name:'Happydent White Gum 9pcs',price:10,description:'Peppermint chewing gum'},
+    {id:'sw_can1',name:'Hajmola Candy 50g',price:20,description:'Digestive tangy candies'},
+    {id:'sw_can2',name:'Hajmola Imli Candy 50g',price:20,description:'Tamarind flavour candy'},
+    {id:'sw_can3',name:'Pulse Kaccha Aam 50g',price:20,description:'Raw mango candy'},
+    {id:'sw_can4',name:'Pulse Guava 50g',price:20,description:'Guava candy with tangy centre'},
+    {id:'sw_can5',name:'Lemon Drops Candy 50g',price:20,description:'Classic lemon candy'},
+    {id:'sw_can6',name:'Lacto King Candy 50g',price:20,description:'Milk flavoured soft candy'},
+    {id:'sw_can7',name:'Parle Poppins 50g',price:20,description:'Assorted fruit candies'},
+    {id:'sw_bis1',name:'Little Hearts 75g',price:30,description:'Heart shaped butter biscuits'},
+    {id:'sw_bis2',name:'Hide & Seek Chocolate 100g',price:35,description:'Chocolate chip cookies'},
+    {id:'sw_bis3',name:'Hide & Seek Fab 112g',price:40,description:'Chocolate sandwich cookies'},
+    {id:'sw_bis4',name:'Good Day Butter 100g',price:30,description:'Classic butter biscuits'},
+    {id:'sw_bis5',name:'Good Day Creamy 100g',price:35,description:'Cream filled biscuits'},
+    {id:'sw_bis6',name:'Sunfeast Dark Fantasy 100g',price:40,description:'Rich choco filled biscuits'},
+    {id:'sw_bis7',name:'Sunfeast Dark Fantasy Choco 75g',price:35,description:'Chocolate filled biscuits'},
+    {id:'sw_bis8',name:'Treat Choco Vanilla 100g',price:30,description:'Choco vanilla biscuits'},
+    {id:'sw_bis9',name:'Treat Jim Jam 100g',price:30,description:'Jam filled biscuits'},
     {id:'sw_ore1',name:'Oreo Original 50g',price:10,description:'Classic cream cookies'},
-    {id:'sw_ore2',name:'Oreo Original 120g',price:30,description:'Cream cookies pack'},
+    {id:'sw_ore2',name:'Oreo Original 120g',price:30,description:'Classic cream cookies pack'},
     {id:'sw_ore3',name:'Oreo Chocolate Cream 120g',price:30,description:'Chocolate cream cookies'},
-    {id:'sw_ore4',name:'Oreo Golden 120g',price:30,description:'Golden vanilla cookies'},
-    {id:'sw_ore5',name:'Oreo Strawberry 120g',price:30,description:'Strawberry cream cookies'},
-    {id:'sw_bis1',name:'Little Hearts 75g',price:30,description:'Heart shaped biscuits'},
-    {id:'sw_his1',name:'Hide & Seek Chocolate 100g',price:35,description:'Chocolate chip cookies'},
-    {id:'sw_his2',name:'Hide & Seek Fab 112g',price:40,description:'Chocolate sandwich cookies'},
-    {id:'sw_goodday',name:'Good Day Butter 100g',price:30,description:'Classic butter biscuits'},
-    {id:'sw_goodday2',name:'Good Day Creamy 100g',price:35,description:'Cream filled biscuits'},
-    {id:'sw_darkfantasy1',name:'Sunfeast Dark Fantasy 100g',price:60,description:'Premium chocolate biscuits'},
-    {id:'sw_darkfantasy2',name:'Dark Fantasy Choco Fills 75g',price:55,description:'Chocolate filled biscuits'},
-    {id:'sw_treat1',name:'Treat Choco Vanilla 100g',price:30,description:'Choco vanilla biscuits'},
-    {id:'sw_treat2',name:'Treat Jim Jam 100g',price:30,description:'Jam filled biscuits'},
-    {id:'sw_lot1',name:'Lotte Choco Pie 28g',price:10,description:'Choco marshmallow pie'},
-    {id:'sw_lot2',name:'Lotte Choco Pie Pack of 6',price:60,description:'Choco pies 6 pack'},
-    {id:'sw_cake1',name:'Britannia Cake Roll 20g',price:10,description:'Mini chocolate cake roll'},
-    {id:'sw_nutrichoice',name:'Britannia NutriChoice Oats 75g',price:30,description:'Healthy oat biscuits'},
-    {id:'sw_tiger',name:'Tiger Glucose 100g',price:10,description:'Energy glucose biscuits'},
-    {id:'sw_mariegold',name:'Marie Gold 250g',price:35,description:'Light crispy marie biscuits'},
-    {id:'sw_parleg',name:'Parle G 100g',price:10,description:'Classic glucose biscuits'},
-    {id:'sw_monaco',name:'Parle Monaco 100g',price:20,description:'Light salted crackers'},
-    {id:'sw_krackjack',name:'Parle KrackJack 100g',price:20,description:'Sweet salty crackers'},
-    {id:'sw_ziggy1',name:'Ziggy Glazed Doughnut',price:40,description:'Classic glazed doughnut'},
-    {id:'sw_ziggy2',name:'Ziggy Chocolate Doughnut',price:45,description:'Chocolate doughnut'},
-    {id:'sw_ziggy3',name:'Ziggy Strawberry Doughnut',price:45,description:'Strawberry doughnut'},
-    {id:'sw_ziggy4',name:'Ziggy Sprinkles Doughnut',price:45,description:'Rainbow sprinkles doughnut'},
-    {id:'sw_ziggy5',name:'Ziggy Box of 6 Doughnuts',price:220,description:'Assorted doughnut box'},
-    {id:'sw_rasgulla',name:"Haldiram Rasgulla 500g",price:60,description:'Soft spongy sweets'},
-    {id:'sw_gulabjamun',name:"Haldiram Gulab Jamun 500g",price:65,description:'Classic gulab jamun'},
+    {id:'sw_ore4',name:'Oreo Golden 120g',price:35,description:'Vanilla golden cookies'},
+    {id:'sw_ore5',name:'Oreo Strawberry 120g',price:35,description:'Strawberry cream cookies'},
+    {id:'sw_lot1',name:'Lotte Choco Pie 28g',price:10,description:'Chocolate marshmallow pie'},
+    {id:'sw_lot2',name:'Lotte Choco Pie 6pk',price:60,description:'6 pack choco pies'},
+    {id:'sw_brit1',name:'Britannia Cake Roll 20g',price:10,description:'Mini chocolate cake roll'},
+    {id:'sw_brit2',name:'Britannia NutriChoice Oats 75g',price:35,description:'Healthy oats biscuits'},
+    {id:'sw_tig1',name:'Tiger Glucose 100g',price:10,description:'Energy glucose biscuits'},
+    {id:'sw_mar1',name:'Marie Gold 250g',price:35,description:'Light crispy marie biscuits'},
+    {id:'sw_par1',name:'Parle G 100g',price:10,description:'Classic glucose biscuits'},
+    {id:'sw_par2',name:'Parle Monaco 100g',price:20,description:'Crispy salted crackers'},
+    {id:'sw_par3',name:'Parle Krackjack 100g',price:20,description:'Sweet salty biscuits'},
+    {id:'sw_zig1',name:'Ziggy Glazed Doughnut 1pc',price:80,description:'Classic glazed doughnut Srinagar'},
+    {id:'sw_zig2',name:'Ziggy Chocolate Doughnut 1pc',price:90,description:'Chocolate frosted doughnut'},
+    {id:'sw_zig3',name:'Ziggy Strawberry Doughnut 1pc',price:90,description:'Strawberry frosted doughnut'},
+    {id:'sw_zig4',name:'Ziggy Sprinkles Doughnut 1pc',price:90,description:'Rainbow sprinkle doughnut'},
+    {id:'sw_zig5',name:'Ziggy Box of 6 Doughnuts',price:499,description:'Assorted 6 doughnut box'},
+    {id:'sw4',name:'Haldiram Rasgulla 500g',price:60,description:'Soft spongy sweets in syrup'},
+    {id:'sw5',name:'Haldiram Gulab Jamun 500g',price:60,description:'Classic gulab jamun'},
   ]},
-  {id:'drinks',title:'Drinks',icon:'🥤',products:[
-    {id:'dr1',name:'Coca-Cola 750ml',price:45,description:'Classic cola'},
-    {id:'dr1b',name:'Coca-Cola 250ml Can',price:40,description:'Classic cola can'},
-    {id:'dr2',name:'Pepsi 750ml',price:45,description:'Bold refreshing cola'},
-    {id:'dr2b',name:'Pepsi 250ml Can',price:40,description:'Pepsi can'},
-    {id:'dr3',name:'Sprite 750ml',price:45,description:'Lemon lime soda'},
-    {id:'dr3b',name:'Sprite 250ml Can',price:40,description:'Sprite can'},
-    {id:'dr5',name:'Fanta Orange 750ml',price:45,description:'Orange flavour soda'},
-    {id:'dr5b',name:'Fanta Can 250ml',price:40,description:'Fanta orange can'},
-    {id:'dr_7up',name:'7Up 750ml',price:45,description:'Lemon lime soda'},
-    {id:'dr_limca',name:'Limca 750ml',price:45,description:'Lemon soda'},
-    {id:'dr4',name:'Thums Up 750ml',price:45,description:'Strong cola taste'},
-    {id:'dr_mtn_dew',name:'Mountain Dew 750ml',price:45,description:'Citrus soda'},
-    {id:'dr6',name:'Maaza Mango 250ml',price:20,description:'Mango fruit drink'},
-    {id:'dr_slice',name:'Slice Mango 250ml',price:20,description:'Mango fruit drink'},
-    {id:'dr7',name:'Frooti Mango 200ml',price:15,description:'Classic mango drink'},
-    {id:'dr8',name:'Tropicana Orange 1L',price:99,description:'Fresh orange juice'},
-    {id:'dr_trop_mf',name:'Tropicana Mixed Fruit 1L',price:99,description:'Mixed fruit juice'},
-    {id:'dr_real_o',name:'Real Orange Juice 1L',price:85,description:'Orange juice'},
-    {id:'dr_real_mf',name:'Real Mixed Fruit 1L',price:85,description:'Mixed fruit juice'},
-    {id:'dr_real_g',name:'Real Guava Juice 1L',price:85,description:'Guava juice'},
-    {id:'dr_mmaid_o',name:'Minute Maid Pulpy Orange 400ml',price:25,description:'Orange drink with pulp'},
-    {id:'dr_mmaid_n',name:'Minute Maid Nimbu Fresh 400ml',price:25,description:'Lemon flavour drink'},
-    {id:'dr_mojito1',name:'Mojito Mint Lemon 250ml',price:30,description:'Mint lemon mocktail'},
-    {id:'dr_mojito2',name:'Mojito Watermelon 250ml',price:30,description:'Watermelon mocktail'},
-    {id:'dr_mojito3',name:'Mojito Mango 250ml',price:30,description:'Mango mocktail'},
-    {id:'dr_cravado1',name:'Cravado Apple Juice 200ml',price:25,description:'Apple juice tetra pack'},
-    {id:'dr_cravado2',name:'Cravado Mango Juice 200ml',price:25,description:'Mango juice tetra pack'},
-    {id:'dr_cravado3',name:'Cravado Mixed Fruit 200ml',price:25,description:'Mixed fruit tetra pack'},
-    {id:'dr9',name:'Red Bull Energy 250ml',price:125,description:'Original energy drink'},
-    {id:'dr_monster',name:'Monster Energy 500ml',price:150,description:'Monster energy drink'},
-    {id:'dr10',name:'Sting Energy 250ml',price:30,description:'Strawberry energy drink'},
-    {id:'dr13',name:'Amul Kool Milkshake Choco 200ml',price:25,description:'Chocolate milkshake'},
-    {id:'dr_amul_kesar',name:'Amul Kool Kesar 200ml',price:25,description:'Saffron milkshake'},
-    {id:'dr14',name:'Amul Mango Lassi 200ml',price:30,description:'Sweet mango lassi'},
-    {id:'dr_md_lassi',name:'Mother Dairy Lassi 200ml',price:30,description:'Sweet plain lassi'},
-    {id:'dr_appyfizz',name:'Appy Fizz 250ml',price:30,description:'Fizzy apple drink'},
-    {id:'dr_bnp',name:'B Natural Pomegranate 1L',price:99,description:'Pomegranate juice'},
-    {id:'dr_pb_aamras',name:'Paper Boat Aamras 200ml',price:30,description:'Mango aamras'},
-    {id:'dr_pb_jaljeera',name:'Paper Boat Jaljeera 200ml',price:30,description:'Jaljeera drink'},
-  ]},
-  {id:'dairy',title:'Dairy & Bakery',icon:'🥛',products:[
-    {id:'db_khy1',name:'Khyber Toned Milk 500ml',price:28,description:'Fresh Kashmiri toned milk'},
-    {id:'db_khy2',name:'Khyber Full Cream Milk 500ml',price:32,description:'Full cream Kashmiri milk'},
-    {id:'db_khy3',name:'Khyber Dahi 400g',price:45,description:'Fresh Kashmiri curd'},
-    {id:'db_khy4',name:'Khyber Lassi 200ml',price:25,description:'Kashmiri fresh lassi'},
-    {id:'db_khy5',name:'Khyber Butter Milk 200ml',price:20,description:'Kashmiri butter milk'},
-    {id:'db_khy6',name:'Khyber Pure Ghee 500ml',price:350,description:'Kashmiri pure cow ghee'},
-    {id:'db_khy7',name:'Khyber Paneer 200g',price:90,description:'Fresh Kashmiri paneer'},
-    {id:'db_khy8',name:'Khyber Cold Coffee 200ml',price:35,description:'Kashmiri cold coffee'},
-    {id:'db1',name:'Amul Full Cream Milk 1L',price:68,description:'Fresh full cream milk'},
-    {id:'db2',name:'Amul Butter 500g',price:255,description:'Pasteurised table butter'},
-    {id:'db3',name:'Amul Paneer 200g',price:80,description:'Fresh cottage cheese'},
-    {id:'db4',name:'Amul Cheese Slices 200g',price:90,description:'Processed cheese slices'},
-    {id:'db5',name:'Mother Dairy Curd 400g',price:40,description:'Fresh set curd'},
-    {id:'db6',name:'Amul Fresh Cream 200ml',price:45,description:'Fresh cooking cream'},
-    {id:'db7',name:'Britannia Bread 400g',price:45,description:'Soft sandwich bread'},
-    {id:'db7b',name:'Britannia Brown Bread 400g',price:50,description:'Whole wheat brown bread'},
-    {id:'db_brit_cheese',name:'Britannia Cheese Slices 200g',price:95,description:'Processed cheese slices'},
-    {id:'db_amul_cheese_spread',name:'Amul Cheese Spread 200g',price:80,description:'Creamy cheese spread'},
-    {id:'db_amul_ic',name:'Amul Dark Chocolate Ice Cream 500ml',price:130,description:'Rich dark chocolate ice cream'},
-    {id:'db_epi1',name:'Epigamia Greek Yogurt Strawberry 90g',price:55,description:'Strawberry Greek yogurt'},
-    {id:'db_epi2',name:'Epigamia Greek Yogurt Mango 90g',price:55,description:'Mango Greek yogurt'},
-    {id:'db9',name:'Eggs 6pcs',price:70,description:'Farm fresh eggs'},
+  {id:'drinks',title:'Drinks & Juices',icon:'🥤',products:[
+    {id:'dr1',name:'Coca-Cola 750ml',price:45,description:'Classic cola drink'},
+    {id:'dr2',name:'Coca-Cola Can 250ml',price:40,description:'Classic cola can'},
+    {id:'dr3',name:'Pepsi 750ml',price:45,description:'Bold refreshing cola'},
+    {id:'dr4',name:'Pepsi Can 250ml',price:40,description:'Bold cola can'},
+    {id:'dr5',name:'Sprite 750ml',price:45,description:'Lemon lime soda'},
+    {id:'dr6',name:'Sprite Can 250ml',price:40,description:'Lemon lime soda can'},
+    {id:'dr7',name:'Fanta Orange 750ml',price:45,description:'Orange flavour soda'},
+    {id:'dr8',name:'7Up 750ml',price:45,description:'Refreshing lemon soda'},
+    {id:'dr9',name:'Limca 750ml',price:45,description:'Lemon lime drink'},
+    {id:'dr10',name:'Thums Up 750ml',price:45,description:'Strong cola taste'},
+    {id:'dr11',name:'Mountain Dew 750ml',price:45,description:'Citrus energy soda'},
+    {id:'dr12',name:'Maaza Mango 250ml',price:20,description:'Mango fruit drink'},
+    {id:'dr13',name:'Slice Mango 250ml',price:20,description:'Pulpy mango drink'},
+    {id:'dr14',name:'Tropicana Orange 1L',price:99,description:'Fresh orange juice'},
+    {id:'dr15',name:'Tropicana Mixed Fruit 1L',price:99,description:'Mixed fruit juice'},
+    {id:'dr16',name:'Real Orange Juice 1L',price:90,description:'Fresh orange juice'},
+    {id:'dr17',name:'Real Mixed Fruit 1L',price:90,description:'Mixed fruit blend'},
+    {id:'dr18',name:'Real Guava Juice 1L',price:90,description:'Fresh guava juice'},
+    {id:'dr19',name:'Minute Maid Pulpy Orange 400ml',price:35,description:'Orange drink with pulp'},
+    {id:'dr20',name:'Minute Maid Nimbu Fresh 400ml',price:35,description:'Lemon drink'},
+    {id:'dr21',name:'Mojito Mint Lemon 250ml',price:30,description:'Classic mint mojito drink'},
+    {id:'dr22',name:'Mojito Watermelon 250ml',price:30,description:'Watermelon mojito drink'},
+    {id:'dr23',name:'Mojito Mango 250ml',price:30,description:'Mango mojito drink'},
+    {id:'dr24',name:'Cravado Apple Juice 200ml',price:25,description:'Fresh apple juice'},
+    {id:'dr25',name:'Cravado Mango Juice 200ml',price:25,description:'Fresh mango juice'},
+    {id:'dr26',name:'Cravado Mixed Fruit 200ml',price:25,description:'Mixed fruit juice'},
+    {id:'dr27',name:'Red Bull Energy 250ml',price:120,description:'Energy drink'},
+    {id:'dr28',name:'Monster Energy 500ml',price:150,description:'Monster energy drink'},
+    {id:'dr29',name:'Sting Energy 250ml',price:30,description:'Strawberry energy drink'},
+    {id:'dr30',name:'Amul Mango Lassi 200ml',price:30,description:'Sweet mango lassi'},
+    {id:'dr31',name:'Amul Kool Chocolate 200ml',price:25,description:'Chocolate milkshake'},
+    {id:'dr32',name:'Amul Kool Kesar 200ml',price:25,description:'Saffron flavoured milk'},
+    {id:'dr33',name:'Mother Dairy Lassi 200ml',price:35,description:'Sweet plain lassi'},
+    {id:'dr34',name:'Frooti Mango 200ml',price:15,description:'Classic mango drink'},
+    {id:'dr35',name:'Appy Fizz 250ml',price:30,description:'Sparkling apple drink'},
+    {id:'dr36',name:'B Natural Pomegranate 1L',price:110,description:'Pomegranate juice'},
+    {id:'dr37',name:'Paper Boat Aamras 200ml',price:30,description:'Traditional mango aamras'},
+    {id:'dr38',name:'Paper Boat Jaljeera 200ml',price:25,description:'Tangy jaljeera drink'},
   ]},
   {id:'pasta',title:'Noodles & Pasta',icon:'🍜',products:[
     {id:'pa1',name:'Maggi Masala Noodles 70g',price:14,description:'Classic masala noodles'},
-    {id:'pa2',name:'Maggi Noodles 4pk',price:56,description:'4 pack masala noodles'},
-    {id:'pa_cuppa',name:'Maggi Cuppa Noodles 70g',price:50,description:'Cup noodles instant snack'},
-    {id:'pa_jumbo',name:'Maggi Jumbo Noodles 140g',price:28,description:'Jumbo masala noodles'},
-    {id:'pa3',name:'Yippee Magic Masala 70g',price:15,description:'Magic masala noodles'},
-    {id:'pa_yip2',name:'Yippee Power Up 70g',price:15,description:'Power up noodles'},
-    {id:'pa_yip3',name:'Yippee Long Slurp 70g',price:15,description:'Long slurp noodles'},
-    {id:'pa4',name:"Ching's Hakka Noodles 150g",price:35,description:'Chinese style noodles'},
-    {id:'pa_ching2',name:"Ching's Schezwan Noodles 60g",price:20,description:'Spicy schezwan noodles'},
-    {id:'pa_ching3',name:"Ching's Hakka Chowmein 150g",price:40,description:'Hakka chowmein noodles'},
-    {id:'pa5',name:'Knorr Soupy Noodles Tomato 60g',price:20,description:'Tomato soupy noodles'},
-    {id:'pa_waiwai',name:'Wai Wai Chicken Noodles 75g',price:25,description:'Chicken flavour noodles'},
-    {id:'pa_ramen',name:'Nissin Top Ramen Masala 70g',price:15,description:'Masala ramen noodles'},
-    {id:'pa_bamb',name:'Bambino Vermicelli 400g',price:45,description:'Fine wheat vermicelli'},
-    {id:'pa_pazzta',name:'Maggi Pazzta Masala 64g',price:25,description:'Instant masala pasta'},
-    {id:'pa_sfpasta',name:'Sunfeast Pasta Treat 65g',price:20,description:'Instant pasta treat'},
+    {id:'pa2',name:'Maggi Masala Noodles 4pk',price:56,description:'4 pack masala noodles'},
+    {id:'pa3',name:'Maggi Cuppa Noodles 70g',price:50,description:'Cup noodles instant snack'},
+    {id:'pa4',name:'Maggi Masala Jumbo 140g',price:28,description:'Double pack masala noodles'},
+    {id:'pa5',name:'Yippee Magic Masala 70g',price:15,description:'Magic masala noodles'},
+    {id:'pa6',name:'Yippee Power Up 70g',price:15,description:'Power up instant noodles'},
+    {id:'pa7',name:'Yippee Long Slurp 70g',price:15,description:'Long noodles masala'},
+    {id:'pa8',name:'Knorr Soupy Noodles Tomato 60g',price:20,description:'Tomato soup noodles'},
+    {id:'pa9',name:"Ching's Hakka Noodles 150g",price:35,description:'Chinese style noodles'},
+    {id:'pa10',name:"Ching's Schezwan Noodles 60g",price:20,description:'Spicy schezwan noodles'},
+    {id:'pa11',name:'Wai Wai Chicken Noodles 75g',price:20,description:'Nepali chicken noodles'},
+    {id:'pa12',name:'Nissin Top Ramen Masala 70g',price:15,description:'Classic masala ramen'},
+    {id:'pa13',name:'Bambino Vermicelli 400g',price:45,description:'Thin wheat vermicelli'},
+    {id:'pa14',name:'Maggi Pazzta Masala 64g',price:20,description:'Instant masala pasta'},
+    {id:'pa15',name:"Ching's Hakka Chowmein 150g",price:35,description:'Classic chowmein noodles'},
+    {id:'pa16',name:'Wai Wai Veg Noodles 75g',price:20,description:'Vegetable noodles'},
+    {id:'pa17',name:'Sunfeast Pasta Treat Masala 65g',price:20,description:'Instant masala pasta'},
   ]},
   {id:'grocery',title:'Grocery & Spices',icon:'🧂',products:[
     {id:'gr1',name:'Tata Salt 1kg',price:25,description:'Iodized table salt'},
     {id:'gr2',name:'Aashirvaad Atta 5kg',price:240,description:'Whole wheat flour'},
     {id:'gr3',name:'MDH Garam Masala 100g',price:55,description:'Aromatic spice blend'},
-    {id:'gr_parleg',name:'Parle G Biscuits 100g',price:10,description:'Classic glucose biscuits'},
+    {id:'gr4',name:'Parle-G Biscuits',price:10,description:'Classic glucose biscuits'},
     {id:'gr5',name:'Tata Sugar 1kg',price:45,description:'Refined white sugar'},
-    {id:'gr4',name:'MDH Chaat Masala 50g',price:30,description:'Tangy chaat spice'},
-    {id:'gr_everest',name:'Everest Rajma Masala 50g',price:35,description:'Kidney bean curry spice'},
-    {id:'gr6',name:'Catch Turmeric 100g',price:30,description:'Pure haldi powder'},
-    {id:'gr7',name:'Catch Red Chilli 100g',price:35,description:'Red chilli powder'},
-  ]},
-  {id:'spreads',title:'Spreads & Sauces',icon:'🫙',products:[
-    {id:'sp1',name:'Kissan Mixed Fruit Jam 200g',price:99,description:'Sweet mixed fruit jam'},
-    {id:'sp2',name:'Maggi Hot Sweet Sauce 500g',price:60,description:'Tangy tomato sauce'},
-    {id:'sp3',name:'Sundrop Peanut Butter 400g',price:199,description:'Creamy peanut butter'},
-    {id:'sp4',name:'Dr Oetker Mayonnaise 300g',price:85,description:'Classic mayo'},
-    {id:'sp_nut1',name:'Nutella 200g',price:280,description:'Hazelnut cocoa spread'},
-    {id:'sp_nut2',name:'Nutella 400g',price:520,description:'Large Nutella jar'},
-    {id:'sp_nut3',name:'Nutella Go 52g',price:120,description:'Nutella with breadsticks'},
-    {id:'sp_skippy1',name:'Skippy Peanut Butter Smooth 340g',price:350,description:'Smooth American peanut butter'},
-    {id:'sp_skippy2',name:'Skippy Peanut Butter Crunchy 340g',price:350,description:'Crunchy peanut butter'},
-    {id:'sp_kissan2',name:'Kissan Strawberry Jam 200g',price:75,description:'Sweet strawberry jam'},
-    {id:'sp_veeba',name:'Veeba Chipotle Sauce 315g',price:120,description:'Smoky chipotle sauce'},
-    {id:'sp_heinz',name:'Heinz Tomato Ketchup 450g',price:150,description:'Classic tomato ketchup'},
-    {id:'sp_kissan3',name:'Kissan Tomato Ketchup 500g',price:99,description:'Tangy tomato ketchup'},
+    {id:'gr6',name:'MDH Chaat Masala 50g',price:30,description:'Tangy chaat spice'},
+    {id:'gr7',name:'Everest Rajma Masala 50g',price:40,description:'Kidney bean curry masala'},
+    {id:'gr8',name:'Catch Turmeric 100g',price:30,description:'Pure turmeric powder'},
+    {id:'gr9',name:'Catch Red Chilli 100g',price:35,description:'Red chilli powder'},
   ]},
   {id:'tea',title:'Tea & Coffee',icon:'☕',products:[
     {id:'tc1',name:'Tata Tea Gold 500g',price:220,description:'Premium blend tea'},
-    {id:'tc_tulsi',name:'Red Label Tea 500g',price:210,description:'Classic Brooke Bond tea'},
-    {id:'tc3',name:'Nescafe Classic 200g',price:399,description:'Instant coffee'},
-    {id:'tc4',name:'Bru Gold Coffee 200g',price:370,description:'Filter coffee blend'},
-    {id:'tc_tetley',name:'Tulsi Green Tea 25 bags',price:99,description:'Herbal green tea bags'},
-    {id:'tc6',name:'Horlicks Original 500g',price:225,description:'Malted health drink'},
-    {id:'tc_epi',name:'Epigamia Greek Yogurt',price:55,description:'Strawberry Greek yogurt'},
+    {id:'tc2',name:'Nescafe Classic 200g',price:399,description:'Instant coffee'},
+    {id:'tc3',name:'Bru Gold Coffee 200g',price:370,description:'Filter coffee blend'},
+    {id:'tc4',name:'Tulsi Green Tea 25 bags',price:99,description:'Herbal green tea'},
+    {id:'tc5',name:'Horlicks Original 500g',price:225,description:'Malted health drink'},
+    {id:'tc6',name:'Epigamia Greek Yogurt',price:55,description:'Strawberry Greek yogurt'},
     {id:'tc7',name:'Nescafe 3in1 Sachets 10pk',price:120,description:'Ready coffee sachets'},
-    {id:'tc_tulsi',name:'Tetley Green Tea 25 bags',price:85,description:'Green tea bags'},
-    {id:'tc5',name:'Bournvita 500g',price:225,description:'Chocolate health drink'},
-    {id:'tc_complan',name:'Complan Chocolate 500g',price:280,description:'Complete nutrition drink'},
+    {id:'tc8',name:'Tetley Green Tea 25 bags',price:99,description:'Classic green tea bags'},
+    {id:'tc9',name:'Bournvita 500g',price:235,description:'Chocolate health drink'},
+    {id:'tc10',name:'Complan Chocolate 500g',price:299,description:'Complete nutrition drink'},
+  ]},
+  {id:'spreads',title:'Spreads & Sauces',icon:'🫙',products:[
+    {id:'sp1',name:'Kissan Mixed Fruit Jam',price:99,description:'Sweet mixed fruit jam'},
+    {id:'sp2',name:'Kissan Mixed Fruit Jam 500g',price:160,description:'Mixed fruit jam large'},
+    {id:'sp3',name:'Kissan Strawberry Jam 200g',price:75,description:'Sweet strawberry jam'},
+    {id:'sp4',name:'Maggi Hot & Sweet Sauce',price:60,description:'Tangy tomato sauce'},
+    {id:'sp5',name:'Nutella 200g',price:280,description:'Hazelnut cocoa spread'},
+    {id:'sp6',name:'Nutella 400g',price:520,description:'Large Nutella jar'},
+    {id:'sp7',name:'Sundrop Peanut Butter Creamy',price:199,description:'Creamy peanut butter'},
+    {id:'sp8',name:'Skippy Peanut Butter Smooth 340g',price:220,description:'Smooth peanut butter'},
+    {id:'sp9',name:'Skippy Peanut Butter Crunchy 340g',price:220,description:'Crunchy peanut butter'},
+    {id:'sp10',name:'Veeba Chipotle Sauce 315g',price:130,description:'Smoky chipotle sauce'},
+    {id:'sp11',name:'Heinz Tomato Ketchup 450g',price:150,description:'Premium tomato ketchup'},
+    {id:'sp12',name:'Kissan Tomato Ketchup 500g',price:99,description:'Classic tomato ketchup'},
+    {id:'sp13',name:'Dr Oetker Mayonnaise',price:85,description:'Classic mayo'},
   ]},
   {id:'personal',title:'Personal Care',icon:'🧴',products:[
     {id:'pc1',name:'Dove Body Lotion 200ml',price:175,description:'Moisturising body lotion'},
     {id:'pc2',name:'Colgate MaxFresh 150g',price:85,description:'Cooling toothpaste'},
-    {id:'pc_colgate2',name:'Colgate Strong Teeth 200g',price:80,description:'Cavity protection toothpaste'},
-    {id:'pc_pepsodent',name:'Pepsodent Germicheck 150g',price:70,description:'Germi protection toothpaste'},
-    {id:'pc_sensodyne',name:'Sensodyne Gentle White 70g',price:99,description:'Sensitive teeth toothpaste'},
-    {id:'pc3',name:'Dove Shampoo 340ml',price:199,description:'Nourishing shampoo'},
-    {id:'pc4',name:'Head & Shoulders 340ml',price:220,description:'Anti-dandruff shampoo'},
-    {id:'pc_pantene',name:'Pantene Smooth 340ml',price:199,description:'Smooth shine shampoo'},
-    {id:'pc_tresemme',name:'TRESemme Keratin 340ml',price:220,description:'Keratin smooth shampoo'},
-    {id:'pc_dove_cond',name:'Dove Conditioner 180ml',price:175,description:'Nourishing conditioner'},
-    {id:'pc_nivea_fw',name:'Nivea Men Face Wash 100ml',price:149,description:'Oil control face wash'},
-    {id:'pc5',name:'Dettol Hand Wash 200ml',price:65,description:'Antibacterial hand wash'},
-    {id:'pc_lifebuoy',name:'Lifebuoy Total Soap 125g',price:35,description:'Germ protection soap'},
-    {id:'pc_dove_soap',name:'Dove Soap 100g',price:55,description:'Moisturising beauty bar'},
-    {id:'pc_lux',name:'Lux Soft Rose Soap 100g',price:40,description:'Soft rose soap'},
-    {id:'pc_gillette',name:'Gillette Mach3 Razor',price:199,description:'3-blade shaving razor'},
-    {id:'pc_gill_foam',name:'Gillette Shaving Foam 200ml',price:149,description:'Classic shaving foam'},
-    {id:'pc_veet',name:'Veet Hair Removal Cream 50g',price:99,description:'Hair removal cream'},
-    {id:'pc_durex1',name:'Durex Extra Safe 3pcs',price:120,description:'Extra safe condoms'},
-    {id:'pc_durex2',name:'Durex Feather Light 3pcs',price:120,description:'Ultra thin condoms'},
-    {id:'pc_durex3',name:'Durex Pleasure Me 3pcs',price:130,description:'Ribbed dotted condoms'},
-    {id:'pc_manforce',name:'Manforce Condoms 3pcs',price:80,description:'Flavoured condoms'},
-    {id:'pc_skore',name:'Skore Condoms 3pcs',price:80,description:'Dotted condoms'},
-    {id:'pc_durex_lube',name:'Durex Play Lube 50ml',price:150,description:'Personal lubricant gel'},
-    {id:'pc_wet_stuff',name:'Wet Stuff Lube 100ml',price:120,description:'Water based lubricant'},
-    {id:'pc_axe',name:'Axe Deo Body Spray 150ml',price:175,description:'Dark temptation deo spray'},
-    {id:'pc_fogg1',name:'Fogg Black Deo 150ml',price:175,description:'Long lasting deo spray'},
-    {id:'pc_fogg2',name:'Fogg Scent Urbane 100ml',price:199,description:'Urbane perfume spray'},
-    {id:'pc_skinn',name:'Skinn Timeless Perfume 20ml',price:299,description:'Premium Indian perfume'},
-    {id:'pc_parkave',name:'Park Avenue Deo 150ml',price:145,description:'Classic deo spray'},
-    {id:'pc_engage',name:'Engage On Deo 150ml',price:175,description:'Engage deo spray'},
-    {id:'pc_wildstone',name:'Wild Stone Deo 150ml',price:145,description:'Wild Stone deo spray'},
-    {id:'pc6',name:'Parachute Coconut Oil 200ml',price:75,description:'Pure coconut hair oil'},
+    {id:'pc3',name:'Colgate Strong Teeth 200g',price:75,description:'Cavity protection toothpaste'},
+    {id:'pc4',name:'Pepsodent Germicheck 150g',price:65,description:'Germ protection toothpaste'},
+    {id:'pc5',name:'Sensodyne Gentle White 70g',price:120,description:'Sensitive teeth toothpaste'},
+    {id:'pc6',name:'Dove Shampoo 340ml',price:199,description:'Nourishing shampoo'},
+    {id:'pc7',name:'Head & Shoulders 340ml',price:199,description:'Anti dandruff shampoo'},
+    {id:'pc8',name:'Pantene Smooth 340ml',price:185,description:'Smooth and silky shampoo'},
+    {id:'pc9',name:'TRESemme Keratin 340ml',price:199,description:'Keratin smooth shampoo'},
+    {id:'pc10',name:'Dove Conditioner 180ml',price:175,description:'Nourishing conditioner'},
+    {id:'pc11',name:'Nivea Men Face Wash 100ml',price:149,description:'Oil control face wash'},
+    {id:'pc12',name:'Dettol Hand Wash 200ml',price:65,description:'Antibacterial hand wash'},
+    {id:'pc13',name:'Lifebuoy Soap 125g',price:35,description:'Antibacterial soap'},
+    {id:'pc14',name:'Dove Soap 100g',price:45,description:'Moisturising beauty bar'},
+    {id:'pc15',name:'Lux Soft Rose Soap 100g',price:35,description:'Soft rose soap'},
+    {id:'pc16',name:'Gillette Mach3 Razor',price:199,description:'3 blade razor'},
+    {id:'pc17',name:'Gillette Shaving Foam 200ml',price:129,description:'Sensitive shaving foam'},
+    {id:'pc18',name:'Veet Hair Removal Cream 50g',price:99,description:'Hair removal cream'},
+    {id:'pc19',name:'Durex Extra Safe Condoms 3pcs',price:99,description:'Extra safe condoms'},
+    {id:'pc20',name:'Durex Feather Light 3pcs',price:99,description:'Ultra thin condoms'},
+    {id:'pc21',name:'Durex Pleasure Me 3pcs',price:99,description:'Ribbed dotted condoms'},
+    {id:'pc22',name:'Manforce Condoms 3pcs',price:60,description:'Dotted condoms'},
+    {id:'pc23',name:'Skore Condoms 3pcs',price:60,description:'Lubricated condoms'},
+    {id:'pc24',name:'Durex Play Lube 50ml',price:199,description:'Personal lubricant'},
+    {id:'pc25',name:'Wet Stuff Lube 100ml',price:249,description:'Personal lubricant gel'},
+    {id:'pc26',name:'Axe Deo Body Spray 150ml',price:199,description:'Dark temptation deo'},
+    {id:'pc27',name:'Fogg Black Deo 150ml',price:199,description:'Long lasting deo spray'},
+    {id:'pc28',name:'Fogg Scent Urbane 100ml',price:249,description:'Urbane perfume spray'},
+    {id:'pc29',name:'Skinn Timeless Perfume 20ml',price:299,description:'Premium pocket perfume'},
+    {id:'pc30',name:'Park Avenue Deo 150ml',price:149,description:'Cool blue deo spray'},
+    {id:'pc31',name:'Engage On Deo 150ml',price:149,description:'Floral deo for women'},
+    {id:'pc32',name:'Wild Stone Deo 150ml',price:149,description:'Classic wild stone deo'},
+    {id:'pc33',name:'Trident Gum Original 7pcs',price:30,description:'Original sugar free gum'},
+    {id:'pc34',name:'Trident Watermelon 7pcs',price:30,description:'Watermelon sugar free gum'},
+    {id:'pc35',name:'Trident Strawberry 7pcs',price:30,description:'Strawberry sugar free gum'},
   ]},
-  {id:'baby',title:'Baby Care',icon:'👶',products:[
-    {id:'bb1',name:'Pampers Diapers S 56pcs',price:499,description:'Soft dry baby diapers'},
-    {id:'bb_huggies',name:'Huggies Diapers M 42pcs',price:549,description:'Medium size diapers'},
-    {id:'bb2',name:'Johnson Baby Powder 200g',price:149,description:'Gentle baby powder'},
-    {id:'bb3',name:'Cerelac Wheat 300g',price:199,description:'Infant wheat cereal'},
-    {id:'bb4',name:'Johnson Baby Shampoo 200ml',price:129,description:'Gentle no-tears shampoo'},
-    {id:'bb5',name:'Himalaya Baby Lotion',price:99,description:'Nourishing baby lotion'},
-  ]},
-  {id:'skincare',title:'Skincare',icon:'✨',products:[
-    {id:'sk1',name:'Neutrogena Moisturiser SPF15',price:399,description:'Daily SPF moisturiser'},
-    {id:'sk1b',name:'Himalaya Neem Face Wash',price:99,description:'Purifying neem face wash'},
-    {id:'sk3',name:'Lakme Sunscreen SPF50',price:249,description:'Broad spectrum sunscreen'},
-    {id:'sk2',name:'Nivea Soft Cream 200ml',price:199,description:'Refreshing moisturiser'},
-    {id:'sk_garnier',name:'Garnier Micellar Water',price:249,description:'Gentle makeup remover'},
-    {id:'sk5',name:'Vaseline Petroleum Jelly 100ml',price:89,description:'Deep skin moisture'},
-    {id:'sk_cetaphil',name:'Cetaphil Moisturising Cream 80g',price:299,description:'Sensitive skin moisturiser'},
-  ]},
-  {id:'oil',title:'Oil & Ghee',icon:'🫙',products:[
-    {id:'og1',name:'Fortune Sunflower Oil 1L',price:130,description:'Refined sunflower oil'},
-    {id:'og1b',name:'Fortune Sunflower Oil 5L',price:580,description:'Refined sunflower oil 5L'},
-    {id:'og2',name:'Saffola Gold Oil 1L',price:160,description:'Blended cooking oil'},
-    {id:'og2b',name:'Saffola Gold Oil 5L',price:720,description:'Blended cooking oil 5L'},
-    {id:'og4',name:'Dabur Mustard Oil 1L',price:120,description:'Kachi ghani mustard oil'},
-    {id:'og4b',name:'Dabur Mustard Oil 5L',price:550,description:'Mustard oil 5L'},
-    {id:'og_ricebran',name:'Fortune Rice Bran Oil 1L',price:145,description:'Rice bran cooking oil'},
-    {id:'og_figaro',name:'Figaro Olive Oil 500ml',price:480,description:'Extra virgin olive oil'},
-    {id:'og_borges',name:'Borges Extra Virgin Olive 500ml',price:520,description:'Premium olive oil'},
-    {id:'og3',name:'Amul Pure Ghee 500ml',price:290,description:'Pure cow ghee'},
-    {id:'og3b',name:'Amul Pure Ghee 1L',price:550,description:'Pure cow ghee 1L'},
-    {id:'og_pat_ghee',name:'Patanjali Cow Ghee 500ml',price:270,description:'Patanjali cow ghee'},
-    {id:'og_khy_ghee',name:'Khyber Pure Ghee 500ml',price:350,description:'Kashmiri pure cow ghee'},
-    {id:'og_coconut',name:'Parachute Coconut Oil 500ml',price:120,description:'Pure coconut oil'},
-    {id:'og_sesame',name:'Sesame Oil Til 500ml',price:150,description:'Pure sesame seed oil'},
-  ]},
-  {id:'dryfruits',title:'Dry Fruits',icon:'🥜',products:[
-    {id:'df1',name:'Cashews Premium 250g',price:250,description:'Whole premium cashews'},
-    {id:'df2',name:'California Almonds 250g',price:220,description:'Raw whole almonds'},
-    {id:'df3',name:'Seedless Raisins 250g',price:99,description:'Sun dried raisins'},
-    {id:'df4',name:'Walnut Kernels 250g',price:299,description:'Kashmiri walnut halves'},
-    {id:'df5',name:'Pistachios 250g',price:350,description:'Roasted salted pistachios'},
-    {id:'df6',name:'Dried Figs 250g',price:180,description:'Soft dried figs'},
-    {id:'df7',name:'Mixed Dry Fruits 250g',price:280,description:'Assorted dry fruit mix'},
-  ]},
-  {id:'honey',title:'Honey',icon:'🍯',products:[
-    {id:'hn1',name:'Dabur Honey 500g',price:199,description:'Pure natural honey'},
-    {id:'hn2',name:'Patanjali Honey 500g',price:170,description:'Pure wild honey'},
-    {id:'hn3',name:'Apis Himalaya Honey 1kg',price:350,description:'Mountain flower honey'},
+  {id:'dairy',title:'Dairy & Bakery',icon:'🥛',products:[
+    {id:'db1',name:'Khyber Toned Milk 500ml',price:28,description:'Fresh Kashmiri toned milk'},
+    {id:'db2',name:'Khyber Full Cream Milk 500ml',price:32,description:'Full cream Kashmiri milk'},
+    {id:'db3',name:'Amul Butter 500g',price:255,description:'Pasteurised table butter'},
+    {id:'db4',name:'Amul Paneer 200g',price:80,description:'Fresh cottage cheese'},
+    {id:'db5',name:'Mother Dairy Curd 400g',price:40,description:'Fresh set curd'},
+    {id:'db6',name:'Britannia Bread 400g',price:45,description:'Soft sandwich bread'},
+    {id:'db7',name:'Britannia Brown Bread 400g',price:50,description:'Healthy brown bread'},
+    {id:'db8',name:'Britannia Cheese Slices 200g',price:99,description:'Processed cheese slices'},
+    {id:'db9',name:'Amul Cheese Spread 200g',price:90,description:'Creamy cheese spread'},
+    {id:'db10',name:'Eggs 6pcs',price:70,description:'Farm fresh eggs'},
+    {id:'db11',name:'Amul Chocolate Ice Cream 500ml',price:130,description:'Rich chocolate ice cream'},
+    {id:'db12',name:'Epigamia Greek Yogurt Strawberry',price:55,description:'Thick strawberry yogurt'},
+    {id:'db13',name:'Epigamia Greek Yogurt Mango',price:55,description:'Mango Greek yogurt'},
   ]},
   {id:'household',title:'Household',icon:'🧹',products:[
-    {id:'hh1',name:'Harpic Toilet Cleaner 500ml',price:99,description:'Powerful toilet cleaner'},
-    {id:'hh_colin',name:'Colin Glass Cleaner 500ml',price:89,description:'Streak-free glass cleaner'},
-    {id:'hh2',name:'Vim Dishwash Liquid 500ml',price:75,description:'Grease cutting dish wash'},
-    {id:'hh_gknight',name:'Good Knight Liquid Refill',price:55,description:'Mosquito repellent'},
-    {id:'hh3',name:'Surf Excel Matic 1kg',price:199,description:'Washing machine detergent'},
-    {id:'hh4',name:'Lizol Floor Cleaner 1L',price:149,description:'All surface floor cleaner'},
-    {id:'hh_scotch',name:'Scotch-Brite Scrub 3pk',price:49,description:'Dish scrubbing pads'},
-    {id:'hh5',name:'Dettol Antiseptic 250ml',price:85,description:'Multipurpose antiseptic'},
-    {id:'hh_tide',name:'Tide Detergent Powder 1kg',price:99,description:'Laundry detergent powder'},
-    {id:'hh_ariel',name:'Ariel Pods 12pcs',price:299,description:'Laundry detergent pods'},
+    {id:'hh1',name:'Harpic Toilet Cleaner',price:99,description:'Powerful toilet cleaner'},
+    {id:'hh2',name:'Colin Glass Cleaner',price:89,description:'Streak-free glass cleaner'},
+    {id:'hh3',name:'Vim Dishwash Liquid',price:75,description:'Grease cutting dish wash'},
+    {id:'hh4',name:'Good Knight Liquid',price:55,description:'Mosquito repellent'},
+    {id:'hh5',name:'Surf Excel Matic 1kg',price:199,description:'Washing machine detergent'},
+    {id:'hh6',name:'Lizol Floor Cleaner 1L',price:149,description:'All surface floor cleaner'},
+    {id:'hh7',name:'Scotch-Brite Scrub Pad 3pk',price:45,description:'Kitchen scrub pads'},
+    {id:'hh8',name:'Dettol Antiseptic Liquid 250ml',price:85,description:'Multipurpose antiseptic'},
+    {id:'hh9',name:'Tide Detergent Powder 1kg',price:130,description:'Washing powder'},
+    {id:'hh10',name:'Ariel Pods 12pcs',price:299,description:'Laundry pods'},
   ]},
   {id:'health',title:'Health & Wellness',icon:'💊',products:[
-    {id:'hw_revital',name:'Revital H Multivitamin',price:299,description:'Daily health supplement'},
-    {id:'hw1',name:'Dabur Chyawanprash 500g',price:195,description:'Immunity booster'},
-    {id:'hw_ensure',name:'Ensure Nutrition Powder',price:599,description:'Complete nutrition drink'},
-    {id:'hw_himalaya',name:'Himalaya Tulsi Drops',price:125,description:'Immunity herbal drops'},
-    {id:'hw_vitc',name:'Vitamin C 500mg 20 tabs',price:99,description:'Immunity vitamin C tablets'},
-    {id:'hw3',name:'Hajmola Digestive Tablets',price:25,description:'Digestive candy tablets'},
-    {id:'hw2',name:'Eno Fruit Salt Original',price:30,description:'Fast acidity relief'},
+    {id:'hw1',name:'Revital H Multivitamin',price:299,description:'Daily health supplement'},
+    {id:'hw2',name:'Dabur Chyawanprash 500g',price:195,description:'Immunity booster'},
+    {id:'hw3',name:'Ensure Nutrition Powder',price:599,description:'Complete nutrition drink'},
+    {id:'hw4',name:'Himalaya Tulsi Drops',price:125,description:'Immunity herbal drops'},
+    {id:'hw5',name:'Vitamin C 500mg 20 tablets',price:99,description:'Vitamin C supplement'},
+    {id:'hw6',name:'Hajmola Digestive Tablets',price:25,description:'Digestive candy tablets'},
+    {id:'hw7',name:'Eno Fruit Salt Original',price:30,description:'Fast acidity relief'},
   ]},
-  {id:'atta',title:'Atta & Rice',icon:'🌾',products:[
+  {id:'atta',title:'Atta, Rice & Dal',icon:'🌾',products:[
     {id:'at1',name:'Aashirvaad Atta 5kg',price:240,description:'Whole wheat flour'},
-    {id:'at_ash10',name:'Aashirvaad Atta 10kg',price:420,description:'Whole wheat flour 10kg'},
-    {id:'at_pill5',name:'Pillsbury Atta 5kg',price:230,description:'Pillsbury whole wheat atta'},
-    {id:'at_pat5',name:'Patanjali Atta 5kg',price:210,description:'Patanjali wheat flour'},
-    {id:'at_ash_mg',name:'Aashirvaad Multigrain 5kg',price:260,description:'Multigrain wheat flour'},
-    {id:'at_maida',name:'Pillsbury Maida 1kg',price:55,description:'All purpose flour'},
-    {id:'at2',name:'India Gate Basmati 5kg',price:450,description:'Premium basmati rice'},
-    {id:'at_ig1',name:'India Gate Basmati 1kg',price:95,description:'Premium basmati rice 1kg'},
-    {id:'at_daawat',name:'Daawat Super Basmati 5kg',price:420,description:'Daawat basmati rice'},
-    {id:'at_kohinoor',name:'Kohinoor Basmati 1kg',price:90,description:'Kohinoor basmati rice'},
-    {id:'at_fortune',name:'Fortune Sona Masoori 5kg',price:280,description:'Sona masoori rice'},
-    {id:'at3',name:'Toor Dal 1kg',price:120,description:'Yellow pigeon peas'},
-    {id:'at4',name:'Moong Dal 500g',price:65,description:'Green gram lentils'},
-    {id:'at_moong_whole',name:'Moong Dal Whole 500g',price:70,description:'Whole green moong'},
-    {id:'at_chana',name:'Chana Dal 1kg',price:90,description:'Split chickpea lentils'},
-    {id:'at_masoor',name:'Masoor Dal 500g',price:55,description:'Red lentils'},
-    {id:'at_urad',name:'Urad Dal 500g',price:80,description:'Black gram lentils'},
-    {id:'at_kabuli',name:'Kabuli Chana 500g',price:85,description:'White chickpeas'},
-    {id:'at_rajma',name:'Rajma Chitra 500g',price:90,description:'Kashmiri kidney beans'},
-    {id:'at_suji',name:'Suji Semolina 500g',price:40,description:'Fine semolina'},
-    {id:'at_besan',name:'Besan Gram Flour 500g',price:55,description:'Chickpea flour'},
+    {id:'at2',name:'Aashirvaad Atta 10kg',price:420,description:'Whole wheat flour large'},
+    {id:'at3',name:'Pillsbury Atta 5kg',price:230,description:'Soft wheat flour'},
+    {id:'at4',name:'Patanjali Atta 5kg',price:200,description:'Whole wheat flour'},
+    {id:'at5',name:'Aashirvaad Multigrain Atta 5kg',price:280,description:'Multigrain healthy atta'},
+    {id:'at6',name:'Pillsbury Maida 1kg',price:55,description:'All purpose refined flour'},
+    {id:'at7',name:'India Gate Basmati 5kg',price:450,description:'Premium basmati rice'},
+    {id:'at8',name:'India Gate Basmati 1kg',price:100,description:'Premium basmati rice small'},
+    {id:'at9',name:'Daawat Super Basmati 5kg',price:420,description:'Long grain basmati rice'},
+    {id:'at10',name:'Kohinoor Basmati 1kg',price:95,description:'Classic basmati rice'},
+    {id:'at11',name:'Fortune Sona Masoori 5kg',price:280,description:'Everyday cooking rice'},
+    {id:'at12',name:'Toor Dal 1kg',price:120,description:'Yellow pigeon peas'},
+    {id:'at13',name:'Moong Dal 500g',price:65,description:'Green gram lentils'},
+    {id:'at14',name:'Moong Dal Whole 500g',price:70,description:'Whole green moong'},
+    {id:'at15',name:'Chana Dal 1kg',price:90,description:'Split chickpea lentils'},
+    {id:'at16',name:'Masoor Dal 500g',price:65,description:'Red lentils'},
+    {id:'at17',name:'Urad Dal 500g',price:80,description:'Black gram lentils'},
+    {id:'at18',name:'Kabuli Chana 500g',price:80,description:'White chickpeas'},
+    {id:'at19',name:'Rajma Chitra 500g',price:90,description:'Kashmiri kidney beans'},
+    {id:'at20',name:'Suji Semolina 500g',price:35,description:'Fine semolina for halwa'},
+    {id:'at21',name:'Besan Gram Flour 500g',price:60,description:'Chickpea flour'},
   ]},
   {id:'cereal',title:'Breakfast Cereal',icon:'🥣',products:[
     {id:'ce1',name:"Kellogg's Corn Flakes 875g",price:299,description:'Classic corn flakes'},
     {id:'ce2',name:'Quaker Oats 1kg',price:199,description:'Rolled oats'},
     {id:'ce3',name:'Muesli Fruit & Nut 500g',price:250,description:'Mixed fruit muesli'},
     {id:'ce4',name:"Kellogg's Chocos 375g",price:185,description:'Chocolate wheat puffs'},
-    {id:'ce5',name:"Kellogg's Special K 250g",price:220,description:'Crispy rice cereal'},
-    {id:'ce6',name:'Quaker Oats Instant 400g',price:150,description:'Quick cook instant oats'},
-  ]},
-  {id:'sanitary',title:'Sanitary Pads',icon:'🩸',products:[
-    {id:'san1',name:'Whisper Ultra 30 pads',price:149,description:'Ultra thin sanitary pads'},
-    {id:'san2',name:'Stayfree Secure 20 pads',price:99,description:'Overnight protection pads'},
-    {id:'san3',name:'Sofy Bodyfit 40 pads',price:199,description:'Body fit regular pads'},
-    {id:'san4',name:'Whisper Choice 30 pads',price:99,description:'Everyday comfort pads'},
-  ]},
-  {id:'baking',title:'Baking Essentials',icon:'🧁',products:[
-    {id:'bk1',name:'Pillsbury Maida 1kg',price:55,description:'All purpose flour'},
-    {id:'bk2',name:'Brown Sugar 500g',price:60,description:'Unrefined brown sugar'},
-    {id:'bk3',name:'Weikfield Baking Powder',price:35,description:'Double acting baking powder'},
-    {id:'bk4',name:'Morde Dark Chocolate 400g',price:199,description:'Compound dark chocolate'},
-    {id:'bk5',name:'Vanilla Essence 20ml',price:25,description:'Pure vanilla extract'},
-    {id:'bk6',name:'Cocoa Powder 100g',price:85,description:'Unsweetened baking cocoa'},
-  ]},
-  {id:'readytocook',title:'Ready to Cook',icon:'🍱',products:[
-    {id:'rc1',name:'MTR Poha Mix 200g',price:45,description:'Instant poha mix'},
-    {id:'rc2',name:'Gits Idli Mix 500g',price:75,description:'Instant idli mix'},
-    {id:'rc3',name:'ITC Dal Makhani 300g',price:99,description:'Ready to eat dal makhani'},
-    {id:'rc4',name:'Haldiram Dal Makhani 300g',price:85,description:'Ready to heat dal'},
-    {id:'rc5',name:'MTR Butter Chicken 300g',price:110,description:'Ready to eat butter chicken'},
-    {id:'rc6',name:'Gits Gulab Jamun Mix 200g',price:55,description:'Easy gulab jamun mix'},
-  ]},
-  {id:'stationery',title:'Stationery',icon:'📝',products:[
-    {id:'st1',name:'Classmate Notebook 200pg',price:60,description:'Single line notebook'},
-    {id:'st2',name:'Reynolds Ball Pen 10pk',price:50,description:'Smooth writing pens'},
-    {id:'st3',name:'Fevicol 50g',price:25,description:'White adhesive glue'},
-    {id:'st4',name:'Stapler with Pins',price:85,description:'Mini stapler set'},
-  ]},
-  {id:'pets',title:'Pet Supplies',icon:'🐾',products:[
-    {id:'pt1',name:'Pedigree Adult Dog Food 3kg',price:699,description:'Complete dog nutrition'},
-    {id:'pt2',name:'Whiskas Cat Food 1.2kg',price:399,description:'Ocean fish cat food'},
-    {id:'pt3',name:'Dog Treat Milkbone',price:199,description:'Crunchy dog biscuits'},
-  ]},
-  {id:'icecream',title:'Ice Cream',icon:'🍦',products:[
-    {id:'ic1',name:'Amul Vanilla Cone',price:30,description:'Classic vanilla cone'},
-    {id:'ic2',name:'Kwality Walls Cornetto',price:50,description:'Chocolate cone ice cream'},
-    {id:'ic3',name:'Mother Dairy Kulfi',price:20,description:'Traditional Indian kulfi'},
-    {id:'ic4',name:'Amul Chocolate Ice Cream 500ml',price:130,description:'Rich chocolate ice cream'},
-    {id:'ic5',name:'Amul Strawberry Ice Cream 500ml',price:130,description:'Fresh strawberry ice cream'},
+    {id:'ce5',name:"Kellogg's Special K 250g",price:250,description:'Special K cereal'},
+    {id:'ce6',name:'Quaker Oats Instant 400g',price:149,description:'Instant oats sachets'},
   ]},
   {id:'vegetables',title:'Vegetables',icon:'🥦',products:[
     {id:'vg1',name:'Fresh Tomatoes 1kg',price:100,description:'Farm fresh tomatoes'},
-    {id:'vg2',name:'Onions 1kg',price:40,description:'Fresh red onions'},
+    {id:'vg2',name:'Onions 1kg',price:40,description:'Red onions'},
     {id:'vg3',name:'Potatoes 1kg',price:60,description:'Fresh potatoes'},
     {id:'vg4',name:'Spinach 250g',price:20,description:'Fresh palak'},
-    {id:'vg5',name:'Capsicum 1pc',price:60,description:'Colourful bell pepper'},
+    {id:'vg5',name:'Capsicum 1pc',price:60,description:'Colourful bell peppers'},
     {id:'vg6',name:'Cauliflower 1pc',price:80,description:'Fresh white cauliflower'},
     {id:'vg7',name:'Cabbage 1pc',price:35,description:'Fresh green cabbage'},
     {id:'vg8',name:'Carrots 1kg',price:50,description:'Fresh orange carrots'},
@@ -1501,7 +1466,7 @@ const CATS=[
     {id:'fr1',name:'Bananas 6pcs',price:40,description:'Fresh ripe bananas'},
     {id:'fr2',name:'Kashmiri Apples 1kg',price:120,description:'Fresh Kashmiri red apples'},
     {id:'fr3',name:'Pomegranate 500g',price:80,description:'Sweet pomegranate'},
-    {id:'fr4',name:'Oranges 4pcs',price:60,description:'Fresh navel oranges'},
+    {id:'fr4',name:'Oranges 4pcs',price:60,description:'Juicy navel oranges'},
     {id:'fr5',name:'Grapes 500g',price:90,description:'Seedless green grapes'},
     {id:'fr6',name:'Cherries 500g',price:150,description:'Fresh Kashmiri cherries'},
     {id:'fr7',name:'Pears 1kg',price:90,description:'Fresh Kashmiri pears'},
@@ -1519,15 +1484,106 @@ const CATS=[
     {id:'fr19',name:'Mulberries 250g',price:60,description:'Fresh Kashmiri mulberries'},
     {id:'fr20',name:'Dates 500g',price:120,description:'Soft fresh dates'},
   ]},
-  {id:'ramadan',title:'Ramadan & Eid Special',icon:'🌙',products:[
+  {id:'sanitary',title:'Sanitary Pads',icon:'🩸',products:[
+    {id:'san1',name:'Whisper Ultra 30 pads',price:149,description:'Ultra thin pads'},
+    {id:'san2',name:'Stayfree Secure 20 pads',price:99,description:'Overnight protection'},
+    {id:'san3',name:'Sofy Bodyfit 40 pads',price:199,description:'Body fit regular pads'},
+    {id:'san4',name:'Whisper Choice 30 pads',price:120,description:'All day protection'},
+  ]},
+  {id:'baby',title:'Baby Care',icon:'👶',products:[
+    {id:'bb1',name:"Pampers Diapers S 56pcs",price:499,description:'Soft dry diapers S'},
+    {id:'bb2',name:"Johnson's Baby Powder",price:149,description:'Gentle baby powder'},
+    {id:'bb3',name:'Cerelac Wheat 300g',price:199,description:'Infant wheat cereal'},
+    {id:'bb4',name:'Himalaya Baby Lotion',price:99,description:'Nourishing baby lotion'},
+    {id:'bb5',name:'Huggies Diapers M 42pcs',price:499,description:'Pant style diapers M'},
+    {id:'bb6',name:"Johnson's Baby Shampoo 200ml",price:149,description:'No tears baby shampoo'},
+  ]},
+  {id:'skincare',title:'Skincare',icon:'✨',products:[
+    {id:'sk1',name:'Neutrogena Moisturiser SPF15',price:399,description:'Daily SPF moisturiser'},
+    {id:'sk2',name:'Himalaya Neem Face Wash',price:99,description:'Purifying face wash'},
+    {id:'sk3',name:'Lakme Sunscreen SPF50',price:249,description:'Broad spectrum sunscreen'},
+    {id:'sk4',name:'Nivea Soft Cream 200ml',price:199,description:'Refreshing moisturiser'},
+    {id:'sk5',name:'Garnier Micellar Water',price:249,description:'Gentle makeup remover'},
+    {id:'sk6',name:'Vaseline Petroleum Jelly 100ml',price:89,description:'Deep skin moisture'},
+    {id:'sk7',name:'Cetaphil Moisturising Cream 80g',price:299,description:'Sensitive skin cream'},
+  ]},
+  {id:'oil',title:'Oil & Ghee',icon:'🫙',products:[
+    {id:'og1',name:'Fortune Sunflower Oil 1L',price:130,description:'Refined sunflower oil'},
+    {id:'og2',name:'Fortune Sunflower Oil 5L',price:620,description:'Refined sunflower oil large'},
+    {id:'og3',name:'Saffola Gold Oil 1L',price:160,description:'Blended cooking oil'},
+    {id:'og4',name:'Saffola Gold Oil 5L',price:750,description:'Blended cooking oil large'},
+    {id:'og5',name:'Dabur Mustard Oil 1L',price:120,description:'Kachi ghani mustard oil'},
+    {id:'og6',name:'Dabur Mustard Oil 5L',price:580,description:'Mustard oil large'},
+    {id:'og7',name:'Fortune Rice Bran Oil 1L',price:145,description:'Heart healthy rice bran oil'},
+    {id:'og8',name:'Figaro Olive Oil 500ml',price:499,description:'Pure olive oil for cooking'},
+    {id:'og9',name:'Borges Extra Virgin Olive Oil 500ml',price:599,description:'Extra virgin olive oil'},
+    {id:'og10',name:'Amul Pure Ghee 500ml',price:290,description:'Pure cow ghee'},
+    {id:'og11',name:'Amul Pure Ghee 1L',price:570,description:'Pure cow ghee large'},
+    {id:'og12',name:'Patanjali Cow Ghee 500ml',price:270,description:'Pure desi cow ghee'},
+    {id:'og13',name:'Khyber Pure Ghee 500ml',price:350,description:'Kashmiri pure cow ghee'},
+    {id:'og14',name:'Coconut Oil Parachute 500ml',price:150,description:'Pure coconut oil'},
+    {id:'og15',name:'Sesame Oil Til 500ml',price:180,description:'Cold pressed sesame oil'},
+  ]},
+  {id:'honey',title:'Honey',icon:'🍯',products:[
+    {id:'hn1',name:'Dabur Honey 500g',price:199,description:'Pure natural honey'},
+    {id:'hn2',name:'Patanjali Honey 500g',price:170,description:'Pure wild honey'},
+    {id:'hn3',name:'Apis Himalaya Honey 1kg',price:350,description:'Mountain flower honey'},
+  ]},
+  {id:'dryfruits',title:'Dry Fruits',icon:'🥜',products:[
+    {id:'df1',name:'Premium Cashews 250g',price:250,description:'Whole premium cashews'},
+    {id:'df2',name:'California Almonds 250g',price:220,description:'Raw whole almonds'},
+    {id:'df3',name:'Seedless Raisins 250g',price:99,description:'Sun dried raisins'},
+    {id:'df4',name:'Walnut Kernels 250g',price:299,description:'Kashmiri walnut halves'},
+    {id:'df5',name:'Pistachios 250g',price:350,description:'Roasted salted pistachios'},
+    {id:'df6',name:'Dried Figs 250g',price:199,description:'Soft dried anjeer figs'},
+    {id:'df7',name:'Mixed Dry Fruits 250g',price:299,description:'Assorted nuts and dry fruits'},
+  ]},
+  {id:'ramadan',title:'Ramadan Special',icon:'🌙',products:[
     {id:'rm1',name:'Sewai 200g',price:35,description:'Fine vermicelli for seviyan'},
     {id:'rm2',name:'Rooh Afza 750ml',price:180,description:'Rose flavour sherbet'},
     {id:'rm3',name:'Medjool Dates 500g',price:350,description:'Premium soft dates'},
     {id:'rm4',name:'Haleem Mix 200g',price:65,description:'Slow cook haleem mix'},
     {id:'rm5',name:'Sheer Khurma Mix',price:99,description:'Special Eid dessert mix'},
-    {id:'rm6',name:'Vermicelli Sewai 400g',price:60,description:'Premium fine sewai'},
-    {id:'rm7',name:'Assorted Dry Fruit Box',price:499,description:'Gift box of dry fruits'},
-    {id:'rm8',name:'Premium Dates Box 1kg',price:450,description:'Imported premium dates'},
+  ]},
+  {id:'baking',title:'Baking Essentials',icon:'🎂',products:[
+    {id:'bk1',name:'Pillsbury Maida 1kg',price:55,description:'All purpose flour'},
+    {id:'bk2',name:'Brown Sugar 500g',price:60,description:'Unrefined brown sugar'},
+    {id:'bk3',name:'Weikfield Baking Powder',price:35,description:'Double acting baking powder'},
+    {id:'bk4',name:'Morde Dark Chocolate 400g',price:199,description:'Compound dark chocolate'},
+    {id:'bk5',name:'Vanilla Essence 20ml',price:30,description:'Pure vanilla essence'},
+    {id:'bk6',name:'Cocoa Powder 100g',price:80,description:'Unsweetened cocoa powder'},
+  ]},
+  {id:'readytocook',title:'Ready to Cook',icon:'🍱',products:[
+    {id:'rc1',name:'MTR Poha Mix 200g',price:45,description:'Instant poha mix'},
+    {id:'rc2',name:'Gits Idli Mix 500g',price:75,description:'Instant idli mix'},
+    {id:'rc3',name:'ITC Kitchens Dal Makhani',price:99,description:'Ready to eat dal makhani'},
+    {id:'rc4',name:'Haldiram Dal Makhani 300g',price:85,description:'Ready to heat dal'},
+    {id:'rc5',name:'MTR Butter Chicken 300g',price:110,description:'Ready to eat butter chicken'},
+    {id:'rc6',name:'Gits Gulab Jamun Mix 200g',price:60,description:'Instant gulab jamun mix'},
+  ]},
+  {id:'stationery',title:'Stationery',icon:'📚',products:[
+    {id:'st1',name:'Classmate Notebook 200pg',price:60,description:'Single line notebook'},
+    {id:'st2',name:'Reynolds Ball Pen 10pk',price:50,description:'Smooth writing pens'},
+    {id:'st3',name:'Fevicol 50g',price:25,description:'White adhesive glue'},
+    {id:'st4',name:'Stapler with pins',price:85,description:'Mini stapler set'},
+  ]},
+  {id:'toys',title:'Toys & Sports',icon:'🎮',products:[
+    {id:'ty1',name:'Cricket Set Junior',price:499,description:'Bat, ball, stumps set'},
+    {id:'ty2',name:'Lego Classic Bricks 200pcs',price:799,description:'Creative building blocks'},
+    {id:'ty3',name:'Badminton Set',price:350,description:'2 rackets + 3 shuttles'},
+    {id:'ty4',name:'Funskool Board Game',price:299,description:'Family board game'},
+  ]},
+  {id:'pet',title:'Pet Supplies',icon:'🐾',products:[
+    {id:'pt1',name:'Pedigree Adult Dog Food 3kg',price:699,description:'Complete dog nutrition'},
+    {id:'pt2',name:'Whiskas Cat Food 1.2kg',price:399,description:'Ocean fish cat food'},
+    {id:'pt3',name:'Dog Treat Milkbone',price:199,description:'Crunchy dog biscuits'},
+  ]},
+  {id:'icecream',title:'Ice Creams',icon:'🍦',products:[
+    {id:'ic1',name:'Amul Vanilla Cone',price:30,description:'Classic vanilla cone'},
+    {id:'ic2',name:'Kwality Walls Cornetto',price:50,description:'Chocolate cone'},
+    {id:'ic3',name:'Mother Dairy Kulfi',price:20,description:'Traditional Indian kulfi'},
+    {id:'ic4',name:'Amul Chocolate Ice Cream 500ml',price:130,description:'Rich chocolate ice cream'},
+    {id:'ic5',name:'Amul Strawberry Ice Cream 500ml',price:130,description:'Strawberry ice cream'},
   ]},
 ];
 CATS.forEach(c=>c.products.forEach(p=>{p.img=IMGS[p.id]||'';}));
@@ -1548,6 +1604,32 @@ function nav(page){
 function openSide(){document.getElementById('sidemenu').classList.add('open');document.getElementById('overlay').classList.add('show');}
 function closeSide(){document.getElementById('sidemenu').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
 
+// Events tabs
+function switchEventsTab(tab){
+  document.querySelectorAll('#events-tabs .mod-tab').forEach((t,i)=>t.classList.toggle('active',['attend','hold'][i]===tab));
+  document.getElementById('events-attend').style.display=tab==='attend'?'block':'none';
+  document.getElementById('events-hold').style.display=tab==='hold'?'block':'none';
+}
+// Market tabs
+function switchMarketTab(tab){
+  document.querySelectorAll('#page-market .mod-tab').forEach((t,i)=>t.classList.toggle('active',['buy','sell'][i]===tab));
+  document.getElementById('market-buy').style.display=tab==='buy'?'block':'none';
+  document.getElementById('market-sell').style.display=tab==='sell'?'block':'none';
+}
+// Fix tabs
+function switchFixTab(tab){
+  document.querySelectorAll('#page-fix .mod-tab').forEach((t,i)=>t.classList.toggle('active',['book','join'][i]===tab));
+  document.getElementById('fix-book').style.display=tab==='book'?'block':'none';
+  document.getElementById('fix-join').style.display=tab==='join'?'block':'none';
+}
+// Clothing tabs
+function switchClothingTab(tab){
+  document.querySelectorAll('#page-clothing .mod-tab').forEach((t,i)=>t.classList.toggle('active',['browse','sell'][i]===tab));
+  document.getElementById('clothing-browse').style.display=tab==='browse'?'block':'none';
+  document.getElementById('clothing-sell').style.display=tab==='sell'?'block':'none';
+}
+
+// Grocery
 function initGrocery(){
   renderCatBar();renderGrocery();
   fetch(API+'/products?limit=100').then(r=>r.json()).then(d=>{if(d.success&&d.data?.length>0){allBackendProducts=d.data;renderGrocery();}}).catch(()=>{});
@@ -1568,10 +1650,13 @@ function renderGrocery(){
     if(q)prods=prods.filter(p=>p.name.toLowerCase().includes(q)||p.description.toLowerCase().includes(q));
     if(!prods.length)return;
     if(activeCat==='All')html+=`<div class="sec-heading">${cat.icon} ${cat.title}</div>`;
-    html+='<div class="products-grid">';prods.forEach(p=>{html+=prodCard(p);});html+='</div>';
+    html+='<div class="products-grid">';
+    prods.forEach(p=>{html+=prodCard(p);});
+    html+='</div>';
   });
   if(allBackendProducts.length&&activeCat==='All'){
-    let bp=allBackendProducts;if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));
+    let bp=allBackendProducts;
+    if(q)bp=bp.filter(p=>p.name?.toLowerCase().includes(q));
     if(bp.length){html+=`<div class="sec-heading">🏠 Local Store Products</div><div class="products-grid">`;bp.forEach(p=>{html+=backendCard(p);});html+='</div>';}
   }
   if(!html)html='<div class="empty">No products found 🔍</div>';
@@ -1603,18 +1688,25 @@ function updateCartBar(){
   document.getElementById('cart-total').textContent=total;
   document.getElementById('cart-bar').className='cart-bar'+(count>0?' visible':'');
 }
+
 function renderCart(){
   const el=document.getElementById('cart-content');
   if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty 🛒<br><br><button class="nav-btn nav-teal" onclick="nav('grocery')" style="margin-top:16px;">Shop Now</button></div>`;return;}
   const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);const del=50;
-  let html=cart.map(i=>{const th=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';return `<div class="cart-item"><div class="ci-thumb">${th}</div><div style="flex:1"><div style="font-size:15px;font-weight:700;margin-bottom:3px;">${i.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">&#8377;${i.price} &times; ${i.quantity} = &#8377;${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cQty('${i.id}',1)">+</button></div></div>`;}).join('');
+  let html=cart.map(i=>{
+    const th=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';
+    return `<div class="cart-item"><div class="ci-thumb">${th}</div><div style="flex:1"><div style="font-size:15px;font-weight:700;margin-bottom:3px;">${i.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">&#8377;${i.price} &times; ${i.quantity} = &#8377;${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cQty('${i.id}',1)">+</button></div></div>`;
+  }).join('');
   html+=`<div class="cart-summary"><div class="sum-row"><span>Subtotal</span><span>&#8377;${sub}</span></div><div class="sum-row"><span>Delivery</span><span>&#8377;${del}</span></div><div class="sum-row total"><span>Total</span><span>&#8377;${sub+del}</span></div></div>`;
-  html+=`<div class="checkout-form"><h3>Delivery Details</h3><div class="err-box" id="co-err"></div><div id="co-success" class="order-success" style="display:none;"><div class="tick">&#x2705;</div><h3>Order Placed!</h3><p>Your order is confirmed. The nearest store will accept it shortly.</p><button onclick="nav('myorders')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:10px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;margin-top:12px;">Track My Orders</button></div><div id="co-fields"><div class="frow"><label>Your Name</label><input type="text" id="co-name" placeholder="Full name"></div><div class="frow"><label>Phone</label><input type="tel" id="co-phone" placeholder="+91 9999999999"></div><div class="frow"><label>Delivery Address</label><textarea id="co-addr" placeholder="House no., street, area, landmark..."></textarea></div><div class="frow"><label>Payment</label><select id="co-pay"><option value="cod">Cash on Delivery</option><option value="online">Online Payment</option></select></div><button class="place-btn" id="co-btn" onclick="placeOrder()">Place Order &#8377;${sub+del}</button></div></div>`;
+  html+=`<div class="checkout-form"><h3>Delivery Details</h3><div class="err-box" id="co-err"></div><div id="co-success" class="order-success" style="display:none;"><div class="tick">&#x2705;</div><h3>Order Placed!</h3><p>Your order is confirmed. The nearest store will accept it shortly.</p><button onclick="nav('myorders')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:10px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;margin-top:12px;">Track My Orders</button></div><div id="co-fields"><div class="frow"><label>Your Name</label><input type="text" id="co-name" placeholder="Full name"></div><div class="frow"><label>Phone</label><input type="tel" id="co-phone" placeholder="+91 9999999999"></div><div class="frow"><label>Delivery Address</label><textarea id="co-addr" placeholder="House no., street, area, landmark..."></textarea></div><div class="frow"><label>Payment Method</label><select id="co-pay"><option value="cod">Cash on Delivery</option><option value="online">Online Payment</option></select></div><button class="place-btn" id="co-btn" onclick="placeOrder()">Place Order &#8377;${sub+del}</button></div></div>`;
   el.innerHTML=html;
 }
 function cQty(id,delta){const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderCart();updateCartBar();}
 async function placeOrder(){
-  const name=document.getElementById('co-name')?.value,phone=document.getElementById('co-phone')?.value,addr=document.getElementById('co-addr')?.value,pay=document.getElementById('co-pay')?.value;
+  const name=document.getElementById('co-name')?.value;
+  const phone=document.getElementById('co-phone')?.value;
+  const addr=document.getElementById('co-addr')?.value;
+  const pay=document.getElementById('co-pay')?.value;
   const errEl=document.getElementById('co-err');errEl.style.display='none';
   if(!name||!phone||!addr){errEl.textContent='Please fill in name, phone and address';errEl.style.display='block';return;}
   const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Placing order...';
@@ -1626,30 +1718,30 @@ async function placeOrder(){
     cart=[];saveCart();updateCartBar();
     document.getElementById('co-fields').style.display='none';
     document.getElementById('co-success').style.display='block';
-  }catch(e){errEl.textContent='Error placing order.';errEl.style.display='block';btn.disabled=false;btn.textContent='Place Order';}
+  }catch(e){errEl.textContent='Error placing order. Please try again.';errEl.style.display='block';btn.disabled=false;btn.textContent='Place Order';}
 }
+
 async function loadOrders(){
-  const email=document.getElementById('orders-email')?.value,pass=document.getElementById('orders-pass')?.value;
+  const email=document.getElementById('orders-email')?.value;
+  const pass=document.getElementById('orders-pass')?.value;
   const errEl=document.getElementById('orders-err');errEl.style.display='none';
   if(!email||!pass){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
   try{
     const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
     const data=await res.json();if(!data.success)throw new Error('Invalid credentials');
     const token=data.data.token;
-    const oRes=await fetch(API+'/orders/my',{headers:{Authorization:'Bearer '+token}});
+    const oRes=await fetch(API+'/orders/my-orders',{headers:{Authorization:'Bearer '+token}});
     const oData=await oRes.json();
     const orders=oData.data||[];
     const gOrders=JSON.parse(localStorage.getItem('guest_orders')||'[]');
     const all=[...orders,...gOrders].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
     const wrap=document.getElementById('orders-list-wrap');wrap.style.display='block';
-    if(!all.length){wrap.innerHTML='<div class="empty">No orders yet.</div>';return;}
+    if(!all.length){wrap.innerHTML='<div class="empty">No orders yet. Start shopping!</div>';return;}
     wrap.innerHTML=`<div class="orders-list">${all.map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.toString().slice(0,8).toUpperCase()}</span><span class="ostatus s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;">&#8377;${o.total||o.total_amount||0}</div><div style="font-size:12px;color:var(--muted);">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`;
   }catch(e){errEl.textContent=e.message||'Error loading orders';errEl.style.display='block';}
 }
-function initSeller(){
-  if(sellerToken)showSellerDash();
-  else{document.getElementById('sl-login-view').style.display='block';document.getElementById('sl-dash-view').style.display='none';}
-}
+
+function initSeller(){if(sellerToken)showSellerDash();else{document.getElementById('sl-login-view').style.display='block';document.getElementById('sl-dash-view').style.display='none';}}
 async function sellerLogin(){
   const email=document.getElementById('sl-email').value,pass=document.getElementById('sl-pass').value;
   const errEl=document.getElementById('sl-err');errEl.style.display='none';
@@ -1665,21 +1757,22 @@ async function showSellerDash(){
   document.getElementById('sl-login-view').style.display='none';document.getElementById('sl-dash-view').style.display='block';
   try{
     const h={Authorization:'Bearer '+sellerToken};
-    const[dR,pR,oR]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller',{headers:h}).catch(()=>({json:()=>({success:false})}))]);
+    const[dR,pR,oR]=await Promise.all([fetch(API+'/seller/dashboard',{headers:h}),fetch(API+'/seller/products',{headers:h}),fetch(API+'/orders/seller-orders',{headers:h}).catch(()=>({json:()=>({success:false})}))]);
     const dash=await dR.json(),prods=await pR.json(),orders=await oR.json().catch(()=>({success:false}));
-    if(dash.success&&dash.data?.seller){const s=dash.data.seller;document.getElementById('s-name').textContent=s.store_name||'Your Store';document.getElementById('s-cat').textContent=s.category||'';const st=document.getElementById('s-status');st.textContent=s.is_approved?'Active':'Pending';st.className='sbadge '+(s.is_approved?'sbadge-active':'sbadge-pending');}
+    if(dash.success&&dash.data?.seller){const s=dash.data.seller;document.getElementById('s-name').textContent=s.store_name||'Your Store';document.getElementById('s-cat').textContent=s.category||'';const st=document.getElementById('s-status');st.textContent=s.is_approved?'Active':'Pending Approval';st.className='sbadge '+(s.is_approved?'sbadge-active':'sbadge-pending');}
     const pl=prods.success?(prods.data||[]):[];const ol=orders.success?(orders.data||[]):[];
     const rev=ol.filter(o=>o.status==='delivered').reduce((s,o)=>s+(o.total_amount||0),0);
     document.getElementById('s-prods').textContent=pl.length;document.getElementById('s-orders').textContent=ol.length;document.getElementById('s-rev').textContent='&#8377;'+rev;
-    document.getElementById('seller-prods-content').innerHTML=pl.length?`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">${pl.map(p=>`<div style="background:var(--white);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);display:flex;gap:12px;align-items:center;"><div style="width:54px;height:54px;border-radius:10px;background:var(--teal-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;">${p.image_url?`<img src="${p.image_url}" style="width:100%;height:100%;object-fit:contain;">`:'🛒'}</div><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">&#8377;${p.price}</div></div></div>`).join('')}</div>`:'<div class="empty">No products yet.</div>';
+    document.getElementById('seller-prods-content').innerHTML=pl.length?`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">${pl.map(p=>`<div style="background:var(--white);border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);display:flex;gap:12px;align-items:center;"><div style="width:54px;height:54px;border-radius:10px;background:var(--teal-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;">${p.image_url?`<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;">`:'🛒'}</div><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">&#8377;${p.price}</div></div></div>`).join('')}</div>`:'<div class="empty">No products yet.</div>';
     document.getElementById('seller-orders-content').innerHTML=ol.length?`<div class="orders-list">${ol.slice(0,30).map(o=>`<div class="order-card"><div class="order-top"><span class="order-id">#${o.id.slice(0,8).toUpperCase()}</span><span class="ostatus s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span></div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;">&#8377;${o.total_amount||0}</div><div style="font-size:12px;color:var(--muted);">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>`).join('')}</div>`:'<div class="empty">No orders yet.</div>';
-  }catch(e){document.getElementById('sl-dash-view').innerHTML='<div class="empty">Could not load dashboard.</div>';}
+  }catch(e){document.getElementById('sl-dash-view').innerHTML='<div class="empty">Could not load dashboard. Please try again.</div>';}
 }
 function switchSellerTab(tab){
   document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['products','orders'][i]===tab));
   document.getElementById('st-products').style.display=tab==='products'?'block':'none';
   document.getElementById('st-orders').style.display=tab==='orders'?'block':'none';
 }
+
 async function registerSeller(){
   const store=document.getElementById('sr-store').value.trim(),name=document.getElementById('sr-name').value.trim(),email=document.getElementById('sr-email').value.trim(),phone=document.getElementById('sr-phone').value.trim(),pass=document.getElementById('sr-pass').value.trim(),cat=document.getElementById('sr-cat').value,addr=document.getElementById('sr-address').value.trim();
   const errEl=document.getElementById('sr-err'),sucEl=document.getElementById('sr-suc');errEl.style.display='none';sucEl.style.display='none';
@@ -1694,43 +1787,87 @@ async function registerSeller(){
     sucEl.textContent='Store registered! Our team will review and activate it within 24 hours.';sucEl.style.display='block';btn.textContent='Registered!';
   }catch(e){errEl.textContent=e.message||'Error registering store';errEl.style.display='block';btn.disabled=false;btn.textContent='Register Store';}
 }
- btn.disabled=false;btn.textContent='Register Store';
-  }
-}
-
 async function registerRider(){
   const name=document.getElementById('rr-name').value,email=document.getElementById('rr-email').value,phone=document.getElementById('rr-phone').value,pass=document.getElementById('rr-pass').value,vehicle=document.getElementById('rr-vehicle').value,area=document.getElementById('rr-area').value;
   const errEl=document.getElementById('rr-err'),sucEl=document.getElementById('rr-suc');errEl.style.display='none';sucEl.style.display='none';
   if(!name||!email||!phone||!pass){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
   try{
-    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,password:pass,vehicle_type:vehicle,area})});
+    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass,name,phone,role:'rider',vehicle_type:vehicle,area})});
     const data=await res.json();if(!data.success)throw new Error(data.message||'Registration failed');
-    sucEl.textContent='Registered as rider! We will contact you shortly.';sucEl.style.display='block';
-  }catch(e){errEl.textContent=e.message||'Error registering';errEl.style.display='block';}
+    sucEl.textContent='Registered as rider! Our team will contact you within 24 hours.';sucEl.style.display='block';
+  }catch(e){errEl.textContent=e.message||'Error registering as rider';errEl.style.display='block';}
 }
-async function registerEventHolder(){
-  const name=document.getElementById('eh-name').value,phone=document.getElementById('eh-phone').value,email=document.getElementById('eh-email').value,event=document.getElementById('eh-event').value,type=document.getElementById('eh-type').value,venue=document.getElementById('eh-venue').value,desc=document.getElementById('eh-desc').value;
-  const errEl=document.getElementById('eh-err'),sucEl=document.getElementById('eh-suc');errEl.style.display='none';sucEl.style.display='none';
-  if(!name||!phone||!event||!venue){errEl.textContent='Please fill in name, phone, event name and venue';errEl.style.display='block';return;}
-  sucEl.textContent='Thank you! Our events team will contact you within 24 hours to discuss your event.';sucEl.style.display='block';
+
+// Event request submission — saves to localStorage (Supabase table optional later)
+async function submitEventRequest(){
+  const name=document.getElementById('ev-name').value,type=document.getElementById('ev-type').value,crowd=document.getElementById('ev-crowd').value,venue=document.getElementById('ev-venue').value,budget=document.getElementById('ev-budget').value,orgname=document.getElementById('ev-orgname').value,phone=document.getElementById('ev-phone').value,email=document.getElementById('ev-email').value,details=document.getElementById('ev-details').value;
+  const errEl=document.getElementById('event-err'),sucEl=document.getElementById('event-suc');errEl.style.display='none';sucEl.style.display='none';
+  if(!name||!orgname||!phone){errEl.textContent='Please fill in event name, your name and phone';errEl.style.display='block';return;}
+  const requests=JSON.parse(localStorage.getItem('event_requests')||'[]');
+  requests.push({name,type,crowd,venue,budget,orgname,phone,email,details,status:'requested',created_at:new Date().toISOString()});
+  localStorage.setItem('event_requests',JSON.stringify(requests));
+  sucEl.textContent='Event request submitted! Our team will contact you within 24 hours with a quote.';sucEl.style.display='block';
+  document.getElementById('ev-name').value='';document.getElementById('ev-orgname').value='';document.getElementById('ev-phone').value='';
 }
+
+// Market listing
+async function submitListing(){
+  const title=document.getElementById('mk-title').value,cat=document.getElementById('mk-cat').value,condition=document.getElementById('mk-condition').value,price=document.getElementById('mk-price').value,location=document.getElementById('mk-location').value,desc=document.getElementById('mk-desc').value,name=document.getElementById('mk-name').value,phone=document.getElementById('mk-phone').value;
+  const errEl=document.getElementById('market-err'),sucEl=document.getElementById('market-suc');errEl.style.display='none';sucEl.style.display='none';
+  if(!title||!price||!name||!phone){errEl.textContent='Please fill in item title, price, name and phone';errEl.style.display='block';return;}
+  const listings=JSON.parse(localStorage.getItem('market_listings')||'[]');
+  listings.push({title,cat,condition,price,location,desc,name,phone,status:'pending',created_at:new Date().toISOString()});
+  localStorage.setItem('market_listings',JSON.stringify(listings));
+  sucEl.textContent='Listing submitted! Our team will review and publish it within 24 hours.';sucEl.style.display='block';
+  document.getElementById('mk-title').value='';document.getElementById('mk-price').value='';
+}
+
+// Fix provider
+async function submitFixProvider(){
+  const name=document.getElementById('fix-name').value,service=document.getElementById('fix-service').value,exp=document.getElementById('fix-exp').value,area=document.getElementById('fix-area').value,phone=document.getElementById('fix-phone').value,email=document.getElementById('fix-email').value;
+  const errEl=document.getElementById('fix-err'),sucEl=document.getElementById('fix-suc');errEl.style.display='none';sucEl.style.display='none';
+  if(!name||!phone){errEl.textContent='Please fill in name and phone';errEl.style.display='block';return;}
+  const providers=JSON.parse(localStorage.getItem('fix_providers')||'[]');
+  providers.push({name,service,exp,area,phone,email,status:'pending',created_at:new Date().toISOString()});
+  localStorage.setItem('fix_providers',JSON.stringify(providers));
+  sucEl.textContent='Application submitted! Our team will contact you within 24 hours.';sucEl.style.display='block';
+}
+
+// Clothing seller
+async function submitClothingSeller(){
+  const store=document.getElementById('cl-store').value,name=document.getElementById('cl-name').value,cat=document.getElementById('cl-cat').value,phone=document.getElementById('cl-phone').value,email=document.getElementById('cl-email').value,location=document.getElementById('cl-location').value;
+  const errEl=document.getElementById('cloth-err'),sucEl=document.getElementById('cloth-suc');errEl.style.display='none';sucEl.style.display='none';
+  if(!store||!phone){errEl.textContent='Please fill in store name and phone';errEl.style.display='block';return;}
+  const sellers=JSON.parse(localStorage.getItem('clothing_sellers')||'[]');
+  sellers.push({store,name,cat,phone,email,location,status:'pending',created_at:new Date().toISOString()});
+  localStorage.setItem('clothing_sellers',JSON.stringify(sellers));
+  sucEl.textContent='Store registered! Our team will contact you within 24 hours.';sucEl.style.display='block';
+}
+
 function switchFb(tab){
   document.querySelectorAll('.fb-tab').forEach((t,i)=>t.classList.toggle('active',['complaint','suggestion'][i]===tab));
   document.getElementById('fb-complaint').style.display=tab==='complaint'?'block':'none';
   document.getElementById('fb-suggestion').style.display=tab==='suggestion'?'block':'none';
 }
-async function submitComplaint(){
+function submitComplaint(){
   const contact=document.getElementById('fb-ccontact').value,msg=document.getElementById('fb-cmsg').value;
   const errEl=document.getElementById('fb-cerr'),sucEl=document.getElementById('fb-csuc');errEl.style.display='none';sucEl.style.display='none';
   if(!contact||!msg){errEl.textContent='Please fill in contact and complaint';errEl.style.display='block';return;}
-  sucEl.textContent='Complaint received. We will look into it and get back to you.';sucEl.style.display='block';
+  const complaints=JSON.parse(localStorage.getItem('kasheer_complaints')||'[]');
+  complaints.push({name:document.getElementById('fb-cname').value,contact,module:document.getElementById('fb-cmodule').value,msg,date:new Date().toISOString()});
+  localStorage.setItem('kasheer_complaints',JSON.stringify(complaints));
+  sucEl.textContent='Complaint received. We will look into it and get back to you within 24 hours.';sucEl.style.display='block';
 }
-async function submitSuggestion(){
+function submitSuggestion(){
   const msg=document.getElementById('fb-smsg').value;
   const errEl=document.getElementById('fb-serr'),sucEl=document.getElementById('fb-ssuc');errEl.style.display='none';sucEl.style.display='none';
   if(!msg){errEl.textContent='Please write your suggestion';errEl.style.display='block';return;}
+  const suggestions=JSON.parse(localStorage.getItem('kasheer_suggestions')||'[]');
+  suggestions.push({name:document.getElementById('fb-sname').value,msg,date:new Date().toISOString()});
+  localStorage.setItem('kasheer_suggestions',JSON.stringify(suggestions));
   sucEl.textContent='Thank you! Your suggestion has been received.';sucEl.style.display='block';
 }
+
 updateCartBar();
 </script>
 </body>
