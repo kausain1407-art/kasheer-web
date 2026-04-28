@@ -1681,38 +1681,20 @@ function switchSellerTab(tab){
   document.getElementById('st-orders').style.display=tab==='orders'?'block':'none';
 }
 async function registerSeller(){
-  const f=id=>document.getElementById(id);
-  const store=f('sr-store').value.trim();
-  const name=f('sr-name').value.trim();
-  const email=f('sr-email').value.trim();
-  const phone=f('sr-phone').value.trim();
-  const pass=f('sr-pass').value.trim();
-  const cat=f('sr-cat').value.trim();
-  const addr=f('sr-address').value.trim();
-  const errEl=f('sr-err'),sucEl=f('sr-suc');
-  errEl.style.display='none';sucEl.style.display='none';
-  const btn=document.querySelector('#page-seller-register .submit-btn');
-  btn.disabled=true;btn.textContent='Registering... Please wait';
+  const store=document.getElementById('sr-store').value.trim(),name=document.getElementById('sr-name').value.trim(),email=document.getElementById('sr-email').value.trim(),phone=document.getElementById('sr-phone').value.trim(),pass=document.getElementById('sr-pass').value.trim(),cat=document.getElementById('sr-cat').value,addr=document.getElementById('sr-address').value.trim();
+  const errEl=document.getElementById('sr-err'),sucEl=document.getElementById('sr-suc');errEl.style.display='none';sucEl.style.display='none';
+  if(!store||!name||!email||!phone||!pass){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
+  const btn=document.querySelector('#page-seller-register .submit-btn');btn.disabled=true;btn.textContent='Registering...';
   try{
-    const controller=new AbortController();
-    const tid=setTimeout(()=>controller.abort(),40000);
-    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,password:pass,role:'seller'}),signal:controller.signal});
-    clearTimeout(tid);
-    const data=await res.json();
-    if(!data.success)throw new Error(data.message||'Registration failed');
-    const token=data.data.token;
-    const selRes=await fetch(API+'/seller/register',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({storeName:store,category:cat,address:addr,phone,zoneId:1})});
-    const selData=await selRes.json();
-    if(!selData.success)throw new Error(selData.message||'Store setup failed');
-    sucEl.textContent='Store registered! We will review and activate shortly.';
-    sucEl.style.display='block';
-    sucEl.scrollIntoView({behavior:'smooth',block:'center'});
-    btn.textContent='Registered!';
-  }catch(e){
-    errEl.textContent=e.name==='AbortError'?'Server waking up, wait 30s and retry':e.message||'Error';
-    errEl.style.display='block';
-    errEl.scrollIntoView({behavior:'smooth',block:'center'});
-    btn.disabled=false;btn.textContent='Register Store';
+    const r1=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass,name,phone,role:'seller'})});
+    const d1=await r1.json();if(!d1.success)throw new Error(d1.message||'Registration failed');
+    const token=d1.data.token;
+    const r2=await fetch(API+'/seller/register',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({storeName:store,category:cat,address:addr,phone,zoneId:1})});
+    const d2=await r2.json();if(!d2.success)throw new Error(d2.message||'Store setup failed');
+    sucEl.textContent='Store registered! Our team will review and activate it within 24 hours.';sucEl.style.display='block';btn.textContent='Registered!';
+  }catch(e){errEl.textContent=e.message||'Error registering store';errEl.style.display='block';btn.disabled=false;btn.textContent='Register Store';}
+}
+ btn.disabled=false;btn.textContent='Register Store';
   }
 }
 
