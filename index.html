@@ -1681,45 +1681,27 @@ function switchSellerTab(tab){
   document.getElementById('st-orders').style.display=tab==='orders'?'block':'none';
 }
 async function registerSeller(){
-  const getVal=id=>{
-    const el=document.getElementById(id);
-    if(!el) return '';
-    // Try native getter (bypasses Chrome autofill shadow)
-    let v='';
-    try{v=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').get.call(el);}catch(e){}
-    if(!v) v=el.value||'';
-    if(!v) v=el.dataset.val||'';
-    return v.trim();
-  };
-  const store=getVal('sr-store');
-  const name=getVal('sr-name');
-  const email=getVal('sr-email');
-  const phone=getVal('sr-phone');
-  const pass=getVal('sr-pass');
-  const cat=(document.getElementById('sr-cat').value||'').trim();
-  const addr=(document.getElementById('sr-address').value||'').trim();
-  const errEl=document.getElementById('sr-err'),sucEl=document.getElementById('sr-suc');
+  const f=id=>document.getElementById(id);
+  const store=f('sr-store').value.trim();
+  const name=f('sr-name').value.trim();
+  const email=f('sr-email').value.trim();
+  const phone=f('sr-phone').value.trim();
+  const pass=f('sr-pass').value.trim();
+  const cat=f('sr-cat').value.trim();
+  const addr=f('sr-address').value.trim();
+  const errEl=f('sr-err'),sucEl=f('sr-suc');
   errEl.style.display='none';sucEl.style.display='none';
-  // Clear previous highlights
-  ['sr-store','sr-name','sr-email','sr-phone','sr-pass'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.border='';});
-  const missing=[];
-  if(!store){missing.push('Store Name');document.getElementById('sr-store').style.border='2px solid #C62828';}
-  if(!name){missing.push('Your Name');document.getElementById('sr-name').style.border='2px solid #C62828';}
-  if(!email){missing.push('Email');document.getElementById('sr-email').style.border='2px solid #C62828';}
-  if(!phone){missing.push('Phone');document.getElementById('sr-phone').style.border='2px solid #C62828';}
-  if(!pass){missing.push('Password');document.getElementById('sr-pass').style.border='2px solid #C62828';}
-  if(missing.length){
-    errEl.innerHTML='Please fill in: <strong>'+missing.join(', ')+'</strong>';
-    errEl.style.display='block';
-    errEl.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
   const btn=document.querySelector('#page-seller-register .submit-btn');
   btn.disabled=true;btn.textContent='Registering… Please wait';
   try{
     const controller=new AbortController();
-    const tid=setTimeout(()=>controller.abort(),25000);
-    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({store_name:store,owner_name:name,email:email,phone:phone,password:pass,category:cat,address:addr}),signal:controller.signal});
+    const tid=setTimeout(()=>controller.abort(),30000);
+    const res=await fetch(API+'/auth/signup',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({store_name:store,owner_name:name,email,phone,password:pass,category:cat,address:addr}),
+      signal:controller.signal
+    });
     clearTimeout(tid);
     const data=await res.json();
     if(!data.success)throw new Error(data.message||'Registration failed');
@@ -1728,8 +1710,14 @@ async function registerSeller(){
     sucEl.scrollIntoView({behavior:'smooth',block:'center'});
     btn.textContent='Registered!';
   }catch(e){
-    const msg=e.name==='AbortError'?'Server is waking up — please try again in 30 seconds.':(e.message||'Error registering. Please check your connection.');
-    errEl.textContent=msg;errEl.style.display='block';
+    if(e.name==='AbortError'){
+      errEl.textContent='Server is waking up (free tier). Wait 30 seconds and try again.';
+    } else if(e.message==='Failed to fetch'){
+      errEl.textContent='Could not reach server. Check your internet connection.';
+    } else {
+      errEl.textContent=e.message||'Something went wrong. Try again.';
+    }
+    errEl.style.display='block';
     errEl.scrollIntoView({behavior:'smooth',block:'center'});
     btn.disabled=false;btn.textContent='Register Store';
   }
