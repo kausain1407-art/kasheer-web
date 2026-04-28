@@ -1692,36 +1692,30 @@ async function registerSeller(){
   const errEl=f('sr-err'),sucEl=f('sr-suc');
   errEl.style.display='none';sucEl.style.display='none';
   const btn=document.querySelector('#page-seller-register .submit-btn');
-  btn.disabled=true;btn.textContent='Registeringâ€¦ Please wait';
+  btn.disabled=true;btn.textContent='Registering... Please wait';
   try{
     const controller=new AbortController();
-    const tid=setTimeout(()=>controller.abort(),30000);
-    const res=await fetch(API+'/auth/signup',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({store_name:store,owner_name:name,email,phone,password:pass,category:cat,address:addr}),
-      signal:controller.signal
-    });
+    const tid=setTimeout(()=>controller.abort(),40000);
+    const res=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,password:pass,role:'seller'}),signal:controller.signal});
     clearTimeout(tid);
     const data=await res.json();
     if(!data.success)throw new Error(data.message||'Registration failed');
-    sucEl.textContent='âœ… Store registered! We will review and activate it shortly.';
+    const token=data.data.token;
+    const selRes=await fetch(API+'/seller/register',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({storeName:store,category:cat,address:addr,phone,zoneId:1})});
+    const selData=await selRes.json();
+    if(!selData.success)throw new Error(selData.message||'Store setup failed');
+    sucEl.textContent='Store registered! We will review and activate shortly.';
     sucEl.style.display='block';
     sucEl.scrollIntoView({behavior:'smooth',block:'center'});
     btn.textContent='Registered!';
   }catch(e){
-    if(e.name==='AbortError'){
-      errEl.textContent='Server is waking up (free tier). Wait 30 seconds and try again.';
-    } else if(e.message==='Failed to fetch'){
-      errEl.textContent='Could not reach server. Check your internet connection.';
-    } else {
-      errEl.textContent=e.message||'Something went wrong. Try again.';
-    }
+    errEl.textContent=e.name==='AbortError'?'Server waking up, wait 30s and retry':e.message||'Error';
     errEl.style.display='block';
     errEl.scrollIntoView({behavior:'smooth',block:'center'});
     btn.disabled=false;btn.textContent='Register Store';
   }
 }
+
 async function registerRider(){
   const name=document.getElementById('rr-name').value,email=document.getElementById('rr-email').value,phone=document.getElementById('rr-phone').value,pass=document.getElementById('rr-pass').value,vehicle=document.getElementById('rr-vehicle').value,area=document.getElementById('rr-area').value;
   const errEl=document.getElementById('rr-err'),sucEl=document.getElementById('rr-suc');errEl.style.display='none';sucEl.style.display='none';
