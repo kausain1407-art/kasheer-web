@@ -488,16 +488,16 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       <p>Join Kasheer and start selling to customers near you</p>
       <div class="err-box" id="sr-err"></div>
       <div class="suc-box" id="sr-suc"></div>
-      <div class="frow"><label>Store Name</label><input type="text" id="sr-store" placeholder="e.g. Ali General Store" autocomplete="organization"></div>
-      <div class="frow"><label>Your Name</label><input type="text" id="sr-name" placeholder="Full name" autocomplete="name"></div>
-      <div class="frow"><label>Email</label><input type="email" id="sr-email" placeholder="your@email.com" autocomplete="email" onchange="this.setAttribute('value',this.value)" oninput="this.setAttribute('value',this.value)"></div>
-      <div class="frow"><label>Phone</label><input type="tel" id="sr-phone" placeholder="+91 9999999999" autocomplete="tel"></div>
-      <div class="frow"><label>Password</label><input type="password" id="sr-pass" placeholder="Create a password" autocomplete="new-password"></div>
+      <div class="frow"><label>Store Name</label><input type="text" id="sr-store" placeholder="e.g. Ali General Store" autocomplete="organization" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
+      <div class="frow"><label>Your Name</label><input type="text" id="sr-name" placeholder="Full name" autocomplete="name" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
+      <div class="frow"><label>Email</label><input type="email" id="sr-email" placeholder="your@email.com" autocomplete="email" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
+      <div class="frow"><label>Phone</label><input type="tel" id="sr-phone" placeholder="+91 9999999999" autocomplete="tel" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
+      <div class="frow"><label>Password</label><input type="password" id="sr-pass" placeholder="Create a password" autocomplete="new-password" oninput="this.dataset.val=this.value" onchange="this.dataset.val=this.value"></div>
       <div class="frow"><label>Category</label>
         <select id="sr-cat"><option>Groceries</option><option>Bakery</option><option>Pharmacy</option><option>Electronics</option><option>Clothing</option><option>Other</option></select>
       </div>
       <div class="frow"><label>Store Address</label><textarea id="sr-address" placeholder="Full address in Srinagar"></textarea></div>
-      <button class="submit-btn" onclick="registerSeller()">Register Store</button>
+      <button class="submit-btn" onclick="this.disabled=true;this.textContent='Processing…';setTimeout(()=>registerSeller().finally(()=>{if(document.getElementById('sr-err').style.display!=='none'||!document.getElementById('sr-suc').style.display||document.getElementById('sr-suc').style.display==='none'){this.disabled=false;this.textContent='Register Store';}}),80)">Register Store</button>
     </div>
   </div>
 </div>
@@ -1681,15 +1681,15 @@ function switchSellerTab(tab){
   document.getElementById('st-orders').style.display=tab==='orders'?'block':'none';
 }
 async function registerSeller(){
-  // Read values directly — works with manual input and browser autofill
   const getVal=id=>{
     const el=document.getElementById(id);
     if(!el) return '';
-    // Try nativeInputValueGetter for Chrome autofill bypass
-    try{
-      const nativeGetter=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').get;
-      return (nativeGetter.call(el)||'').trim();
-    }catch(e){return (el.value||'').trim();}
+    // Try native getter (bypasses Chrome autofill shadow)
+    let v='';
+    try{v=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').get.call(el);}catch(e){}
+    if(!v) v=el.value||'';
+    if(!v) v=el.dataset.val||'';
+    return v.trim();
   };
   const store=getVal('sr-store');
   const name=getVal('sr-name');
@@ -1698,14 +1698,11 @@ async function registerSeller(){
   const pass=getVal('sr-pass');
   const cat=(document.getElementById('sr-cat').value||'').trim();
   const addr=(document.getElementById('sr-address').value||'').trim();
-  // Debug: log what was read (remove after testing)
-  // console.log({store,name,email,phone,pass});
   const errEl=document.getElementById('sr-err'),sucEl=document.getElementById('sr-suc');
   errEl.style.display='none';sucEl.style.display='none';
-  const missing=[];
-  const fieldMap={store:'sr-store',name:'sr-name',email:'sr-email',phone:'sr-phone',pass:'sr-pass'};
   // Clear previous highlights
-  Object.values(fieldMap).forEach(id=>{const el=document.getElementById(id);if(el)el.style.border='';});
+  ['sr-store','sr-name','sr-email','sr-phone','sr-pass'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.border='';});
+  const missing=[];
   if(!store){missing.push('Store Name');document.getElementById('sr-store').style.border='2px solid #C62828';}
   if(!name){missing.push('Your Name');document.getElementById('sr-name').style.border='2px solid #C62828';}
   if(!email){missing.push('Email');document.getElementById('sr-email').style.border='2px solid #C62828';}
