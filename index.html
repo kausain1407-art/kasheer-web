@@ -1774,18 +1774,29 @@ function switchSellerTab(tab){
 }
 
 async function registerSeller(){
-  const store=document.getElementById('sr-store').value.trim(),name=document.getElementById('sr-name').value.trim(),email=document.getElementById('sr-email').value.trim(),phone=document.getElementById('sr-phone').value.trim(),pass=document.getElementById('sr-pass').value.trim(),cat=document.getElementById('sr-cat').value,addr=document.getElementById('sr-address').value.trim();
-  const errEl=document.getElementById('sr-err'),sucEl=document.getElementById('sr-suc');errEl.style.display='none';sucEl.style.display='none';
-  if(!store||!name||!email||!phone||!pass){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
-  const btn=document.querySelector('#page-seller-register .submit-btn');btn.disabled=true;btn.textContent='Registering...';
+  const g=id=>{const el=document.getElementById(id);if(!el)return "";try{return Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value").get.call(el).trim();}catch(e){return el.value.trim();}};
+  const store=g("sr-store"),name=g("sr-name"),email=g("sr-email"),phone=g("sr-phone"),pass=g("sr-pass");
+  const cat=document.getElementById("sr-cat").value,addr=document.getElementById("sr-address").value.trim();
+  const errEl=document.getElementById("sr-err"),sucEl=document.getElementById("sr-suc");
+  errEl.style.display="none";sucEl.style.display="none";
+  const btn=document.querySelector("#page-seller-register .submit-btn");
+  btn.disabled=true;btn.textContent="Registering...";
   try{
-    const r1=await fetch(API+'/auth/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass,name,phone,role:'seller'})});
-    const d1=await r1.json();if(!d1.success)throw new Error(d1.message||'Registration failed');
-    const token=d1.data.token;
-    const r2=await fetch(API+'/seller/register',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({storeName:store,category:cat,address:addr,phone,zoneId:1})});
-    const d2=await r2.json();if(!d2.success)throw new Error(d2.message||'Store setup failed');
-    sucEl.textContent='Store registered! Our team will review and activate it within 24 hours.';sucEl.style.display='block';btn.textContent='Registered!';
-  }catch(e){errEl.textContent=e.message||'Error registering store';errEl.style.display='block';btn.disabled=false;btn.textContent='Register Store';}
+    const r1=await fetch(API+"/auth/signup",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,password:pass,name,phone,role:"seller"})});
+    const d1=await r1.json();
+    if(!d1.success)throw new Error(d1.message||"Signup failed");
+    const token=d1.data?.token||d1.token;
+    if(!token)throw new Error("No token returned from server");
+    const r2=await fetch(API+"/seller/register",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},body:JSON.stringify({storeName:store,category:cat,address:addr,phone,zoneId:'6a968aba-7b78-4e12-a023-0f3a2de89a75'})});
+    const d2=await r2.json();
+    if(!d2.success)throw new Error(d2.message||"Store setup failed");
+    sucEl.textContent="Store registered! Our team will review and activate it within 24 hours.";
+    sucEl.style.display="block";btn.textContent="Registered!";
+  }catch(e){
+    const msg=e.name==="AbortError"?"Server waking up, try again in 30s.":e.message==="Failed to fetch"?"Cannot reach server.":e.message||"Something went wrong.";
+    errEl.textContent=msg;errEl.style.display="block";
+    btn.disabled=false;btn.textContent="Register Store";
+  }
 }
 async function registerRider(){
   const name=document.getElementById('rr-name').value,email=document.getElementById('rr-email').value,phone=document.getElementById('rr-phone').value,pass=document.getElementById('rr-pass').value,vehicle=document.getElementById('rr-vehicle').value,area=document.getElementById('rr-area').value;
