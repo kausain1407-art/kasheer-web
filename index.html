@@ -1896,7 +1896,7 @@ function getGPSLocation(){
       txt.textContent='Location found!';
       btn.style.background='#2E7D32';
       // Show OpenStreetMap embed (free, no API key)
-      const mapSrc=`https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&layer=mapnik&marker=${lat},${lng}`;
+      const mapSrc=`https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.0015},${lat-0.0015},${lng+0.0015},${lat+0.0015}&layer=mapnik&marker=${lat},${lng}`;
       document.getElementById('map-frame').src=mapSrc;
       document.getElementById('map-preview').style.display='block';
       document.getElementById('map-coords-label').textContent=`📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
