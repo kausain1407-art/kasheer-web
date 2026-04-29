@@ -475,17 +475,26 @@ async function loadRiders() {
     const d = await api('/admin/riders');
     const arr = Array.isArray(d) ? d : (d.riders || []);
     if (!arr.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No riders found</div></td></tr>'; return; }
-    tbody.innerHTML = arr.map(r => `
-      <tr>
-        <td><strong>${r.name || r.user?.name || '—'}</strong></td>
-        <td>${r.phone || r.user?.phone || '—'}</td>
-        <td>${r.zone?.name || r.zone_id || '—'}</td>
-        <td><span class="badge badge-${r.is_banned ? 'banned' : r.is_approved ? 'approved' : 'pending'}">${r.is_banned ? 'Banned' : r.is_approved ? 'Active' : 'Pending'}</span></td>
-        <td><div class="btn-group">
-          ${!r.is_approved && !r.is_banned ? `<button class="btn btn-approve" onclick="approveRider('${r.id}')">✓ Approve</button>` : ''}
-          ${!r.is_banned ? `<button class="btn btn-reject" onclick="banRider('${r.id}')">🚫 Ban</button>` : ''}
-        </div></td>
-      </tr>`).join('');
+    console.log('RIDER SAMPLE:', JSON.stringify(arr[0]));
+    tbody.innerHTML = arr.map(r => {
+      const u = r.user || r.users || {};
+      const name = r.name || u.name || r.rider_name || 'Unknown';
+      const phone = r.phone || u.phone || r.rider_phone || 'N/A';
+      const zone = (r.zone && r.zone.name) || r.zone_name || r.zone_id || 'N/A';
+      const banned = r.is_banned || r.banned || false;
+      const approved = r.is_approved || r.approved || r.status === 'active' || false;
+      const st = banned ? 'banned' : approved ? 'approved' : 'pending';
+      const stLabel = banned ? 'Banned' : approved ? 'Active' : 'Pending';
+      return '<tr>' +
+        '<td><strong>' + name + '</strong></td>' +
+        '<td>' + phone + '</td>' +
+        '<td>' + zone + '</td>' +
+        '<td><span class="badge badge-' + st + '">' + stLabel + '</span></td>' +
+        '<td><div class="btn-group">' +
+        (!approved && !banned ? '<button class="btn btn-approve" onclick="approveRider(\'' + r.id + '\')">Approve</button>' : '') +
+        (!banned ? '<button class="btn btn-reject" onclick="banRider(\'' + r.id + '\')">Ban</button>' : '') +
+        '</div></td></tr>';
+    }).join('');
   } catch(e) { tbody.innerHTML = `<tr><td colspan="5"><div class="empty">Error: ${e.message}</div></td></tr>`; }
 }
 
