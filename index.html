@@ -1674,7 +1674,7 @@ let activeCat='All';
 let sellerToken=localStorage.getItem('seller_token')||null;
 let allBackendProducts=[];
 
-function nav(page){
+function nav(page, pushState=true){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   if(page==='grocery')initGrocery();
@@ -1682,6 +1682,10 @@ function nav(page){
   if(page==='seller-login')initSeller();
   if(page==='myorders')initMyOrders();
   window.scrollTo(0,0);
+  if(pushState){
+    const url = page==='home' ? '/' : '/?p='+page;
+    history.pushState({page}, '', url);
+  }
 }
 function openSide(){document.getElementById('sidemenu').classList.add('open');document.getElementById('overlay').classList.add('show');}
 function closeSide(){document.getElementById('sidemenu').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
@@ -2211,6 +2215,21 @@ function submitSuggestion(){
 }
 
 updateCartBar();
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(e){
+  const page = e.state?.page || 'home';
+  nav(page, false);
+});
+
+// On first load, check if URL has a page param
+(function initFromURL(){
+  const params = new URLSearchParams(window.location.search);
+  const page = params.get('p');
+  if(page && document.getElementById('page-'+page)){
+    nav(page, false);
+  }
+})();
 </script>
 </body>
 </html>
