@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -200,6 +200,7 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
   <div class="sm-section">Account</div>
   <button class="sm-item" onclick="nav('seller-login');closeSide()">🪐 Seller Login</button>
   <button class="sm-item" onclick="nav('seller-register');closeSide()">➕ Register Store</button>
+  <button class="sm-item" onclick="nav('rider-login');closeSide()">🚴 Rider Login</button>
   <button class="sm-item" onclick="nav('rider-register');closeSide()">🚴 Become a Rider</button>
   <button class="sm-item" onclick="nav('myorders');closeSide()">📦 My Orders</button>
   <div class="sm-divider"></div>
@@ -594,7 +595,27 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
         <button class="tab active" onclick="switchSellerTab('products')">Products</button>
         <button class="tab" onclick="switchSellerTab('orders')">Orders</button>
       </div>
-      <div id="st-products"><div id="seller-prods-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></div>
+      <div id="st-products">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div style="font-size:13px;color:var(--muted);font-weight:600;">Your Products</div>
+          <button onclick="openAddProduct()" style="padding:9px 20px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">+ Add Product</button>
+        </div>
+        <!-- Add product form (hidden by default) -->
+        <div id="add-prod-form" style="display:none;background:var(--white);border-radius:var(--radius-sm);padding:22px;border:1px solid var(--border);margin-bottom:20px;">
+          <div style="font-size:16px;font-weight:700;margin-bottom:16px;">Add New Product</div>
+          <div class="err-box" id="ap-err"></div>
+          <div class="frow"><label>Product Name</label><input type="text" id="ap-name" placeholder="e.g. Basmati Rice 1kg"></div>
+          <div class="frow"><label>Price (₹)</label><input type="number" id="ap-price" placeholder="99"></div>
+          <div class="frow"><label>Description</label><input type="text" id="ap-desc" placeholder="Short description"></div>
+          <div class="frow"><label>Stock Quantity</label><input type="number" id="ap-stock" placeholder="50" value="50"></div>
+          <div class="frow"><label>Image URL (optional)</label><input type="text" id="ap-img" placeholder="https://..."></div>
+          <div style="display:flex;gap:10px;margin-top:8px;">
+            <button onclick="addProduct()" style="flex:1;padding:12px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Save Product</button>
+            <button onclick="document.getElementById('add-prod-form').style.display='none'" style="padding:12px 20px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:50px;font-size:14px;cursor:pointer;font-family:'Syne',sans-serif;">Cancel</button>
+          </div>
+        </div>
+        <div id="seller-prods-content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+      </div>
       <div id="st-orders" style="display:none;"><div id="seller-orders-content"><div class="loading"><div class="spinner"></div>Loading...</div></div></div>
     </div>
   </div>
@@ -643,6 +664,56 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
       </div>
       <div class="frow"><label>Area in Srinagar</label><input type="text" id="rr-area" placeholder="e.g. Lal Chowk, Rajbagh..."></div>
       <button class="submit-btn" onclick="registerRider()">Register as Rider</button>
+    </div>
+  </div>
+</div>
+
+<!-- RIDER LOGIN PAGE -->
+<div class="page" id="page-rider-login">
+  <div id="rl-login-view">
+    <div class="form-wrap">
+      <button onclick="nav('home')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:9px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:24px;">← Back</button>
+      <div class="form-card">
+        <div style="font-size:48px;margin-bottom:14px;">🚴</div>
+        <h2>Rider Login</h2>
+        <p>Access your delivery dashboard</p>
+        <div class="err-box" id="rl-err"></div>
+        <div class="frow"><label>Email</label><input type="email" id="rl-email" placeholder="your@email.com"></div>
+        <div class="frow"><label>Password</label><input type="password" id="rl-pass" placeholder="••••••••"></div>
+        <button class="submit-btn" onclick="riderLogin()">Login to Dashboard</button>
+        <p style="margin-top:18px;font-size:13px;color:var(--muted);">Not a rider yet? <a href="#" style="color:var(--teal);font-weight:600;" onclick="nav('rider-register')">Register here</a></p>
+      </div>
+    </div>
+  </div>
+  <div id="rl-dash-view" style="display:none;">
+    <div class="seller-wrap">
+      <div class="seller-hcard" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);">
+        <div>
+          <h2 id="r-name">Rider</h2>
+          <p id="r-vehicle" style="color:rgba(255,255,255,0.65);font-size:13px;"></p>
+          <span class="sbadge sbadge-active" id="r-status">Active</span>
+        </div>
+        <button class="logout-btn" onclick="riderLogout()">Logout</button>
+      </div>
+      <div class="stats-row">
+        <div class="sstat"><div class="sstat-num" id="r-deliveries">-</div><div class="sstat-label">Deliveries</div></div>
+        <div class="sstat"><div class="sstat-num" id="r-pending">-</div><div class="sstat-label">Pending</div></div>
+        <div class="sstat"><div class="sstat-num" id="r-earnings">-</div><div class="sstat-label">Earnings</div></div>
+      </div>
+      <!-- Availability toggle -->
+      <div style="background:var(--white);border-radius:var(--radius-sm);padding:18px 22px;border:1px solid var(--border);margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:15px;font-weight:700;">Availability</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;" id="r-avail-label">You are currently offline</div>
+        </div>
+        <button id="r-avail-btn" onclick="toggleRiderAvailability()" style="padding:10px 22px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:'Syne',sans-serif;background:var(--teal);color:#fff;transition:background 0.2s;">Go Online</button>
+      </div>
+      <div class="tabs">
+        <button class="tab active" onclick="switchRiderTab('orders')">📦 Active Orders</button>
+        <button class="tab" onclick="switchRiderTab('history')">📋 History</button>
+      </div>
+      <div id="rt-orders"><div id="rider-orders-content"><div class="loading"><div class="spinner"></div>Loading orders...</div></div></div>
+      <div id="rt-history" style="display:none;"><div id="rider-history-content"><div class="loading"><div class="spinner"></div>Loading history...</div></div></div>
     </div>
   </div>
 </div>
@@ -1680,6 +1751,7 @@ function nav(page, pushState=true){
   if(page==='grocery')initGrocery();
   if(page==='cart')renderCart();
   if(page==='seller-login')initSeller();
+  if(page==='rider-login')initRider();
   if(page==='myorders')initMyOrders();
   window.scrollTo(0,0);
   if(pushState){
@@ -2035,6 +2107,8 @@ function initMyOrders(){
     // Hide login section if they have guest orders — not worth cluttering
     if(loginSection) loginSection.style.display='none';
   }
+  // Subscribe to realtime updates for these orders
+  subscribeToOrderUpdates();
 }
 
 async function loadAccountOrders(){
@@ -2088,6 +2162,141 @@ async function sellerLogin(){
   }catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
 }
 function sellerLogout(){sellerToken=null;localStorage.removeItem('seller_token');document.getElementById('sl-dash-view').style.display='none';document.getElementById('sl-login-view').style.display='block';}
+
+// ─── RIDER DASHBOARD ────────────────────────────────────────────────
+let riderToken=localStorage.getItem('rider_token')||null;
+let riderAvailable=false;
+
+function initRider(){
+  if(riderToken)showRiderDash();
+  else{document.getElementById('rl-login-view').style.display='block';document.getElementById('rl-dash-view').style.display='none';}
+}
+
+async function riderLogin(){
+  const email=document.getElementById('rl-email').value,pass=document.getElementById('rl-pass').value;
+  const errEl=document.getElementById('rl-err');errEl.style.display='none';
+  if(!email||!pass){errEl.textContent='Please enter email and password';errEl.style.display='block';return;}
+  try{
+    const res=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
+    const data=await res.json();
+    if(!data.success)throw new Error(data.message||'Login failed');
+    if(data.data?.user?.role!=='rider')throw new Error('This account is not a rider account.');
+    riderToken=data.data.token;localStorage.setItem('rider_token',riderToken);showRiderDash();
+  }catch(e){errEl.textContent=e.message||'Login failed';errEl.style.display='block';}
+}
+
+function riderLogout(){
+  riderToken=null;localStorage.removeItem('rider_token');
+  document.getElementById('rl-dash-view').style.display='none';
+  document.getElementById('rl-login-view').style.display='block';
+}
+
+async function showRiderDash(){
+  document.getElementById('rl-login-view').style.display='none';
+  document.getElementById('rl-dash-view').style.display='block';
+  try{
+    const h={Authorization:'Bearer '+riderToken};
+    // Fetch rider profile
+    const profRes=await fetch(API+'/rider/dashboard',{headers:h}).catch(()=>null);
+    if(profRes&&profRes.ok){
+      const prof=await profRes.json();
+      if(prof.success&&prof.data){
+        const r=prof.data.rider||prof.data;
+        const u=prof.data.user||{};
+        document.getElementById('r-name').textContent=u.name||'Rider';
+        document.getElementById('r-vehicle').textContent=r.vehicle_type?r.vehicle_type.charAt(0).toUpperCase()+r.vehicle_type.slice(1):'';
+        const st=document.getElementById('r-status');
+        if(r.is_banned){st.textContent='Banned';st.className='sbadge sbadge-pending';}
+        else if(!r.is_approved){st.textContent='Pending Approval';st.className='sbadge sbadge-pending';}
+        else{st.textContent='Approved';st.className='sbadge sbadge-active';}
+        riderAvailable=r.is_available||false;
+        updateAvailBtn();
+      }
+    }
+    // Fetch orders
+    const oRes=await fetch(API+'/rider/orders',{headers:h}).catch(()=>null);
+    const oData=oRes&&oRes.ok?await oRes.json():{success:false};
+    const orders=(oData.success&&oData.data)||[];
+    const active=orders.filter(o=>['confirmed','preparing','picked_up'].includes(o.status));
+    const history=orders.filter(o=>['delivered','cancelled'].includes(o.status));
+    const earnings=history.filter(o=>o.status==='delivered').reduce((s,o)=>s+(o.total_amount||0)*0.1,0);
+    document.getElementById('r-deliveries').textContent=history.filter(o=>o.status==='delivered').length;
+    document.getElementById('r-pending').textContent=active.length;
+    document.getElementById('r-earnings').textContent='₹'+Math.round(earnings);
+    // Render active orders
+    document.getElementById('rider-orders-content').innerHTML=active.length?
+      `<div class="orders-list">${active.map(o=>`
+        <div class="order-card">
+          <div class="order-top">
+            <span class="order-id">#${o.id.toString().slice(0,10).toUpperCase()}</span>
+            <span class="ostatus s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--teal-dark);">₹${o.total_amount||0}</div>
+          <div style="font-size:13px;font-weight:600;margin-top:6px;">📍 ${o.delivery_address||o.delivery_area||'—'}</div>
+          ${o.delivery_landmark?`<div style="font-size:12px;color:var(--muted);">Landmark: ${o.delivery_landmark}</div>`:''}
+          ${o.customer_phone?`<div style="font-size:12px;color:var(--muted);margin-top:4px;">📞 ${o.customer_phone}</div>`:''}
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</div>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            ${o.status==='confirmed'?`<button onclick="updateOrderStatus('${o.id}','preparing')" style="padding:8px 16px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Start Preparing</button>`:''}
+            ${o.status==='preparing'?`<button onclick="updateOrderStatus('${o.id}','picked_up')" style="padding:8px 16px;background:#1565C0;color:#fff;border:none;border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Picked Up</button>`:''}
+            ${o.status==='picked_up'?`<button onclick="updateOrderStatus('${o.id}','delivered')" style="padding:8px 16px;background:#2E7D32;color:#fff;border:none;border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Mark Delivered ✓</button>`:''}
+          </div>
+        </div>`).join('')}</div>`
+      :'<div class="empty">No active orders right now. Go online to receive orders.</div>';
+    // Render history
+    document.getElementById('rider-history-content').innerHTML=history.length?
+      `<div class="orders-list">${history.map(o=>`
+        <div class="order-card">
+          <div class="order-top">
+            <span class="order-id">#${o.id.toString().slice(0,10).toUpperCase()}</span>
+            <span class="ostatus s-${o.status||'pending'}">${(o.status||'pending').replace(/_/g,' ')}</span>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;">₹${o.total_amount||0}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">${new Date(o.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+        </div>`).join('')}</div>`
+      :'<div class="empty">No delivery history yet.</div>';
+  }catch(e){
+    document.getElementById('rl-dash-view').innerHTML='<div class="empty">Could not load dashboard. Please try again.</div>';
+  }
+}
+
+function updateAvailBtn(){
+  const btn=document.getElementById('r-avail-btn');
+  const lbl=document.getElementById('r-avail-label');
+  if(!btn||!lbl)return;
+  if(riderAvailable){
+    btn.textContent='Go Offline';btn.style.background='#C62828';
+    lbl.textContent='You are online — ready to receive orders';
+  }else{
+    btn.textContent='Go Online';btn.style.background='var(--teal)';
+    lbl.textContent='You are currently offline';
+  }
+}
+
+async function toggleRiderAvailability(){
+  if(!riderToken)return;
+  riderAvailable=!riderAvailable;
+  updateAvailBtn();
+  try{
+    await fetch(API+'/rider/availability',{method:'PATCH',headers:{'Content-Type':'application/json','Authorization':'Bearer '+riderToken},body:JSON.stringify({is_available:riderAvailable})});
+  }catch(e){riderAvailable=!riderAvailable;updateAvailBtn();}
+}
+
+async function updateOrderStatus(orderId,status){
+  if(!riderToken)return;
+  try{
+    const res=await fetch(API+'/orders/'+orderId+'/status',{method:'PATCH',headers:{'Content-Type':'application/json','Authorization':'Bearer '+riderToken},body:JSON.stringify({status})});
+    const d=await res.json();
+    if(d.success)showRiderDash();
+    else alert('Could not update status: '+(d.message||'try again'));
+  }catch(e){alert('Error updating order status');}
+}
+
+function switchRiderTab(tab){
+  document.querySelectorAll('#page-rider-login .tab').forEach((t,i)=>t.classList.toggle('active',['orders','history'][i]===tab));
+  document.getElementById('rt-orders').style.display=tab==='orders'?'block':'none';
+  document.getElementById('rt-history').style.display=tab==='history'?'block':'none';
+}
 async function showSellerDash(){
   document.getElementById('sl-login-view').style.display='none';document.getElementById('sl-dash-view').style.display='block';
   try{
@@ -2106,6 +2315,33 @@ function switchSellerTab(tab){
   document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['products','orders'][i]===tab));
   document.getElementById('st-products').style.display=tab==='products'?'block':'none';
   document.getElementById('st-orders').style.display=tab==='orders'?'block':'none';
+}
+function openAddProduct(){
+  document.getElementById('add-prod-form').style.display='block';
+  document.getElementById('ap-name').focus();
+}
+async function addProduct(){
+  const name=document.getElementById('ap-name').value.trim();
+  const price=parseFloat(document.getElementById('ap-price').value);
+  const desc=document.getElementById('ap-desc').value.trim();
+  const stock=parseInt(document.getElementById('ap-stock').value)||50;
+  const img=document.getElementById('ap-img').value.trim();
+  const errEl=document.getElementById('ap-err');errEl.style.display='none';
+  if(!name||!price){errEl.textContent='Product name and price are required';errEl.style.display='block';return;}
+  // We need seller_id — get it from dashboard data
+  try{
+    const h={Authorization:'Bearer '+sellerToken};
+    const dR=await fetch(API+'/seller/dashboard',{headers:h});
+    const dash=await dR.json();
+    const sellerId=dash.data?.seller?.id;
+    if(!sellerId)throw new Error('Could not find your store ID');
+    const res=await fetch(API+'/seller/products',{method:'POST',headers:{'Content-Type':'application/json',...h},body:JSON.stringify({name,price,description:desc,stock,image_url:img||null,seller_id:sellerId})});
+    const data=await res.json();
+    if(!data.success)throw new Error(data.message||'Failed to add product');
+    document.getElementById('add-prod-form').style.display='none';
+    document.getElementById('ap-name').value='';document.getElementById('ap-price').value='';document.getElementById('ap-desc').value='';document.getElementById('ap-img').value='';
+    showSellerDash(); // Refresh dashboard
+  }catch(e){errEl.textContent=e.message||'Error adding product';errEl.style.display='block';}
 }
 
 async function registerSeller(){
@@ -2215,6 +2451,65 @@ function submitSuggestion(){
 }
 
 updateCartBar();
+
+// ── REALTIME ORDER TRACKING ──────────────────────────────────────────────
+let realtimeChannel = null;
+
+function subscribeToOrderUpdates() {
+  if (!supaClient) return;
+  const gOrders = JSON.parse(localStorage.getItem('guest_orders') || '[]');
+  if (!gOrders.length) return;
+  const orderIds = gOrders.map(o => o.id).filter(id => !id.startsWith('G'));
+  if (!orderIds.length) return;
+
+  if (realtimeChannel) supaClient.removeChannel(realtimeChannel);
+
+  realtimeChannel = supaClient
+    .channel('order-status-updates')
+    .on('postgres_changes', {
+      event: 'UPDATE',
+      schema: 'public',
+      table: 'orders',
+      filter: id=in.()
+    }, payload => {
+      const updated = payload.new;
+      const gOrders = JSON.parse(localStorage.getItem('guest_orders') || '[]');
+      const idx = gOrders.findIndex(o => o.id === updated.id);
+      if (idx !== -1) {
+        gOrders[idx].status = updated.status;
+        localStorage.setItem('guest_orders', JSON.stringify(gOrders));
+        showOrderToast(updated.id, updated.status);
+        if (document.getElementById('page-myorders').classList.contains('active')) {
+          initMyOrders();
+        }
+      }
+    })
+    .subscribe();
+}
+
+const STATUS_LABELS = {
+  pending: '🛍️ Order Placed',
+  accepted_by_store: '✅ Order Confirmed',
+  preparing: '👨‍🍳 Being Prepared',
+  ready_for_pickup: '📦 Ready for Pickup',
+  waiting_for_rider: '🔍 Finding Rider...',
+  assigned_to_rider: '🛵 Rider Assigned',
+  picked_up: '🚀 On the Way!',
+  delivered: '🎉 Order Delivered!',
+  cancelled: '❌ Order Cancelled',
+};
+
+function showOrderToast(orderId, status) {
+  const label = STATUS_LABELS[status] || status;
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#006773;color:#fff;padding:14px 24px;border-radius:50px;font-family:Syne,sans-serif;font-size:14px;font-weight:700;z-index:9999;box-shadow:0 8px 32px rgba(0,103,115,0.4);transition:opacity 0.4s;white-space:nowrap;';
+  toast.textContent = label + ' · #' + orderId.slice(-6).toUpperCase();
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 4000);
+}
+
+// Start realtime when page loads
+subscribeToOrderUpdates();
 
 // Handle browser back/forward buttons
 window.addEventListener('popstate', function(e){
