@@ -2459,7 +2459,7 @@ function subscribeToOrderUpdates() {
   if (!supaClient) return;
   const gOrders = JSON.parse(localStorage.getItem('guest_orders') || '[]');
   if (!gOrders.length) return;
-  const orderIds = gOrders.map(o => o.id).filter(id => !id.startsWith('G'));
+  const orderIds = gOrders.map(o => o.id).filter(id => id && !id.startsWith('G') && id.length > 5);
   if (!orderIds.length) return;
 
   if (realtimeChannel) supaClient.removeChannel(realtimeChannel);
