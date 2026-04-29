@@ -2470,7 +2470,7 @@ function subscribeToOrderUpdates() {
       event: 'UPDATE',
       schema: 'public',
       table: 'orders',
-      filter: id=in.()
+      filter: `id=in.()`
     }, payload => {
       const updated = payload.new;
       const gOrders = JSON.parse(localStorage.getItem('guest_orders') || '[]');
