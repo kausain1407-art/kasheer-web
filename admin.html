@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -165,6 +165,8 @@ content{display:block;}
       <a onclick="showPage('riders')" id="nav-riders"><span class="nav-icon">🛵</span>Riders</a>
       <div class="nav-section">Catalogue</div>
       <a onclick="showPage('products')" id="nav-products"><span class="nav-icon">📦</span>Products</a>
+      <div class="nav-section">Grocery</div>
+      <a onclick="showPage('grocery-prices')" id="nav-grocery-prices"><span class="nav-icon">🛒</span>Grocery Prices</a>
       <div class="nav-section">Commerce</div>
       <a onclick="showPage('orders')" id="nav-orders"><span class="nav-icon">🧾</span>Orders</a>
     </nav>
@@ -239,6 +241,20 @@ content{display:block;}
           <table>
             <thead><tr><th>Product</th><th>Store</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
             <tbody id="products-body"><tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- GROCERY PRICES -->
+      <div class="page" id="page-grocery-prices">
+        <div class="page-header">
+          <div><div class="page-title">Grocery Prices</div><div class="page-sub">Edit prices and availability for all grocery items</div></div>
+          <input class="search-bar" placeholder="Search products..." oninput="filterTable('grocery-prices-body', this.value)">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Product Code</th><th>Name</th><th>Price (₹)</th><th>Available</th><th>Save</th></tr></thead>
+            <tbody id="grocery-prices-body"><tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr></tbody>
           </table>
         </div>
       </div>
@@ -346,6 +362,7 @@ function loadPage(name) {
   else if (name === 'riders') loadRiders();
   else if (name === 'products') loadProducts();
   else if (name === 'orders') loadOrders();
+  else if (name === 'grocery-prices') loadGroceryPrices();
 }
 
 function loadAll() {
@@ -540,6 +557,48 @@ async function deleteProduct(id) {
   if (!confirm('Remove this product?')) return;
   try { await api(`/admin/products/${id}`, 'DELETE'); toast('Product removed', 'success'); loadProducts(); }
   catch(e) { toast(e.message, 'error'); }
+}
+
+// ── GROCERY PRICES ─────────────────────────────────────────────────────
+async function loadGroceryPrices() {
+  const tbody = document.getElementById('grocery-prices-body');
+  tbody.innerHTML = '<tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr>';
+  try {
+    const r = await fetch('https://kasheer-backend.onrender.com/api/orders/grocery-prices');
+    const d = await r.json();
+    const priceMap = d.data || {};
+    const entries = Object.entries(priceMap);
+    if (!entries.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No grocery products found</div></td></tr>'; return; }
+    tbody.innerHTML = entries.map(([code, info]) => 
+      <tr id="gp-row-">
+        <td style="font-family:monospace;font-size:12px;color:var(--muted)"></td>
+        <td></td>
+        <td><input type="number" value="" id="gp-price-" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:14px;width:90px;"></td>
+        <td>
+          <select id="gp-avail-" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:14px;">
+            <option value="true" >✅ Available</option>
+            <option value="false" >❌ Hidden</option>
+          </select>
+        </td>
+        <td><button class="btn btn-approve" onclick="saveGroceryPrice('')">💾 Save</button></td>
+      </tr>).join('');
+  } catch(e) { tbody.innerHTML = <tr><td colspan="5"><div class="empty">Error: </div></td></tr>; }
+}
+
+async function saveGroceryPrice(code) {
+  const price = parseFloat(document.getElementById('gp-price-' + code).value);
+  const is_available = document.getElementById('gp-avail-' + code).value === 'true';
+  if (isNaN(price) || price < 0) { toast('Invalid price', 'error'); return; }
+  try {
+    const r = await fetch('https://kasheer-backend.onrender.com/api/orders/grocery-prices/' + code, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ price, is_available })
+    });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message || 'Failed');
+    toast('✅ ' + code + ' updated!', 'success');
+  } catch(e) { toast(e.message, 'error'); }
 }
 
 // ── ORDERS ────────────────────────────────────────────
