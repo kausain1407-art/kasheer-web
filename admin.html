@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasheer Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface2: #1c1c26;
+  --border: #2a2a38;
+  --accent: #f97316;
+  --accent2: #fb923c;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #eab308;
+  --text: #f0f0f5;
+  --muted: #6b6b80;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;display:flex;flex-direction:column;}
+
+/* LOGIN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg);}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:48px;width:100%;max-width:400px;}
+.login-logo{font-family:var(--font-head);font-size:28px;font-weight:800;color:var(--accent);margin-bottom:8px;}
+.login-sub{color:var(--muted);font-size:14px;margin-bottom:32px;}
+.login-box input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--font-body);font-size:15px;margin-bottom:12px;outline:none;transition:border .2s;}
+.login-box input:focus{border-color:var(--accent);}
+.login-btn{width:100%;background:var(--accent);border:none;border-radius:8px;padding:13px;color:#fff;font-family:var(--font-head);font-weight:700;font-size:16px;cursor:pointer;transition:background .2s;}
+.login-btn:hover{background:var(--accent2);}
+.login-err{color:var(--red);font-size:13px;margin-top:10px;display:none;}
+
+/* LAYOUT */
+#app{display:none;flex:1;flex-direction:column;}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-logo{font-family:var(--font-head);font-weight:800;font-size:20px;color:var(--accent);}
+.header-right{display:flex;align-items:center;gap:16px;}
+.logout-btn{background:transparent;border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--muted);font-size:13px;cursor:pointer;transition:all .2s;}
+.logout-btn:hover{border-color:var(--red);color:var(--red);}
+
+.main{display:flex;flex:1;}
+nav{width:220px;background:var(--surface);border-right:1px solid var(--border);padding:24px 0;flex-shrink:0;}
+nav a{display:flex;align-items:center;gap:10px;padding:10px 24px;color:var(--muted);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;border-left:3px solid transparent;text-decoration:none;}
+nav a:hover{color:var(--text);background:var(--surface2);}
+nav a.active{color:var(--accent);background:var(--surface2);border-left-color:var(--accent);}
+nav .nav-icon{font-size:16px;width:20px;text-align:center;}
+.nav-section{padding:8px 24px 4px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:8px;}
+
+content{flex:1;padding:32px;overflow-y:auto;}
+.page{display:none;}
+.page.active{display:block;}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:32px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.stat-num{font-family:var(--font-head);font-size:32px;font-weight:800;color:var(--text);}
+.stat-label{color:var(--muted);font-size:13px;margin-top:4px;}
+.stat-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;}
+
+/* PAGE HEADER */
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.page-title{font-family:var(--font-head);font-size:24px;font-weight:800;}
+.page-sub{color:var(--muted);font-size:14px;margin-top:2px;}
+
+/* TABLE */
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+th{background:var(--surface2);padding:12px 16px;text-align:left;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--surface2);}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;}
+.badge-pending{background:#78350f22;color:#fb923c;border:1px solid #78350f55;}
+.badge-approved{background:#14532d22;color:#22c55e;border:1px solid #14532d55;}
+.badge-rejected{background:#7f1d1d22;color:#ef4444;border:1px solid #7f1d1d55;}
+.badge-active{background:#14532d22;color:#22c55e;border:1px solid #14532d55;}
+.badge-banned{background:#7f1d1d22;color:#ef4444;border:1px solid #7f1d1d55;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;font-family:var(--font-body);}
+.btn-approve{background:#14532d33;color:var(--green);border:1px solid #14532d88;}
+.btn-approve:hover{background:#14532d66;}
+.btn-reject{background:#7f1d1d33;color:var(--red);border:1px solid #7f1d1d88;}
+.btn-reject:hover{background:#7f1d1d66;}
+.btn-view{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+.btn-view:hover{border-color:var(--accent);color:var(--accent);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent2);}
+.btn-group{display:flex;gap:6px;}
+
+/* LOADING / EMPTY */
+.loading{text-align:center;padding:48px;color:var(--muted);}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;padding:48px;color:var(--muted);font-size:15px;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:#000a;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:100%;max-width:680px;max-height:85vh;overflow-y:auto;}
+.modal-header{padding:24px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:var(--font-head);font-size:18px;font-weight:700;}
+.modal-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;line-height:1;}
+.modal-close:hover{color:var(--text);}
+.modal-body{padding:24px;}
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.doc-img{width:100%;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:transform .2s;}
+.doc-img:hover{transform:scale(1.02);}
+.doc-label{font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.info-row{display:flex;gap:8px;margin-bottom:10px;font-size:14px;}
+.info-key{color:var(--muted);min-width:120px;}
+.info-val{color:var(--text);font-weight:500;}
+.modal-actions{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:14px;z-index:2000;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.success{border-color:var(--green);color:var(--green);}
+.toast.error{border-color:var(--red);color:var(--red);}
+
+/* SEARCH */
+.search-bar{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-family:var(--font-body);font-size:14px;outline:none;width:240px;transition:border .2s;}
+.search-bar:focus{border-color:var(--accent);}
+
+content{display:block;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Kasheer کشیر</div>
+    <div class="login-sub">Admin Dashboard — Restricted Access</div>
+    <input type="email" id="login-email" placeholder="Admin email" autocomplete="email">
+    <input type="password" id="login-pass" placeholder="Password" autocomplete="current-password">
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    <div class="login-err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none;flex:1;flex-direction:column;">
+  <header>
+    <div class="header-logo">Kasheer Admin</div>
+    <div class="header-right">
+      <span style="color:var(--muted);font-size:13px;" id="admin-email-label"></span>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </header>
+  <div class="main">
+    <nav>
+      <div class="nav-section">Overview</div>
+      <a class="active" onclick="showPage('dashboard')" id="nav-dashboard"><span class="nav-icon">📊</span>Dashboard</a>
+      <div class="nav-section">People</div>
+      <a onclick="showPage('verifications')" id="nav-verifications"><span class="nav-icon">🪪</span>Verifications</a>
+      <a onclick="showPage('sellers')" id="nav-sellers"><span class="nav-icon">🏪</span>Sellers</a>
+      <a onclick="showPage('riders')" id="nav-riders"><span class="nav-icon">🛵</span>Riders</a>
+      <div class="nav-section">Catalogue</div>
+      <a onclick="showPage('products')" id="nav-products"><span class="nav-icon">📦</span>Products</a>
+      <div class="nav-section">Commerce</div>
+      <a onclick="showPage('orders')" id="nav-orders"><span class="nav-icon">🧾</span>Orders</a>
+    </nav>
+    <div style="flex:1;padding:32px;overflow-y:auto;">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div><div class="page-title">Dashboard</div><div class="page-sub">Overview of Kasheer platform</div></div>
+          <button class="btn btn-primary" onclick="loadAll()">↻ Refresh</button>
+        </div>
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card"><div class="stat-num" id="stat-sellers">—</div><div class="stat-label"><span class="stat-dot" style="background:var(--accent)"></span>Total Sellers</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-pending-v">—</div><div class="stat-label"><span class="stat-dot" style="background:var(--yellow)"></span>Pending Verifications</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-riders">—</div><div class="stat-label"><span class="stat-dot" style="background:var(--green)"></span>Total Riders</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-orders">—</div><div class="stat-label"><span class="stat-dot" style="background:#818cf8)"></span>Total Orders</div></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+          <div style="font-family:var(--font-head);font-weight:700;margin-bottom:16px;">Recent Pending Verifications</div>
+          <div id="dash-verifications"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+        </div>
+      </div>
+
+      <!-- VERIFICATIONS -->
+      <div class="page" id="page-verifications">
+        <div class="page-header">
+          <div><div class="page-title">Verifications</div><div class="page-sub">Aadhaar & document review</div></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Name</th><th>Type</th><th>Submitted</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="verifications-body"><tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SELLERS -->
+      <div class="page" id="page-sellers">
+        <div class="page-header">
+          <div><div class="page-title">Sellers</div><div class="page-sub">Manage registered stores</div></div>
+          <input class="search-bar" placeholder="Search stores..." oninput="filterTable('sellers-body', this.value)">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Store Name</th><th>Owner</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="sellers-body"><tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- RIDERS -->
+      <div class="page" id="page-riders">
+        <div class="page-header">
+          <div><div class="page-title">Riders</div><div class="page-sub">Delivery agents</div></div>
+          <input class="search-bar" placeholder="Search riders..." oninput="filterTable('riders-body', this.value)">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Name</th><th>Phone</th><th>Zone</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="riders-body"><tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PRODUCTS -->
+      <div class="page" id="page-products">
+        <div class="page-header">
+          <div><div class="page-title">Products</div><div class="page-sub">All products across stores</div></div>
+          <input class="search-bar" placeholder="Search products..." oninput="filterTable('products-body', this.value)">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Product</th><th>Store</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+            <tbody id="products-body"><tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="page" id="page-orders">
+        <div class="page-header">
+          <div><div class="page-title">Orders</div><div class="page-sub">All platform orders</div></div>
+          <input class="search-bar" placeholder="Search orders..." oninput="filterTable('orders-body', this.value)">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Store</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody id="orders-body"><tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Details</div>
+      <button class="modal-close" onclick="closeModalDirect()">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'https://kasheer-backend.onrender.com/api';
+let token = localStorage.getItem('admin_token') || '';
+let adminEmail = localStorage.getItem('admin_email') || '';
+
+// ── AUTH ──────────────────────────────────────────────
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-pass').value.trim();
+  const err = document.getElementById('login-err');
+  err.style.display = 'none';
+  if (!email || !pass) { err.textContent = 'Enter email and password'; err.style.display = 'block'; return; }
+  try {
+    const r = await fetch(API + '/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password: pass }) });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message || 'Login failed');
+    const role = d.data?.user?.role || d.data?.role;
+    if (role !== 'admin') throw new Error('Not an admin account');
+    token = d.data?.token || d.token;
+    adminEmail = email;
+    localStorage.setItem('admin_token', token);
+    localStorage.setItem('admin_email', email);
+    showApp();
+  } catch(e) {
+    err.textContent = e.message; err.style.display = 'block';
+  }
+}
+
+function doLogout() {
+  token = ''; adminEmail = '';
+  localStorage.removeItem('admin_token');
+  localStorage.removeItem('admin_email');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+}
+
+function showApp() {
+  document.getElementById('login-screen').style.display = 'none';
+  const app = document.getElementById('app');
+  app.style.display = 'flex';
+  document.getElementById('admin-email-label').textContent = adminEmail;
+  loadAll();
+}
+
+// ── API HELPER ────────────────────────────────────────
+async function api(path, method='GET', body=null) {
+  const opts = { method, headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token } };
+  if (body) opts.body = JSON.stringify(body);
+  const r = await fetch(API + path, opts);
+  const d = await r.json();
+  if (!d.success) throw new Error(d.message || 'Request failed');
+  return d.data || d;
+}
+
+// ── NAVIGATION ────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  loadPage(name);
+}
+
+function loadPage(name) {
+  if (name === 'dashboard') loadDashboard();
+  else if (name === 'verifications') loadVerifications();
+  else if (name === 'sellers') loadSellers();
+  else if (name === 'riders') loadRiders();
+  else if (name === 'products') loadProducts();
+  else if (name === 'orders') loadOrders();
+}
+
+function loadAll() {
+  loadDashboard();
+}
+
+// ── DASHBOARD ─────────────────────────────────────────
+async function loadDashboard() {
+  try {
+    const [sellers, riders, orders, verifs] = await Promise.allSettled([
+      api('/admin/stores'),
+      api('/admin/riders'),
+      api('/admin/orders'),
+      api('/admin/verifications')
+    ]);
+    const s = sellers.value; const r = riders.value; const o = orders.value; const v = verifs.value;
+    document.getElementById('stat-sellers').textContent = Array.isArray(s) ? s.length : (s?.stores?.length || '—');
+    document.getElementById('stat-riders').textContent = Array.isArray(r) ? r.length : (r?.riders?.length || '—');
+    document.getElementById('stat-orders').textContent = Array.isArray(o) ? o.length : (o?.orders?.length || '—');
+    const vArr = Array.isArray(v) ? v : (v?.verifications || []);
+    document.getElementById('stat-pending-v').textContent = vArr.filter(x => x.status === 'pending').length;
+    renderDashVerifications(vArr.filter(x => x.status === 'pending').slice(0, 5));
+  } catch(e) { console.error(e); }
+}
+
+function renderDashVerifications(arr) {
+  const el = document.getElementById('dash-verifications');
+  if (!arr.length) { el.innerHTML = '<div class="empty">No pending verifications 🎉</div>'; return; }
+  el.innerHTML = `<table style="width:100%;border-collapse:collapse;">
+    <thead><tr><th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">Name</th><th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">Type</th><th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">Action</th></tr></thead>
+    <tbody>${arr.map(v => `<tr><td style="padding:10px 12px;font-size:14px;">${v.user?.name||v.name||'Unknown'}</td><td style="padding:10px 12px;font-size:14px;">${v.type||v.user_type||'—'}</td><td style="padding:10px 12px;"><button class="btn btn-view" onclick="viewVerification('${v.id}')">View Docs</button></td></tr>`).join('')}</tbody>
+  </table>`;
+}
+
+// ── VERIFICATIONS ─────────────────────────────────────
+async function loadVerifications() {
+  const tbody = document.getElementById('verifications-body');
+  tbody.innerHTML = '<tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr>';
+  try {
+    const d = await api('/admin/verifications');
+    const arr = Array.isArray(d) ? d : (d.verifications || []);
+    if (!arr.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No verifications found</div></td></tr>'; return; }
+    tbody.innerHTML = arr.map(v => `
+      <tr>
+        <td><strong>${v.user?.name || v.name || 'Unknown'}</strong><br><span style="color:var(--muted);font-size:12px;">${v.user?.email || v.email || ''}</span></td>
+        <td>${v.type || v.user_type || '—'}</td>
+        <td style="color:var(--muted);font-size:13px;">${v.created_at ? new Date(v.created_at).toLocaleDateString() : '—'}</td>
+        <td><span class="badge badge-${v.status || 'pending'}">${v.status || 'pending'}</span></td>
+        <td><div class="btn-group">
+          <button class="btn btn-view" onclick="viewVerification('${v.id}')">View Docs</button>
+          ${v.status === 'pending' ? `<button class="btn btn-approve" onclick="approveVerification('${v.id}')">✓ Approve</button><button class="btn btn-reject" onclick="rejectVerification('${v.id}')">✕ Reject</button>` : ''}
+        </div></td>
+      </tr>`).join('');
+  } catch(e) { tbody.innerHTML = `<tr><td colspan="5"><div class="empty">Error: ${e.message}</div></td></tr>`; }
+}
+
+async function viewVerification(id) {
+  document.getElementById('modal-title').textContent = 'Verification Documents';
+  document.getElementById('modal-body').innerHTML = '<div class="loading"><div class="spinner"></div>Fetching signed URLs...</div>';
+  document.getElementById('modal-actions').innerHTML = '';
+  document.getElementById('modal-overlay').classList.add('open');
+  try {
+    const d = await api(`/admin/verifications/${id}/urls`);
+    const urls = d.urls || d || {};
+    let html = '<div class="doc-grid">';
+    if (urls.aadhaar_front) html += `<div><div class="doc-label">Aadhaar Front</div><img class="doc-img" src="${urls.aadhaar_front}" onclick="window.open('${urls.aadhaar_front}')"></div>`;
+    if (urls.aadhaar_back) html += `<div><div class="doc-label">Aadhaar Back</div><img class="doc-img" src="${urls.aadhaar_back}" onclick="window.open('${urls.aadhaar_back}')"></div>`;
+    if (urls.selfie) html += `<div><div class="doc-label">Selfie</div><img class="doc-img" src="${urls.selfie}" onclick="window.open('${urls.selfie}')"></div>`;
+    if (urls.store_photo) html += `<div><div class="doc-label">Store Photo</div><img class="doc-img" src="${urls.store_photo}" onclick="window.open('${urls.store_photo}')"></div>`;
+    html += '</div>';
+    if (!urls.aadhaar_front && !urls.aadhaar_back && !urls.selfie) html = '<div class="empty">No documents found</div>';
+    document.getElementById('modal-body').innerHTML = html;
+    document.getElementById('modal-actions').innerHTML = `
+      <button class="btn btn-reject" onclick="rejectVerification('${id}');closeModalDirect()">✕ Reject</button>
+      <button class="btn btn-approve" onclick="approveVerification('${id}');closeModalDirect()">✓ Approve</button>`;
+  } catch(e) {
+    document.getElementById('modal-body').innerHTML = `<div class="empty">Error loading docs: ${e.message}</div>`;
+  }
+}
+
+async function approveVerification(id) {
+  try { await api(`/admin/verifications/${id}/approve`, 'PATCH'); toast('Verification approved ✓', 'success'); loadVerifications(); loadDashboard(); }
+  catch(e) { toast(e.message, 'error'); }
+}
+async function rejectVerification(id) {
+  try { await api(`/admin/verifications/${id}/reject`, 'PATCH'); toast('Verification rejected', 'success'); loadVerifications(); loadDashboard(); }
+  catch(e) { toast(e.message, 'error'); }
+}
+
+// ── SELLERS ───────────────────────────────────────────
+async function loadSellers() {
+  const tbody = document.getElementById('sellers-body');
+  tbody.innerHTML = '<tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr>';
+  try {
+    const d = await api('/admin/stores');
+    const arr = Array.isArray(d) ? d : (d.stores || []);
+    if (!arr.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No sellers found</div></td></tr>'; return; }
+    tbody.innerHTML = arr.map(s => `
+      <tr>
+        <td><strong>${s.store_name || s.name || '—'}</strong></td>
+        <td>${s.owner_name || s.user?.name || '—'}<br><span style="color:var(--muted);font-size:12px;">${s.user?.email || s.email || ''}</span></td>
+        <td>${s.category || '—'}</td>
+        <td><span class="badge badge-${s.is_approved ? 'approved' : 'pending'}">${s.is_approved ? 'Approved' : 'Pending'}</span></td>
+        <td><div class="btn-group">
+          ${!s.is_approved ? `<button class="btn btn-approve" onclick="approveSeller('${s.id}')">✓ Approve</button>` : ''}
+          <button class="btn btn-reject" onclick="deleteSeller('${s.id}')">🗑 Delete</button>
+        </div></td>
+      </tr>`).join('');
+  } catch(e) { tbody.innerHTML = `<tr><td colspan="5"><div class="empty">Error: ${e.message}</div></td></tr>`; }
+}
+
+async function approveSeller(id) {
+  try { await api(`/admin/stores/${id}/approve`, 'PATCH'); toast('Store approved ✓', 'success'); loadSellers(); }
+  catch(e) { toast(e.message, 'error'); }
+}
+async function deleteSeller(id) {
+  if (!confirm('Delete this store? This cannot be undone.')) return;
+  try { await api(`/admin/stores/${id}`, 'DELETE'); toast('Store deleted', 'success'); loadSellers(); }
+  catch(e) { toast(e.message, 'error'); }
+}
+
+// ── RIDERS ────────────────────────────────────────────
+async function loadRiders() {
+  const tbody = document.getElementById('riders-body');
+  tbody.innerHTML = '<tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr>';
+  try {
+    const d = await api('/admin/riders');
+    const arr = Array.isArray(d) ? d : (d.riders || []);
+    if (!arr.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No riders found</div></td></tr>'; return; }
+    tbody.innerHTML = arr.map(r => `
+      <tr>
+        <td><strong>${r.name || r.user?.name || '—'}</strong></td>
+        <td>${r.phone || r.user?.phone || '—'}</td>
+        <td>${r.zone?.name || r.zone_id || '—'}</td>
+        <td><span class="badge badge-${r.is_banned ? 'banned' : r.is_approved ? 'approved' : 'pending'}">${r.is_banned ? 'Banned' : r.is_approved ? 'Active' : 'Pending'}</span></td>
+        <td><div class="btn-group">
+          ${!r.is_approved && !r.is_banned ? `<button class="btn btn-approve" onclick="approveRider('${r.id}')">✓ Approve</button>` : ''}
+          ${!r.is_banned ? `<button class="btn btn-reject" onclick="banRider('${r.id}')">🚫 Ban</button>` : ''}
+        </div></td>
+      </tr>`).join('');
+  } catch(e) { tbody.innerHTML = `<tr><td colspan="5"><div class="empty">Error: ${e.message}</div></td></tr>`; }
+}
+
+async function approveRider(id) {
+  try { await api(`/admin/riders/${id}/approve`, 'PATCH'); toast('Rider approved ✓', 'success'); loadRiders(); }
+  catch(e) { toast(e.message, 'error'); }
+}
+async function banRider(id) {
+  if (!confirm('Ban this rider?')) return;
+  try { await api(`/admin/riders/${id}/ban`, 'PATCH'); toast('Rider banned', 'success'); loadRiders(); }
+  catch(e) { toast(e.message, 'error'); }
+}
+
+// ── PRODUCTS ──────────────────────────────────────────
+async function loadProducts() {
+  const tbody = document.getElementById('products-body');
+  tbody.innerHTML = '<tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr>';
+  try {
+    // Load products from all stores
+    const storesData = await api('/admin/stores');
+    const stores = Array.isArray(storesData) ? storesData : (storesData.stores || []);
+    if (!stores.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No stores found</div></td></tr>'; return; }
+    const results = await Promise.allSettled(stores.slice(0,10).map(s => api(`/admin/stores/${s.id}/products`)));
+    let all = [];
+    results.forEach((r, i) => {
+      if (r.status === 'fulfilled') {
+        const prods = Array.isArray(r.value) ? r.value : (r.value.products || []);
+        prods.forEach(p => { p._storeName = stores[i].store_name || stores[i].name; });
+        all = all.concat(prods);
+      }
+    });
+    if (!all.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No products found</div></td></tr>'; return; }
+    tbody.innerHTML = all.map(p => `
+      <tr>
+        <td><strong>${p.name || '—'}</strong>${p.description ? `<br><span style="color:var(--muted);font-size:12px;">${p.description.slice(0,60)}...</span>` : ''}</td>
+        <td>${p._storeName || '—'}</td>
+        <td>₹${p.price || 0}</td>
+        <td>${p.stock ?? '—'}</td>
+        <td><button class="btn btn-reject" onclick="deleteProduct('${p.id}')">🗑 Remove</button></td>
+      </tr>`).join('');
+  } catch(e) { tbody.innerHTML = `<tr><td colspan="5"><div class="empty">Error: ${e.message}</div></td></tr>`; }
+}
+
+async function deleteProduct(id) {
+  if (!confirm('Remove this product?')) return;
+  try { await api(`/admin/products/${id}`, 'DELETE'); toast('Product removed', 'success'); loadProducts(); }
+  catch(e) { toast(e.message, 'error'); }
+}
+
+// ── ORDERS ────────────────────────────────────────────
+async function loadOrders() {
+  const tbody = document.getElementById('orders-body');
+  tbody.innerHTML = '<tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr>';
+  try {
+    const d = await api('/admin/orders');
+    const arr = Array.isArray(d) ? d : (d.orders || []);
+    if (!arr.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No orders yet</div></td></tr>'; return; }
+    tbody.innerHTML = arr.map(o => `
+      <tr>
+        <td style="font-family:monospace;font-size:12px;">#${(o.id||'').slice(0,8)}</td>
+        <td>${o.user?.name || o.customer_name || '—'}</td>
+        <td>${o.store?.store_name || o.store_name || '—'}</td>
+        <td>₹${o.total || o.total_amount || 0}</td>
+        <td><span class="badge badge-${statusClass(o.status)}">${o.status || '—'}</span></td>
+      </tr>`).join('');
+  } catch(e) { tbody.innerHTML = `<tr><td colspan="5"><div class="empty">Error: ${e.message}</div></td></tr>`; }
+}
+
+function statusClass(s) {
+  if (!s) return 'pending';
+  if (['delivered','completed'].includes(s)) return 'approved';
+  if (['cancelled','rejected'].includes(s)) return 'rejected';
+  return 'pending';
+}
+
+// ── UTILS ─────────────────────────────────────────────
+function filterTable(tbodyId, q) {
+  q = q.toLowerCase();
+  document.querySelectorAll('#' + tbodyId + ' tr').forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); }
+
+let toastTimer;
+function toast(msg, type='success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.className = 'toast show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── INIT ──────────────────────────────────────────────
+if (token) {
+  // Verify token still valid
+  fetch(API + '/auth/me', { headers: { Authorization: 'Bearer ' + token } })
+    .then(r => r.json())
+    .then(d => {
+      if (d.success && (d.data?.role === 'admin' || d.data?.user?.role === 'admin')) showApp();
+      else doLogout();
+    }).catch(doLogout);
+}
+
+document.getElementById('login-pass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
+</body>
+</html>
