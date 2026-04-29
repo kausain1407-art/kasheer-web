@@ -1776,24 +1776,205 @@ function renderCart(){
     return `<div class="cart-item"><div class="ci-thumb">${th}</div><div style="flex:1"><div style="font-size:15px;font-weight:700;margin-bottom:3px;">${i.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">&#8377;${i.price} &times; ${i.quantity} = &#8377;${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cQty('${i.id}',1)">+</button></div></div>`;
   }).join('');
   html+=`<div class="cart-summary"><div class="sum-row"><span>Subtotal</span><span>&#8377;${sub}</span></div><div class="sum-row"><span>Delivery</span><span>&#8377;${del}</span></div><div class="sum-row total"><span>Total</span><span>&#8377;${sub+del}</span></div></div>`;
-  html+=`<div class="checkout-form"><h3>Delivery Details</h3><div class="err-box" id="co-err"></div><div id="co-success" class="order-success" style="display:none;"><div class="tick">&#x2705;</div><h3>Order Placed!</h3><p>Your order is confirmed. The nearest store will accept it shortly.</p><button onclick="nav('myorders')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:10px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;margin-top:12px;">Track My Orders</button></div><div id="co-fields"><div class="frow"><label>Your Name</label><input type="text" id="co-name" placeholder="Full name"></div><div class="frow"><label>Phone</label><input type="tel" id="co-phone" placeholder="+91 9999999999"></div><div class="frow"><label>Delivery Address</label><textarea id="co-addr" placeholder="House no., street, area, landmark..."></textarea></div><div class="frow"><label>Payment Method</label><select id="co-pay"><option value="cod">Cash on Delivery</option><option value="online">Online Payment</option></select></div><button class="place-btn" id="co-btn" onclick="placeOrder()">Place Order &#8377;${sub+del}</button></div></div>`;
+  // Build smart address checkout form
+  const checkoutHtml = `<div class="checkout-form">
+  <h3>Delivery Details</h3>
+  <div class="err-box" id="co-err"></div>
+  <div id="co-success" class="order-success" style="display:none;">
+    <div class="tick">&#x2705;</div><h3>Order Placed!</h3>
+    <p>Your order is confirmed. The nearest store will accept it shortly.</p>
+    <button onclick="nav('myorders')" style="background:var(--teal-light);border:none;color:var(--teal-dark);padding:10px 20px;border-radius:50px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;margin-top:12px;">Track My Orders</button>
+  </div>
+  <div id="co-fields">
+    <div class="frow"><label>Your Name</label><input type="text" id="co-name" placeholder="Full name"></div>
+    <div class="frow"><label>Phone</label><input type="tel" id="co-phone" placeholder="+91 9999999999"></div>
+
+    <div style="background:var(--teal-light);border-radius:14px;padding:16px;margin-bottom:18px;">
+      <div style="font-size:12px;font-weight:700;color:var(--teal-dark);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:12px;">&#128205; Delivery Address</div>
+
+      <button type="button" onclick="getGPSLocation()" id="gps-btn" style="width:100%;padding:12px;background:var(--teal);color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:background 0.2s;">
+        <span id="gps-icon">&#128225;</span> <span id="gps-text">Use My Current Location</span>
+      </button>
+
+      <div id="map-preview" style="display:none;border-radius:12px;overflow:hidden;margin-bottom:10px;border:2px solid var(--teal);position:relative;">
+        <iframe id="map-frame" width="100%" height="180" frameborder="0" style="display:block;" src="about:blank"></iframe>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,103,115,0.88);color:#fff;font-size:11px;font-weight:600;padding:6px 12px;display:flex;align-items:center;justify-content:space-between;">
+          <span id="map-coords-label">&#128205; Location pinned</span>
+          <button onclick="clearGPS()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;padding:3px 10px;border-radius:20px;font-size:11px;cursor:pointer;font-family:'Syne',sans-serif;">Change</button>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;margin:12px 0 10px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:0.5px;">
+        <div style="flex:1;height:1px;background:var(--border);"></div>OR TYPE YOUR ADDRESS<div style="flex:1;height:1px;background:var(--border);"></div>
+      </div>
+
+      <div class="frow" style="margin-bottom:10px;">
+        <label>House / Flat / Shop No.</label>
+        <input type="text" id="co-house" placeholder="e.g. House 14, 2nd Floor, Block B" oninput="updateAddrSummary()">
+      </div>
+      <div class="frow" style="margin-bottom:10px;">
+        <label>Area / Mohalla</label>
+        <select id="co-area" onchange="updateAddrSummary()">
+          <option value="">-- Select your area --</option>
+          <optgroup label="Central Srinagar">
+            <option>Lal Chowk</option><option>Residency Road</option><option>Maisuma</option>
+            <option>Nowhatta</option><option>Khanyar</option><option>Fateh Kadal</option>
+            <option>Maharaj Gunj</option><option>Rainawari</option>
+          </optgroup>
+          <optgroup label="South Srinagar">
+            <option>Rajbagh</option><option>Jawahar Nagar</option><option>Gogji Bagh</option>
+            <option>Vasanta Vihar</option><option>Bemina</option><option>Wanganpora</option>
+            <option>Panthachowk</option><option>Pampore</option>
+          </optgroup>
+          <optgroup label="North Srinagar">
+            <option>Hazratbal</option><option>Naseem Bagh</option><option>Brein</option>
+            <option>Soura</option><option>Parimpora</option><option>Hyderpora</option>
+            <option>Humhama</option>
+          </optgroup>
+          <optgroup label="East Srinagar">
+            <option>Shivpora</option><option>Indira Nagar</option><option>Batamaloo</option>
+            <option>Natipora</option><option>Buchpora</option><option>HMT</option>
+          </optgroup>
+          <optgroup label="West / Old City">
+            <option>Bohri Kadal</option><option>Habba Kadal</option><option>Zaina Kadal</option>
+            <option>Ali Kadal</option><option>Safa Kadal</option><option>Kawdara</option>
+          </optgroup>
+          <optgroup label="Outside Srinagar">
+            <option>Budgam</option><option>Pulwama</option><option>Anantnag</option>
+            <option>Baramulla</option><option>Sopore</option><option>Other</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="frow" style="margin-bottom:0;">
+        <label>Landmark <span style="color:var(--orange);font-size:11px;font-weight:700;">&#9888; Very Important!</span></label>
+        <input type="text" id="co-landmark" placeholder="e.g. Near Masjid, Behind Govt School, Opp. Petrol Pump..." oninput="updateAddrSummary()">
+      </div>
+    </div>
+
+    <div id="co-addr-summary" style="display:none;background:#fff;border:1.5px solid var(--teal);border-radius:12px;padding:14px;margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;color:var(--teal);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px;">&#128230; Delivering To</div>
+      <div id="co-addr-text" style="font-size:13px;font-weight:600;color:var(--text);line-height:1.7;"></div>
+    </div>
+
+    <div class="frow">
+      <label>Payment Method</label>
+      <select id="co-pay">
+        <option value="cod">&#128181; Cash on Delivery</option>
+        <option value="online">&#128179; Online Payment</option>
+      </select>
+    </div>
+    <button class="place-btn" id="co-btn" onclick="placeOrder()">Place Order &#8377;${sub+del}</button>
+    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px;">&#128274; Safe &amp; secure &nbsp;&#183;&nbsp; COD available &nbsp;&#183;&nbsp; Usually 30&#8211;60 min</p>
+  </div>
+</div>`;
+  html += checkoutHtml;
   el.innerHTML=html;
 }
 function cQty(id,delta){const i=cart.find(c=>c.id===id);if(!i)return;i.quantity+=delta;if(i.quantity<=0)cart=cart.filter(c=>c.id!==id);saveCart();renderCart();updateCartBar();}
+// GPS & address helpers
+let gpsCoords=null;
+function getGPSLocation(){
+  const btn=document.getElementById('gps-btn');
+  const txt=document.getElementById('gps-text');
+  const icon=document.getElementById('gps-icon');
+  if(!navigator.geolocation){
+    document.getElementById('co-err').textContent='GPS not supported on this browser.';
+    document.getElementById('co-err').style.display='block';return;
+  }
+  txt.textContent='Getting location...';
+  icon.textContent='⏳';
+  btn.style.background='var(--teal-mid)';
+  navigator.geolocation.getCurrentPosition(
+    async pos=>{
+      const lat=pos.coords.latitude,lng=pos.coords.longitude;
+      gpsCoords={lat,lng};
+      icon.textContent='✅';
+      txt.textContent='Location found!';
+      btn.style.background='#2E7D32';
+      // Show OpenStreetMap embed (free, no API key)
+      const mapSrc=`https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&layer=mapnik&marker=${lat},${lng}`;
+      document.getElementById('map-frame').src=mapSrc;
+      document.getElementById('map-preview').style.display='block';
+      document.getElementById('map-coords-label').textContent=`📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+      // Reverse geocode with Nominatim (free)
+      try{
+        const r=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,{headers:{'Accept-Language':'en'}});
+        const d=await r.json();
+        if(d.address){
+          const a=d.address;
+          const area=a.suburb||a.neighbourhood||a.village||a.county||'';
+          const road=a.road||a.pedestrian||'';
+          if(area&&!document.getElementById('co-area').value){
+            // Try to match to dropdown
+            const opts=document.getElementById('co-area').options;
+            for(let i=0;i<opts.length;i++){
+              if(opts[i].text.toLowerCase().includes(area.toLowerCase())||area.toLowerCase().includes(opts[i].text.toLowerCase())){
+                document.getElementById('co-area').value=opts[i].value||opts[i].text;break;
+              }
+            }
+          }
+          document.getElementById('map-coords-label').textContent=`📍 ${area||road||'Location pinned'}`;
+        }
+      }catch(e){}
+      updateAddrSummary();
+    },
+    err=>{
+      icon.textContent='📡';
+      txt.textContent='Use My Current Location';
+      btn.style.background='var(--teal)';
+      const msgs={1:'Location permission denied. Please allow location access.',2:'Location unavailable. Try again.',3:'Location request timed out.'};
+      document.getElementById('co-err').textContent=msgs[err.code]||'Could not get location.';
+      document.getElementById('co-err').style.display='block';
+    },
+    {enableHighAccuracy:true,timeout:10000}
+  );
+}
+function clearGPS(){
+  gpsCoords=null;
+  document.getElementById('map-preview').style.display='none';
+  document.getElementById('map-frame').src='about:blank';
+  document.getElementById('gps-icon').textContent='📡';
+  document.getElementById('gps-text').textContent='Use My Current Location';
+  document.getElementById('gps-btn').style.background='var(--teal)';
+  updateAddrSummary();
+}
+function updateAddrSummary(){
+  const house=document.getElementById('co-house')?.value||'';
+  const area=document.getElementById('co-area')?.value||'';
+  const landmark=document.getElementById('co-landmark')?.value||'';
+  const parts=[house,area,landmark].filter(Boolean);
+  if(gpsCoords)parts.push(`GPS: ${gpsCoords.lat.toFixed(5)}, ${gpsCoords.lng.toFixed(5)}`);
+  const sumEl=document.getElementById('co-addr-summary');
+  const txtEl=document.getElementById('co-addr-text');
+  if(parts.length>0&&sumEl&&txtEl){
+    txtEl.innerHTML=parts.join(' &nbsp;·&nbsp; ');
+    sumEl.style.display='block';
+  } else if(sumEl){
+    sumEl.style.display='none';
+  }
+}
+
 async function placeOrder(){
-  const name=document.getElementById('co-name')?.value;
-  const phone=document.getElementById('co-phone')?.value;
-  const addr=document.getElementById('co-addr')?.value;
+  const name=document.getElementById('co-name')?.value?.trim();
+  const phone=document.getElementById('co-phone')?.value?.trim();
+  const house=document.getElementById('co-house')?.value?.trim()||'';
+  const area=document.getElementById('co-area')?.value?.trim()||'';
+  const landmark=document.getElementById('co-landmark')?.value?.trim()||'';
   const pay=document.getElementById('co-pay')?.value;
   const errEl=document.getElementById('co-err');errEl.style.display='none';
-  if(!name||!phone||!addr){errEl.textContent='Please fill in name, phone and address';errEl.style.display='block';return;}
+  if(!name||!phone){errEl.textContent='Please enter your name and phone number.';errEl.style.display='block';return;}
+  if(!area&&!gpsCoords){errEl.textContent='Please select your area or use GPS location.';errEl.style.display='block';return;}
+  if(!landmark&&!gpsCoords){errEl.textContent='Please add a landmark — it helps our rider find you!';errEl.style.display='block';return;}
+  const addrParts=[house,area,landmark].filter(Boolean);
+  const addr=addrParts.join(', ')+(gpsCoords?` [GPS:${gpsCoords.lat.toFixed(5)},${gpsCoords.lng.toFixed(5)}]`:'');
   const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Placing order...';
   try{
-    await new Promise(r=>setTimeout(r,800));
+    await new Promise(r=>setTimeout(r,600));
     const gOrders=JSON.parse(localStorage.getItem('guest_orders')||'[]');
-    gOrders.unshift({id:'G'+Date.now(),items:[...cart],address:addr,phone,name,payment:pay,total:cart.reduce((s,i)=>s+i.price*i.quantity,0)+50,status:'pending',created_at:new Date().toISOString()});
+    gOrders.unshift({id:'G'+Date.now(),items:[...cart],address:addr,gps:gpsCoords||null,phone,name,payment:pay,total:cart.reduce((s,i)=>s+i.price*i.quantity,0)+50,status:'pending',created_at:new Date().toISOString()});
     localStorage.setItem('guest_orders',JSON.stringify(gOrders));
     cart=[];saveCart();updateCartBar();
+    gpsCoords=null;
     document.getElementById('co-fields').style.display='none';
     document.getElementById('co-success').style.display='block';
   }catch(e){errEl.textContent='Error placing order. Please try again.';errEl.style.display='block';btn.disabled=false;btn.textContent='Place Order';}
