@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kasheer کٲشِیر — Kashmir Super Platform</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
 :root{--teal:#00BCD4;--teal-dark:#006773;--teal-mid:#00838F;--teal-light:#E0F7FA;--orange:#FF6F00;--text:#0D1B1E;--muted:#5C7A80;--bg:#F4F8F9;--white:#FFFFFF;--border:#DCE8EB;--radius:18px;--radius-sm:12px;--shadow:0 4px 24px rgba(0,103,115,0.10);--shadow-lg:0 12px 48px rgba(0,103,115,0.16);}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
@@ -172,6 +173,11 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 .footer-links a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;cursor:pointer;font-weight:500;}
 .footer-links a:hover{color:var(--teal);}
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.25);}
+.google-btn{width:100%;padding:13px;background:#fff;color:#3c4043;border:1.5px solid var(--border);border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;transition:box-shadow 0.2s,border-color 0.2s;margin-bottom:14px;}
+.google-btn:hover{box-shadow:0 2px 12px rgba(0,0,0,0.12);border-color:#aaa;}
+.google-btn svg{flex-shrink:0;}
+.or-divider{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:0.5px;}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--border);}
 @media(max-width:640px){.hero-title{font-size:52px;}.nav-links .nav-ghost{display:none;}.stat-item{border-right:none;border-bottom:1px solid var(--border);flex:1 1 50%;}}
 </style>
 </head>
@@ -555,6 +561,14 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
         <h2>Seller Login</h2>
         <p>Access your Kasheer store dashboard</p>
         <div class="err-box" id="sl-err"></div>
+        <div id="sl-oauth-loading" style="display:none;text-align:center;padding:18px 0;color:var(--muted);font-size:14px;">
+          <div class="spinner" style="margin:0 auto 10px;"></div>Signing you in with Google...
+        </div>
+        <button class="google-btn" onclick="sellerGoogleLogin()" id="sl-google-btn">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/><path fill="#FBBC05" d="M3.964 10.71c-.18-.54-.282-1.117-.282-1.71s.102-1.17.282-1.71V4.958H.957C.347 6.173 0 7.548 0 9s.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/></svg>
+          Continue with Google
+        </button>
+        <div class="or-divider">OR</div>
         <div class="frow"><label>Email</label><input type="email" id="sl-email" placeholder="your@email.com"></div>
         <div class="frow"><label>Password</label><input type="password" id="sl-pass" placeholder="••••••••"></div>
         <button class="submit-btn" onclick="sellerLogin()">Login to Dashboard</button>
@@ -669,6 +683,70 @@ footer{background:var(--text);padding:48px 24px;text-align:center;}
 
 <script>
 const API='https://kasheer-backend.onrender.com/api';
+
+// Supabase client (for OAuth only — backend handles JWT auth)
+const SUPA_URL='https://chzvvlwfzpevnxgfysgl.supabase.co';
+const SUPA_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoenZ2bHdmenBldm54Z2Z5c2dsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NTgwMTQsImV4cCI6MjA4OTEzNDAxNH0.uO2CPk82ZMvfgs5WF77vwwcLc9v5vKizhAc1-BYoF-Q';
+let supaClient=null;
+try{supaClient=supabase.createClient(SUPA_URL,SUPA_ANON);}catch(e){console.warn('Supabase init failed',e);}
+
+// Handle OAuth redirect — runs on page load
+(async function handleOAuthRedirect(){
+  if(!supaClient)return;
+  // Supabase puts session in URL hash after OAuth redirect
+  const hash=window.location.hash;
+  if(!hash.includes('access_token'))return;
+  try{
+    const{data,error}=await supaClient.auth.getSession();
+    if(error||!data.session)return;
+    const session=data.session;
+    const supaToken=session.access_token;
+    // Exchange Supabase token for our backend JWT
+    const res=await fetch(API+'/auth/oauth-login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({supabase_token:supaToken})
+    }).catch(()=>null);
+    if(res&&res.ok){
+      const d=await res.json();
+      if(d.success&&d.data?.token){
+        sellerToken=d.data.token;
+        localStorage.setItem('seller_token',sellerToken);
+        // Clean hash from URL
+        history.replaceState(null,'',window.location.pathname);
+        nav('seller-login');
+        return;
+      }
+    }
+    // Fallback: backend doesn't have oauth-login yet — store Supabase token directly
+    sellerToken=supaToken;
+    localStorage.setItem('seller_token',sellerToken);
+    localStorage.setItem('seller_token_type','supabase');
+    history.replaceState(null,'',window.location.pathname);
+    nav('seller-login');
+  }catch(e){console.warn('OAuth redirect handling failed',e);}
+})();
+
+async function sellerGoogleLogin(){
+  const errEl=document.getElementById('sl-err');
+  errEl.style.display='none';
+  if(!supaClient){errEl.textContent='Google login not available. Please use email/password.';errEl.style.display='block';return;}
+  document.getElementById('sl-google-btn').style.display='none';
+  document.getElementById('sl-oauth-loading').style.display='block';
+  try{
+    const{error}=await supaClient.auth.signInWithOAuth({
+      provider:'google',
+      options:{redirectTo:'https://kasheer.online'}
+    });
+    if(error)throw error;
+    // Browser will redirect — no code runs after this
+  }catch(e){
+    document.getElementById('sl-google-btn').style.display='flex';
+    document.getElementById('sl-oauth-loading').style.display='none';
+    errEl.textContent=e.message||'Google sign-in failed. Please try again.';
+    errEl.style.display='block';
+  }
+}
 const BB='https://www.bbassets.com/media/uploads/p/s/';
 const WK='https://upload.wikimedia.org/wikipedia/commons/thumb/';
 
@@ -1741,7 +1819,15 @@ async function loadOrders(){
   }catch(e){errEl.textContent=e.message||'Error loading orders';errEl.style.display='block';}
 }
 
-function initSeller(){if(sellerToken)showSellerDash();else{document.getElementById('sl-login-view').style.display='block';document.getElementById('sl-dash-view').style.display='none';}}
+function initSeller(){
+  // Reset Google button state in case user navigated back
+  const gBtn=document.getElementById('sl-google-btn');
+  const gLoad=document.getElementById('sl-oauth-loading');
+  if(gBtn)gBtn.style.display='flex';
+  if(gLoad)gLoad.style.display='none';
+  if(sellerToken)showSellerDash();
+  else{document.getElementById('sl-login-view').style.display='block';document.getElementById('sl-dash-view').style.display='none';}
+}
 async function sellerLogin(){
   const email=document.getElementById('sl-email').value,pass=document.getElementById('sl-pass').value;
   const errEl=document.getElementById('sl-err');errEl.style.display='none';

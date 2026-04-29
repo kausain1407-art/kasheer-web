@@ -431,7 +431,7 @@ async function approveVerification(id) {
   catch(e) { toast(e.message, 'error'); }
 }
 async function rejectVerification(id) {
-  try { await api(`/admin/verifications/${id}/reject`, 'PATCH'); toast('Verification rejected', 'success'); loadVerifications(); loadDashboard(); }
+  try { await api(`/admin/verifications/${id}/reject`, 'PATCH', {reason:'Rejected by admin'}); toast('Verification rejected', 'success'); loadVerifications(); loadDashboard(); }
   catch(e) { toast(e.message, 'error'); }
 }
 
@@ -475,19 +475,17 @@ async function loadRiders() {
     const d = await api('/admin/riders');
     const arr = Array.isArray(d) ? d : (d.riders || []);
     if (!arr.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No riders found</div></td></tr>'; return; }
-    console.log('RIDER SAMPLE:', JSON.stringify(arr[0]));
     tbody.innerHTML = arr.map(r => {
-      const u = r.user || r.users || {};
-      const name = r.name || u.name || r.rider_name || 'Unknown';
-      const phone = r.phone || u.phone || r.rider_phone || 'N/A';
-      const zone = (r.zone && r.zone.name) || r.zone_name || r.zone_id || 'N/A';
-      const banned = r.is_banned || r.banned || false;
-      const approved = r.is_approved || r.approved || r.status === 'active' || false;
+      const zone = r.zone_id || 'N/A';
+      const vehicle = r.vehicle_type || 'N/A';
+      const banned = r.is_banned || false;
+      const approved = r.is_approved || false;
       const st = banned ? 'banned' : approved ? 'approved' : 'pending';
       const stLabel = banned ? 'Banned' : approved ? 'Active' : 'Pending';
+      const uid = (r.user_id || '').slice(0,8);
       return '<tr>' +
-        '<td><strong>' + name + '</strong></td>' +
-        '<td>' + phone + '</td>' +
+        '<td><strong>Rider</strong><br><span style="color:var(--muted);font-size:11px;">' + uid + '...</span></td>' +
+        '<td>' + vehicle + '</td>' +
         '<td>' + zone + '</td>' +
         '<td><span class="badge badge-' + st + '">' + stLabel + '</span></td>' +
         '<td><div class="btn-group">' +
