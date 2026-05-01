@@ -116,6 +116,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop
 .place-btn:hover{background:var(--teal-dark);}
 .place-btn:disabled{opacity:0.6;cursor:not-allowed;}
 .order-success{background:var(--white);border-radius:var(--radius);padding:40px;border:1px solid var(--border);text-align:center;margin-top:20px;}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 .order-success .tick{font-size:64px;margin-bottom:16px;}
 .order-success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;}
 .form-wrap{max-width:500px;margin:0 auto;padding:40px 24px;}
@@ -2094,25 +2095,114 @@ async function placeOrder(){
   gOrders.unshift({id:orderId,items:[...cart],address:addr,area,landmark,gps:gpsCoords||null,phone,name,payment:pay,category,total:sub,status:'pending',backend:savedToBackend,created_at:new Date().toISOString()});
   cart=[];saveCart();updateCartBar();gpsCoords=null;
   btn.disabled=false;btn.textContent='Place Order';
+
+  // Show waiting screen with spinner
   const coSuccess=document.getElementById('co-success');
   coSuccess.style.display='block';
   coSuccess.innerHTML=`
-    <div style="font-size:80px;margin-bottom:16px;">✅</div>
-    <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;">Order Placed!</h3>
-    <p style="color:var(--muted);margin-bottom:20px;">Your order has been sent to the nearest store.</p>
+    <div style="font-size:64px;margin-bottom:16px;">📦</div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;">Order Placed!</h3>
+    <p style="color:var(--muted);margin-bottom:24px;">Waiting for the nearest store to accept your order...</p>
+    <div style="display:flex;justify-content:center;margin-bottom:24px;">
+      <div id="co-spinner" style="width:48px;height:48px;border:4px solid var(--teal-light);border-top:4px solid var(--teal);border-radius:50%;animation:spin 1s linear infinite;"></div>
+    </div>
     <div style="background:var(--teal-light);border-radius:12px;padding:16px;margin-bottom:16px;text-align:left;">
       <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--muted);font-size:14px;">Items Total</span><span style="font-weight:700;">&#8377;${sub}</span></div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--muted);font-size:14px;">Delivery Fee</span><span style="font-weight:700;color:var(--teal);">Confirmed after store accepts</span></div>
+      <div style="display:flex;justify-content:space-between;"><span style="color:var(--muted);font-size:14px;">Delivery Fee</span><span id="co-del-fee" style="font-weight:700;color:var(--teal);">Calculating...</span></div>
     </div>
-    ${pay==='cod'?
-      `<div style="background:#FFF3E0;border-radius:12px;padding:14px;margin-bottom:16px;color:#E65100;font-weight:600;font-size:14px;">💵 Cash on Delivery — exact total confirmed after store accepts</div>`:
-      `<div style="background:#E3F2FD;border-radius:12px;padding:14px;margin-bottom:16px;color:#1565C0;font-weight:600;font-size:14px;">💳 Online Payment — you'll receive a payment link once the store confirms your order</div>`
-    }
-    <div style="background:#FFF8E1;border-radius:12px;padding:14px;color:#F57C00;font-size:13px;font-weight:600;">
-      ⏳ Waiting for store to accept. You'll be notified on your phone once confirmed.
+    <div id="co-payment-section" style="display:none;"></div>
+    <div id="co-status-msg" style="background:#FFF8E1;border-radius:12px;padding:14px;color:#F57C00;font-size:13px;font-weight:600;">
+      ⏳ Store is reviewing your order...
     </div>
   `;
   coSuccess.scrollIntoView({behavior:'smooth'});
+
+  // Poll for order status if saved to backend
+  if(savedToBackend && orderId && !orderId.startsWith('LOCAL')){
+    pollOrderStatus(orderId, sub, pay);
+  }
+}
+
+function pollOrderStatus(orderId, sub, pay){
+  let attempts=0;
+  const maxAttempts=60; // 5 mins
+  const interval=setInterval(async()=>{
+    attempts++;
+    if(attempts>maxAttempts){
+      clearInterval(interval);
+      const msg=document.getElementById('co-status-msg');
+      if(msg)msg.innerHTML='⏳ Store is taking longer than usual. We\'ll notify you when confirmed.';
+      return;
+    }
+    try{
+      const res=await fetch(API+'/orders/'+orderId+'/status-public');
+      const data=await res.json();
+      if(!data.success)return;
+      const status=data.data?.status;
+      const deliveryFee=data.data?.delivery_fee||0;
+      const total=data.data?.total_amount||(sub+deliveryFee);
+      if(status==='accepted_by_store'||status==='preparing'){
+        clearInterval(interval);
+        // Update delivery fee
+        const delEl=document.getElementById('co-del-fee');
+        if(delEl)delEl.innerHTML=`<span style="color:#212121;">&#8377;${deliveryFee}</span>`;
+        // Hide spinner
+        const spinner=document.getElementById('co-spinner');
+        if(spinner)spinner.style.display='none';
+        // Update status
+        const msg=document.getElementById('co-status-msg');
+        if(msg)msg.innerHTML=`✅ Store accepted! Your total is <strong>&#8377;${total}</strong>`;
+        if(msg){msg.style.background='#E8F5E9';msg.style.color='#2E7D32';}
+        // Show payment section
+        const paySection=document.getElementById('co-payment-section');
+        if(paySection){
+          if(pay==='cod'){
+            paySection.style.display='block';
+            paySection.innerHTML=`<div style="background:#FFF3E0;border-radius:12px;padding:16px;margin-bottom:16px;color:#E65100;font-weight:700;font-size:16px;text-align:center;">💵 Pay <span style="font-size:22px;">&#8377;${total}</span> cash to the rider</div>`;
+          } else {
+            paySection.style.display='block';
+            paySection.innerHTML=`
+              <div style="margin-bottom:16px;text-align:center;">
+                <div style="font-size:15px;color:var(--muted);margin-bottom:12px;">Complete your payment of <strong style="color:var(--teal-dark);font-size:20px;">&#8377;${total}</strong></div>
+                <button onclick="openRazorpay('${orderId}',${total},'${pay}')" style="background:var(--teal);color:#fff;border:none;border-radius:50px;padding:16px 40px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;width:100%;">💳 Pay Now &#8377;${total}</button>
+              </div>`;
+          }
+        }
+      } else if(status==='cancelled'){
+        clearInterval(interval);
+        const msg=document.getElementById('co-status-msg');
+        if(msg){msg.innerHTML='❌ Order was cancelled. No stores available right now.';msg.style.background='#FFEBEE';msg.style.color='#C62828';}
+        const spinner=document.getElementById('co-spinner');
+        if(spinner)spinner.style.display='none';
+      }
+    }catch(e){console.log('Poll error',e);}
+  },5000);
+}
+
+async function openRazorpay(orderId,total,pay){
+  try{
+    const rzpRes=await fetch('https://kasheer-backend.onrender.com/api/payments/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:total,orderId:orderId})});
+    const rzpData=await rzpRes.json();
+    if(!rzpData.success){alert('Could not init payment. Use COD.');return;}
+    const options={
+      key:'rzp_live_Sjgqt0L8Kn2Nu3',
+      amount:total*100,
+      currency:'INR',
+      name:'Kasheer',
+      description:'Order Payment',
+      order_id:rzpData.data.razorpayOrderId,
+      handler:async function(response){
+        const vRes=await fetch('https://kasheer-backend.onrender.com/api/payments/verify-signature',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({razorpayOrderId:response.razorpay_order_id,razorpayPaymentId:response.razorpay_payment_id,razorpaySignature:response.razorpay_signature,orderId:orderId})});
+        const vData=await vRes.json();
+        if(vData.success){
+          const paySection=document.getElementById('co-payment-section');
+          if(paySection)paySection.innerHTML='<div style="background:#E8F5E9;border-radius:12px;padding:16px;color:#2E7D32;font-weight:700;font-size:16px;text-align:center;">✅ Payment Successful! Your order is confirmed.</div>';
+        }
+      },
+      theme:{color:'#00BCD4'}
+    };
+    new Razorpay(options).open();
+  }catch(e){alert('Payment error: '+e.message);}
 }
 
 async function finalizeOrder(){
