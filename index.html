@@ -1850,7 +1850,7 @@ function updateCartBar(){
 function renderCart(){
   const el=document.getElementById('cart-content');
   if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty 🛒<br><br><button class="nav-btn nav-teal" onclick="nav('grocery')" style="margin-top:16px;">Shop Now</button></div>`;return;}
-  const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);const del=0;
+  const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);const del=gpsCoords?25+Math.ceil(Math.sqrt(Math.pow((gpsCoords.lat-34.0837),2)+Math.pow((gpsCoords.lng-74.7973),2))*111*8):25;
   let html=cart.map(i=>{
     const th=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';
     return `<div class="cart-item"><div class="ci-thumb">${th}</div><div style="flex:1"><div style="font-size:15px;font-weight:700;margin-bottom:3px;">${i.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">&#8377;${i.price} &times; ${i.quantity} = &#8377;${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cQty('${i.id}',1)">+</button></div></div>`;
@@ -2053,7 +2053,7 @@ async function placeOrder(){
     if(!name||!phone){errEl.textContent='Please enter name and phone.';errEl.style.display='block';return;}
     if(!area&&!gpsCoords){errEl.textContent='Please select your area or use GPS.';errEl.style.display='block';return;}
     const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-    const del=0;const total=sub+del;
+    const del=gpsCoords?25+Math.ceil(Math.sqrt(Math.pow((gpsCoords.lat-34.0837),2)+Math.pow((gpsCoords.lng-74.7973),2))*111*8):25;const total=sub+del;
     const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Opening payment...';
     try{
       const rzpRes=await fetch('https://kasheer-backend.onrender.com/api/payments/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:total,orderId:'GUEST-'+Date.now()})});
@@ -2096,7 +2096,7 @@ async function finalizeOrder(){
   const addrParts=[house,area,landmark].filter(Boolean);
   const addr=addrParts.join(', ')+(gpsCoords?` [GPS:${gpsCoords.lat.toFixed(5)},${gpsCoords.lng.toFixed(5)}]`:'');
   const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-  const del=0;const total=sub+del;
+  const del=gpsCoords?25+Math.ceil(Math.sqrt(Math.pow((gpsCoords.lat-34.0837),2)+Math.pow((gpsCoords.lng-74.7973),2))*111*8):25;const total=sub+del;
   const category=getOrderCategory(cart);
   const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Placing order...';
   const orderItems=cart.map(i=>({product_id:i.id,product_name:i.name,quantity:i.quantity,unit_price:i.price,total_price:i.price*i.quantity}));
