@@ -2071,7 +2071,7 @@ async function placeOrder(){
     if(!name||!phone){errEl.textContent='Please enter name and phone.';errEl.style.display='block';return;}
     if(!area&&!gpsCoords){errEl.textContent='Please select your area or use GPS.';errEl.style.display='block';return;}
     const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-    const del=window._quotedFee||(gpsCoords?25+Math.ceil(Math.sqrt(Math.pow((gpsCoords.lat-34.0837),2)+Math.pow((gpsCoords.lng-74.7973),2))*111*8):25);const total=sub+del;
+    const del=0;const total=sub;
     const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Opening payment...';
     try{
       const rzpRes=await fetch('https://kasheer-backend.onrender.com/api/payments/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:total,orderId:'GUEST-'+Date.now()})});
@@ -2114,7 +2114,7 @@ async function finalizeOrder(){
   const addrParts=[house,area,landmark].filter(Boolean);
   const addr=addrParts.join(', ')+(gpsCoords?` [GPS:${gpsCoords.lat.toFixed(5)},${gpsCoords.lng.toFixed(5)}]`:'');
   const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-  const del=window._quotedFee||(gpsCoords?25+Math.ceil(Math.sqrt(Math.pow((gpsCoords.lat-34.0837),2)+Math.pow((gpsCoords.lng-74.7973),2))*111*8):25);const total=sub+del;
+  const del=0;const total=sub;
   const category=getOrderCategory(cart);
   const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Placing order...';
   const orderItems=cart.map(i=>({product_id:i.id,product_name:i.name,quantity:i.quantity,unit_price:i.price,total_price:i.price*i.quantity}));
@@ -2139,11 +2139,11 @@ async function finalizeOrder(){
     <p style="color:var(--muted);margin-bottom:20px;">Your order has been sent to the nearest store.</p>
     <div style="background:var(--teal-light);border-radius:12px;padding:16px;margin-bottom:16px;text-align:left;">
       <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--muted);font-size:14px;">Subtotal</span><span style="font-weight:700;">&#8377;${sub}</span></div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--muted);font-size:14px;">Delivery Fee</span><span style="font-weight:700;">&#8377;${del}</span></div>
-      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;margin-top:8px;"><span style="font-weight:700;font-size:16px;">Total</span><span style="font-weight:700;font-size:16px;color:var(--teal-dark);">&#8377;${total}</span></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--muted);font-size:14px;">Delivery Fee</span><span style="font-weight:700;color:var(--teal);">Confirmed after store accepts</span></div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;margin-top:8px;"><span style="font-weight:700;font-size:16px;">Items Total</span><span style="font-weight:700;font-size:16px;color:var(--teal-dark);">&#8377;${sub}</span></div>
     </div>
     ${pay==='cod'?
-      `<div style="background:#FFF3E0;border-radius:12px;padding:14px;margin-bottom:16px;color:#E65100;font-weight:600;font-size:14px;">💵 Cash on Delivery — Pay <strong>&#8377;${total}</strong> to the rider</div>`:
+      `<div style="background:#FFF3E0;border-radius:12px;padding:14px;margin-bottom:16px;color:#E65100;font-weight:600;font-size:14px;">💵 Cash on Delivery — exact total will be confirmed after store accepts</div>`:
       `<div style="background:#E8F5E9;border-radius:12px;padding:14px;margin-bottom:16px;color:#2E7D32;font-weight:600;font-size:14px;">✅ Payment received — &#8377;${total}</div>`
     }
     <div style="background:#FFF8E1;border-radius:12px;padding:14px;color:#F57C00;font-size:13px;font-weight:600;">
