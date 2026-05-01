@@ -2062,44 +2062,59 @@ async function fetchDeliveryQuote(lat,lng){
 }
 
 async function placeOrder(){
-  const pay=document.getElementById('co-pay')?.value;
-  if(pay==='online'){
-    const name=document.getElementById('co-name')?.value?.trim();
-    const phone=document.getElementById('co-phone')?.value?.trim();
-    const area=document.getElementById('co-area')?.value?.trim()||'';
-    const errEl=document.getElementById('co-err');errEl.style.display='none';
-    if(!name||!phone){errEl.textContent='Please enter name and phone.';errEl.style.display='block';return;}
-    if(!area&&!gpsCoords){errEl.textContent='Please select your area or use GPS.';errEl.style.display='block';return;}
-    const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-    const del=0;const total=sub;
-    const btn=document.getElementById('co-btn');btn.disabled=true;btn.textContent='Opening payment...';
-    try{
-      const rzpRes=await fetch('https://kasheer-backend.onrender.com/api/payments/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:total,orderId:'GUEST-'+Date.now()})});
-      const rzpData=await rzpRes.json();
-      if(!rzpData.success){btn.disabled=false;btn.textContent='Place Order';alert('Could not init payment. Use COD.');return;}
-      const options={
-        key:'rzp_live_Sjgqt0L8Kn2Nu3',
-        amount:total*100,
-        currency:'INR',
-        name:'Kasheer',
-        description:'Grocery Delivery',
-        order_id:rzpData.data.razorpayOrderId,
-        handler:async function(response){
-          const vRes=await fetch('https://kasheer-backend.onrender.com/api/payments/verify-signature',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({razorpayOrderId:response.razorpay_order_id,razorpayPaymentId:response.razorpay_payment_id,razorpaySignature:response.razorpay_signature,orderId:'GUEST-'+Date.now()})});
-          const vData=await vRes.json();
-          if(vData.success){finalizeOrder();}
-          else{btn.disabled=false;btn.textContent='Place Order';alert('Payment verify failed. Contact support.');}
-        },
-        prefill:{name:name,contact:phone},
-        theme:{color:'#0d9488'},
-        modal:{ondismiss:function(){btn.disabled=false;btn.textContent='Place Order';}}
-      };
-      new Razorpay(options).open();
-    }catch(e){btn.disabled=false;btn.textContent='Place Order';alert('Payment error: '+e.message);console.error('Payment error full:',e);}
-    return;
-  }
-  finalizeOrder();
+  const btn=document.getElementById('co-btn');
+  const errEl=document.getElementById('co-err');
+  if(errEl){errEl.style.display='none';}
+  const name=document.getElementById('co-name')?.value.trim();
+  const phone=document.getElementById('co-phone')?.value.trim();
+  const area=document.getElementById('co-area')?.value.trim();
+  const landmark=document.getElementById('co-landmark')?.value.trim();
+  const pay=document.getElementById('co-pay')?.value||'cod';
+  const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);
+  if(!name){if(errEl){errEl.textContent='Please enter your name.';errEl.style.display='block';}return;}
+  if(!phone||phone.length<10){if(errEl){errEl.textContent='Please enter a valid phone number.';errEl.style.display='block';}return;}
+  if(!area&&!gpsCoords){if(errEl){errEl.textContent='Please select your area or use GPS.';errEl.style.display='block';}return;}
+  const addrParts=[name];
+  const house=document.getElementById('co-house')?.value.trim();
+  if(house)addrParts.push(house);
+  if(area)addrParts.push(area);
+  if(landmark)addrParts.push(landmark);
+  if(gpsCoords)addrParts.push(`GPS:${gpsCoords.lat.toFixed(5)},${gpsCoords.lng.toFixed(5)}`);
+  const addr=addrParts.join(', ');
+  const orderItems=cart.map(i=>({product_name:i.name,quantity:i.quantity,unit_price:i.price}));
+  const category=document.getElementById('co-cat')?.value||'grocery';
+  btn.disabled=true;btn.textContent='Placing Order...';
+  const orderPayload={customer_name:name,customer_phone:phone,delivery_address:addr,delivery_area:area,delivery_landmark:landmark,gps_lat:gpsCoords?.lat||null,gps_lng:gpsCoords?.lng||null,payment_method:pay,total_amount:sub,category,items:orderItems};
+  let savedToBackend=false;let orderId='LOCAL-'+Date.now();
+  try{
+    const res=await fetch(API+'/orders/guest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(orderPayload)});
+    const data=await res.json();
+    if(data.success&&data.data?.id){orderId=data.data.id;savedToBackend=true;}
+  }catch(e){console.log('Backend order failed',e);}
+  gOrders.unshift({id:orderId,items:[...cart],address:addr,area,landmark,gps:gpsCoords||null,phone,name,payment:pay,category,total:sub,status:'pending',backend:savedToBackend,created_at:new Date().toISOString()});
+  cart=[];saveCart();updateCartBar();gpsCoords=null;
+  btn.disabled=false;btn.textContent='Place Order';
+  const coSuccess=document.getElementById('co-success');
+  coSuccess.style.display='block';
+  coSuccess.innerHTML=`
+    <div style="font-size:80px;margin-bottom:16px;">✅</div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;">Order Placed!</h3>
+    <p style="color:var(--muted);margin-bottom:20px;">Your order has been sent to the nearest store.</p>
+    <div style="background:var(--teal-light);border-radius:12px;padding:16px;margin-bottom:16px;text-align:left;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--muted);font-size:14px;">Items Total</span><span style="font-weight:700;">&#8377;${sub}</span></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--muted);font-size:14px;">Delivery Fee</span><span style="font-weight:700;color:var(--teal);">Confirmed after store accepts</span></div>
+    </div>
+    ${pay==='cod'?
+      `<div style="background:#FFF3E0;border-radius:12px;padding:14px;margin-bottom:16px;color:#E65100;font-weight:600;font-size:14px;">💵 Cash on Delivery — exact total confirmed after store accepts</div>`:
+      `<div style="background:#E3F2FD;border-radius:12px;padding:14px;margin-bottom:16px;color:#1565C0;font-weight:600;font-size:14px;">💳 Online Payment — you'll receive a payment link once the store confirms your order</div>`
+    }
+    <div style="background:#FFF8E1;border-radius:12px;padding:14px;color:#F57C00;font-size:13px;font-weight:600;">
+      ⏳ Waiting for store to accept. You'll be notified on your phone once confirmed.
+    </div>
+  `;
+  coSuccess.scrollIntoView({behavior:'smooth'});
 }
+
 async function finalizeOrder(){
   const name=document.getElementById('co-name')?.value?.trim();
   const phone=document.getElementById('co-phone')?.value?.trim();
