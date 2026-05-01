@@ -1851,12 +1851,12 @@ function updateCartBar(){
 function renderCart(){
   const el=document.getElementById('cart-content');
   if(!cart.length){el.innerHTML=`<div class="empty" style="margin-top:60px;">Your cart is empty 🛒<br><br><button class="nav-btn nav-teal" onclick="nav('grocery')" style="margin-top:16px;">Shop Now</button></div>`;return;}
-  const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);const del=gpsCoords?25+Math.ceil(Math.sqrt(Math.pow((gpsCoords.lat-34.0837),2)+Math.pow((gpsCoords.lng-74.7973),2))*111*8):25;
+  const sub=cart.reduce((s,i)=>s+i.price*i.quantity,0);const del=null;
   let html=cart.map(i=>{
     const th=i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='🛒'">`:'🛒';
     return `<div class="cart-item"><div class="ci-thumb">${th}</div><div style="flex:1"><div style="font-size:15px;font-weight:700;margin-bottom:3px;">${i.name}</div><div style="font-size:13px;color:var(--teal-dark);font-weight:600;">&#8377;${i.price} &times; ${i.quantity} = &#8377;${i.price*i.quantity}</div></div><div class="qty-row"><button class="qty-btn" onclick="cQty('${i.id}',-1)">-</button><span class="qty-num">${i.quantity}</span><button class="qty-btn" onclick="cQty('${i.id}',1)">+</button></div></div>`;
   }).join('');
-  html+=`<div class="cart-summary"><div class="sum-row"><span>Subtotal</span><span>&#8377;${sub}</span></div><div class="sum-row"><span>Delivery</span><span>&#8377;${del}</span></div><div class="sum-row total"><span>Total</span><span>&#8377;${sub+del}</span></div></div>`;
+  html+=`<div class="cart-summary"><div class="sum-row"><span>Subtotal</span><span>&#8377;${sub}</span></div><div class="sum-row"><span>Delivery</span><span style="color:var(--teal);font-size:13px;font-weight:600;">Confirmed after store accepts</span></div><div class="sum-row total"><span>Total</span><span>&#8377;${sub} + delivery</span></div></div>`;
   // Build smart address checkout form
   const checkoutHtml = `<div class="checkout-form">
   <h3>Delivery Details</h3>
