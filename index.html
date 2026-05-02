@@ -2092,6 +2092,8 @@ async function placeOrder(){
     const data=await res.json();
     if(data.success&&data.data?.id){orderId=data.data.id;savedToBackend=true;}
   }catch(e){console.log('Backend order failed',e);}
+  const gOrders=JSON.parse(localStorage.getItem('guest_orders')||'[]');
+  const gOrders=JSON.parse(localStorage.getItem('guest_orders')||'[]');
   gOrders.unshift({id:orderId,items:[...cart],address:addr,area,landmark,gps:gpsCoords||null,phone,name,payment:pay,category,total:sub,status:'pending',backend:savedToBackend,created_at:new Date().toISOString()});
   cart=[];saveCart();updateCartBar();gpsCoords=null;
   btn.disabled=false;btn.textContent='Place Order';
