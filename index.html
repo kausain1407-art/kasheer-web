@@ -1946,7 +1946,7 @@ function renderCart(){
         <option value="online">&#128179; Online Payment</option>
       </select>
     </div>
-    <button class="place-btn" id="co-btn" onclick="placeOrder()">Place Order &#8377;${sub+del}</button>
+    <button class="place-btn" id="co-btn" onclick="placeOrder()">Place Order &#8377;${sub+(window._quotedFee||25)}</button>
     <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px;">&#128274; Safe &amp; secure &nbsp;&#183;&nbsp; COD available &nbsp;&#183;&nbsp; Usually 30&#8211;60 min</p>
   </div>
 </div>`;
@@ -2059,7 +2059,7 @@ async function fetchDeliveryQuote(lat,lng){
       if(delEl)delEl.innerHTML=`&#8377;${d.data.delivery_fee}<span style="font-size:11px;color:var(--muted);margin-left:4px;">${d.data.distance?`(${d.data.distance}km)`:''}</span>`;
       if(totEl)totEl.textContent=`&#8377;${sub+d.data.delivery_fee}`;
       const btn=document.getElementById('co-btn');
-      if(btn)btn.textContent=`Place Order &#8377;${sub+d.data.delivery_fee}`;
+      if(btn)btn.textContent=`Place Order ₹${sub+d.data.delivery_fee}`;
     }
   } catch(e){ console.log('Quote fetch failed',e); }
 }
