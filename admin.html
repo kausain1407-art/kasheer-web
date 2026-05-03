@@ -641,8 +641,8 @@ async function loadGroceryPrices() {
           </select>
         </td>
         <td><button class="btn btn-approve" onclick="saveGroceryPrice('')">💾 Save</button></td>
-      </tr>).join('');
-  } catch(e) { tbody.innerHTML = <tr><td colspan="5"><div class="empty">Error: </div></td></tr>; }
+      </tr>`).join('');
+  } catch(e) { tbody.innerHTML = `<tr><td colspan="5"><div class="empty">Error: </div></td></tr>`; }
 }
 
 async function saveGroceryPrice(code) {
