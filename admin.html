@@ -630,10 +630,10 @@ async function loadGroceryPrices() {
     const entries = Object.entries(priceMap);
     if (!entries.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No grocery products found</div></td></tr>'; return; }
     tbody.innerHTML = entries.map(([code, info]) => `
-      <tr id="gp-row-">
-        <td style="font-family:monospace;font-size:12px;color:var(--muted)"></td>
-        <td></td>
-        <td><input type="number" value="" id="gp-price-" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:14px;width:90px;"></td>
+      <tr id="gp-row-${code}">
+        <td style="font-family:monospace;font-size:12px;color:var(--muted)">${code}</td>
+        <td>${info.name||code}</td>
+        <td><input type="number" value="${info.price||0}" id="gp-price-${code}" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:14px;width:90px;"></td>
         <td>
           <select id="gp-avail-" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:14px;">
             <option value="true" >✅ Available</option>
