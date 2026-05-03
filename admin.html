@@ -629,7 +629,7 @@ async function loadGroceryPrices() {
     const priceMap = d.data || {};
     const entries = Object.entries(priceMap);
     if (!entries.length) { tbody.innerHTML = '<tr><td colspan="5"><div class="empty">No grocery products found</div></td></tr>'; return; }
-    tbody.innerHTML = entries.map(([code, info]) => 
+    tbody.innerHTML = entries.map(([code, info]) => `
       <tr id="gp-row-">
         <td style="font-family:monospace;font-size:12px;color:var(--muted)"></td>
         <td></td>
