@@ -170,6 +170,7 @@ content{display:block;}
       <div class="nav-section">Commerce</div>
       <a onclick="showPage('orders')" id="nav-orders"><span class="nav-icon">🧾</span>Orders</a>
       <div class="nav-section">Marketing</div>
+      <a onclick="showPage('payouts')" id="nav-payouts"><span class="nav-icon">💸</span>Payouts</a>
       <a onclick="showPage('broadcast')" id="nav-broadcast"><span class="nav-icon">📣</span>Broadcast</a>
     </nav>
     <div style="flex:1;padding:32px;overflow-y:auto;">
@@ -276,6 +277,7 @@ content{display:block;}
       </div>
 
       <!-- BROADCAST -->
+      <div class="page" id="page-payouts"><div class="page-header"><div><div class="page-title">Seller Payouts</div><div class="page-sub">Money owed to sellers after commission</div></div><button class="btn btn-primary" onclick="loadPayouts()">Refresh</button></div><div id="payouts-list">Loading...</div></div>
       <div class="page" id="page-broadcast">
         <div class="page-header">
           <div><div class="page-title">Broadcast Notification</div><div class="page-sub">Send push notifications to users like Zomato does</div></div>
@@ -620,6 +622,33 @@ async function deleteProduct(id) {
 }
 
 // ── GROCERY PRICES ─────────────────────────────────────────────────────
+
+async function loadPayouts(){
+  const el=document.getElementById("payouts-list");
+  el.innerHTML="Loading...";
+  try{
+    const data=await api("/admin/payouts");
+    if(!data||!data.length){el.innerHTML="<div class='empty'>No pending payouts</div>";return;}
+    el.innerHTML=data.map(p=>{
+      const s=p.seller||{};
+      return "<div style='background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px'>"
+        +"<b>"+(s.store_name||"Unknown")+"</b><br>"
+        +"Phone: "+(s.phone||"N/A")+"<br>"
+        +"UPI: "+(s.upi_id||"Not set")+"<br>"
+        +"<big style='color:#00BCD4'>Rs."+(p.totalOwed?p.totalOwed.toFixed(2):0)+"</big>"
+        +" ("+( p.orders?p.orders.length:0)+" orders)<br><br>"
+        +"Send to UPI: <b>"+(s.upi_id||"Not provided")+"</b><br>"
+        +"<button class='btn btn-approve' onclick='markPaid(""+s.id+"")'>Mark as Paid</button>"
+        +"</div>";
+    }).join("");
+  }catch(e){el.innerHTML="Error: "+e.message;}
+}
+async function markPaid(id){
+  if(!confirm("Mark all payouts for this seller as paid?"))return;
+  try{await api("/admin/payouts/"+id+"/mark-paid","PATCH");toast("Marked as paid","success");loadPayouts();}
+  catch(e){toast(e.message,"error");}
+}
+
 async function loadGroceryPrices() {
   const tbody = document.getElementById('grocery-prices-body');
   tbody.innerHTML = '<tr><td colspan="5"><div class="loading"><div class="spinner"></div>Loading...</div></td></tr>';
