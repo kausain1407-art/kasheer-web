@@ -638,7 +638,7 @@ async function loadPayouts(){
         +"<big style='color:#00BCD4'>Rs."+(p.totalOwed?p.totalOwed.toFixed(2):0)+"</big>"
         +" ("+( p.orders?p.orders.length:0)+" orders)<br><br>"
         +"Send to UPI: <b>"+(s.upi_id||"Not provided")+"</b><br>"
-        +"<button class='btn btn-approve' onclick='markPaid(""+s.id+"")'>Mark as Paid</button>"
+        +"<button class='btn btn-approve' onclick='markPaid(\""+s.id+"\")'> Mark as Paid</button>"
         +"</div>";
     }).join("");
   }catch(e){el.innerHTML="Error: "+e.message;}
